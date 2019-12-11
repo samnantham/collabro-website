@@ -1,0 +1,90 @@
+.modal-wrapper{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1180px;
+}
+
+.custom-modal{
+    width: 100%;
+    float: left;
+    background: $white;
+    @include border-radius(5px);
+    border: 1px solid $border;
+    padding: 30px;
+    .custom-modal-title{
+        width: 100%;
+        float: left;
+        padding: 13px 15px;
+        margin-bottom: 30px;
+        &.modal-default{
+            background: $modal-gray;
+        }
+        &.modal-orange{
+            @extend .orange-gradient;
+            color: $white;
+            h3{
+                color: $white !important;
+            }
+        }
+        &.modal-gray{
+            @extend .silver-gradient;
+            color: $black;
+        } 
+        &.modal-green{
+            background: $green;
+            color: $white;
+            h3{
+                color: $white !important;
+            }
+        }       
+        h3{
+            font-size: $font-l;
+            text-transform: uppercase;
+        }
+        .dropdown-label{
+            width: 100%;
+            float: left;
+            margin-right: 10px;
+            font-size: $font-xs;
+            font-weight: $font-semibold;
+        }
+        .ui-select-bootstrap{
+            width: 100%;
+            float: right;
+            min-width: 240px;
+        }
+    }
+    .custom-modal-body{
+        width: 100%;
+        float: left;
+        .modal-left{
+            width: 100%;
+            float: left;
+            
+        }
+    }
+    .custom-modal-footer{
+        width: 100%;
+        float: left;
+        margin-top: 30px;
+        .btn{
+            min-width: 155px;
+        }
+    }
+}
+
+
+@media (max-width: 768px){
+    .custom-modal{
+        .custom-modal-title{
+            .dropdown-label{
+                text-align: left;
+                margin-top: 10px;
+                margin-bottom: 5px;
+            }
+        }
+        .custom-modal-footer{
+            margin-top: 15px;
+        }
+    }
+}

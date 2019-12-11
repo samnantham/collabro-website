@@ -1,0 +1,157 @@
+/* Toggle */
+$width: 100px; // Change Me
+$height: $width / 8;
+.custom-toggle{
+  input[type='checkbox'] {
+    display: none;
+    
+    &:checked ~ .toggle-s {
+      background: $white;
+      border: 1px solid $success;
+      left: 33px;
+      transition: .2s;
+    }
+    
+    &:checked ~ .switch-tog {
+      background: $green;  
+      transition: .2s;
+      // border-color: $default;
+    }
+
+    &:checked ~ .status:before{
+      content: "ONLINE";
+      color: $success;
+    }
+    &:checked ~ i{
+      color: $success;
+    }
+  }
+}
+
+.custom-toggle{
+  width: 100%;
+  float: left;
+  height: 35px;
+  justify-content: space-between;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  color: $primary-text;
+  font-size: $font-r;
+  background: $half-white;
+  cursor: pointer;
+  i{
+    width: 15px;
+    position: absolute;
+    left: -115px;
+    color: $danger;
+  }
+  span{
+    font-size: $font-s;
+    color: $black;
+    line-height: initial;
+  }
+  .status{
+    margin-left: 10px;
+    position: absolute;
+    left: -100px;
+    &:before{
+      content: "OFFLINE";
+      color: $danger;
+      display: inline-block;
+    }
+  }
+}
+
+.switch-tog {
+  cursor: pointer;
+  display: block;
+  width: 45px;
+  height: 14px;
+  background: $danger;
+  border: 1px solid $input-border;
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  transition: .2s;
+}
+
+.toggle-s {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: $white;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  transition: .2s;
+  border: 1px solid $danger;
+}
+
+.toggle-con{
+  width: 45px;
+  float: right;
+  height: 15px;
+  position: relative;
+  margin-left: auto;
+}
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 30px;
+  margin-bottom: 0;
+  input {display:none;}
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 6px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $white;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    border-radius: 34px;
+    @include box-shadow($box-shadow-default);
+    &:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      background-color: $green;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      border-radius: 50%;
+      z-index: 999;
+    }
+  }
+  input:checked + .slider {
+    background-color: $white;
+  }
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(92px);
+  }
+  .slider:after{
+    content:'Testing';
+    color: $gray;
+    display: block;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    top: 50%;
+    left: 50%;
+    font-size: 12px;
+  }
+  input:checked + .slider:after{  
+    content:'Production';
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+}

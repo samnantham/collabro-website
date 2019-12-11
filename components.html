@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <title>Collabro</title>
+</head>
+
+<body>
+   <!-- Inner header -->
+   <header class="main-header hidden-print" id="dsci-header">
+        <nav class="navbar">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 flex-center-space">
+                        <a class="logo" href="#">
+                            <img src="assets/img/logo.png" />
+                        </a>
+                        <div class="search-top">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search keyword" />
+                                <button type="button" class="btn transparent-btn"><i class="fa fa-search" ></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-right flex-center-space">
+                        <a class="btn secondary-btn" href="#"><i class="fa fa-bolt mr-10"></i> Broadcast</a>
+                        <a class="btn white-btn" href="#">Post <i class="fa fa-plus-circle ml-10"></i></a>                        
+                        <ul class="top-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle">
+                                    <i class="fa fa-bell-o"></i>                                                
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle">
+                                    <img src="assets/img/message.png" />                      
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle">
+                                    <i class="fa fa-calendar-check-o"></i>                                                
+                                </a>
+                            </li>                            
+                        </ul>
+
+                        <ul class="top-nav">
+                            <li class="dropdown m-0">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <div class="avatar avatar-s">
+                                        <img src="assets/img/user.gif" alt="user" />
+                                    </div>
+                                    <span class="username">Username <i class="fa fa-caret-down"></i></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user" ></i><span>My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <i class="fa fa-sign-out" ></i> <span>Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page layout -->
+    <div class="content-wrapper">
+        <!-- left side bar -->
+        <div class="left-sidebar">
+            
+            <div class="sidebar-card">
+                <h6 class="label-xs">My Total Earning</h6>
+                <span class="font-price">$80,800</span>
+            </div>
+            
+            <label class="custom-toggle" for="switch-toggle">
+                <div class="toggle-con">
+                    <input
+                    type="checkbox"
+                    id="switch-toggle"
+                    />
+                    <span class="switch-tog"></span>
+                    <span class="toggle-s"></span>
+                    <i class="fa fa-power-off"></i>
+                    <span class="status"></span>
+                </div>
+            </label>
+
+            <!-- Simple list -->
+            <ul class="simple-list">
+                <li><a href="#"><i class="fa fa-dashboard"></i> <span>MY DASHBOARD</span></a></li>
+                <li><a href="#"><i class="fa fa-list-alt"></i> <span>MY WISHLIST</span></a></li>
+                <li><a href="#"><i class="fa fa-briefcase"></i> <span>MY PROJECTS</span></a></li>
+                <li><a href="#"><i class="fa fa-user-plus"></i> <span>MY FRIENDS</span></a></li>
+                <li><a href="#"><i class="fa fa-list-ul"></i> <span>MY FEEDS</span></a></li>
+                <li><a href="#"><i class="fa fa-lightbulb-o"></i> <span>HOW IT WORKS</span></a></li>
+                <li><a href="#"><i class="fa fa-trophy"></i> <span>REWARDS & BENEFITS</span></a></li>
+                <li><a href="#"><i class="fa fa-cogs"></i> <span>SETINGS</span></a></li>
+            </ul>
+
+        </div>
+
+        <!-- App Content -->
+        <div class="content">
+
+        </div>
+
+        <!-- Right side bar -->
+        <div class="right-sidebar">
+            
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <button type="button" class="btn unfollow-btn block-btn"><i class="fa fa-user-plus" title="Follow"></i> Follow</button>
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-no-project">   
+                    <div class="msg-top">
+                        <h5 class="msg-title"><img src="assets/img/other-work.png" /> Other Works</h5>
+                        <ul>
+                            <li><img src="assets/img/work.png" /></li>
+                            <li><img src="assets/img/work.png" /></li>
+                        </ul>
+                    </div>
+
+                    <div class="post-content">
+                        <ul class="member-list">
+                            <li>
+                                <a href="#">
+                                    <div class="list-left">
+                                        <h5>Singapore</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="list-left">
+                                        <h5>22.08.2019</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Date</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="list-left">
+                                        <h5>238K</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Followers</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="list-left">
+                                        <h5>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Appreciation</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="list-left">
+                                        <h5>591K</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="list-left">
+                                        <h5>22.06.2019</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Joined</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="msg-post">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+                            <defs>
+                                <clipPath id="clip-path">
+                                <path id="Path_178" data-name="Path 178" d="M23.151-41H43.757a5.382,5.382,0,0,1,5.151,5.138v15.412a5.626,5.626,0,0,1-5.151,5.138H32.167c-.154-.155-.6.027-1.288,0l-3.864,5.138c-.959.265-1.786-.1-1.288-1.285v-2.569a2.267,2.267,0,0,0-2.576-1.285A5.627,5.627,0,0,1,18-20.449V-35.862A5.383,5.383,0,0,1,23.151-41Zm0,10.3a1.285,1.285,0,0,0,1.289,1.288H42.468A1.286,1.286,0,0,0,43.757-30.7a1.285,1.285,0,0,0-1.289-1.288H24.44A1.286,1.286,0,0,0,23.151-30.7Zm0,5.151a1.283,1.283,0,0,0,1.285,1.288h9.021a1.286,1.286,0,0,0,1.285-1.288,1.283,1.283,0,0,0-1.285-1.288H24.436A1.286,1.286,0,0,0,23.151-25.546Z" transform="translate(-18 41)" fill="none" clip-rule="evenodd"/>
+                                </clipPath>
+                                <clipPath id="clip-path-2">
+                                <path id="Path_177" data-name="Path 177" d="M-1500,313.626H534.832V-1000H-1500Z" transform="translate(1500 1000)" fill="none"/>
+                                </clipPath>
+                            </defs>
+                            <g id="Group_430" data-name="Group 430" clip-path="url(#clip-path)">
+                                <g id="Group_429" data-name="Group 429" transform="translate(-1954.984 -1235.066)" clip-path="url(#clip-path-2)">
+                                <path id="Path_176" data-name="Path 176" d="M13-2.212H56.788V-46H13Z" transform="translate(1935.545 1274.626)" fill="#fff"/>
+                                </g>
+                            </g>
+                        </svg>                              
+                    </div>
+
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- Right side bar -->
+        <div class="right-sidebar">
+            
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <input type="button" class="btn success-btn block-btn" value="Post Request" />
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-no-project">
+
+                    <div class="empty-msg">
+                        <div class="msg-top">
+                            <i class="fa fa-info-circle"></i>
+                            <p>Having issues with Project? Visit the Resolution Center</p>
+                        </div>
+                        <div class="msg-bottom">
+                            <p>Review the completed
+                                    project to earn extra Xperience Points!</p>
+                        </div>
+                    </div>    
+
+                    <div class="msg-post">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+                            <defs>
+                                <clipPath id="clip-path">
+                                <path id="Path_178" data-name="Path 178" d="M23.151-41H43.757a5.382,5.382,0,0,1,5.151,5.138v15.412a5.626,5.626,0,0,1-5.151,5.138H32.167c-.154-.155-.6.027-1.288,0l-3.864,5.138c-.959.265-1.786-.1-1.288-1.285v-2.569a2.267,2.267,0,0,0-2.576-1.285A5.627,5.627,0,0,1,18-20.449V-35.862A5.383,5.383,0,0,1,23.151-41Zm0,10.3a1.285,1.285,0,0,0,1.289,1.288H42.468A1.286,1.286,0,0,0,43.757-30.7a1.285,1.285,0,0,0-1.289-1.288H24.44A1.286,1.286,0,0,0,23.151-30.7Zm0,5.151a1.283,1.283,0,0,0,1.285,1.288h9.021a1.286,1.286,0,0,0,1.285-1.288,1.283,1.283,0,0,0-1.285-1.288H24.436A1.286,1.286,0,0,0,23.151-25.546Z" transform="translate(-18 41)" fill="none" clip-rule="evenodd"/>
+                                </clipPath>
+                                <clipPath id="clip-path-2">
+                                <path id="Path_177" data-name="Path 177" d="M-1500,313.626H534.832V-1000H-1500Z" transform="translate(1500 1000)" fill="none"/>
+                                </clipPath>
+                            </defs>
+                            <g id="Group_430" data-name="Group 430" clip-path="url(#clip-path)">
+                                <g id="Group_429" data-name="Group 429" transform="translate(-1954.984 -1235.066)" clip-path="url(#clip-path-2)">
+                                <path id="Path_176" data-name="Path 176" d="M13-2.212H56.788V-46H13Z" transform="translate(1935.545 1274.626)" fill="#fff"/>
+                                </g>
+                            </g>
+                        </svg>                              
+                    </div>
+
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- Right side bar -->
+        <div class="right-sidebar">
+            
+            <div class="right-wrapper">
+                <div class="right-title-new">
+                    <input type="button" class="btn success-btn block-btn" value="Create group" />
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>Recent Members</h4>
+                </div>
+                <div class="right-content">
+                    <ul class="member-list">
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>Followers</h4>
+                </div>
+                <div class="right-content">
+                    <ul class="member-list">
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- Right side bar -->
+        <div class="right-sidebar">
+            
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>User rank <h4>
+                    <i class="fa fa-trophy"></i>
+                </div>
+                <div class="right-content">
+                    <img src="assets/img/chart.png" />
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>Recent Members</h4>
+                </div>
+                <div class="right-content">
+                    <ul class="member-list">
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>Followers</h4>
+                </div>
+                <div class="right-content">
+                    <ul class="member-list">
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar1.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>Member name</h5>
+                                    <p>Designation</p>
+                                </div>
+                                <div class="list-right">
+                                    <img src="assets/img/avatar.jpg" />
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- Right side bar -->
+        <div class="right-sidebar">
+            
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>User rank <h4>
+                    <i class="fa fa-trophy"></i>
+                </div>
+                <div class="right-content">
+                    <img src="assets/img/chart.png" />
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>Weekly Summary</h4>
+                </div>
+                <div class="right-content">
+                    <ul class="member-list">
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>16 / 24</h5>
+                                    <p>Completed Projects</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>9 / 12</h5>
+                                    <p>Projects Ongoing</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>84 / 216</h5>
+                                    <p>Projects Pending</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>2 / 38</h5>
+                                    <p>Projects Cancel</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="ads">
+                    <img src="assets/img/ads.png" />
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- Right side bar -->
+        <div class="right-sidebar">
+            
+            <div class="right-wrapper">
+                <div class="right-title-new">
+                    <h2>895862 </h2>
+                    <h5>Total Listings</h5>
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <h4>Listings</h4>
+                </div>
+                <div class="right-content">
+                    <ul class="member-list">
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>27538</h5>
+                                    <p>Service</p>
+                                </div>
+                                <div class="list-right self-top">
+                                    <div class="icon-holder">
+                                        <img src="assets/img/right-icon.png"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>32538</h5>
+                                    <p>Product</p>
+                                </div>
+                                <div class="list-right self-top">
+                                    <div class="icon-holder">
+                                        <img src="assets/img/right-icon.png"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>54538</h5>
+                                    <p>Rental</p>
+                                </div>
+                                <div class="list-right self-top">
+                                    <div class="icon-holder">
+                                        <img src="assets/img/right-icon.png"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>3434</h5>
+                                    <p>Events</p>
+                                </div>
+                                <div class="list-right self-top">
+                                    <div class="icon-holder">
+                                        <img src="assets/img/right-icon.png"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>534</h5>
+                                    <p>Members</p>
+                                </div>
+                                <div class="list-right self-top">
+                                    <div class="icon-holder">
+                                        <img src="assets/img/right-icon.png"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>1534</h5>
+                                    <p>Deals Made</p>
+                                </div>
+                                <div class="list-right self-top">
+                                    <div class="icon-holder">
+                                        <img src="assets/img/right-icon.png"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="list-left">
+                                    <h5>6534</h5>
+                                    <p>Conversations</p>
+                                </div>
+                                <div class="list-right self-top">
+                                    <div class="icon-holder">
+                                        <img src="assets/img/right-icon.png"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+
+    </div>
+
+    <!-- Footer content -->
+    <div class="footer">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <img src="assets/img/logo.png" />
+                        <p>Collabro is a decentralised platform for entrepreneurs to collaborate, engage, find resources and do business. Built with AI-powered tripartite collaboration system technology to connect business owners and end-users. This platform will benefit those who are seeking resources to hire, buy, sell or offer services.</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-lg-offset-1 col-md-offset-1">
+                        <h5>Earn and Learn</h5>
+                        <ul class="footer-list">
+                            <li><a href="#">Open a shop</a></li>
+                            <li><a href="#">Become a partner</a></li>
+                            <li><a href="#">Affiliation program</a></li>
+                            <li><a href="#">Bonus Credit</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-2">
+                        <h5>Resources</h5>
+                        <ul class="footer-list">
+                            <li><a href="#">Licenses and Legal</a></li>
+                            <li><a href="#">Discussions and Forums</a></li>
+                            <li><a href="#"> Collecons Centre</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Collaboraon Service</a></li>
+                            <li><a href="#">Site Maps</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-2">
+                        <h5>The Company</h5>
+                        <ul class="footer-list">
+                            <li><a href="#">Brand</a></li>
+                            <li><a href="#">Terms and Condions</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Careers</a></li>                                
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        © 2018 Collabro. All Rights Reserved.
+                    </div>
+                    <div class="col-lg-4 col-md-4 right text-right follow">
+                        Follow Us 
+                        <i class="fa fa-camera"></i>
+                        <i class="fa fa-facebook-square"></i> 
+                        <i class="fa fa-send"></i>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
