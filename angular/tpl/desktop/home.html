@@ -1,0 +1,225 @@
+<div ng-controller="HomeCtrl">
+    
+    <!-- Banner  -->
+        <div class="banner-section" id="home" ng-if="!formLoading">
+            <ng-skitter items="photos" options="skitterOption">
+                    <div class="banner-data">
+                        <h1>{{item.title}}</h1>
+                        <p>{{item.description}}</p>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-border-white"> {{item.button}} </button>
+                            <button type="button" class="btn default-btn ml-30"> Join the club </button>
+                        </div>
+                    </div>
+            </ng-skitter>
+        </div>
+    <!-- Banner  -->
+
+    <!-- About As -->
+    <div class="content-section mt-50" id="aboutus">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="about-section">
+                        <h2 class="font-home">About Us</h2>
+                        <p>Collabro is a decentralised platform for entrepreneurs to collaborate, engage, find resources and do business. Built with AI-powered tripartite collaboration system technology to connect business owners and end-users. This platform will benefit those who are seeking resources to hire, buy, sell or offer services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="content-section mt-50" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="about-content editable">
+                        <h3>Manage your Portfolio on Desktop and Mobile</h3>
+                        <p>“Rinse the shrimp and pat them dry with paper towels. Arrange them in a single layer in a 13-by-9-inch (33-by-23-centimeter) baking dish.</p>
+                        <span>Excerpt From: Williams, Nathan. “Kinfolk Table : Recipes for Small Gatherings
+                                (9781579655877).” iBooks. </span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="about-content" style="background-image: url(../assets/img/about.png);">
+                        <h3>Get Notification and 
+                                Collaborate on the go</h3>
+                            <p>“Rinse the shrimp and pat them dry with paper towels. Arrange them in a single layer in a 13-by-9-inch (33-by-23-centimeter) baking dish.</p>
+                        <span>Excerpt From: Williams, Nathan. “Kinfolk Table : Recipes for Small Gatherings
+                                (9781579655877).” iBooks. </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-section mt-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="feature-card" style="background-image: url(../assets/img/feature.png);">
+                        <div class="icon-wrapper">
+                            <div class="icon">
+                                <i class="fa fa-trophy"></i>
+                            </div>
+                        </div>
+                        <h3>Design and Creative Services Offer</h3>
+                        <p>After stumbling into the brilliant Galaxy.fili.nl website, we thought we should invite Filidor Wiese.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="feature-card" style="background-image: url(../assets/img/feature.png);">
+                        <div class="icon-wrapper">
+                            <div class="icon">
+                                <i class="fa fa-trophy"></i>
+                            </div>
+                        </div>
+                        <h3>Design and Creative Services Offer</h3>
+                        <p>After stumbling into the brilliant Galaxy.fili.nl website, we thought we should invite Filidor Wiese.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="feature-card" style="background-image: url(../assets/img/feature.png);">
+                        <div class="icon-wrapper">
+                            <div class="icon">
+                                <i class="fa fa-trophy"></i>
+                            </div>
+                        </div>                        
+                        <h3>Design and Creative Services Offer</h3>
+                        <p>After stumbling into the brilliant Galaxy.fili.nl website, we thought we should invite Filidor Wiese.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="feature-card editable">
+                        <div class="icon-wrapper">
+                            <div class="icon">
+                                <i class="fa fa-trophy"></i>
+                            </div>
+                        </div>
+                        <h3>Design and Creative Services Offer</h3>
+                        <p>After stumbling into the brilliant Galaxy.fili.nl website...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-section more-feature mt-50" id="benefits">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 text-center">
+                    <h1>Discover more features</h1>
+                    <p class="subtitle">Myriad of product and services</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="more-feature-card">
+                        <div class="img-wrapper" style="background-image: url(../assets/img/benefit.png);"></div>
+                        <div class="card-content">
+                            <h3>Protect your products and services with our tripartite system</h3>
+                            <p>Excerpt From: Williams, Nathan. “Kinfolk Table : Recipes for Small</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="more-feature-card">
+                        <div class="img-wrapper" style="background-image: url(../assets/img/benefit.png);"></div>
+                        <div class="card-content">
+                            <h3>Protect your products and services with our tripartite system</h3>
+                            <p>Excerpt From: Williams, Nathan. “Kinfolk Table : Recipes for Small</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="more-feature-card">
+                        <div class="img-wrapper" style="background-image: url(../assets/img/benefit.png);"></div>
+                        <div class="card-content">
+                            <h3>Protect your products and services with our tripartite system</h3>
+                            <p>Excerpt From: Williams, Nathan. “Kinfolk Table : Recipes for Small</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="more-feature-card editable">
+                        <div class="img-wrapper"><h4>Removable image area</h4></div>
+                        <div class="card-content">
+                            <h3>Editable text</h3>
+                            <p>Excerpt From: Williams, Nathan. “Kinfolk Table : Recipes for Small</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About  -->
+    <!-- <section id="aboutus">
+        <div class="container-fluid">
+            <div class="row">
+               <div ng-bind-html="settings.aboutus_content"></div>
+            </div>
+        </div>
+    </section> -->
+    <!-- About  -->
+
+    <!-- Features -->
+    <!-- <section id="features">
+        <div class="container-fluid">
+            <div class="row">
+                <div ng-bind-html="settings.features_content"></div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Features -->
+
+    <!-- benefits -->
+    <!-- <section id="benefits">
+        <div class="container-fluid">
+            <div class="row">
+                <div ng-bind-html="settings.benefits_content"></div>
+            </div>
+        </div>
+    </section> -->
+    <!-- benefits -->
+</div>
+
+<style type="text/css">
+    .home-header{
+        position: fixed;
+    }
+    .banner-section .skitter{
+        max-width: 100%;
+    }
+    .home-header .top-nav .active a {
+        border-bottom: 2px solid #fff;
+    }
+    .banner-section .image {
+      width: 100%;
+      height: 100%;
+      float: left;
+    }
+    .banner-section .image img {
+      width: 100%;
+      height: 100%;
+    }
+    .banner-section .image .banner-data {
+      width: 50%;
+      position: absolute;
+      margin-top: -18%;
+      transform: translateY(-50%);
+      left: 10%;
+    }
+    .banner-section .image .banner-data h1 {
+      font-size: 42px;
+      color: #fff;
+    }
+    .banner-section .image .banner-data p {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 85px;
+    }
+</style>

@@ -1,0 +1,43 @@
+<header class="home-header" id="dsci-header">
+    <nav class="navbar">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <a class="logo" ui-sref="app.home">
+                    <img ng-src="{{IMGURL}}{{settings.headerlogo}}" />
+                </a>
+            <div class="row flex-center">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="search-top">
+                        <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search for Anything" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)" />
+                                <button type="submit" class="btn transparent-btn"><i class="fa fa-search" ></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 text-right flex-center-space-even">
+                    <ul class="top-nav">
+                        <li du-scrollspy="home"><a href="#home" du-smooth-scroll duration="2000" ng-click="gotoMenu('home')">Home</a></li>
+                        <li du-scrollspy="aboutus"><a href="#aboutus" du-smooth-scroll duration="2000" ng-click="gotoMenu('aboutus')">About Us</a></li>
+                        <li du-scrollspy="features"><a href="#features" du-smooth-scroll duration="2000" ng-click="gotoMenu('features')">Features</a></li>
+                        <li du-scrollspy="benefits"><a href="#benefits" du-smooth-scroll duration="2000" ng-click="gotoMenu('benefits')">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-2 flex-center-end">
+                    <ul class="top-nav wd-auto">
+                        <li><a class="btn btn-border-white" href="#">Signup</a></li>
+                        <li><a class="btn btn-border-white" href="#">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</header>

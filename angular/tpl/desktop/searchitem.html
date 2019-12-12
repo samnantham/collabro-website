@@ -1,0 +1,200 @@
+<div class="container-fluid" ng-controller="SearchItemPageCtrl">
+      <div class="row mt-30">
+            <div class="col-lg-12 col-md-12">
+                <h4>Cards</h4>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../assets/img/card-img.png" />
+                    </div>
+                    <div class="card-content">
+                        <h4 class="word-line">Product thumbnail</h4>
+                        <div class="card-info">
+                            <span class="price">$5400</span>
+                            <span class="price-sub">Per Week</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                        <a href="#"><i class="fa fa-share"></i></a>
+                        <a href="#"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-4">
+               <slick ng-if="!formLoading" init-onload="true" data="products.service"  settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                  <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
+                      <div class="card">
+                          <div class="card-img">
+                              <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/>
+                          </div>
+                          <div class="card-content">
+                              <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
+                              <div class="card-info">
+                                  <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                  <span class="price-sub">Per {{data.periodtype}}</span>
+                              </div>
+                          </div>
+                          <div class="card-footer">
+                              <a href="#"><i class="fa fa-heart"></i></a>
+                              <a href="#"><i class="fa fa-share"></i></a>
+                              <a href="#"><i class="fa fa-plus"></i></a>
+                          </div>
+                      </div>
+                  </div>
+               </slick>
+            </div>
+      </div>
+
+      <div class="row mt-30">
+            <div class="col-lg-12 col-md-12">
+                <h4>Cards</h4>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../assets/img/card-img.png" />
+                    </div>
+                    <div class="card-content">
+                        <h4 class="word-line">Product thumbnail</h4>
+                        <div class="card-info">
+                            <span class="price">$5400</span>
+                            <span class="price-sub">Per Week</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                        <a href="#"><i class="fa fa-share"></i></a>
+                        <a href="#"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-4">
+               <slick ng-if="!formLoading" init-onload="true" data="products.shop"  settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                  <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
+                      <div class="card">
+                          <div class="card-img">
+                              <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/>
+                          </div>
+                          <div class="card-content">
+                              <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
+                              <div class="card-info">
+                                  <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                  <span class="price-sub">Per {{data.periodtype}}</span>
+                              </div>
+                          </div>
+                          <div class="card-footer">
+                              <a href="#"><i class="fa fa-heart"></i></a>
+                              <a href="#"><i class="fa fa-share"></i></a>
+                              <a href="#"><i class="fa fa-plus"></i></a>
+                          </div>
+                      </div>
+                  </div>
+               </slick>
+            </div>
+      </div>
+
+      <div class="row mt-30">
+            <div class="col-lg-12 col-md-12">
+                <h4>Cards</h4>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../assets/img/card-img.png" />
+                    </div>
+                    <div class="card-content">
+                        <h4 class="word-line">Product thumbnail</h4>
+                        <div class="card-info">
+                            <span class="price">$5400</span>
+                            <span class="price-sub">Per Week</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                        <a href="#"><i class="fa fa-share"></i></a>
+                        <a href="#"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-4">
+               <slick ng-if="!formLoading" init-onload="true" data="products.rental"  settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                  <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
+                      <div class="card">
+                          <div class="card-img">
+                              <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/>
+                          </div>
+                          <div class="card-content">
+                              <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
+                              <div class="card-info">
+                                  <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                  <span class="price-sub">Per {{data.periodtype}}</span>
+                              </div>
+                          </div>
+                          <div class="card-footer">
+                              <a href="#"><i class="fa fa-heart"></i></a>
+                              <a href="#"><i class="fa fa-share"></i></a>
+                              <a href="#"><i class="fa fa-plus"></i></a>
+                          </div>
+                      </div>
+                  </div>
+               </slick>
+            </div>
+      </div>
+
+      <div class="row mt-30">
+            <div class="col-lg-12 col-md-12">
+                <h4>Cards</h4>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../assets/img/card-img.png" />
+                    </div>
+                    <div class="card-content">
+                        <h4 class="word-line">Product thumbnail</h4>
+                        <div class="card-info">
+                            <span class="price">$5400</span>
+                            <span class="price-sub">Per Week</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                        <a href="#"><i class="fa fa-share"></i></a>
+                        <a href="#"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-4">
+               <slick ng-if="!formLoading" init-onload="true" data="products.event"  settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                  <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
+                      <div class="card">
+                          <div class="card-img">
+                              <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/>
+                          </div>
+                          <div class="card-content">
+                              <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
+                              <div class="card-info">
+                                  <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                  <span class="price-sub">Per {{data.periodtype}}</span>
+                              </div>
+                          </div>
+                          <div class="card-footer">
+                              <a href="#"><i class="fa fa-heart"></i></a>
+                              <a href="#"><i class="fa fa-share"></i></a>
+                              <a href="#"><i class="fa fa-plus"></i></a>
+                          </div>
+                      </div>
+                  </div>
+               </slick>
+            </div>
+      </div>
+</div>
+<style type="text/css">
+   .home-header{
+        position: fixed;
+    }html{
+      overflow-x: hidden;
+    }
+</style>

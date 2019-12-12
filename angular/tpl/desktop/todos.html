@@ -1,0 +1,73 @@
+<div ng-controller="TodoListCtrl" >
+   <div class="wthree-dot" id="searchtop" ng-if="!formLoading">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding">
+               <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                  <div class="wishlistheader">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                     <span class="wishlisttitle float-lt"><i class="fa fa-tasks" aria-hidden="true"></i> &nbsp;Todo List</span>
+                     <div class="float-rt no-margin-top">
+                        <a ng-click="opentodoModal();" class="chatnowbutton">TODO <i class="fa fa-plus-circle"></i></a> 
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
+
+                  <div class="cate-name" ng-if="!formLoading">
+                           <a class="no_trans float-lt ng-binding">Active Todos<span> | </span>{{todos.total}} Todos</a>
+                           <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Filter By</a>
+                           <ul class="dropdown-menu">
+                              <li><a ng-click="filterTodo('')">All Todo's</a></li>
+                              <li><a ng-click="filterTodo('Personal')">Personal Todo's</a></li>
+                              <li><a ng-click="filterTodo('Project')">Project Todo's</a></li>
+                           </ul>
+                        </div>
+                   <div class="clear"></div>
+               </div>
+              
+              
+               <div class="projectrows min800">
+                  <div class="col-md-12 col-sm-12 col-lg-12  boot_list text-center" ng-if="todos.total == 0">
+                     <span class="user-subhead"><h2>Currently no Todos</h2></span>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-lg-12  boot_list" dir-paginate="(key,data) in todos.data | itemsPerPage: totalPerPage" total-items="todos.total" current-page="pagination.current">
+                     <div class="col-md-4 col-sm-4 col-lg-4 nopadding">
+                        <div class="boot_img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">&nbsp;</div>
+                        <div class="col-md-8 col-sm-7 col-lg-8 no-padding-left">
+                           <a class="boot_user_link cursor" ui-sref="app.viewtodo({'id':data.id})">{{data.title}}</a>
+                           <span class="user-subhead">{{data.type}} todo</span>
+                           <span class="user-subhead font_b"> | </span>
+                           <span class="user-subhead"><!-- Last Update: --> {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                        </div>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-lg-4 no-padding">
+                        <div class="detailsdescription col-xs-12">{{data.description | cut:true:120:'..'}}</div>
+                     </div>
+                     <div class="col-md-2 col-sm-2 col-lg-2">
+                        <a class="boot_user_link_new">Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</a>
+                        <span class="user-red">{{data.remainingdays}} Days Remaining</span>
+                     </div>
+                     <div class="col-md-2 col-sm-2 col-lg-2 flex-align flex-center default-btn-group">
+                        <a class="com_section cursor" ng-click="editTodo(data)">
+                           <i class="fa fa-edit"></i>
+                        </a>
+                        <a class="com_section cursor" ng-click="deletetodo(key,data)">
+                           <i class="fa fa-trash-o"></i>
+                        </a>
+                        <a class="com_section cursor" title="Share to Earn" ng-click="sharetodo(data)">
+                           <i class="fa fa-share"></i>
+                        </a>
+                     </div>
+                  </div>
+                  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+
+               </div>
+            </div>
+         </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>
