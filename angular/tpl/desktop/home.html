@@ -2,16 +2,18 @@
     
     <!-- Banner  -->
         <div class="banner-section" id="home" ng-if="!formLoading">
-            <ng-skitter items="photos" options="skitterOption">
-                    <div class="banner-data">
-                        <h1>{{item.title}}</h1>
-                        <p>{{item.description}}</p>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-border-white"> {{item.button}} </button>
-                            <button type="button" class="btn default-btn ml-30"> Join the club </button>
+            <div class="banner">
+                <ng-skitter items="photos" options="skitterOption">
+                        <div class="banner-content">
+                            <h1>{{item.title}}</h1>
+                            <p>{{item.description}}</p>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-border-white"> {{item.button}} </button>
+                                <button type="button" class="btn default-btn ml-30"> Join the club </button>
+                            </div>
                         </div>
-                    </div>
-            </ng-skitter>
+                </ng-skitter>
+            </div>
         </div>
     <!-- Banner  -->
 
@@ -187,7 +189,7 @@
     <!-- benefits -->
 </div>
 
-<style type="text/css">
+<!-- <style type="text/css">
     .home-header{
         position: fixed;
     }
@@ -222,4 +224,4 @@
       color: #fff;
       margin-bottom: 85px;
     }
-</style>
+</style> -->

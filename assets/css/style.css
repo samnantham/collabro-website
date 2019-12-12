@@ -8505,6 +8505,15 @@ p {
   margin-bottom: 85px;
 }
 
+.skitter {
+  max-width: 100% !important;
+  float: left;
+}
+.skitter .label_skitter {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .bread-crumb {
   width: auto;
   float: left;
@@ -10404,7 +10413,7 @@ i.color-btn {
 /* Home header */
 .home-header {
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0px;
   height: 72px;
   left: 0px;
