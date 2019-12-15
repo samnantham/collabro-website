@@ -156,6 +156,14 @@
     }
 }
 
+.empty-card{
+    min-height: 340px;
+    background: $deep-blue;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .friend-card{
     .card-content{        
