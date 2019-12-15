@@ -1,4 +1,4 @@
-<header class="home-header" id=""> <!-- search-active class for search page -->
+<header class="home-header" ng-class=" {'search-active' : stateurl == 'searchitems'}"> <!-- search-active class for search page -->
     <nav class="navbar">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -9,7 +9,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <a class="logo" ui-sref="app.home">
-                    <img ng-src="{{IMGURL}}{{settings.headerlogo}}" />
+                    <img ng-src="{{IMGURL}}{{settings.headerlogo}}" ng-if="stateurl == 'home'"/>
+                    <img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo" ng-if="stateurl == 'searchitems'"/>
                 </a>
             <div class="row flex-center">
                 <div class="col-lg-6 col-md-6 col-sm-6">
