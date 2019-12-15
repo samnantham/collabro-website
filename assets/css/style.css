@@ -9140,6 +9140,7 @@ i.color-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
 }
 
 .friend-card .card-content {
