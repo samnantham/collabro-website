@@ -8,7 +8,7 @@
         <div class="row mt-10">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <ul class="search-tab">
-                    <li><a href="#">All</a></li>
+                    <li ng-click="setactivetab('service')"><a>All</a></li>
                     <li ng-click="setactivetab('service')"><a ng-class="{'active':activetab=='service'}">Services</a></li>
                     <li ng-click="setactivetab('shop')"><a ng-class="{'active':activetab=='shop'}">Products</a></li>
                     <li ng-click="setactivetab('rental')"><a ng-class="{'active':activetab=='rental'}">Rentals</a></li>
@@ -57,9 +57,8 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
-                                <div class="card search-card">
+                                <div class="card search-card" ng-if="!data.isdummy">
                                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                        <!-- <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/> -->
                                     </div>
                                     <div class="card-content">
                                         <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
@@ -73,6 +72,9 @@
                                         <a><i class="fa fa-share"></i></a>
                                         <a><i class="fa fa-plus"></i></a>
                                     </div>
+                                </div>
+                                <div class="card empty-card" ng-if="data.isdummy">
+                                    <p>Advertisement for rental</p>
                                 </div>
                             </div>
                         </slick>
@@ -103,9 +105,8 @@
                 <div class="col-lg-9 col-md-9 col-xs-12 col-sm-4">
                     <slick ng-if="!formLoading" init-onload="true" data="products.shop" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                         <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
-                            <div class="card search-card">
+                            <div class="card search-card" ng-if="!data.isdummy">
                                 <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                    <!-- <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/> -->
                                 </div>
                                 <div class="card-content">
                                     <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
@@ -120,6 +121,9 @@
                                     <a><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
+                            <div class="card empty-card" ng-if="data.isdummy">
+                            <p>Advertisement for rental</p>
+                        </div>
                         </div>
                     </slick>
                 </div>
@@ -148,9 +152,8 @@
                 <div class="col-lg-9 col-md-9 col-xs-12 col-sm-4">
                     <slick ng-if="!formLoading" init-onload="true" data="products.rental" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                         <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
-                            <div class="card search-card">
+                            <div class="card search-card" ng-if="!data.isdummy">
                                 <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                    <!-- <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/> -->
                                 </div>
                                 <div class="card-content">
                                     <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
@@ -165,6 +168,9 @@
                                     <a><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
+                            <div class="card empty-card" ng-if="data.isdummy">
+                            <p>Advertisement for rental</p>
+                        </div>
                         </div>
                     </slick>
                 </div>
@@ -193,9 +199,8 @@
                 <div class="col-lg-9 col-md-9 col-xs-12 col-sm-4">
                     <slick ng-if="!formLoading" init-onload="true" data="products.event" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                         <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
-                            <div class="card search-card">
+                            <div class="card search-card" ng-if="!data.isdummy">
                                 <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                    <!-- <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/> -->
                                 </div>
                                 <div class="card-content">
                                     <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
@@ -210,6 +215,9 @@
                                     <a><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
+                            <div class="card empty-card" ng-if="data.isdummy">
+                            <p>Advertisement for rental</p>
+                        </div>
                         </div>
                     </slick>
                 </div>                
@@ -219,9 +227,8 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-4">
                 <div class="row">
                     <div class="col-lg-5 col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in typeproductdata">
-                        <div class="card search-card">
+                        <div class="card search-card" ng-if="!data.isdummy">
                             <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                <!-- <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}"/> -->
                             </div>
                             <div class="card-content">
                                 <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
@@ -236,21 +243,12 @@
                                 <a><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
+                        <div class="card empty-card" ng-if="data.isdummy">
+                            <p>Advertisement for rental</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-20">
-            <div class="col-lg-5 col-lg-3 col-md-3">
-                <div class="card empty-card">
-                    <p>Advertisement for rental</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- loader -->
-<!-- <div class="loader">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-</div> -->
