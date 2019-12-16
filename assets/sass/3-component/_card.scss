@@ -156,14 +156,25 @@
     }
 }
 
-.empty-card{
-    min-height: 340px;
-    background: $deep-blue;
-    color: $white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.empty-card{    
     font-size: $font-m;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .overlay{
+        background: $deep-blue;
+        color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        @include border-radius(4px);
+    }
 }
 
 .friend-card{
