@@ -72,16 +72,17 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$http', '$state', '$t
     }
 
     $scope.setactivetab = function(tab) {
-        $scope.pagedata = [];
-        $scope.typeproductdata = [];
-        $scope.typespageno = 1;
-        $rootScope.formLoading = true;
         if (tab != $scope.activetab) {
+            $scope.pagedata = [];
+            $scope.typeproductdata = [];
+            $scope.typespageno = 1;
+            $rootScope.formLoading = true;
             $scope.activetab = tab;
-            $scope.filtertypeproducts();
-        } else {
-            $scope.activetab = 'All';
-            $scope.getproducts();
+            if($scope.activetab == 'All'){
+                $scope.getproducts();
+            }else{
+                $scope.filtertypeproducts();
+            }
         }
     }
 
