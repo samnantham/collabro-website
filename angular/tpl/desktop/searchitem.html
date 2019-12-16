@@ -8,7 +8,7 @@
         <div class="row mt-10">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <ul class="search-tab">
-                    <li ng-click="setactivetab('service')"><a>All</a></li>
+                    <li ng-click="setactivetab('All')"><a ng-class="{'active':activetab=='All'}">All</a></li>
                     <li ng-click="setactivetab('service')"><a ng-class="{'active':activetab=='service'}">Services</a></li>
                     <li ng-click="setactivetab('shop')"><a ng-class="{'active':activetab=='shop'}">Products</a></li>
                     <li ng-click="setactivetab('rental')"><a ng-class="{'active':activetab=='rental'}">Rentals</a></li>
