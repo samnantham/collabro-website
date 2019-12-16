@@ -10459,6 +10459,7 @@ i.color-btn {
   top: 50%;
   left: 15px;
   transform: translateY(-50%);
+  z-index: 99;
 }
 .home-header.search-active .logo img {
   width: auto;
@@ -10971,6 +10972,10 @@ i.color-btn {
   transition: 0.3s;
 }
 .cookie-active .home-header {
+  top: 30px !important;
+}
+
+.iscookie {
   top: 30px !important;
 }
 
@@ -12031,6 +12036,10 @@ ul.simple-list li:last-of-type {
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
 }
+.search-card .card-img img {
+  width: 100%;
+  height: 100%;
+}
 @media (max-width: 1280px) {
   .search-card .card-img {
     min-height: 150px;
@@ -12050,12 +12059,10 @@ ul.simple-list li:last-of-type {
 .loader {
   width: 100%;
   height: 100vh;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
   z-index: 9999;
   background: rgba(255, 255, 255, 0.5);
   color: #00C4E8;
@@ -12460,6 +12467,21 @@ input:checked + .slider:before {
 }
 
 /* Chrome autofill */
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.signin-modal {
+  position: absolute;
+  top: 60px;
+  right: 15px;
+}
+
 .login-modal {
   width: 100%;
   float: left;

@@ -8,7 +8,7 @@
         <div class="row mt-10">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <ul class="search-tab">
-                    <li ng-click="setactivetab('all')"><a ng-class="{'active':activetab=='all'}">All</a></li>
+                    <li ng-click="setactivetab('service')"><a>All</a></li>
                     <li ng-click="setactivetab('service')"><a ng-class="{'active':activetab=='service'}">Services</a></li>
                     <li ng-click="setactivetab('shop')"><a ng-class="{'active':activetab=='shop'}">Products</a></li>
                     <li ng-click="setactivetab('rental')"><a ng-class="{'active':activetab=='rental'}">Rentals</a></li>
@@ -16,46 +16,45 @@
                 </ul>
             </div>
         </div>
-        <div class="row mt-10 mb-10" id="search-page">
+        <div class="row mt-10 mb-10">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
-                        <h2 ng-if="keyword">RESULTS FOR "{{keyword}}"</h2>
+                        <h2>RESULTS FOR "wedding"</h2>
                     </div>
                     <div class="topbar-right">
-                        <span><b>{{products.total}}</b> Results available</span>
+                        <span>12 Results available</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div ng-if="activetab == 'all'">
+        <div ng-if="activetab == 'All'">
             <div class="row mt-30 search-list">
                 <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
                     <div class="card search-card search-category">
                         <div class="search-top">
                             <div class="search-toggle">
-                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Service Types <i class="fa fa-angle-down ml-10"></i></span>
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Events <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu right">
-                                    <li ng-repeat="(key,filter) in professions" ng-click="filterproduct('Service',filter)"><a>{{filter}}</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                             <div class="search-toggle">
                                 <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu">
-                                    <li><a ng-click="sortproduct('Service','noofviews','desc')">Popular</a></li>
-                                    <li><a ng-click="sortproduct('Service','created_at','desc')">Recent</a></li>
-                                    <li><a ng-click="sortproduct('Service','price','asc')">Price L-H</a></li>
-                                    <li><a ng-click="sortproduct('Service','price','desc')">Price H-L</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-img">
-                            <img src="img/services/1.jpg" />
-                            <div class="category-name">Services</div>
+                            <img src="../assets/img/card-img.png" />
+                            <div class="category-name">Category</div>
                         </div>
                         <div class="search-footer card-footer">
-                            <a>{{products.serviceviews | shortNumber}} <i class="fa fa-eye"></i></a>
-                            <a>{{products.servicefollowers | shortNumber}} <span>Followers</span></a>
+                            <a>194k <i class="fa fa-eye"></i></a>
+                            <a>184 <span>Followers</span></a>
                             <a><i class="fa fa-heart"></i> <span>Love this</span></a>
                         </div>
                     </div>
@@ -64,11 +63,11 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
-                                <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
+                                <div class="card search-card" ng-if="!data.isdummy">
                                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                        <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
                                         <div class="card-info">
                                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                             <span class="price-sub">Per {{data.periodtype}}</span>
@@ -82,7 +81,7 @@
                                 </div>
                                 <div class="card search-card empty-card" ng-if="data.isdummy">
                                     <div class="overlay">
-                                        <p>Advertisement for {{data.type}}</p>
+                                        <p>Advertisement for rental</p>
                                     </div>
                                     <div class="card-img">
                                     </div>
@@ -110,30 +109,27 @@
                     <div class="card search-card search-category">
                         <div class="search-top">
                             <div class="search-toggle">
-                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products Category <i class="fa fa-angle-down ml-10"></i></span>
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Events <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu right">
-                                    <li ng-repeat="(key,filter) in categories">
-                                        <a ng-click="filterproduct('Shop',filter.id)">{{filter.categoryname}}</a>
-                                    </li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                             <div class="search-toggle">
                                 <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu">
-                                    <li><a ng-click="sortproduct('Shop','noofviews','desc')">Popular</a></li>
-                                    <li><a ng-click="sortproduct('Shop','created_at','desc')">Recent</a></li>
-                                    <li><a ng-click="sortproduct('Shop','price','asc')">Price L-H</a></li>
-                                    <li><a ng-click="sortproduct('Shop','price','desc')">Price H-L</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-img">
-                            <img src="img/services/2.jpg" />
-                            <div class="category-name">Products</div>
+                            <img src="../assets/img/card-img.png" />
+                            <div class="category-name">Category</div>
                         </div>
                         <div class="search-footer card-footer">
-                            <a>{{products.shopviews | shortNumber}} <i class="fa fa-eye"></i></a>
-                            <a>{{products.shopfollowers | shortNumber}} <span>Followers</span></a>
+                            <a>194k <i class="fa fa-eye"></i></a>
+                            <a>184 <span>Followers</span></a>
                             <a><i class="fa fa-heart"></i> <span>Love this</span></a>
                         </div>
                     </div>
@@ -142,11 +138,11 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.shop" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                         <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
-                            <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
+                            <div class="card search-card" ng-if="!data.isdummy">
                                 <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                    <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
                                     <div class="card-info">
                                         <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                         <span class="price-sub">Per {{data.periodtype}}</span>
@@ -160,7 +156,7 @@
                             </div>
                             <div class="card search-card empty-card" ng-if="data.isdummy">
                                 <div class="overlay">
-                                    <p>Advertisement for Products</p>
+                                    <p>Advertisement for rental</p>
                                 </div>
                                 <div class="card-img">
                                 </div>
@@ -188,28 +184,27 @@
                     <div class="card search-card search-category">
                         <div class="search-top">
                             <div class="search-toggle">
-                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rentals <i class="fa fa-angle-down ml-10"></i></span>
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Events <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu right">
-                                    <li ng-repeat="(key,filter) in rentaltypes" ng-click="filterproduct('Rental',filter)"><a>{{filter}}</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                             <div class="search-toggle">
                                 <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu">
-                                    <li><a ng-click="sortproduct('Rental','noofviews','desc')">Popular</a></li>
-                                    <li><a ng-click="sortproduct('Rental','created_at','desc')">Recent</a></li>
-                                    <li><a ng-click="sortproduct('Rental','price','asc')">Price L-H</a></li>
-                                    <li><a ng-click="sortproduct('Rental','price','desc')">Price H-L</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-img">
-                            <img src="img/services/4.jpg" />
+                            <img src="../assets/img/card-img.png" />
                             <div class="category-name">Category</div>
                         </div>
                         <div class="search-footer card-footer">
-                            <a>{{products.rentalviews | shortNumber}} <i class="fa fa-eye"></i></a>
-                            <a>{{products.rentalfollowers | shortNumber}} <span>Followers</span></a>
+                            <a>194k <i class="fa fa-eye"></i></a>
+                            <a>184 <span>Followers</span></a>
                             <a><i class="fa fa-heart"></i> <span>Love this</span></a>
                         </div>
                     </div>
@@ -218,11 +213,11 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.rental" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
-                                <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
+                                <div class="card search-card" ng-if="!data.isdummy">
                                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                        <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
                                         <div class="card-info">
                                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                             <span class="price-sub">Per {{data.periodtype}}</span>
@@ -236,7 +231,7 @@
                                 </div>
                                 <div class="card search-card empty-card" ng-if="data.isdummy">
                                     <div class="overlay">
-                                        <p>Advertisement for {{data.type}}</p>
+                                        <p>Advertisement for rental</p>
                                     </div>
                                     <div class="card-img">
                                     </div>
@@ -266,26 +261,25 @@
                             <div class="search-toggle">
                                 <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Events <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu right">
-                                    <li ng-repeat="(key,filter) in eventtypes" ng-click="filterproduct('Event',filter)"><a>{{filter}}</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                             <div class="search-toggle">
                                 <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by <i class="fa fa-angle-down ml-10"></i></span>
                                 <ul class="dropdown-menu">
-                                    <li><a ng-click="sortproduct('Event','noofviews','desc')">Popular</a></li>
-                                    <li><a ng-click="sortproduct('Event','created_at','desc')">Recent</a></li>
-                                    <li><a ng-click="sortproduct('Event','price','asc')">Price L-H</a></li>
-                                    <li><a ng-click="sortproduct('Event','price','desc')">Price H-L</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-img">
-                            <img src="img/services/3.jpg" />
+                            <img src="../assets/img/card-img.png" />
                             <div class="category-name">Category</div>
                         </div>
                         <div class="search-footer card-footer">
-                            <a>{{products.eventviews | shortNumber}} <i class="fa fa-eye"></i></a>
-                            <a>{{products.eventfollowers | shortNumber}}  <span>Followers</span></a>
+                            <a>194k <i class="fa fa-eye"></i></a>
+                            <a>184 <span>Followers</span></a>
                             <a><i class="fa fa-heart"></i> <span>Love this</span></a>
                         </div>
                     </div>
@@ -294,11 +288,11 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.event" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
-                                <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
+                                <div class="card search-card" ng-if="!data.isdummy">
                                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                        <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
                                         <div class="card-info">
                                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                             <span class="price-sub">Per {{data.periodtype}}</span>
@@ -312,7 +306,7 @@
                                 </div>
                                 <div class="card search-card empty-card" ng-if="data.isdummy">
                                     <div class="overlay">
-                                        <p>Advertisement for {{data.type}}</p>
+                                        <p>Advertisement for rental</p>
                                     </div>
                                     <div class="card-img">
                                     </div>
@@ -335,15 +329,15 @@
                 </div>                
             </div>
         </div>
-        <div class="row mt-30" ng-if="activetab != 'all'">
+        <div class="row mt-30" ng-if="activetab != 'All'">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-4">
                 <div class="row">
-                    <div class="col-lg-5 col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products[activetab]">
-                        <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
+                    <div class="col-lg-5 col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in typeproductdata">
+                        <div class="card search-card" ng-if="!data.isdummy">
                             <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                             </div>
                             <div class="card-content">
-                                <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                <h4 class="word-line">{{data.title | cut:true:10:''}}</h4>
                                 <div class="card-info">
                                     <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                     <span class="price-sub">Per {{data.periodtype}}</span>
