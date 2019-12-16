@@ -64,7 +64,7 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
-                                <div class="card search-card" ng-if="!data.isdummy">
+                                <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
                                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
                                     <div class="card-content">
@@ -142,7 +142,7 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.shop" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                         <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
-                            <div class="card search-card" ng-if="!data.isdummy">
+                            <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
                                 <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                 </div>
                                 <div class="card-content">
@@ -218,7 +218,7 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.rental" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
-                                <div class="card search-card" ng-if="!data.isdummy">
+                                <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
                                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
                                     <div class="card-content">
@@ -294,7 +294,7 @@
                     <div class="row">
                         <slick ng-if="!formLoading" init-onload="true" data="products.event" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
-                                <div class="card search-card" ng-if="!data.isdummy">
+                                <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
                                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
                                     <div class="card-content">
@@ -339,7 +339,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-4">
                 <div class="row">
                     <div class="col-lg-5 col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products[activetab]">
-                        <div class="card search-card" ng-if="!data.isdummy">
+                        <div class="card search-card" ng-if="!data.isdummy" ng-click="showItem(data)">
                             <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                             </div>
                             <div class="card-content">
