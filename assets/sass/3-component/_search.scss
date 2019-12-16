@@ -50,6 +50,38 @@
 }
 
 .search-card{
+    &.search-category{
+        .card-img{
+            position: relative;
+            .category-name{
+                font-size: $font-home;
+                color: $white;
+                text-transform: uppercase;
+                font-weight: $font-medium;
+                @include absolute-center();
+            }
+        }
+    }
+    .search-top{
+        width: 100%;
+        float: left;
+        @include border-radius(4px 4px 0 0);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .search-toggle{
+            position: relative;
+            cursor: pointer;
+        }
+    }
+    .search-footer{
+        a{
+            display: inline-flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    }
     .card-img{
         min-height: 200px;
         background-color: $gray;
@@ -62,6 +94,11 @@
             min-height: 150px;
         }
     }
+}
+
+.search-list{
+    display: flex;
+    align-items: center;
 }
 
 @media (min-width: 768px){
