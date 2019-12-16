@@ -53,6 +53,10 @@
     &.search-category{
         .card-img{
             position: relative;
+            @include border-radius(0px);
+            img{
+                @include border-radius(0px);
+            }
             .category-name{
                 font-size: $font-home;
                 color: $white;
@@ -103,12 +107,6 @@
 .search-list{
     display: flex;
     align-items: center;
-}
-
-@media (min-width: 768px){
-    .col-lg-5{
-        width: 20% !important;
-    }
 }
 
 .loader{

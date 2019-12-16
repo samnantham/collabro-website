@@ -88,3 +88,45 @@
         }
     }
 }
+
+.search-list-modal{
+    width: 100%;
+    float: left;
+    .description{
+        color: $deep-blue;
+        margin: 20px 0;
+    }
+    .price-box{
+        width: auto;
+        float: left;
+        display: flex;
+        align-items: flex-start;
+        .per-price{
+            width: 80px;
+            float: left;
+            font-size: $font-home-subtitle;
+            font-family: $font-special;
+            font-weight: $font-bold;
+            display: flex;
+            align-items: center;
+            span{
+                font-size: $font-ml;
+            }
+        }
+        .per-time{
+            width: 25px;
+            float: left;
+            font-size: $font-m;
+            color: $secondary-text;
+        }
+    }
+    .label-count{
+        font-size: $font-r;
+        color: $secondary-text;
+        text-align: center;
+    }
+    .contentr{
+        font-size: $font-home-subtitle;
+        color: $default;
+    }
+}

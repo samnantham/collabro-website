@@ -16,30 +16,36 @@
          </div>
       </slick>
    </div>
-   <div class="col-md-12 col-sm-12 col-lg-12 nopadding margin-top">
-      <div class="col-md-6 col-sm-6 col-lg-6 nopadding ">
-         <div class="titles">{{formData.title}} </div>
-         <div class="description paddingtopbottom margintop">{{formData.description | cut:true:100:''}}</div>
-         <div class="price-box col-md-7 nopadding">
-            <span class="per_price"><span ng-if="formData.price > 0">$</span>{{formData.price ? formData.price: 'Free'}}</span>
-            <span class="per_time" ng-if="formData.price > 0 && formData.type !='Shop'">Per {{formData.periodtype}}</span>
-         </div>
+   <div class="search-list-modal">
+      <div class="row">
+            <div class="col-md-7 col-sm-7 col-lg-7">
+               <h3>{{formData.title}} </h3>
+               <div class="description">{{formData.description | cut:true:100:''}}</div>               
+            </div>
+            <div class="col-md-4 col-sm-4 col-lg-4 col-lg-offset-1 col-md-offset-1">
+               <div class="col-md-6 col-sm-6 col-lg-6 mt-10 text-center br-1">
+                  <div class="label-count">Completed
+                     Projects
+                  </div>
+                  <div class="contentr">0</div>
+               </div>
+               <div class="col-md-6 col-sm-6 col-lg-6 mt-10 text-center">
+                  <div class="label-rank">Rank
+                     Apprentice
+                  </div>
+                  <div class="contentr"><i class="fa fa-trophy" ng-class="{'bronze':((formData.owner.experiencepoints >= 100) && (formData.owner.experiencepoints < 200)),'silver':((formData.owner.experiencepoints >= 200) && (formData.owner.experiencepoints < 300)), 'gold':((formData.owner.experiencepoints >= 300) && (formData.owner.experiencepoints < 400)),'platinum': ((formData.owner.experiencepoints >= 400) && (formData.owner.experiencepoints < 500)),'diamond': formData.owner.experiencepoints >= 500}"></i></div>
+               </div>               
+            </div>
       </div>
-      <div class="col-md-6 col-sm-6 col-lg-6 nopadding">
-         <div class="col-md-6 col-sm-6 col-lg-6 nopadding border-right">
-            <div class="labe">Completed
-               Projects
+      <div class="row mt-20">
+         <div class="col-lg-7 col-md-7">
+            <div class="price-box">
+               <span class="per-price"><span ng-if="formData.price > 0">$</span>{{formData.price ? formData.price: 'Free'}}</span>
+               <span class="per-time" ng-if="formData.price > 0 && formData.type !='Shop'">Per {{formData.periodtype}}</span>
             </div>
-            <div class="contentr">0</div>
          </div>
-         <div class="col-md-6 col-sm-6 col-lg-6 ">
-            <div class="labe">Rank
-               Apprentice
-            </div>
-            <div class="contentr"><i class="fa fa-trophy" ng-class="{'bronze':((formData.owner.experiencepoints >= 100) && (formData.owner.experiencepoints < 200)),'silver':((formData.owner.experiencepoints >= 200) && (formData.owner.experiencepoints < 300)), 'gold':((formData.owner.experiencepoints >= 300) && (formData.owner.experiencepoints < 400)),'platinum': ((formData.owner.experiencepoints >= 400) && (formData.owner.experiencepoints < 500)),'diamond': formData.owner.experiencepoints >= 500}"></i></div>
-         </div>
-         <div class="col-md-12 col-sm-12 col-lg-12">
-            <p class="commission cursor" ng-click="logintoProduct(formData.id);">LOGIN TO VIEW</p>
+         <div class="col-md-4 col-sm-4 col-lg-4 col-lg-offset-1 col-md-offset-1">
+            <a class="btn success-btn block-btn" ng-click="logintoProduct(formData.id);">LOGIN TO VIEW</a>
          </div>
       </div>
    </div>
