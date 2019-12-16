@@ -738,15 +738,23 @@ angular.module('app')
             $rootScope.gotosearch = function(keyword) {
                 $rootScope.searchData.keyword = keyword;
                 $rootScope.showsearch = false;
-                if (keyword && keyword.length > 0) {
-                    if (($rootScope.stateurl == 'home') || ($rootScope.stateurl == 'searchitems')) {
-                        $state.go('app.searchitems', {
-                            'keyword': keyword,
-                        });
-                    } else {
-                        $state.go('app.search', {
-                            'keyword': keyword,
-                        });
+                if ($rootScope.stateurl == 'home'){
+                    $state.go('app.searchitems', {
+                        'keyword': keyword,
+                    });
+                }else{
+                    if ($rootScope.stateurl == 'home' || $rootScope.stateurl == 'main'){
+                    }
+                    if (keyword && keyword.length > 0) {
+                        if ($rootScope.stateurl == 'searchitems') {
+                            $state.go('app.searchitems', {
+                                'keyword': keyword,
+                            });
+                        } else {
+                            $state.go('app.search', {
+                                'keyword': keyword,
+                            });
+                        }
                     }
                 }
             }

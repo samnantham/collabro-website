@@ -1,9 +1,9 @@
 <!-- Cookie pop -->
-<div class="cookie-header">
+<div class="cookie-header" ng-if="showheader">
     <p>We - and our partners - use cookies to deliver our services and to show you ads based on your interests. By using our website, you agree to the use of cookies as described in our Cookie Policy.</p>
-    <i class="fa fa-close"></i>
+    <i class="fa fa-close" ng-click="closeheaderinfo()"></i>
 </div>
-<header class="home-header" ng-class="{'search-active' : stateurl == 'searchitems'}"> <!-- search-active class for search page -->
+<header class="home-header" ng-class="{'search-active' : stateurl == 'searchitems','iscookie':showheader}"> <!-- search-active class for search page -->
     <nav class="navbar">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -50,3 +50,9 @@
 <div class="loader" ng-if="formLoading">
     <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
 </div> 
+
+<style type="text/css">
+    .iscookie{
+        top: 30px;
+    }
+</style>

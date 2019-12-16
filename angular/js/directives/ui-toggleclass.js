@@ -98,7 +98,6 @@ angular.module('app')
                 // thousand
                 number = (number / Math.pow(10, 3)).toFixed(1) + "K";
             }
-            console.log(number);
             return number;
         }
     };

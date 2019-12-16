@@ -2,12 +2,6 @@
 app.controller('HomeCtrl', ['$scope', '$state', '$rootScope', '$timeout', 'webServices', 'anchorSmoothScroll', function($scope, $state, $rootScope, $timeout, webServices, anchorSmoothScroll) {
 
     $rootScope.formLoading = true;
-    if ($rootScope.user) {
-        if ($rootScope.user.username) {
-            $state.go('app.usermain');
-        }
-    }
-
 
     $scope.skitterOption = {
         auto_play: true,
@@ -25,6 +19,8 @@ app.controller('HomeCtrl', ['$scope', '$state', '$rootScope', '$timeout', 'webSe
         $scope.photos = [];
         webServices.get('getbanners').then(function(getData) {
             $rootScope.formLoading = false;
+                $rootScope.$emit("scrolltop", "search-page");
+            
             if (getData.status == 200) {
                 angular.forEach(getData.data , function(data, no) {
                     var obj = {};
@@ -47,6 +43,7 @@ app.controller('HomeCtrl', ['$scope', '$state', '$rootScope', '$timeout', 'webSe
     } else {
         $timeout(function() {
             $rootScope.formLoading = false;
+            $rootScope.$emit("scrolltop", "search-page");
         }, 2000);
     }
 }]);
