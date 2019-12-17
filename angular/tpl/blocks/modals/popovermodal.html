@@ -1,8 +1,6 @@
-<link href="css/desktop/popover.css" rel="stylesheet" type="text/css"/>
 <div class="custom-modal">
-   <slick data="formData.images" infinite="false" init-onload="true" settings="searchproductslick" class="slider-for">
-      <div class="imgcontainer" ng-repeat="(key,image) in formData.images">
-         <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+   <slick data="popOverData.images" infinite="false" init-onload="true" settings="popOverCarousel" class="slider-for">
+      <div class="imgcontainer" ng-repeat="(key,image) in popOverData.images" background-image="{{image.filetype == 1 ? ( IMGURL + image.file) : ''}}">
          <span ng-if="image.filetype == 2">
             <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
             <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
@@ -10,8 +8,8 @@
       </div>
    </slick>
    <div class="thumbslider">
-      <slick data="formData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
-         <div class="thumbholder" ng-repeat="(key,image) in formData.images" >
+      <slick data="popOverData.images" infinite="false" init-onload="true" settings="popOverThumbCarousel" ng-if="!formLoading" class="slider-nav">
+         <div class="thumbholder" ng-repeat="(key,image) in popOverData.images" >
             <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
          </div>
       </slick>
@@ -19,8 +17,8 @@
    <div class="search-list-modal">
       <div class="row">
             <div class="col-md-7 col-sm-7 col-lg-7">
-               <h3>{{formData.title}} </h3>
-               <div class="description">{{formData.description | cut:true:100:''}}</div>               
+               <h3>{{popOverData.title}} </h3>
+               <div class="description">{{popOverData.description | cut:true:100:''}}</div>               
             </div>
             <div class="col-md-4 col-sm-4 col-lg-4 col-lg-offset-1 col-md-offset-1">
                <div class="col-md-6 col-sm-6 col-lg-6 mt-10 text-center br-1">
@@ -33,23 +31,50 @@
                   <div class="label-rank">Rank
                      Apprentice
                   </div>
-                  <div class="contentr"><i class="fa fa-trophy" ng-class="{'bronze':((formData.owner.experiencepoints >= 100) && (formData.owner.experiencepoints < 200)),'silver':((formData.owner.experiencepoints >= 200) && (formData.owner.experiencepoints < 300)), 'gold':((formData.owner.experiencepoints >= 300) && (formData.owner.experiencepoints < 400)),'platinum': ((formData.owner.experiencepoints >= 400) && (formData.owner.experiencepoints < 500)),'diamond': formData.owner.experiencepoints >= 500}"></i></div>
+                  <img ng-src="{{ IMGURL + popOverData.owner.xprank.icon }}" class="rank-icon"/>
                </div>               
             </div>
       </div>
       <div class="row mt-20">
          <div class="col-lg-7 col-md-7">
             <div class="price-box">
-               <span class="per-price"><span ng-if="formData.price > 0">$</span>{{formData.price ? formData.price: 'Free'}}</span>
-               <span class="per-time" ng-if="formData.price > 0 && formData.type !='Shop'">Per {{formData.periodtype}}</span>
+               <span class="per-price"><span ng-if="popOverData.price > 0">$</span>{{popOverData.price ? popOverData.price: 'Free'}}</span>
+               <span class="per-time" ng-if="popOverData.price > 0 && popOverData.type !='Shop'">Per {{popOverData.periodtype}}</span>
             </div>
          </div>
          <div class="col-md-4 col-sm-4 col-lg-4 col-lg-offset-1 col-md-offset-1">
-            <a class="btn success-btn block-btn" ng-click="logintoProduct(formData.id);">LOGIN TO VIEW</a>
+            <a class="btn success-btn block-btn" ng-click="logintoProduct(popOverData.id);">LOGIN TO VIEW</a>
          </div>
       </div>
    </div>
 </div>
+<style type="text/css">
+  .imgcontainer {
+    height: 365px;
+    text-align: center;
+    white-space: nowrap;
+    background: #fff;
+    position: relative;
+    padding: 0px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.thumbslider {
+    background: #dadfe2;
+    padding: 10px 0px;
+}.thumbholder {
+    padding: 0px 6px;
+}.thumbslider .slick-track .slidee {
+    height: 75px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    border-radius: 5px;
+}.rank-icon{
+  width: 40px;
+}
+</style>
 
 <!-- Login modal -->
 <!-- <div class="modal-overlay">

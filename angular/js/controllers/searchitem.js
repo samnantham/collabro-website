@@ -14,7 +14,8 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$document', '$state',
     if($scope.keyword){
         $scope.searchpageData.keyword =  $scope.keyword;
     }
-    $rootScope.searchproductslick = {
+    
+    $rootScope.popOverCarousel = {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
@@ -30,6 +31,24 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$document', '$state',
             }
         }
     };
+
+    $rootScope.popOverThumbCarousel = {
+                focusOnSelect: true,
+                infinite: false,
+                initialSlide: 0,
+                slidesToShow: 5,
+                asNavFor: '.slider-for',
+                slidesToScroll: 1,
+                method: {},
+                event: {
+                    afterChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.slickCurrentIndex2 = currentSlide;
+                    },
+                    init: function(event, slick) {
+                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
+                    }
+                }
+            };
 
     $scope.setactivetab = function(tab) {
         if (tab != $scope.activetab) {
@@ -47,8 +66,9 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$document', '$state',
     }
 
     $scope.showItem = function(item) {
-        $rootScope.formData = {};
-        $rootScope.formData = item;
+        $rootScope.popOverData = {};
+        $rootScope.popOverData = item;
+        console.log($rootScope.popOverData)
         $timeout(function() {
             $scope.dialogInst = $modal.open({
                 ariaLabelledBy: 'modal-title',
@@ -69,9 +89,7 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$document', '$state',
                 $scope.products = getData.data;
                 $rootScope.formLoading = false;
                 var top = 0;
-                var duration = 2000; //milliseconds
-
-                //Scroll to the exact position
+                var duration = 2000; 
                 $document.scrollTopAnimated(top, duration).then(function() {
                   console && console.log('You just scrolled to the top!');
                 });
