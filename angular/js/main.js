@@ -17,7 +17,7 @@ angular.module('app')
             $rootScope.forgotModel = {};
 
             $rootScope.pwtype = "password";
-
+            $rootScope.redirectproduct = {};
             $rootScope.notificationInterval = 6000;
             $rootScope.showheader = false;
             $rootScope.userData = {};
@@ -172,8 +172,9 @@ angular.module('app')
             });
 
             $rootScope.logintoProduct = function(product) {
+                $rootScope.redirectproduct = {};
                 $rootScope.redirectproduct = product;
-                $rootScope.openAuthModal('signin');
+                $rootScope.openAuthModal('login');
             }
 
             $rootScope.convertDate = function(date) {
@@ -399,8 +400,9 @@ angular.module('app')
                 $rootScope.registerModel = {};
                 $rootScope.forgotModel = {};
                 $rootScope.searchData = {};
-                if ($rootScope.isredirect) {
-                    window.open($rootScope.redirecturl, "_self")
+                if (Object.keys($rootScope.redirectproduct).length > 0) {
+                    console.log($rootScope.redirectproduct)
+                    $state.go('app.viewitem',{'id':$rootScope.redirectproduct.id});
                 } else {
                     $state.go('app.usermain');
                 }

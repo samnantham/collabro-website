@@ -11,6 +11,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                 if (!$rootScope.viewData.userview) {
                     $scope.viewproduct();
                 }
+                $rootScope.redirectproduct = {};
                 console.log($rootScope.viewData)
                 $rootScope.viewData.showExtra = 0;
                 if ($rootScope.viewData.showmap) {
@@ -20,7 +21,6 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                         $scope.getLatandLong($rootScope.viewData.address);
                     }
                 }
-                $rootScope.stoploading();
             } else {
                 $rootScope.logout();
             }
