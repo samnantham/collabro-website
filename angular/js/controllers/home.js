@@ -38,12 +38,10 @@ app.controller('HomeCtrl', ['$scope', '$state', '$rootScope', '$timeout', 'webSe
     };
 
     if ($rootScope.currentdevice == 'desktop') {
-        $rootScope.formLoading = true;
         $scope.getBanners();
     } else {
         $timeout(function() {
             $rootScope.formLoading = false;
-            $rootScope.$emit("scrolltop", "search-page");
         }, 2000);
     }
 }]);

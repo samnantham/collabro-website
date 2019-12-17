@@ -68,9 +68,8 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$document', '$state',
     $scope.showItem = function(item) {
         $rootScope.popOverData = {};
         $rootScope.popOverData = item;
-        console.log($rootScope.popOverData)
         $timeout(function() {
-            $scope.dialogInst = $modal.open({
+            $rootScope.dialogInst = $modal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 keyboard: false,

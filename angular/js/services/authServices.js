@@ -89,11 +89,11 @@
         };
 
         auth.isLoggedIn = function() {
-           if((localStorage.user != '')&&(localStorage.user != undefined)&&(localStorage.user != 'undefined')) {
-                $rootScope.user = JSON.parse(localStorage.user);
-                return $rootScope.user;
+            var status = false;
+            if((localStorage.user != '')&&(localStorage.user != undefined)&&(localStorage.user != 'undefined')) {
+                status = true;
             }
-            return $sessionStorage.user != null;
+            return status;
         };
 
         return auth;

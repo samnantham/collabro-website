@@ -4,29 +4,24 @@
 
 angular.module('app')
     .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document',
-        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $modalInstance, $document) {
-            $rootScope.formLoading = true;
-            $rootScope.pageloading = true;
-            if (isMobile.phone) {
+        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $modalStack) {
+            $rootScope.isMobile = isMobile.phone;
+            if ($rootScope.isMobile) {
                 $rootScope.currentdevice = 'mobile';
             } else {
                 $rootScope.currentdevice = 'desktop';
             }
+            $rootScope.loginModel = {};
+            $rootScope.registerModel = {};
+            $rootScope.forgotModel = {};
 
-            $rootScope.isAsideOpen = false;
             $rootScope.userData = {};
             $rootScope.shareData = {};
-            $rootScope.loginModel = {};
             $rootScope.user = {};
-            $rootScope.registerModel = {};
             $rootScope.chatImages = {};
-            $rootScope.forgotModel = {};
             $rootScope.categories = [];
-            $rootScope.fromfriendspage = false;
-            $rootScope.chatImages.show = false;
-            $rootScope.fromfriendspage = false;
-            $rootScope.ismodalopen = false;
             $rootScope.validextensions = angular.copy(app.imgextensions);
+            $rootScope.notauthroutes = angular.copy(app.notauthroutes);
             $rootScope.servicetypes = angular.copy(app.servicetypes);
             $rootScope.requestservicetypes = angular.copy(app.requestservicetypes);
             $rootScope.requestcategories = angular.copy(app.requestcategories);
@@ -46,35 +41,27 @@ angular.module('app')
             $rootScope.registerModel.iscompany = '0';
             $scope.thisyear = new Date().getFullYear();
             $rootScope.IMGURL = app.imageurl;
-            $rootScope.issignup = false;
-            $rootScope.issignin = false;
-            $rootScope.isforgotpw = false;
-            $rootScope.googleloading = false;
-            $rootScope.facebookloading = false;
-            $rootScope.loginloading = false;
-            $rootScope.registerloading = false;
-            $rootScope.forgotloading = false;
-            $rootScope.showsearch = true;
-            $rootScope.ismodalPopover = false;
-            $rootScope.menustatus = {
-                isopen: false
-            };
             $rootScope.keywords = []; /*['Make-Up Artist', 'Car Rental', 'Photography', 'Wardrobe', 'Interior Design', 'Trending Group', 'Decor and Lights', 'Wedding Gifts', 'Sparkling Shoes', 'Videography'];*/
             $rootScope.searchData = {};
-            $rootScope.activebg = 'home';
 
-            $rootScope.scrollbarConfig = {
-                advanced: {
-                    updateOnContentResize: true
-                },
-                scrollInertia: 400,
-                setWidth: 300,
-                axis: 'y',
-                autoHideScrollbar: true
-            }
+            $rootScope.openAuthModal = function(auth) {
+                $rootScope.currentauth = auth;
+                $rootScope.loginModel = {};
+                $timeout(function() {
+                    $scope.dialogInst = $modal.open({
+                        ariaLabelledBy: 'modal-title',
+                        ariaDescribedBy: 'modal-body',
+                        keyboard: false,
+                        templateUrl: 'tpl/blocks/popover/authenticationpopover.html',
+                        size: 'lg',
+                        windowClass: 'popovermodal',
+                    });
 
-            $rootScope.gotoMenu = function(menu){
-                $rootScope.activemenu = menu;
+                }, 1000);
+            };
+
+            $rootScope.changeauthTab = function(tab){
+                $rootScope.currentauth = tab;
             }
 
             $rootScope.$watch('formLoading', function() {
@@ -141,9 +128,9 @@ angular.module('app')
 
             $rootScope.logintoProduct = function(product) {
                 $rootScope.redirectproduct = product;
-                $rootScope.isPopover = false;
-                document.body.scrollTop = document.documentElement.scrollTop = 0;
-                $rootScope.issignin = true;
+                $rootScope.openAuthModal('signin');
+                /*document.body.scrollTop = document.documentElement.scrollTop = 0;
+                $rootScope.issignin = true;*/
             }
 
             $rootScope.productthumbslick = {
@@ -627,6 +614,7 @@ angular.module('app')
                 webServices.get('getsettings').then(function(getData) {
                     if (getData.status == 200) {
                         $rootScope.settings = getData.data;
+                        console.log($rootScope.settings)
                     }
                 });
             }
@@ -810,7 +798,7 @@ angular.module('app')
                 });
             };
 
-            $scope.login = function(form) {
+            $rootScope.login = function(form) {
                 $scope.loginerrors = {};
                 $scope.errors = [];
                 if (form.$valid) {
@@ -844,16 +832,10 @@ angular.module('app')
 
             $rootScope.goafterLogin = function() {
                 $rootScope.getUserInfo();
-                $rootScope.issignin = false;
-                $rootScope.issignup = false;
-                $rootScope.loading = false;
-                $rootScope.loginloading = false;
+                $rootScope.closeModal();
                 $rootScope.searchData = {};
                 if ($rootScope.isredirect) {
                     window.open($rootScope.redirecturl,"_self")
-                    // $state.go('app.viewitem', ({
-                    //     'id': $rootScope.redirectproduct
-                    // }));
                 } else {
                     $state.go('app.usermain');
                 }
@@ -1082,7 +1064,6 @@ angular.module('app')
                 firebase.auth().signOut();
                 $rootScope.userData = {};
                 $rootScope.user = {};
-                $scope.closeAside();
                 authServices.logout();
             }
 
@@ -1107,7 +1088,28 @@ angular.module('app')
                 $rootScope.activebg = bg;
             }
 
-            $rootScope.$on('$locationChangeStart', function (event, current, previous) {
+            $rootScope.$on('$locationChangeStart', function(event, current, previous) {
+                $rootScope.loading = true;
+                $rootScope.stateurl = ($location.path().replace("/", "").replace(/[0-9]/g, '')).replace(/[^\w\s]/gi, '');
+                if(!$rootScope.settings){
+                    console.log('hahahaaahaah')
+                    $rootScope.getSettings();
+                }
+                if($rootScope.notauthroutes.includes($rootScope.stateurl)){
+                    if(authServices.isLoggedIn()){
+                         $timeout(function() {
+                            $state.go('app.usermain');
+                        }, 1000);
+                        
+                    }
+                }
+                /*if($rootScope.stateurl == 'signin'){
+                    $rootScope.getUserInfo();
+                }else{
+                    $rootScope.setUserInfo();
+                }*/
+            });
+            /*$rootScope.$on('$locationChangeStart', function (event, current, previous) {
                 $rootScope.redirecturl = '';
                 $rootScope.isredirect = false;
                 angular.forEach($rootScope.redirectroutes, function(state) {
@@ -1134,81 +1136,20 @@ angular.module('app')
                     $rootScope.stateurl = paths[2];
                 }
                 $rootScope.getSettings();
-                $rootScope.closepopoverItem();
-                $rootScope.userData = {};
-                $rootScope.searchData = {};
-                $rootScope.closePopover();
 
-                if (authServices.currentUser()) {
-                    $rootScope.getUserInfo();
-                }
-                if ($rootScope.currentdevice == 'mobile') {
-                    $scope.closeAside();
-                }
             });
-
-            $rootScope.closePopover = function() {
-                $rootScope.issignin = false;
-                $rootScope.issignup = false;
-                $rootScope.isforgotpw = false;
-                $scope.forgoterrors = {};
-                $scope.loginerrors = {};
-                $scope.registererrors = {};
-            };
-
-            $scope.asideState = {
-                open: false
-            };
-
-            $scope.closeAside = function() {
-                if ($scope.asideInstance) {
-                    $scope.asideInstance.close();
-                }
-            }
-
-            $rootScope.openModalPopup = function(modalfile, modalcontroller) {
-                $rootScope.ismodalopen = true;
-                var dialogInst = $modal.open({
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    backdrop: 'static',
-                    keyboard: false,
-                    templateUrl: 'tpl/blocks/modals/' + modalfile + '.html',
-                    controller: modalcontroller,
-                    controllerAs: '$ctrl',
-                    size: 'lg',
-                    windowClass: modalfile,
-                });
-            }
-
+*/
             $rootScope.closeModal = function() {
-                $modalInstance.dismiss('cancel');
+                $('.modal-content > .ng-scope').each(function() {
+                    $(this).scope().$dismiss();
+                });
             };
 
-            $scope.openAside = function(position, backdrop) {
-
-                function postClose() {
-                    $rootScope.isAsideOpen = false;
-                    $scope.asideState.open = false;
-                }
-
-                if (!$rootScope.isAsideOpen) {
-                    $rootScope.isAsideOpen = true;
-                    $scope.asideInstance = $aside.open({
-                        templateUrl: 'tpl/blocks/mobile/sidemenu.html',
-                        placement: position,
-                        size: 'sm',
-                        backdrop: backdrop,
-                    });
-                }
-
-                $scope.asideInstance.result.then(postClose, postClose);
-            }
         }
-    ])
-    .controller('DialogInstCtrl', function($scope, $modalInstance, $rootScope) {
-        $scope.closeModal = function() {
-            $rootScope.isAsideOpen = false;
-            $modalInstance.dismiss('cancel');
-        };
-    });
+    ]).controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+
+    $rootScope.closeModal = function(){
+       $modalInstance.close();
+    }
+
+});
