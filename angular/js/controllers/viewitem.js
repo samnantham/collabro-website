@@ -6,6 +6,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
 
     $rootScope.getItem = function() {
         webServices.get('product/' + $stateParams.id).then(function(getData) {
+            $rootScope.formLoading = false;
             if (getData.status == 200) {
                 $rootScope.viewData = getData.data;
                 if (!$rootScope.viewData.userview) {
