@@ -3,8 +3,28 @@
     float: left;
     margin-bottom: 15px;
 }
-.thumbslider{
+.custom-slider{
     width: 100%;
     float: left;
-    margin-bottom: 15px;
+    .imgcontainer{
+        width: 100%;
+        float: left;
+        @include border-radius(5px);
+    }
+    .thumbslider{
+        width: 100%;
+        float: left;
+        background: $white;
+        padding: 0px;
+        .slick-slider{
+            width: 100%;
+            float: left;
+            margin-bottom: 0px;
+        }
+        .thumbholder{
+            &:first-of-type, &:last-of-type{
+                padding-left: 0px;
+            }
+        }
+    }
 }

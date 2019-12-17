@@ -10993,7 +10993,7 @@ i.color-btn {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border: 1px solid #dfe4e8;
-  padding: 30px;
+  padding: 25px;
 }
 .custom-modal .custom-modal-title {
   width: 100%;
@@ -12119,10 +12119,30 @@ ul.simple-list li:last-of-type {
   margin-bottom: 15px;
 }
 
-.thumbslider {
+.custom-slider {
   width: 100%;
   float: left;
-  margin-bottom: 15px;
+}
+.custom-slider .imgcontainer {
+  width: 100%;
+  float: left;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+.custom-slider .thumbslider {
+  width: 100%;
+  float: left;
+  background: #fff;
+  padding: 0px;
+}
+.custom-slider .thumbslider .slick-slider {
+  width: 100%;
+  float: left;
+  margin-bottom: 0px;
+}
+.custom-slider .thumbslider .thumbholder:first-of-type, .custom-slider .thumbslider .thumbholder:last-of-type {
+  padding-left: 0px;
 }
 
 .form-group {
