@@ -37,7 +37,7 @@ var app = angular.module('app')
                 app.Rentalfeatures = [{"feature":"Registrant must be at least 18 years old"},{"feature":"Free AromaEase 5ml essential oil"},{"feature":"Goodie bag for the first 5000 participants"},{"feature":"Beetroot Lavender Lip Balm"}];
                 app.Eventfeatures = [{"feature":"Registrant must be at least 18 years old"},{"feature":"Free AromaEase 5ml essential oil"},{"feature":"Goodie bag for the first 5000 participants"},{"feature":"Beetroot Lavender Lip Balm"}];
                 app.redirectroutes = ['viewfeed','viewuser','viewproduct','viewtodo','viewitem'];
-                app.notauthroutes = ['home','searchitems','main'];
+                app.notauthroutes = ['app.home','app.searchitems','app.main'];
             }
         ])
     .run(['bowser', '$rootScope', function(bowser, $rootScope) {

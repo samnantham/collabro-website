@@ -3,7 +3,7 @@
     <p>We - and our partners - use cookies to deliver our services and to show you ads based on your interests. By using our website, you agree to the use of cookies as described in our Cookie Policy.</p>
     <i class="fa fa-close" ng-click="closeheaderinfo()"></i>
 </div>
-<header class="home-header" ng-class="{'search-active' : stateurl == 'searchitems','iscookie':showheader}" ng-if="stateurl == 'home' || stateurl == 'searchitems'"> <!-- search-active class for search page -->
+<header class="home-header" ng-class="{'search-active' : stateurl == 'app.searchitems','iscookie':showheader}" ng-if="stateurl == 'app.home' || stateurl == 'app.searchitems'"> <!-- search-active class for search page -->
     <nav class="navbar">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -14,8 +14,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <a class="logo" ui-sref="app.home">
-                    <img ng-src="{{IMGURL}}{{settings.headerlogo}}" ng-if="stateurl == 'home'"/>
-                    <img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo" ng-if="stateurl == 'searchitems'"/>
+                    <img ng-src="{{IMGURL}}{{settings.headerlogo}}" ng-if="stateurl == 'app.home'"/>
+                    <img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo" ng-if="stateurl == 'app.searchitems'"/>
                 </a>
             <div class="row flex-center">
                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -48,7 +48,7 @@
     </nav>
 </header>
 
-<header class="main-header hidden-print" ng-if="stateurl != 'home' && stateurl != 'searchitems'">
+<header class="main-header hidden-print" ng-if="stateurl != 'app.home' && stateurl != 'app.searchitems'">
         <nav class="navbar">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

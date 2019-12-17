@@ -73,7 +73,7 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$document', '$state',
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 keyboard: false,
-                templateUrl: 'tpl/blocks/modals/popovermodal.html',
+                templateUrl: 'tpl/blocks/popover/productpopover.html',
                 size: 'lg',
                 windowClass: 'popovermodal',
             });

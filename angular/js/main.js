@@ -6,6 +6,7 @@ angular.module('app')
     .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document',
         function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $modalStack) {
             $rootScope.isMobile = isMobile.phone;
+            $rootScope.screenWidth = window.innerWidth;
             if ($rootScope.isMobile) {
                 $rootScope.currentdevice = 'mobile';
             } else {
@@ -15,6 +16,10 @@ angular.module('app')
             $rootScope.registerModel = {};
             $rootScope.forgotModel = {};
 
+            $rootScope.pwtype = "password";
+
+            $rootScope.notificationInterval = 6000;
+            $rootScope.showheader = false;
             $rootScope.userData = {};
             $rootScope.shareData = {};
             $rootScope.user = {};
@@ -39,246 +44,149 @@ angular.module('app')
             $rootScope.redirectroutes = angular.copy(app.redirectroutes);
             $rootScope.categories = [];
             $rootScope.registerModel.iscompany = '0';
-            $scope.thisyear = new Date().getFullYear();
+            $rootScope.thisyear = new Date().getFullYear();
             $rootScope.IMGURL = app.imageurl;
             $rootScope.keywords = []; /*['Make-Up Artist', 'Car Rental', 'Photography', 'Wardrobe', 'Interior Design', 'Trending Group', 'Decor and Lights', 'Wedding Gifts', 'Sparkling Shoes', 'Videography'];*/
             $rootScope.searchData = {};
 
+            $rootScope.labels = ["Profit Earned", "Rental Earned", "Experience Points", "Advertisement Spent"];
+            $rootScope.Colors = ["#ffc500", "#ff1561", "#59c74a", "#00d8ff"];
+            $rootScope.ChartOptions = {
+                elements: {
+                    arc: {
+                        borderWidth: 0
+                    }
+                },
+                width: 500,
+                height: 300,
+                cutoutPercentage: 70,
+                responsive: true,
+                segmentShowStroke: false
+            };
+
+            if (!localStorage.showheader) {
+                $rootScope.showheader = true;
+            }
+
+            $rootScope.getSettings = function() {
+                webServices.get('getsettings').then(function(getData) {
+                    if (getData.status == 200) {
+                        $rootScope.settings = getData.data;
+                    }
+                });
+            }
+
+            $rootScope.showhidepassword = function() {
+               if($rootScope.pwtype == "password"){
+                    $rootScope.pwtype = 'text';
+               }else{
+                    $rootScope.pwtype = 'password';
+               }
+            }
+
             $rootScope.openAuthModal = function(auth) {
+                $rootScope.formLoading = true;
                 $rootScope.currentauth = auth;
                 $rootScope.loginModel = {};
                 $timeout(function() {
-                    $scope.dialogInst = $modal.open({
+                    $rootScope.formLoading = false;
+                    $rootScope.dialogInst = $modal.open({
                         ariaLabelledBy: 'modal-title',
                         ariaDescribedBy: 'modal-body',
                         keyboard: false,
                         templateUrl: 'tpl/blocks/popover/authenticationpopover.html',
                         size: 'lg',
-                        windowClass: 'popovermodal',
+                        windowClass: 'authmodal',
                     });
 
                 }, 1000);
             };
 
-            $rootScope.changeauthTab = function(tab){
+            $rootScope.changeauthTab = function(tab) {
                 $rootScope.currentauth = tab;
+                $rootScope.pwtype = 'password';
+            }
+
+            $rootScope.login = function(form) {
+                $rootScope.loginerrors = {};
+                $rootScope.errors = [];
+                if (form.$valid) {
+                    $rootScope.authloading = true;
+                    $rootScope.loginLoading = true;
+                    webServices.normalpost('login', $rootScope.userData).then(function(getData) {
+                        $rootScope.loginLoading = false;
+                        $rootScope.authloading = false;
+                        if (getData.status == 200) {
+                            $sessionStorage.user = getData.data;
+                            localStorage.user = JSON.stringify($sessionStorage.user);
+                            $rootScope.user = $sessionStorage.user;
+                            if (!$rootScope.user.firebaseid) {
+                                $rootScope.createFirebaseauth();
+                            } else {
+                                $rootScope.loginFirebaseauth();
+                            }
+
+                        } else {
+                            $rootScope.loginerrors = getData.data.message;
+                        }
+                    });
+                }
+            };
+
+            $rootScope.forgotpassword = function(form) {
+                $rootScope.forgoterrors = {};
+                if (form.$valid) {
+                    $rootScope.forgotLoading = true;
+                    $rootScope.authloading = true;
+                    webServices.normalpost('forgotpassword', $rootScope.forgotModel).then(function(getData) {
+                        $rootScope.authloading = false;
+                        $rootScope.forgotLoading = false;
+                        if (getData.status == 200) {
+                            $rootScope.forgoterrors.successmsg = getData.data.message;
+                        } else {
+                            $rootScope.forgoterrors.errormsg = getData.data.message;
+                        }
+                    });
+                }
             }
 
             $rootScope.$watch('formLoading', function() {
                 if (!$rootScope.formLoading) {
-                    if ($rootScope.pageloading) {
-                        if (($rootScope.stateurl == 'home') || ($rootScope.stateurl == 'main') || ($rootScope.stateurl == 'searchitems')) {
-                            if ($rootScope.stateurl == 'searchitems') {
-                                $rootScope.setSliderConfig();
-                            }
-                            if (localStorage.userData && !isMobile.phone) {
-                                var userData = JSON.parse(localStorage.userData);
-                                if (userData.rememberme == 1) {
-                                    $rootScope.userData = JSON.parse(localStorage.userData);
-                                }
-                            }
-                        } else if ($rootScope.stateurl == 'usermain') {
+                    if ($rootScope.notauthroutes.includes($rootScope.stateurl)) {
+                        if ($rootScope.stateurl == 'app.searchitems') {
                             $rootScope.setSliderConfig();
                         }
-                        $rootScope.pageloading = false;
+                        if (localStorage.userData && !isMobile.phone) {
+                            var userData = JSON.parse(localStorage.userData);
+                            if (userData.rememberme == 1) {
+                                $rootScope.userData = JSON.parse(localStorage.userData);
+                            }
+                        }
+                    } else if ($rootScope.stateurl == 'app.usermain') {
+                        $rootScope.setSliderConfig();
                     }
-                    $timeout(function() {
-                        $rootScope.$emit("callStickyMenu", {});
-                    }, 1000);
                 }
+                $timeout(function() {
+                    $rootScope.$emit("callStickyMenu", {});
+                }, 1000);
             });
-
-
-            $rootScope.banners = ['img/Collaborate.png', 'img/BG1.png', 'img/features.jpg', 'img/benefits.jpg', 'img/tour.jpg', 'img/more.jpg'];
-
-            $rootScope.openModal = function() {
-                if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('productmodal', 'ProductModalCtrl');
-                }
-            }
-
-            $rootScope.opentodoModal = function() {
-                if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('todomodal', 'TodoModalCtrl');
-                }
-            }
-
-            $rootScope.openRequestModal = function() {
-                if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('requestmodal', 'RequestModalCtrl');
-                }
-            }
-
-            $rootScope.productslick = {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                fade: true,
-                asNavFor: '.slider-nav',
-                method: {},
-                event: {
-                    afterChange: function(event, slick, currentSlide, nextSlide) {
-                        $scope.slickCurrentIndex2 = currentSlide;
-                    },
-                    init: function(event, slick) {
-                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
-                    }
-                }
-            };
 
             $rootScope.logintoProduct = function(product) {
                 $rootScope.redirectproduct = product;
                 $rootScope.openAuthModal('signin');
-                /*document.body.scrollTop = document.documentElement.scrollTop = 0;
-                $rootScope.issignin = true;*/
             }
-
-            $rootScope.productthumbslick = {
-                focusOnSelect: true,
-                infinite: false,
-                initialSlide: 0,
-                slidesToShow: 5,
-                asNavFor: '.slider-for',
-                slidesToScroll: 1,
-                method: {},
-                event: {
-                    afterChange: function(event, slick, currentSlide, nextSlide) {
-                        $scope.slickCurrentIndex2 = currentSlide;
-                    },
-                    init: function(event, slick) {
-                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
-                    }
-                }
-            };
-
-            $rootScope.mobilethumbslick = {
-                focusOnSelect: true,
-                infinite: false,
-                initialSlide: 0,
-                slidesToShow: 3,
-                asNavFor: '.slider-for',
-                slidesToScroll: 1,
-                method: {},
-                event: {
-                    afterChange: function(event, slick, currentSlide, nextSlide) {
-                        $scope.slickCurrentIndex2 = currentSlide;
-                    },
-                    init: function(event, slick) {
-                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
-                    }
-                }
-            };
-
-            $rootScope.productslickmodal = {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                asNavFor: '.slider-nav-modal',
-                method: {},
-                event: {
-                    afterChange: function(event, slick, currentSlide, nextSlide) {
-                        $scope.slickCurrentIndex2 = currentSlide;
-                    },
-                    init: function(event, slick) {
-                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
-                    }
-                }
-            };
-
-
-
-            $rootScope.modalproductthumbslick = {
-                focusOnSelect: true,
-                infinite: false,
-                initialSlide: 0,
-                slidesToShow: 3,
-                asNavFor: '.slider-for-modal',
-                slidesToScroll: 1,
-                method: {},
-                event: {
-                    afterChange: function(event, slick, currentSlide, nextSlide) {
-                        $scope.slickCurrentIndex2 = currentSlide;
-                    },
-                    init: function(event, slick) {
-                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
-                    }
-                }
-            };
 
             $rootScope.convertDate = function(date) {
                 return Date.parse(date);
-            }
-
-            $rootScope.openbroadcastModal = function() {
-                if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('broadcastmodal', 'BroadcastModalCtrl');
-                }
-            }
-
-            $rootScope.viewChatImg = function(chat) {
-                $rootScope.chatImages = {};
-                $rootScope.chatImages.show = true;
-                $rootScope.chatImages.fileurl = chat.fileurl;
-                var filenamearray = $rootScope.chatImages.fileurl.split("/");
-                $rootScope.downloadfilename = filenamearray[filenamearray.length - 1];
-
-                var dialogInst = $modal.open({
-                    animation: true,
-                    templateUrl: 'tpl/blocks/popover/chatimagepopover.html',
-                    controller: 'DialogInstCtrl'
-                });
-            }
-
-            $rootScope.openCollaborateResponseModal = function() {
-                if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('collaborateresponsemodal', 'CollaborateResponseModalCtrl');
-                }
             }
 
             $rootScope.goback = function() {
                 history.back();
             }
 
-            $rootScope.sharetosocial = function(data) {
-                $rootScope.shareData = {};
-                $rootScope.shareData = data;
-                $rootScope.shareData.shareurl = app.productshareurl;
-                $rootScope.sharetype = 'product';
-                $rootScope.opensharepopover();
-
-            }
-
-            $rootScope.opensharepopover = function() {
-                var dialogInst = $modal.open({
-                    animation: true,
-                    templateUrl: 'tpl/blocks/popover/sharepopover.html',
-                    controller: 'DialogInstCtrl',
-                    size: 'sm',
-                    windowClass: 'share-popover',
-                });
-            }
-
-            $rootScope.sharetodo = function(data){
-                $rootScope.shareData = {};
-                $rootScope.shareData = data;
-                $rootScope.shareData.shareurl = app.todoshareurl;
-                $rootScope.sharetype = 'todo';
-                $rootScope.opensharepopover();
-            }
-
-            $rootScope.stoploading = function() {
-                //$rootScope.$emit("scrolltop", {});
-                $rootScope.formLoading = false;
-                $rootScope.$emit("callStickyMenu", {});
-            }
-
-            $rootScope.screenWidth = window.innerWidth;
-
             $(window).resize(function() {
                 $rootScope.screenWidth = window.innerWidth;
                 $rootScope.setSliderConfig();
-                //$state.reload();
                 if ($rootScope.screenWidth < 800) {
                     $rootScope.currentdevice = 'mobile';
                 } else {
@@ -307,7 +215,7 @@ angular.module('app')
                     $rootScope.scrollslides = 2;
                 }
 
-                $scope.slickConfig = {
+                $rootScope.slickConfig = {
                     enabled: true,
                     autoplay: false,
                     draggable: false,
@@ -316,270 +224,8 @@ angular.module('app')
                 };
             }
 
-            $rootScope.fbshare = function() {
-                if ($rootScope.sharetype == 'product') {
-                    if ($rootScope.shareData.images[0].filetype == 1) {
-                        var IMGURL = $rootScope.IMGURL + $rootScope.shareData.images[0].thumbnail;
-                    } else {
-                        var IMGURL = $rootScope.shareData.images[0].thumbnail;
-                    }
-                    Facebook.ui({
-                        method: 'feed',
-                        name: $rootScope.shareData.title,
-                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
-                        picture: IMGURL,
-                        caption: $rootScope.shareData.title,
-                        description: $rootScope.shareData.description
-                    }, function(response) {
-                        if (response === null) {
-                            console.log('was not shared');
-                        } else {
-                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
-                                console.log('not shared');
-                            } else {
-                                $rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
-                                console.log('shared success');
-                            }
-                        }
-                    });
-                } else if ($rootScope.sharetype == 'friend') {
-                    var IMGURL = $rootScope.IMGURL + $rootScope.shareData.avatar;
-                    Facebook.ui({
-                        method: 'feed',
-                        name: $rootScope.shareData.username,
-                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
-                        picture: IMGURL,
-                        caption: $rootScope.shareData.username,
-                        description: $rootScope.shareData.aboutme
-                    }, function(response) {
-                        if (response === null) {
-                            console.log('was not shared');
-                        } else {
-                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
-                                console.log('not shared');
-                            } else {
-                                //$rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
-                                console.log('shared success');
-                            }
-                        }
-                    });
-                } else if ($rootScope.sharetype == 'feed') {
-                    var IMGURL = $rootScope.IMGURL + $rootScope.shareData.owner.avatar;
-                    Facebook.ui({
-                        method: 'feed',
-                        name: $rootScope.shareData.title,
-                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
-                        picture: IMGURL,
-                        caption: $rootScope.shareData.title,
-                        description: $rootScope.shareData.description
-                    }, function(response) {
-                        if (response === null) {
-                            console.log('was not shared');
-                        } else {
-                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
-                                console.log('not shared');
-                            } else {
-                                //$rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
-                                console.log('shared success');
-                            }
-                        }
-                    });
-                } else if ($rootScope.sharetype == 'project') {
-                    if ($rootScope.shareData.files[0].filetype == 1) {
-                        var IMGURL = $rootScope.IMGURL + $rootScope.shareData.files[0].thumbnail;
-                    } else {
-                        var IMGURL = $rootScope.shareData.files[0].thumbnail;
-                    }
-                    Facebook.ui({
-                        method: 'feed',
-                        name: $rootScope.shareData.title,
-                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
-                        picture: IMGURL,
-                        caption: $rootScope.shareData.title,
-                        description: $rootScope.shareData.description
-                    }, function(response) {
-                        if (response === null) {
-                            console.log('was not shared');
-                        } else {
-                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
-                                console.log('not shared');
-                            } else {
-                                $rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
-                                console.log('shared success');
-                            }
-                        }
-                    });
-                }else if ($rootScope.sharetype == 'todo') {
-                    if ($rootScope.shareData.images[0].filetype == 1) {
-                        var IMGURL = $rootScope.IMGURL + $rootScope.shareData.images[0].thumbnail;
-                    } else {
-                        var IMGURL = $rootScope.shareData.images[0].thumbnail;
-                    }
-                    Facebook.ui({
-                        method: 'feed',
-                        name: $rootScope.shareData.title,
-                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
-                        picture: IMGURL,
-                        caption: $rootScope.shareData.title,
-                        description: $rootScope.shareData.description
-                    }, function(response) {
-                        if (response === null) {
-                            console.log('was not shared');
-                        } else {
-                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
-                                console.log('not shared');
-                            } else {
-                                $rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
-                                console.log('shared success');
-                            }
-                        }
-                    });
-                }
-
-            }
-
-            $rootScope.sharefeedtosocial = function(data) {
-                $rootScope.shareData = {};
-                $rootScope.shareData = data;
-                $rootScope.shareData.shareurl = app.feedshareurl;
-                $rootScope.sharetype = 'feed';
-                $rootScope.opensharepopover();
-            }
-
-            $rootScope.closeproductModal = function() {
-                $rootScope.formData = {};
-                $rootScope.formData.type = '';
-                $rootScope.viewingThumb = {};
-                $rootScope.closepopoverItem();
-            };
-
-             $rootScope.closerequestModal = function() {
-                $rootScope.formData = {};
-                $rootScope.formData.type = '';
-                $rootScope.viewingThumb = {};
-                $rootScope.closepopoverItem();
-            };
-
-            $rootScope.closebroadcastModal = function() {
-                $rootScope.formData = {};
-                $rootScope.formData.type = '';
-                $rootScope.viewingThumb = {};
-                $rootScope.closepopoverItem();
-            };
-
-            $rootScope.closetodoModal = function() {
-                $rootScope.todoData = {};
-                $rootScope.todoData.type = '';
-                $rootScope.viewingThumb = {};
-                $rootScope.closepopoverItem();
-            };
-
-            
-
-            $rootScope.closecollaboratemodal = function() {
-                $rootScope.closepopoverItem();
-                $rootScope.fromfriendspage = false;
-                $rootScope.formData = {};
-                $rootScope.formData.type = '';
-                $rootScope.viewingThumb = {};
-                $rootScope.resetProductItems();
-            };
-
-            $rootScope.labels = ["Profit Earned", "Rental Earned", "Experience Points", "Advertisement Spent"];
-            $rootScope.Colors = ["#ffc500", "#ff1561", "#59c74a", "#00d8ff"];
-            $rootScope.ChartOptions = {
-                elements: {
-                    arc: {
-                        borderWidth: 0
-                    }
-                },
-                width: 500,
-                height: 300,
-                cutoutPercentage: 70,
-                responsive: true,
-                segmentShowStroke: false
-            };
-
-            if (!localStorage.showheader) {
-                $rootScope.showheader = true;
-            } else {
-                $rootScope.showheader = false;
-            }
-
-
-            $rootScope.updateforsocialshare = function(type) {
-                webServices.put('addsocialxp/' + type).then(function(getData) {
-                    if (getData.status == 200) {
-                        $rootScope.$emit("showsuccessmsg", getData.data.message);
-                        $rootScope.getUserInfo();
-                    }
-                });
-            }
-
-            $rootScope.updatestatus = function(status) {
-                webServices.put('mystatus/' + status).then(function(getData) {
-                    if (getData.status == 200) {
-                        $sessionStorage.user.onlinestatus = status;
-                        localStorage.user = JSON.stringify($sessionStorage.user);
-                        $rootScope.user = $sessionStorage.user;
-                    }
-                });
-            }
-
-            $rootScope.sendattachment = function(files) {
-                if (files && files.length) {
-                    var extn = files[0].name.split(".").pop();
-                    if ($rootScope.validextensions.includes(extn.toLowerCase())) {
-                        if (files[0].size <= $rootScope.maxUploadsize) {
-                            var obj = {};
-                            obj.file = files[0];
-                            $rootScope.uploadattachment(obj);
-                        } else {
-                            $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
-                        }
-                    } else {
-                        $rootScope.$emit("showerrormsg", files[i].name + ' format unsupported.');
-                    }
-                }
-            }
-
-            $rootScope.uploadattachment = function(obj) {
-                webServices.upload('uploadattachment', obj).then(function(getData) {
-                    if (getData.status == 200) {
-                        $rootScope.chatMessage.fileurl = getData.data;
-                        $rootScope.chatMessage.message = 'Uploaded a File';
-                        $rootScope.chatMessage.isfile = 1;
-                        $rootScope.sendReplymessage();
-                    }
-                });
-            }
-
-            $rootScope.closepopoverItem = function() {
-                $rootScope.formData = {};
-                $rootScope.shareData = {};
-                $rootScope.chatImages = {};
-                $rootScope.ismodalopen = false;
-                $rootScope.isPopover = false;
-                $rootScope.iseditproduct = false;
-                if ($rootScope.stateurl == 'viewproduct') {
-                    if($rootScope.currentdevice == 'desktop'){
-                        $state.go('app.main');
-                    }else{
-                        $state.go('app.mobilemain');
-                    }
-                }
-                $('.modal-content > .ng-scope').each(function() {
-                    $(this).scope().$dismiss();
-                });
-            }
-
             $rootScope.getUserInfo = function() {
-                $scope.errors = [];
+                $rootScope.errors = [];
                 webServices.get('getauthenticateduser').then(function(getData) {
                     if (getData.status == 200) {
                         $sessionStorage.user = getData.data;
@@ -587,34 +233,37 @@ angular.module('app')
                         $rootScope.user = $sessionStorage.user;
                         var xppoints = $rootScope.user.experiencepoints * 100 / $rootScope.user.allowedXP;
                         $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
-                    } else if(getData.status == 401){
-                        $scope.errors.push(getData.data.message);
-                        $rootScope.$emit("showerrors", $scope.errors);
+                    } else if (getData.status == 401) {
+                        $rootScope.errors.push(getData.data.message);
+                        $rootScope.$emit("showerrors", $rootScope.errors);
                         $rootScope.logout();
-                    }else{
+                    } else {
                         $rootScope.logout();
                     }
                 });
             }
+
+
+            $rootScope.setUserInfo = function(){
+                if ($sessionStorage.user != null) {
+                    $rootScope.user = authServices.currentUser();
+                } else if ((localStorage.user != '') && (localStorage.user != undefined) && (localStorage.user != 'undefined')) {
+                    $rootScope.user = authServices.currentUser();
+                } else {
+                    authServices.logout();
+                }
+            }
+
 
             $rootScope.getmyunreads = function() {
                 webServices.get('myunreads').then(function(getData) {
                     if (getData.status == 200) {
                         $rootScope.countData = getData.data;
-                        if(($rootScope.countData.chatmessages > $rootScope.user.chatmessages) || ($rootScope.countData.notifications > $rootScope.user.notifications)){
-                            $scope.showwebnotification();
+                        if (($rootScope.countData.chatmessages > $rootScope.user.chatmessages) || ($rootScope.countData.notifications > $rootScope.user.notifications)) {
+                            $rootScope.showwebnotification();
                         }
-                    }else{
+                    } else {
                         $rootScope.logout();
-                    }
-                });
-            }
-
-            $rootScope.getSettings = function() {
-                webServices.get('getsettings').then(function(getData) {
-                    if (getData.status == 200) {
-                        $rootScope.settings = getData.data;
-                        console.log($rootScope.settings)
                     }
                 });
             }
@@ -624,9 +273,9 @@ angular.module('app')
                     if (getData.status == 200) {
                         $rootScope.$emit("showsuccessmsg", getData.data.message);
                     } else {
-                        $scope.errors = [];
-                        $scope.errors.push(getData.data.message);
-                        $rootScope.$emit("showerrors", $scope.errors);
+                        $rootScope.errors = [];
+                        $rootScope.errors.push(getData.data.message);
+                        $rootScope.$emit("showerrors", $rootScope.errors);
                     }
                 });
             }
@@ -642,72 +291,14 @@ angular.module('app')
                 });
             }
 
-            $rootScope.opencollaboratemodal = function() {
-                if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('collaboratemodal', 'CollaborateModalCtrl');
-                }
-            }
-
-            $rootScope.forgotpassword = function(form) {
-                $scope.forgoterrors = {};
-                if (form.$valid) {
-                    $rootScope.loading = true;
-                    $rootScope.forgotloading = true;
-                    webServices.normalpost('forgotpassword', $rootScope.forgotModel).then(function(getData) {
-                        $rootScope.loading = false;
-                        $rootScope.forgotloading = false;
-                        if (getData.status == 200) {
-                            $scope.forgoterrors.successmsg = getData.data.message;
-                        } else {
-                            $scope.forgoterrors.errormsg = getData.data.message;
-                        }
-                    });
-                }
-            }
-
-            $rootScope.gotoChat = function(productid) {
-                webServices.get('product/' + productid).then(function(getData) {
-                    if (getData.status == 200) {
-                        $rootScope.ItemData = getData.data;
-                        if (!$rootScope.ItemData.chatData) {
-                            webServices.put('productchat/' + productid).then(function(getData) {
-                                if (getData.status == 200) {
-                                    $rootScope.closepopoverItem();
-                                    $state.go('app.productchat', {
-                                        'id': getData.data.id
-                                    });
-                                }
-                            });
-                        } else {
-                            $rootScope.closepopoverItem();
-                            $state.go('app.productchat', {
-                                'id': $rootScope.ItemData.chatData.id
-                            });
-                        }
-                    }
-                });
-            }
-
-            $rootScope.showAModal = function($modalInstance) {
-                if (!$rootScope.termsofuse) {
-                    $scope.gettermsofservice();
-                }
-
-                var dialogInst = $modal.open({
-                    templateUrl: 'tpl/blocks/mobile/termspopup.html',
-                    controller: 'DialogInstCtrl',
-                    size: 'sm',
-                });
-            }
-
-            $scope.closeheaderinfo = function() {
+            $rootScope.closeheaderinfo = function() {
                 localStorage.showheader = true;
                 $rootScope.showheader = false;
             }
 
-            $scope.googleLogin = function() {
+            $rootScope.googleLogin = function() {
                 $rootScope.googleloading = true;
-                $rootScope.loading = true;
+                $rootScope.authloading = true;
                 GoogleSignin.signIn().then(function(user) {
                     var response = user.w3;
                     $rootScope.loginModel.email = response.U3;
@@ -715,10 +306,10 @@ angular.module('app')
                     $rootScope.loginModel.username = response.ig;
                     $rootScope.loginModel.register_type = 3;
                     $rootScope.loginModel.image = response.Paa;
-                    $scope.sociallogin();
+                    $rootScope.sociallogin();
                 }, function(err) {
-                    $rootScope.loading = false;
                     $rootScope.googleloading = false;
+                    $rootScope.authloading = false;
                     console.log(err);
                 });
             }
@@ -726,15 +317,14 @@ angular.module('app')
             $rootScope.gotosearch = function(keyword) {
                 $rootScope.searchData.keyword = keyword;
                 $rootScope.showsearch = false;
-                if ($rootScope.stateurl == 'home'){
+                if ($rootScope.stateurl == 'app.home') {
                     $state.go('app.searchitems', {
                         'keyword': keyword,
                     });
-                }else{
-                    if ($rootScope.stateurl == 'home' || $rootScope.stateurl == 'main'){
-                    }
+                } else {
+                    if ($rootScope.stateurl == 'app.home' || $rootScope.stateurl == 'app.main') {}
                     if (keyword && keyword.length > 0) {
-                        if ($rootScope.stateurl == 'searchitems') {
+                        if ($rootScope.stateurl == 'app.searchitems') {
                             $state.go('app.searchitems', {
                                 'keyword': keyword,
                             });
@@ -751,36 +341,35 @@ angular.module('app')
                 $rootScope.showsearch = true;
             }
 
-            $scope.facebooklogin = function() {
+            $rootScope.facebooklogin = function() {
                 $rootScope.facebookloading = true;
-                $rootScope.loading = true;
+                $rootScope.authloading = true;
                 Facebook.login(function(response) {
                     if (response.status == 'connected') {
-                        $scope.logged = true;
-                        $scope.me();
+                        $rootScope.logged = true;
+                        $rootScope.me();
                     } else {
                         $rootScope.facebookloading = false;
-                        $rootScope.loading = false;
+                        $rootScope.authloading = false;
                     }
 
                 });
             };
 
-            $scope.me = function() {
+            $rootScope.me = function() {
                 Facebook.api('/me?fields=name,email,picture', function(response) {
                     $rootScope.loginModel.email = response.email;
                     $rootScope.loginModel.password = response.id;
                     $rootScope.loginModel.username = response.name;
                     $rootScope.loginModel.register_type = 2;
                     $rootScope.loginModel.image = response.picture.data.url;
-                    $scope.sociallogin();
+                    $rootScope.sociallogin();
                 });
             };
 
-            $scope.sociallogin = function(form) {
-                $rootScope.loading = true;
+            $rootScope.sociallogin = function(form) {
                 webServices.normalpost('sociallogin', $rootScope.loginModel).then(function(getData) {
-                    $rootScope.loading = false;
+                    $rootScope.authloading = false;
                     $rootScope.googleloading = false;
                     $rootScope.facebookloading = false;
                     if (getData.status == 200) {
@@ -788,62 +377,38 @@ angular.module('app')
                         localStorage.user = JSON.stringify($sessionStorage.user);
                         $rootScope.user = $sessionStorage.user;
                         if (!$rootScope.user.firebaseid) {
-                            $scope.createFirebaseauth();
+                            $rootScope.createFirebaseauth();
                         } else {
                             $rootScope.goafterLogin();
                         }
                     } else {
-                        $scope.loginerrors = getData.data.message;
+                        $rootScope.loginerrors = getData.data.message;
                     }
                 });
-            };
-
-            $rootScope.login = function(form) {
-                $scope.loginerrors = {};
-                $scope.errors = [];
-                if (form.$valid) {
-                    $rootScope.loading = true;
-                    $rootScope.loginloading = true;
-                    if ($rootScope.userData.rememberme) {
-                        localStorage.userData = JSON.stringify($rootScope.userData);
-                    } else {
-                        localStorage.userData = '';
-                    }
-
-                    webServices.normalpost('login', $rootScope.userData).then(function(getData) {
-                        if (getData.status == 200) {
-                            $sessionStorage.user = getData.data;
-                            localStorage.user = JSON.stringify($sessionStorage.user);
-                            $rootScope.user = $sessionStorage.user;
-                            if (!$rootScope.user.firebaseid) {
-                                $scope.createFirebaseauth();
-                            } else {
-                                $scope.loginFirebaseauth();
-                            }
-
-                        } else {
-                            $rootScope.loading = false;
-                            $rootScope.loginloading = false;
-                            $scope.loginerrors = getData.data.message;
-                        }
-                    });
-                }
             };
 
             $rootScope.goafterLogin = function() {
                 $rootScope.getUserInfo();
                 $rootScope.closeModal();
+                $rootScope.authloading = false;
+                $rootScope.registerloading = false;
+                $rootScope.googleloading = false;
+                $rootScope.facebookloading = false;
+                $rootScope.forgotLoading = false;
+                $rootScope.loginModel = {};
+                $rootScope.registerModel = {};
+                $rootScope.forgotModel = {};
                 $rootScope.searchData = {};
                 if ($rootScope.isredirect) {
-                    window.open($rootScope.redirecturl,"_self")
+                    window.open($rootScope.redirecturl, "_self")
                 } else {
                     $state.go('app.usermain');
                 }
             }
 
-            $scope.createFirebaseauth = function() {
+            $rootScope.createFirebaseauth = function() {
                 firebase.auth().createUserWithEmailAndPassword($rootScope.user.email, 'password').then(function() {
-                    $scope.loginFirebaseauth();
+                    $rootScope.loginFirebaseauth();
                 }).catch(function(error) {
                     console.log(error);
                 });
@@ -886,26 +451,26 @@ angular.module('app')
             }
 
 
-            $scope.loginFirebaseauth = function() {
+            $rootScope.loginFirebaseauth = function() {
                 firebase.auth().signInWithEmailAndPassword($rootScope.user.email, 'password').then(function() {
-                    $scope.getFirebaseUser();
+                    $rootScope.getFirebaseUser();
                 }).catch(function(error) {
                     console.log(error);
                 });
             }
 
 
-            $scope.getFirebaseUser = function() {
+            $rootScope.getFirebaseUser = function() {
                 firebase.auth().onAuthStateChanged(function(user) {
                     if (!$rootScope.user.firebaseid) {
-                        $scope.updatefirebaseid(user.uid)
+                        $rootScope.updatefirebaseid(user.uid)
                     } else {
                         $rootScope.goafterLogin();
                     }
                 });
             }
 
-            $scope.updatefirebaseid = function(firebaseid) {
+            $rootScope.updatefirebaseid = function(firebaseid) {
                 var obj = {
                     firebaseid: firebaseid
                 };
@@ -913,14 +478,16 @@ angular.module('app')
                     if (getData.status == 200) {
                         $rootScope.goafterLogin();
                     } else {
-                        $rootScope.loading = false;
+                        $rootScope.authloading = false;
                         $rootScope.registerloading = false;
-                        $scope.registererrors = getData.data.message;
+                        $rootScope.googleloading = false;
+                        $rootScope.facebookloading = false;
+                        $rootScope.forgotLoading = false;
                     }
                 });
             }
 
-            $scope.gettermsofservice = function() {
+            $rootScope.gettermsofservice = function() {
                 webServices.get('termsofuse').then(function(getData) {
                     if (getData.status == 200) {
                         $rootScope.termsofuse = getData.data;
@@ -960,56 +527,54 @@ angular.module('app')
                 }
             });
 
-            $rootScope.timeInterval = 6000;
 
             $rootScope.getnotiCount = function() {
-                if ($rootScope.user.username) {
+                if (authServices.isLoggedIn()) {
                     $rootScope.getmyunreads();
                 }
-                $timeout($rootScope.getnotiCount, $rootScope.timeInterval);
+                $timeout($rootScope.getnotiCount, $rootScope.notificationInterval);
             }
-            
-            $timeout($rootScope.getnotiCount, $scope.timeInterval);
 
-            $scope.showwebnotification = function() {
+            $rootScope.showwebnotification = function() {
                 var title = '';
                 var message = '';
-                if($rootScope.countData.chatmessages > $rootScope.user.chatmessages){
-                    title += $rootScope.countData.chatmessages +' new chats';
-                }if($rootScope.countData.notifications > $rootScope.user.notifications){
-                    if($rootScope.countData.chatmessages > $rootScope.user.chatmessages){
+                if ($rootScope.countData.chatmessages > $rootScope.user.chatmessages) {
+                    title += $rootScope.countData.chatmessages + ' new chats';
+                }
+                if ($rootScope.countData.notifications > $rootScope.user.notifications) {
+                    if ($rootScope.countData.chatmessages > $rootScope.user.chatmessages) {
                         title += ' & '
                     }
-                    title += $rootScope.countData.notifications +' new notifications';       
+                    title += $rootScope.countData.notifications + ' new notifications';
                 }
                 $rootScope.getUserInfo();
-                        
+
                 webNotification.showNotification(title, {
                     body: 'You have a new message',
                     icon: 'img/favicon.ico',
                     onClick: function onNotificationClicked() {
                         console.log('Notification clicked.');
                     },
-                    autoClose: 4000 
+                    autoClose: 4000
                 }, function onShow(error, hide) {
-        if (error) {
-            webNotification.requestPermission(function onRequest(granted) {
-                if (granted) {
-                    console.log('Permission Granted.');
-                } else {
-                     window.alert('Unable to show notification due to Permission issue');
-                    console.log('Permission Not Granted.');
-                }
-            });
-        } else {
-            console.log('Notification Shown.');
- 
-            setTimeout(function hideNotification() {
-                console.log('Hiding notification....');
-                hide(); //manually close the notification (you can skip this if you use the autoClose option)
-            }, 5000);
-        }
-    });
+                    if (error) {
+                        webNotification.requestPermission(function onRequest(granted) {
+                            if (granted) {
+                                console.log('Permission Granted.');
+                            } else {
+                                window.alert('Unable to show notification due to Permission issue');
+                                console.log('Permission Not Granted.');
+                            }
+                        });
+                    } else {
+                        console.log('Notification Shown.');
+
+                        setTimeout(function hideNotification() {
+                            console.log('Hiding notification....');
+                            hide(); //manually close the notification (you can skip this if you use the autoClose option)
+                        }, 5000);
+                    }
+                });
             }
 
             $rootScope.$on("showerrors", function(event, errors) {
@@ -1026,33 +591,25 @@ angular.module('app')
                 });
             });
 
-            $scope.register = function(form) {
-                $scope.registererrors = {};
-                console.log('register')
+            $rootScope.register = function(form) {
+                $rootScope.registererrors = {};
                 if (form.$valid) {
-                    console.log('register form okay')
-                    $rootScope.loading = true;
+                    $rootScope.authloading = true;
                     $rootScope.registerloading = true;
                     $rootScope.registerModel.userrole = 2;
                     $rootScope.registerModel.register_type = 1;
                     $rootScope.registerModel.created_by = 1;
                     webServices.normalpost('userregister', $rootScope.registerModel).then(function(getData) {
-                        console.log(getData)
                         if (getData.status == 200) {
                             $sessionStorage.user = getData.data;
                             localStorage.user = JSON.stringify($sessionStorage.user);
                             $rootScope.user = $sessionStorage.user;
-                            $rootScope.registerModel = {};
-                            $rootScope.issignin = false;
-                            $rootScope.issignup = false;
-                            $rootScope.loading = false;
-                            $rootScope.registerloading = false;
-                            $scope.createFirebaseauth();
+                            $rootScope.createFirebaseauth();
 
                         } else {
-                            $rootScope.loading = false;
+                            $rootScope.authloading = false;
                             $rootScope.registerloading = false;
-                            $scope.registererrors = getData.data.message;
+                            $rootScope.registererrors = getData.data.message;
                         }
                     });
 
@@ -1060,85 +617,34 @@ angular.module('app')
             };
 
             $rootScope.logout = function() {
-                $rootScope.loading = false;
+                $rootScope.authloading = false;
                 firebase.auth().signOut();
                 $rootScope.userData = {};
                 $rootScope.user = {};
                 authServices.logout();
             }
 
-
-            $rootScope.showhidepopup = function(type) {
-                if (type == 'signin') {
-                    $rootScope.issignin = !$rootScope.issignin;
-                    $rootScope.issignup = false;
-                    $rootScope.isforgotpw = false;
-                } else if (type == 'signup') {
-                    $rootScope.issignup = !$rootScope.issignup;
-                    $rootScope.issignin = false;
-                    $rootScope.isforgotpw = false;
-                } else {
-                    $rootScope.isforgotpw = !$rootScope.isforgotpw;
-                    $rootScope.issignin = false;
-                    $rootScope.issignup = false;
-                }
-            }
-
-            $rootScope.changebg = function(bg) {
-                $rootScope.activebg = bg;
-            }
-
-            $rootScope.$on('$locationChangeStart', function(event, current, previous) {
-                $rootScope.loading = true;
-                $rootScope.stateurl = ($location.path().replace("/", "").replace(/[0-9]/g, '')).replace(/[^\w\s]/gi, '');
-                if(!$rootScope.settings){
-                    console.log('hahahaaahaah')
+            $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+                $rootScope.formLoading = true;
+                $rootScope.stateurl = toState.name;
+                if (!$rootScope.settings) {
                     $rootScope.getSettings();
                 }
-                if($rootScope.notauthroutes.includes($rootScope.stateurl)){
-                    if(authServices.isLoggedIn()){
-                         $timeout(function() {
+                if (authServices.isLoggedIn()) {
+                    $timeout($rootScope.getnotiCount, $rootScope.notificationInterval);
+                }
+                if ($rootScope.notauthroutes.includes($rootScope.stateurl)) {
+                    if (authServices.isLoggedIn()) {
+                        $rootScope.getUserInfo();
+                        $timeout(function() {
                             $state.go('app.usermain');
                         }, 1000);
-                        
                     }
-                }
-                /*if($rootScope.stateurl == 'signin'){
-                    $rootScope.getUserInfo();
-                }else{
-                    $rootScope.setUserInfo();
-                }*/
-            });
-            /*$rootScope.$on('$locationChangeStart', function (event, current, previous) {
-                $rootScope.redirecturl = '';
-                $rootScope.isredirect = false;
-                angular.forEach($rootScope.redirectroutes, function(state) {
-                    if(current.includes('home') || current.includes('viewproduct') ||  current.includes('mobilemain')){
-                        if(previous.includes(state)){
-                            $rootScope.isredirect = true;
-                            $rootScope.redirecturl = previous;
-                            if($rootScope.currentdevice == 'desktop'){
-                                if($rootScope.redirecturl.includes('viewproduct')){
-                                    $rootScope.redirecturl.replace('viewproduct','viewitem');
-                                }
-                            }
-                        }
-                    }
-                });
-                
-                $rootScope.formLoading = true;
-                $rootScope.pageloading = true;
-                var paths = $location.path().split('/');
-
-                if (paths[1] != 'mobile') {
-                    $rootScope.stateurl = paths[1];
                 } else {
-                    $rootScope.stateurl = paths[2];
+                    $rootScope.setUserInfo();
                 }
-                $rootScope.getSettings();
-
             });
-*/
+
             $rootScope.closeModal = function() {
                 $('.modal-content > .ng-scope').each(function() {
                     $(this).scope().$dismiss();
@@ -1146,10 +652,4 @@ angular.module('app')
             };
 
         }
-    ]).controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
-
-    $rootScope.closeModal = function(){
-       $modalInstance.close();
-    }
-
-});
+    ]);
