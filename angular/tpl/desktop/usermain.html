@@ -37,19 +37,17 @@
                                         </div>
                                     </div>
                                 </accordion-heading>
-                                <div class="notifer_details">
-                                    <div class="col-md-12 col-sm-12 nopadding">
-                                        <div class="col-md-12 nopadding descb">{{feed.description | cut:true:250:''}}</div>
+                                <div class="accordion-body">
+                                    <div class="accordion-body-top">
+                                        {{feed.description | cut:true:250:''}}
                                     </div>
-                                    <div class="col-md-12 col-sm-12 nopadding">
-                                        <div class="col-md-7 col-sm-7 nopadding">
-                                            <div class="product-button">
-                                                <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatefeedwish(feed,num)"><i class="fa fa-heart" ng-class="{'wished': feed.wishstatus == 1}"></i></a>
-                                                <a class="btn-add-comparre" title="Share to Earn" ng-click="sharefeedtosocial(feed)" tabindex="0"><i class="fa fa-share"></i></a>
-                                            </div>
+                                    <div class="accordion-body-bottom">
+                                        <div class="icons-left">
+                                            <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatefeedwish(feed,num)"><i class="fa fa-heart" ng-class="{'wished': feed.wishstatus == 1}"></i></a>
+                                            <a class="btn-add-comparre" title="Share to Earn" ng-click="sharefeedtosocial(feed)" tabindex="0"><i class="fa fa-share"></i></a>
                                         </div>
-                                        <div class="col-md-5 col-sm-5 nopadding">
-                                            <button class="chatb bgwhitebtn float-rt width110" ng-click="gotofeedchat(feed.id)"><i class="fa fa-phone-square" aria-hidden="true"></i>CHAT</button>
+                                        <div class="button-right">
+                                            <button type="button" ng-click="gotofeedchat(feed.id)" class="btn default-btn"><i class="fa fa-phone-square mr-5"></i> Chat</button>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +59,7 @@
         </div>
         <!-- app container -->
         <div class="content-container">
-         <div class="row">
+         <div class="row mt-10">
             <div class="col-lg-12 col-md-12 text-center">
                 <h1>The Platform for Entrepreneur to Collaborate and Do Business</h1>
             </div>

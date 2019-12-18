@@ -7604,7 +7604,7 @@ td.visible-print {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa15c", endColorstr="#ff6d41", GradientType=0);
 }
 
-.silver-gradient, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-container .accordion-wrapper .accordion-label {
+.silver-gradient, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
   background: white;
   /* Old browsers */
   background: -moz-linear-gradient(top, white 0%, #dfe4e8 100%);
@@ -8340,27 +8340,32 @@ p {
   float: left;
   margin-bottom: 8px;
 }
-.accordion-container .accordion-wrapper .accordion-label {
+
+.panel-heading {
+  padding: 0px !important;
+}
+
+.accordion-label {
   width: 100%;
   display: flex;
   align-items: center;
   padding: 8px;
   border: 1px solid #fff;
 }
-.accordion-container .accordion-wrapper .accordion-label img {
+.accordion-label img {
   width: 45px;
   height: 45px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
 }
-.accordion-container .accordion-wrapper .accordion-label .label-content {
+.accordion-label .label-content {
   width: calc(100% - 80px);
   margin: 0 10px;
   display: flex;
   flex-direction: column;
 }
-.accordion-container .accordion-wrapper .accordion-label .label-content p {
+.accordion-label .label-content p {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #5B616A;
@@ -8369,11 +8374,12 @@ p {
   overflow: hidden;
   white-space: nowrap;
 }
-.accordion-container .accordion-wrapper .accordion-label .label-content p:last-of-type {
+.accordion-label .label-content p:last-of-type {
   margin-bottom: 0px;
   border-bottom: 0;
+  transition: all 0.1s;
 }
-.accordion-container .accordion-wrapper .accordion-label .accordion-toggle {
+.accordion-label .accordion-toggle {
   width: 15px;
   float: right;
   display: inline-flex;
@@ -8381,41 +8387,42 @@ p {
   flex-direction: column;
   text-align: center;
 }
-.accordion-container .accordion-wrapper .accordion-label .accordion-toggle .check {
+.accordion-label .accordion-toggle .check {
   margin-bottom: 15px;
 }
-.accordion-container .accordion-wrapper .accordion-label .accordion-toggle i {
+.accordion-label .accordion-toggle i {
   font-size: 16px;
 }
-.accordion-container .accordion-wrapper .accordion-body {
+
+.accordion-body {
   width: 100%;
   float: left;
   background: #fff;
   padding: 8px;
 }
-.accordion-container .accordion-wrapper .accordion-body .accordion-body-top {
+.accordion-body .accordion-body-top {
   width: 100%;
   float: left;
   font-size: 14px;
   background: #fff;
   margin-bottom: 10px;
 }
-.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom {
+.accordion-body .accordion-body-bottom {
   width: 100%;
   float: left;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom .icons-left {
+.accordion-body .accordion-body-bottom .icons-left {
   width: 100px;
   float: left;
 }
-.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom .icons-left i {
+.accordion-body .accordion-body-bottom .icons-left i {
   margin-right: 10px;
   font-size: 16px;
 }
-.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom .button-right {
+.accordion-body .accordion-body-bottom .button-right {
   width: auto;
   float: right;
   margin-left: auto;
@@ -12237,6 +12244,8 @@ ul.simple-list li:last-of-type {
   height: 365px;
   position: relative;
   background: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -12245,10 +12254,16 @@ ul.simple-list li:last-of-type {
   height: 365px;
 }
 .custom-slider .imgcontainer .anguvideo iframe {
+  width: 100%;
   height: 100%;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+}
+.custom-slider .imgcontainer .anguvideo iframe .player {
+  max-width: 100% !important;
+  width: 100%;
+  height: 100%;
 }
 .custom-slider .thumbslider {
   width: 100%;
@@ -12272,9 +12287,17 @@ ul.simple-list li:last-of-type {
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .custom-slider .thumbslider .thumbholder:first-of-type, .custom-slider .thumbslider .thumbholder:last-of-type {
   padding-left: 0px;
+}
+
+.vp-center .player {
+  max-width: 100% !important;
+  width: 100%;
+  height: 100%;
 }
 
 .form-group {
@@ -13090,6 +13113,10 @@ input:checked + .slider:before {
 .content-container {
   width: 100%;
   float: left;
+}
+.content-container .content-inner {
+  width: 100%;
+  float: left;
   padding: 0 15px;
 }
 
@@ -13106,6 +13133,19 @@ input:checked + .slider:before {
 .container-top .container-left video, .container-top .container-left iframe, .container-top .container-left img {
   width: 100%;
   height: 365px;
+}
+.container-top .container-left .slick-slider {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.container-top .container-left .slick-slider .slick-arrow {
+  z-index: 999;
+}
+.container-top .container-left .slick-slider .slick-arrow.slick-prev {
+  left: 0px !important;
+}
+.container-top .container-left .slick-slider .slick-arrow.slick-next {
+  right: 0px !important;
 }
 .container-top .container-right {
   width: 30%;
