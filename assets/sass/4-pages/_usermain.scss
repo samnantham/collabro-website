@@ -8,13 +8,17 @@
     width: 100%;
     float: left;
     .container-left{
-        width: calc(80% - 10px);
+        width: 70%;
         float: left;
         height: 365px;
         overflow: hidden;
+        video, iframe, img{
+            width: 100%;
+            height: 365px;
+        }
     }
     .container-right{
-        width: 20%;
+        width: 30%;
         float: right;
         height: 365px;
         overflow: hidden;

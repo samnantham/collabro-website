@@ -7604,7 +7604,7 @@ td.visible-print {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa15c", endColorstr="#ff6d41", GradientType=0);
 }
 
-.silver-gradient, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn {
+.silver-gradient, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-container .accordion-wrapper .accordion-label {
   background: white;
   /* Old browsers */
   background: -moz-linear-gradient(top, white 0%, #dfe4e8 100%);
@@ -8319,6 +8319,106 @@ p {
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
+}
+
+/* Accordion usermain */
+.accordion-head {
+  width: 100%;
+  float: left;
+  background: #7E8EA4;
+  color: #fff;
+  padding: 8px;
+}
+
+.accordion-container {
+  width: 100%;
+  float: left;
+  padding: 8px;
+}
+.accordion-container .accordion-wrapper {
+  width: 100%;
+  float: left;
+  margin-bottom: 8px;
+}
+.accordion-container .accordion-wrapper .accordion-label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #fff;
+}
+.accordion-container .accordion-wrapper .accordion-label img {
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+.accordion-container .accordion-wrapper .accordion-label .label-content {
+  width: calc(100% - 80px);
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+.accordion-container .accordion-wrapper .accordion-label .label-content p {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #5B616A;
+  width: 98%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.accordion-container .accordion-wrapper .accordion-label .label-content p:last-of-type {
+  margin-bottom: 0px;
+  border-bottom: 0;
+}
+.accordion-container .accordion-wrapper .accordion-label .accordion-toggle {
+  width: 15px;
+  float: right;
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.accordion-container .accordion-wrapper .accordion-label .accordion-toggle .check {
+  margin-bottom: 15px;
+}
+.accordion-container .accordion-wrapper .accordion-label .accordion-toggle i {
+  font-size: 16px;
+}
+.accordion-container .accordion-wrapper .accordion-body {
+  width: 100%;
+  float: left;
+  background: #fff;
+  padding: 8px;
+}
+.accordion-container .accordion-wrapper .accordion-body .accordion-body-top {
+  width: 100%;
+  float: left;
+  font-size: 14px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom {
+  width: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom .icons-left {
+  width: 100px;
+  float: left;
+}
+.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom .icons-left i {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.accordion-container .accordion-wrapper .accordion-body .accordion-body-bottom .button-right {
+  width: auto;
+  float: right;
+  margin-left: auto;
 }
 
 .alert {
@@ -12998,13 +13098,17 @@ input:checked + .slider:before {
   float: left;
 }
 .container-top .container-left {
-  width: calc(80% - 10px);
+  width: 70%;
   float: left;
   height: 365px;
   overflow: hidden;
 }
+.container-top .container-left video, .container-top .container-left iframe, .container-top .container-left img {
+  width: 100%;
+  height: 365px;
+}
 .container-top .container-right {
-  width: 20%;
+  width: 30%;
   float: right;
   height: 365px;
   overflow: hidden;
