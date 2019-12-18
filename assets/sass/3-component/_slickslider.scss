@@ -9,19 +9,37 @@
     .imgcontainer{
         width: 100%;
         float: left;
+        height: 365px;
+        position: relative;
+        background: $white;
         @include border-radius(5px);
+        .anguvideo{
+            height: 365px;
+            iframe{
+                height: 100%;
+                @include border-radius(5px);
+            }
+        }
     }
     .thumbslider{
         width: 100%;
         float: left;
         background: $white;
         padding: 0px;
+        .slick-arrow{
+            z-index: 999;
+        }
         .slick-slider{
             width: 100%;
             float: left;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
         }
         .thumbholder{
+            padding: 0 5px 0 0;
+            .slidee{
+                height: 75px;
+                @include border-radius(5px);
+            }
             &:first-of-type, &:last-of-type{
                 padding-left: 0px;
             }

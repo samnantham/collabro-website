@@ -1,7 +1,7 @@
 .search-container{
     width: 100%;
     float: left;
-    padding: 80px 0px;
+    padding: 80px 0px 20 0;
     .slick-slider{
         .slick-prev, .slick-next{
             &:before{
@@ -120,4 +120,10 @@
     z-index: 9999;
     background: rgba(255,255,255,0.5);
     color: $default;
+}
+
+@media (min-width: 768px) and (max-width: 1920px){
+    .col-lg-20{
+        width: 20%;
+    }
 }

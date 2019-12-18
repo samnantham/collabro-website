@@ -120,13 +120,16 @@
             color: $secondary-text;
         }
     }
-    .label-count{
+    .label-count, .label-rank{
         font-size: $font-r;
         color: $secondary-text;
-        text-align: center;
+        text-align: center;        
     }
     .contentr{
         font-size: $font-home-subtitle;
         color: $default;
+        img{
+            height: 36px;
+        }
     }
 }
