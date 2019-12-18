@@ -7,10 +7,15 @@
     z-index: 9999;
 }
 .signin-modal{
-    position: absolute;
-    top: 60px;
+    position: fixed;
+    top: 30px;
     right: 15px;
 }
+
+.login-wrap-modal{
+    width: 100% !important;
+}
+
 .login-modal{
     width: 100%;
     float: left;

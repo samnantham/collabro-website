@@ -1,0 +1,22 @@
+.content-container{
+    width: 100%;
+    float: left;
+    padding: 0 15px;
+}
+
+.container-top{
+    width: 100%;
+    float: left;
+    .container-left{
+        width: calc(80% - 10px);
+        float: left;
+        height: 365px;
+        overflow: hidden;
+    }
+    .container-right{
+        width: 20%;
+        float: right;
+        height: 365px;
+        overflow: hidden;
+    }
+}
