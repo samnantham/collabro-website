@@ -105,7 +105,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
 
     $scope.setcoverslickconfig = function(){
         $scope.coverslickConfig = {
-                autoplay: $scope.autoplay,
+                autoplay: false,
                 autoplaySpeed: 2000,
                 slidesToShow: 1,
                 slidesToScroll: 1,
