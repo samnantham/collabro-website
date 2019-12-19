@@ -9,6 +9,14 @@
     .card-img{
         width: 100%;
         float: left;
+        min-height: 200px;
+        background-color: $gray;
+        background-repeat: no-repeat;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        @include border-radius(4px 4px 0 0);
         img{
             width: auto;
             max-width: 100%;

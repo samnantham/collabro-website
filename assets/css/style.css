@@ -9083,6 +9083,16 @@ i.color-btn {
 .card .card-img {
   width: 100%;
   float: left;
+  min-height: 200px;
+  background-color: #ccc;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
 }
 .card .card-img img {
   width: auto;
@@ -10636,7 +10646,7 @@ i.color-btn {
 
 /* Inner header */
 .main-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -12112,7 +12122,7 @@ ul.simple-list li:last-of-type {
 .search-container {
   width: 100%;
   float: left;
-  padding: 80px 0px 20 0;
+  padding: 80px 0px 40px 0;
 }
 .search-container .slick-slider .slick-prev:before, .search-container .slick-slider .slick-next:before {
   font-size: 24px !important;
@@ -12199,7 +12209,10 @@ ul.simple-list li:last-of-type {
   min-height: 200px;
   background-color: #ccc;
   background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+  background-position: center center;
   border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
@@ -12240,6 +12253,19 @@ ul.simple-list li:last-of-type {
   width: 100%;
   float: left;
   margin-bottom: 15px;
+  position: relative;
+}
+.slick-slider .card {
+  margin-bottom: 5px;
+}
+.slick-slider .slick-arrow {
+  z-index: 999;
+}
+.slick-slider .slick-arrow.slick-prev {
+  left: 0px !important;
+}
+.slick-slider .slick-arrow.slick-next {
+  right: 0px !important;
 }
 
 .custom-slider {

@@ -2,6 +2,19 @@
     width: 100%;
     float: left;
     margin-bottom: 15px;
+    position: relative;
+    .card{
+        margin-bottom: 5px;
+    }
+    .slick-arrow{
+        z-index: 999;
+        &.slick-prev{
+            left: 0px !important;
+        }
+        &.slick-next{
+            right: 0px !important;
+        }
+    }
 }
 .custom-slider{
     width: 100%;

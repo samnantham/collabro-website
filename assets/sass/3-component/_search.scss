@@ -1,7 +1,7 @@
 .search-container{
     width: 100%;
     float: left;
-    padding: 80px 0px 20 0;
+    padding: 80px 0px 40px 0;
     .slick-slider{
         .slick-prev, .slick-next{
             &:before{
@@ -90,7 +90,10 @@
         min-height: 200px;
         background-color: $gray;
         background-repeat: no-repeat;
+        -moz-background-size: cover;
+        -o-background-size: cover;
         background-size: cover;
+        background-position: center center;
         @include border-radius(4px 4px 0 0);
         img{
             width: 100%;
