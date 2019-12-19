@@ -75,6 +75,7 @@
                     </ul>
                 </div>
             </div>
+            
             <div ng-if="activetab == 'all'">
 
                 <div class="row">
@@ -278,7 +279,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+                            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl"></dir-pagination-controls>
                         </div>
                     </div>
                 </div>
@@ -287,3 +288,8 @@
     </div>
     <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
+<style type="text/css">
+    .disabled{
+        display: block!important;
+    }
+</style>
