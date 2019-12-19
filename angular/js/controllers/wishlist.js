@@ -21,7 +21,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                 if(!$scope.iscompared){
                     $scope.getComparedproducts();
                 }else{
-                    $rootScope.stoploading();
+                    $rootScope.formLoading = false;
                     //anchorSmoothScroll.scrollTo('wishlist');
                 }
             } else{
@@ -50,7 +50,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             $scope.getWishedproducts();
         } else {
             $scope.wishedproducts = $scope.pagedata[$scope.pageno];
-            $rootScope.stoploading();
+            $rootScope.formLoading = false;
             //anchorSmoothScroll.scrollTo('wishlist');
         }
     };

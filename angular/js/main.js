@@ -52,17 +52,47 @@ angular.module('app')
             $rootScope.labels = ["Profit Earned", "Rental Earned", "Experience Points", "Advertisement Spent"];
             $rootScope.Colors = ["#ffc500", "#ff1561", "#59c74a", "#00d8ff"];
             $rootScope.ChartOptions = {
+                cutoutPercentage: 60,
+                responsive: true,
                 elements: {
                     arc: {
                         borderWidth: 0
                     }
                 },
-                width: 500,
-                height: 300,
-                cutoutPercentage: 70,
-                responsive: true,
-                segmentShowStroke: false
+                hover: {
+                    mode: null
+                },
+                type: 'xppoints',
+                plugins: {
+                  labels: false
+                },tooltips: {
+                    enabled: false
+                }
             };
+
+            $rootScope.assignDoughnutdata = function() {
+                Chart.pluginService.register({
+                    beforeDraw: function(chart, easing) {
+                    if (chart.config.options.type == 'xppoints') {
+                        var width = chart.chart.width,
+                            height = chart.chart.height,
+                            ctx = chart.chart.ctx;
+
+                        ctx.restore();
+                        var fontSize = (height / 114).toFixed(2);
+                        ctx.font = "bold " + fontSize + "em sans-serif";
+                        ctx.textBaseline = "middle";
+
+                        var text = $rootScope.user.experiencepoints,
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                            textY = height / 2;
+
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }
+            });
+        }
 
             if (!localStorage.showheader) {
                 $rootScope.showheader = true;
@@ -234,6 +264,7 @@ angular.module('app')
                         $rootScope.user = $sessionStorage.user;
                         var xppoints = $rootScope.user.experiencepoints * 100 / $rootScope.user.allowedXP;
                         $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
+                        $rootScope.assignDoughnutdata();
                     } else if (getData.status == 401) {
                         $rootScope.errors.push(getData.data.message);
                         $rootScope.$emit("showerrors", $rootScope.errors);
@@ -248,8 +279,12 @@ angular.module('app')
             $rootScope.setUserInfo = function(){
                 if ($sessionStorage.user != null) {
                     $rootScope.user = authServices.currentUser();
+                    $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
+                    $rootScope.assignDoughnutdata();
                 } else if ((localStorage.user != '') && (localStorage.user != undefined) && (localStorage.user != 'undefined')) {
                     $rootScope.user = authServices.currentUser();
+                    $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
+                    $rootScope.assignDoughnutdata();
                 } else {
                     authServices.logout();
                 }
@@ -643,7 +678,7 @@ angular.module('app')
                         }, 1000);
                     }
                 } else {
-                    $rootScope.setUserInfo();
+                    $rootScope.getUserInfo();
                 }
             });
 

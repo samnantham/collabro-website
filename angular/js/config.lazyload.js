@@ -15,8 +15,9 @@ angular.module('app')
       {
           name: 'chart.js',
           files: [
-              'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js',
-              'https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.1.1/angular-chart.min.js',
+              'libs/chart/chart.min.js',
+              'libs/chart/angular-chart.min.js',
+              'libs/chart/chartjs-plugin-labels.js'
           ]
       },
       {

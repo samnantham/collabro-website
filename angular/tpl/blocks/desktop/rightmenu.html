@@ -1,8 +1,219 @@
-<div class="right-sidebar">
+<div class="right-sidebar" ng-if="stateurl=='app.usermain'">
+
+    <div class="right-wrapper">
+        <div class="right-title">
+            <h4>APPRENTICE </h4>
+            <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
+        </div>
+        <div class="right-content">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-options="ChartOptions" chart-data="chartdata" chart-colors="Colors" chart-labels="labels" width="100%" height="100%"> </canvas>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <div class="right-title">
+            <h4>Weekly Summary</h4>
+        </div>
+        <div class="right-content">
+            <ul class="member-list">
+                <li>
+                    <a>
+                        <div class="list-left">
+                            <h5>16 / 24</h5>
+                            <p>Completed Projects</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <div class="list-left">
+                            <h5>9 / 12</h5>
+                            <p>Projects Ongoing</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <div class="list-left">
+                            <h5>84 / 216</h5>
+                            <p>Projects Pending</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <div class="list-left">
+                            <h5>2 / 38</h5>
+                            <p>Projects Cancel</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <div class="ads">
+            <img src="../assets/img/ads.png" />
+        </div>
+    </div>
+</div>
+
+<div class="right-sidebar" ng-if="stateurl=='app.myfriends' || stateurl=='app.userchats' || stateurl=='app.privatechat' || stateurl=='app.feedchat'">
 
     <div class="right-wrapper">
         <div class="right-title-new">
-            <h2>895862 </h2>
+            <button type="button" class="btn success-btn block-btn" ng-click="opencollaboratemodal();">Create Group</button>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <div class="right-title">
+            <h4>Recent Members</h4>
+        </div>
+        <div class="right-content">
+            <ul class="member-list">
+                <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
+                    <a>
+                        <div class="list-left">
+                            <h5>{{user.username | cut:true:10:''}}</h5>
+                            <p>{{user.profession}}</p>
+                        </div>
+                        <div class="list-right">
+                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <div class="right-title">
+            <h4>Followers</h4>
+        </div>
+        <div class="right-content">
+            <ul class="member-list">
+                <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
+                    <a>
+                        <div class="list-left">
+                            <h5>{{user.username | cut:true:10:''}}</h5>
+                            <p>{{user.profession}}</p>
+                        </div>
+                        <div class="list-right">
+                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="right-sidebar" ng-if="stateurl=='app.mydashboard' || stateurl=='app.viewuser'">
+    <div class="right-wrapper">
+        <div class="right-title">
+            <h4>APPRENTICE </h4>
+            <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
+        </div>
+        <div class="right-content">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-options="ChartOptions" chart-data="chartdata" chart-colors="Colors" chart-labels="labels" width="100%" height="100%"> </canvas>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <div class="right-title">
+            <h4>Recent Members</h4>
+        </div>
+        <div class="right-content">
+            <ul class="member-list">
+                <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
+                    <a>
+                        <div class="list-left">
+                            <h5>{{user.username | cut:true:10:''}}</h5>
+                            <p>{{user.profession}}</p>
+                        </div>
+                        <div class="list-right">
+                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <div class="right-title">
+            <h4>Followers</h4>
+        </div>
+        <div class="right-content">
+            <ul class="member-list">
+                <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
+                    <a>
+                        <div class="list-left">
+                            <h5>{{user.username | cut:true:10:''}}</h5>
+                            <p>{{user.profession}}</p>
+                        </div>
+                        <div class="list-right">
+                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="right-sidebar" ng-if="stateurl == 'app.notification' || stateurl == 'app.chats' || stateurl == 'app.wishlist' || stateurl == 'app.projectlist' || stateurl == 'app.projectdetails' || stateurl == 'app.feeds' || stateurl == 'app.todos' || stateurl == 'app.viewtodo' || stateurl == 'app.viewfeed' || stateurl == 'app.howitworks' || stateurl == 'app.rewardsandbenefits'">
+
+    <div class="right-wrapper">
+        <div class="right-title">
+            <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl != 'app.projectdetails'">Post Request</button>
+            <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl == 'projectdetails' && projectData.owner.id != user.id">Post Request</button>
+            <button type="button" class="btn success-btn block-btn" ng-click="editProject();" ng-if="stateurl == 'projectdetails' && projectData.owner.id == user.id">Edit Project</button>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <div class="right-no-project">
+
+            <div class="empty-msg">
+                <div class="msg-top">
+                    <i class="fa fa-info-circle"></i>
+                    <p>Having issues with Project? Visit the Resolution Center</p>
+                </div>
+                <div class="msg-bottom">
+                    <p>Review the completed project to earn extra Xperience Points!</p>
+                </div>
+            </div>
+
+            <div class="msg-post">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+                            <defs>
+                                <clipPath id="clip-path">
+                                <path id="Path_178" data-name="Path 178" d="M23.151-41H43.757a5.382,5.382,0,0,1,5.151,5.138v15.412a5.626,5.626,0,0,1-5.151,5.138H32.167c-.154-.155-.6.027-1.288,0l-3.864,5.138c-.959.265-1.786-.1-1.288-1.285v-2.569a2.267,2.267,0,0,0-2.576-1.285A5.627,5.627,0,0,1,18-20.449V-35.862A5.383,5.383,0,0,1,23.151-41Zm0,10.3a1.285,1.285,0,0,0,1.289,1.288H42.468A1.286,1.286,0,0,0,43.757-30.7a1.285,1.285,0,0,0-1.289-1.288H24.44A1.286,1.286,0,0,0,23.151-30.7Zm0,5.151a1.283,1.283,0,0,0,1.285,1.288h9.021a1.286,1.286,0,0,0,1.285-1.288,1.283,1.283,0,0,0-1.285-1.288H24.436A1.286,1.286,0,0,0,23.151-25.546Z" transform="translate(-18 41)" fill="none" clip-rule="evenodd"/>
+                                </clipPath>
+                                <clipPath id="clip-path-2">
+                                <path id="Path_177" data-name="Path 177" d="M-1500,313.626H534.832V-1000H-1500Z" transform="translate(1500 1000)" fill="none"/>
+                                </clipPath>
+                            </defs>
+                            <g id="Group_430" data-name="Group 430" clip-path="url(#clip-path)">
+                                <g id="Group_429" data-name="Group 429" transform="translate(-1954.984 -1235.066)" clip-path="url(#clip-path-2)">
+                                <path id="Path_176" data-name="Path 176" d="M13-2.212H56.788V-46H13Z" transform="translate(1935.545 1274.626)" fill="#fff"/>
+                                </g>
+                            </g>
+                        </svg>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="right-sidebar" ng-if="stateurl == 'app.search'">
+
+    <div class="right-wrapper">
+        <div class="right-title-new">
+            <h2>{{counts.overallcount}} </h2>
             <h5>Total Listings</h5>
         </div>
     </div>
@@ -14,9 +225,9 @@
         <div class="right-content">
             <ul class="member-list">
                 <li>
-                    <a href="#">
+                    <a>
                         <div class="list-left">
-                            <h5>27538</h5>
+                            <h5>{{counts.servicecount}}</h5>
                             <p>Service</p>
                         </div>
                         <div class="list-right self-top">
@@ -27,9 +238,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a>
                         <div class="list-left">
-                            <h5>32538</h5>
+                            <h5>{{counts.shopcount}}</h5>
                             <p>Product</p>
                         </div>
                         <div class="list-right self-top">
@@ -40,9 +251,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a>
                         <div class="list-left">
-                            <h5>54538</h5>
+                            <h5>{{counts.rentalcount}}</h5>
                             <p>Rental</p>
                         </div>
                         <div class="list-right self-top">
@@ -53,9 +264,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a>
                         <div class="list-left">
-                            <h5>3434</h5>
+                            <h5>{{counts.eventcount}}</h5>
                             <p>Events</p>
                         </div>
                         <div class="list-right self-top">
@@ -66,9 +277,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a>
                         <div class="list-left">
-                            <h5>534</h5>
+                            <h5>{{counts.usercount}}</h5>
                             <p>Members</p>
                         </div>
                         <div class="list-right self-top">
@@ -79,9 +290,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a>
                         <div class="list-left">
-                            <h5>1534</h5>
+                            <h5>{{counts.dealsmade}}</h5>
                             <p>Deals Made</p>
                         </div>
                         <div class="list-right self-top">
@@ -92,9 +303,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a>
                         <div class="list-left">
-                            <h5>6534</h5>
+                            <h5>{{counts.conversationcount}}</h5>
                             <p>Conversations</p>
                         </div>
                         <div class="list-right self-top">
@@ -107,5 +318,123 @@
             </ul>
         </div>
     </div>
+</div>
 
+<div class="right-sidebar" ng-if="stateurl == 'app.viewitem'">
+            
+            <div class="right-wrapper">
+                <div class="right-title">
+                    <button type="button" class="btn unfollow-btn block-btn" ng-click="changefollowstatus();" ng-if="(viewData.owner.id != user.id) && (!viewData.commisionData)"><i class="fa" ng-class="viewData.isfollow ? 'fa-user-times':'fa-user-plus'" title="Follow"></i> {{ viewData.isfollow ? 'UnFollow':'Follow'}}</button>
+
+                    <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(viewData.owner.id == user.id)&&(viewData.is_request)"> Edit Request</button>
+
+                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id == user.id)&&(!viewData.is_request)"> Edit {{(viewData.type == 'Service' ? 'Service' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : viewData.type == 'Event' ? 'Event': viewData.type))}}</button>
+
+                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)"> {{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type))  }}</button>
+
+                    <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(viewData.commisionData)"> View  {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Order' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type))  }}</button>
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="right-no-project">   
+                    <div class="msg-top">
+                        <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
+                        <ul>
+                            <li ng-repeat="(key,data) in viewData.searchownerproducts | limitTo: 2"/>
+                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" /></li>
+                        </ul>
+                    </div>
+
+                    <div class="post-content">
+                        <ul class="member-list">
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>Singapore</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{convertDate(viewData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Date</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{viewData.owner.followers}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Followers</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Appreciation</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{viewData.noofviews}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{convertDate(viewData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Joined</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="msg-post">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+                            <defs>
+                                <clipPath id="clip-path">
+                                <path id="Path_178" data-name="Path 178" d="M23.151-41H43.757a5.382,5.382,0,0,1,5.151,5.138v15.412a5.626,5.626,0,0,1-5.151,5.138H32.167c-.154-.155-.6.027-1.288,0l-3.864,5.138c-.959.265-1.786-.1-1.288-1.285v-2.569a2.267,2.267,0,0,0-2.576-1.285A5.627,5.627,0,0,1,18-20.449V-35.862A5.383,5.383,0,0,1,23.151-41Zm0,10.3a1.285,1.285,0,0,0,1.289,1.288H42.468A1.286,1.286,0,0,0,43.757-30.7a1.285,1.285,0,0,0-1.289-1.288H24.44A1.286,1.286,0,0,0,23.151-30.7Zm0,5.151a1.283,1.283,0,0,0,1.285,1.288h9.021a1.286,1.286,0,0,0,1.285-1.288,1.283,1.283,0,0,0-1.285-1.288H24.436A1.286,1.286,0,0,0,23.151-25.546Z" transform="translate(-18 41)" fill="none" clip-rule="evenodd"/>
+                                </clipPath>
+                                <clipPath id="clip-path-2">
+                                <path id="Path_177" data-name="Path 177" d="M-1500,313.626H534.832V-1000H-1500Z" transform="translate(1500 1000)" fill="none"/>
+                                </clipPath>
+                            </defs>
+                            <g id="Group_430" data-name="Group 430" clip-path="url(#clip-path)">
+                                <g id="Group_429" data-name="Group 429" transform="translate(-1954.984 -1235.066)" clip-path="url(#clip-path-2)">
+                                <path id="Path_176" data-name="Path 176" d="M13-2.212H56.788V-46H13Z" transform="translate(1935.545 1274.626)" fill="#fff"/>
+                                </g>
+                            </g>
+                        </svg>                              
+                    </div>
+
+                </div>
+            </div>
 </div>
