@@ -647,6 +647,12 @@ angular.module('app')
                 }
             });
 
+            $rootScope.scrollTop = function(){
+                $document.scrollTopAnimated(0, 2000).then(function() {
+                  console && console.log('You just scrolled to the top!');
+                });
+            }
+
             $rootScope.closeModal = function() {
                 $('.modal-content > .ng-scope').each(function() {
                     $(this).scope().$dismiss();

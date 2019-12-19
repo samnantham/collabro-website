@@ -7,7 +7,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     $scope.typeproductdata = [];
     $scope.feeds = [];
     $scope.pagedata = [];
-    $scope.activetab = 'All';
+    $scope.activetab = 'all';
     $scope.pageno = 1;
     $scope.totalData = 0;
     $scope.totalPerPage = 8;
@@ -153,7 +153,6 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     }
 
     $scope.getproducts = function() {
-        $scope.firstloadingcompleted = true;
         webServices.get('gettypeproducts').then(function(getData) {
             if (getData.status == 200) {
                 $scope.products = getData.data;
@@ -172,6 +171,10 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                         }
                     }
                 });
+                if(!$scope.firstloadingcompleted){
+                    $scope.firstloadingcompleted = true;
+                    $rootScope.scrollTop();
+                }
                 $scope.setcoverslickconfig();
             } else {
                 $rootScope.logout();
@@ -190,7 +193,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
 
         webServices.put('updatewish', obj).then(function(getData) {
             if (getData.status == 200) {
-                if($scope.activetab == 'All'){
+                if($scope.activetab == 'all'){
                     $scope.products[type][key].wishstatus = obj.wishstatus;
                 }else{
                     $scope.typeproductdata.data[key].wishstatus = obj.wishstatus;
@@ -210,7 +213,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
             $scope.activetab = tab;
             $scope.filteruserproducts();
         } else {
-            $scope.activetab = 'All';
+            $scope.activetab = 'all';
             $scope.getproducts();
         }
     }
@@ -218,7 +221,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     $scope.sortproduct = function(type, key, order) {
         $scope.issort = true;
         $rootScope.formLoading = true;
-        if ($scope.activetab == 'All') {
+        if ($scope.activetab == 'all') {
             webServices.get('sortuserproducts/' + type + '/' + key + '/' + order).then(function(getData) {
                 if (getData.status == 200) {
                     $scope.products[type] = getData.data;
@@ -259,7 +262,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
         $rootScope.formLoading = true;
         $scope.typespageno = newPage;
         if (!$scope.pagedata[$scope.typespageno]) {
-            if ($scope.activetab != 'All') {
+            if ($scope.activetab != 'all') {
                 if ($scope.issort) {
                     $scope.sortproduct();
                 } else {

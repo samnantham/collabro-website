@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="accordion-body-bottom">
                                         <div class="icons-left">
-                                            <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatefeedwish(feed,num)"><i class="fa fa-heart" ng-class="{'wished': feed.wishstatus == 1}"></i></a>
+                                            <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatefeedwish(feed,num)"><i class="fa fa-heart" ng-class="{'primary': feed.wishstatus == 1}"></i></a>
                                             <a class="btn-add-comparre" title="Share to Earn" ng-click="sharefeedtosocial(feed)" tabindex="0"><i class="fa fa-share"></i></a>
                                         </div>
                                         <div class="button-right">
@@ -75,112 +75,214 @@
                     </ul>
                 </div>
             </div>
+            <div ng-if="activetab == 'all'">
 
-            <div class="row mt-30">
-                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-4">
-                    <div class="row">
-                        <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
-                                <div class="card" ng-click="showItem(data)">
-                                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
-                                        <div class="card-info">
-                                            <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                            <span class="price-sub">Per {{data.periodtype}}</span>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="topbar result mb-10">
+                            <div class="topbar-left">
+                                <span class="lefttext">SERVICES</span>
+                            </div>
+                            <div class="topbar-right">
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('service','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('service','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('service','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('service','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
+                                    <div class="card" ng-click="showItem(data)">
+                                        <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                            <div class="card-info">
+                                                <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a><i class="fa fa-share"></i></a>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <a><i class="fa fa-heart"></i></a>
-                                        <a><i class="fa fa-share"></i></a>
-                                        <a><i class="fa fa-plus"></i></a>
-                                    </div>
                                 </div>
-                            </div>
-                        </slick>
+                            </slick>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-30">
-                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-4">
-                    <div class="row">
-                        <slick ng-if="!formLoading" init-onload="true" data="products.shop" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
-                                <div class="card" ng-click="showItem(data)">
-                                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
-                                        <div class="card-info">
-                                            <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                            <span class="price-sub">Per {{data.periodtype}}</span>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="topbar result mb-10">
+                            <div class="topbar-left">
+                                <span class="lefttext">PRODUCTS</span>
+                            </div>
+                            <div class="topbar-right">
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('shop','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('shop','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('shop','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('shop','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <slick ng-if="!formLoading" init-onload="true" data="products.shop" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
+                                    <div class="card" ng-click="showItem(data)">
+                                        <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                            <div class="card-info">
+                                                <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a><i class="fa fa-share"></i></a>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <a><i class="fa fa-heart"></i></a>
-                                        <a><i class="fa fa-share"></i></a>
-                                        <a><i class="fa fa-plus"></i></a>
-                                    </div>
                                 </div>
-                            </div>
-                        </slick>
+                            </slick>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-30">
-                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-4">
-                    <div class="row">
-                        <slick ng-if="!formLoading" init-onload="true" data="products.rental" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
-                                <div class="card" ng-click="showItem(data)">
-                                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
-                                        <div class="card-info">
-                                            <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                            <span class="price-sub">Per {{data.periodtype}}</span>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="topbar result mb-10">
+                            <div class="topbar-left">
+                                <span class="lefttext">RENTAL</span>
+                            </div>
+                            <div class="topbar-right">
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('rental','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('rental','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('rental','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('rental','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <slick ng-if="!formLoading" init-onload="true" data="products.rental" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
+                                    <div class="card" ng-click="showItem(data)">
+                                        <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                            <div class="card-info">
+                                                <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a><i class="fa fa-share"></i></a>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <a><i class="fa fa-heart"></i></a>
-                                        <a><i class="fa fa-share"></i></a>
-                                        <a><i class="fa fa-plus"></i></a>
-                                    </div>
                                 </div>
-                            </div>
-                        </slick>
+                            </slick>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-30">
-                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-4">
-                    <div class="row">
-                        <slick ng-if="!formLoading" init-onload="true" data="products.event" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
-                                <div class="card" ng-click="showItem(data)">
-                                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
-                                        <div class="card-info">
-                                            <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                            <span class="price-sub">Per {{data.periodtype}}</span>
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="topbar result mb-10">
+                            <div class="topbar-left">
+                                <span class="lefttext">EVENT</span>
+                            </div>
+                            <div class="topbar-right">
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('event','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('event','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('event','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('event','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <slick ng-if="!formLoading" init-onload="true" data="products.event" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
+                                    <div class="card" ng-click="showItem(data)">
+                                        <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                            <div class="card-info">
+                                                <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a><i class="fa fa-share"></i></a>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <a><i class="fa fa-heart"></i></a>
-                                        <a><i class="fa fa-share"></i></a>
-                                        <a><i class="fa fa-plus"></i></a>
-                                    </div>
                                 </div>
-                            </div>
-                        </slick>
+                            </slick>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <div ng-if="activetab != 'all'">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="topbar result mb-10">
+                            <div class="topbar-left">
+                                <span class="lefttext text-uppercase">{{activetab == 'shop' ? 'products':activetab + 's'}}</span>
+                            </div>
+                            <div class="topbar-right">
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct(activetab,'noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct(activetab,'created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct(activetab,'price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct(activetab,'price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
+                                <div class="card" ng-click="showItem(data)">
+                                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                                        <div class="card-info">
+                                            <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                                            <span class="price-sub">Per {{data.periodtype}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                        <a><i class="fa fa-share"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>

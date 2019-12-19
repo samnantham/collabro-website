@@ -85,14 +85,10 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$document', '$state',
     $scope.getproducts = function() {
         $rootScope.formLoading = true;
         webServices.post('webportal/searchproducts',$scope.searchpageData).then(function(getData) {
+            $rootScope.formLoading = false;
             if (getData.status == 200) {
                 $scope.products = getData.data;
-                $rootScope.formLoading = false;
-                var top = 0;
-                var duration = 2000; 
-                $document.scrollTopAnimated(top, duration).then(function() {
-                  console && console.log('You just scrolled to the top!');
-                });
+                $rootScope.scrollTop();
             }
         });
     };
