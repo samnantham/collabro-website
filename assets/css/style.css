@@ -7352,6 +7352,10 @@ td.visible-print {
   -webkit-box-sizing: border-box;
 }
 
+a {
+  cursor: pointer;
+}
+
 .primary {
   color: #00C4E8 !important;
 }
@@ -11158,6 +11162,10 @@ i.color-btn {
 }
 .custom-modal .custom-modal-footer .btn {
   min-width: 155px;
+}
+
+.authmodal .modal-dialog {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
