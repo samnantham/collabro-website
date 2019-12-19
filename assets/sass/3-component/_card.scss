@@ -203,7 +203,7 @@
         padding: 20px !important;
         display: flex;
         align-items: flex-start;
-        min-height: 190px;
+        min-height: 205px;
         .card-left{
             width: 48%;
             float: left;
@@ -230,7 +230,8 @@
                     float: left;
                     margin-bottom: 5px;
                     img{
-                        width: calc(100% - 5px);                    
+                        width: calc(100% - 5px);  
+                        max-height: 45px;                  
                     }
                     &:nth-child(odd){
                         img{
@@ -247,6 +248,8 @@
             .rewards{
                 width: 100%;
                 float: left;
+                display: flex;
+                align-items: center;
                 .rewards-left, .rewards-right{
                     width: 50%;
                     float: left;
@@ -260,6 +263,7 @@
                         text-align: center;
                         font-size: $font-l;
                         color: $black;
+                        min-height: 36px;
                     }
                     .title{
                         width: 100%;

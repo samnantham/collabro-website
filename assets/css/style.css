@@ -9298,7 +9298,7 @@ i.color-btn {
   padding: 20px !important;
   display: flex;
   align-items: flex-start;
-  min-height: 190px;
+  min-height: 205px;
 }
 .friend-card .card-info .card-left {
   width: 48%;
@@ -9332,6 +9332,7 @@ i.color-btn {
 }
 .friend-card .card-info .card-right .card-thumbs li img {
   width: calc(100% - 5px);
+  max-height: 45px;
 }
 .friend-card .card-info .card-right .card-thumbs li:nth-child(odd) img {
   margin: 0 5px 0px 0px;
@@ -9342,6 +9343,8 @@ i.color-btn {
 .friend-card .card-info .card-right .rewards {
   width: 100%;
   float: left;
+  display: flex;
+  align-items: center;
 }
 .friend-card .card-info .card-right .rewards .rewards-left, .friend-card .card-info .card-right .rewards .rewards-right {
   width: 50%;
@@ -9357,6 +9360,7 @@ i.color-btn {
   text-align: center;
   font-size: 20px;
   color: #344051;
+  min-height: 36px;
 }
 .friend-card .card-info .card-right .rewards .rewards-left .title, .friend-card .card-info .card-right .rewards .rewards-right .title {
   width: 100%;
