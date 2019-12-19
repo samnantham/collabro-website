@@ -10,6 +10,11 @@
             background: $gray;
             border-color: $gray;
             padding: 6px 12px;
+            &:hover, &:focus{
+                background: $deep-blue !important;
+                border-color: $deep-blue !important;
+                color: $white !important;
+            }
         }
         &:hover a, &.active a{
             background: $deep-blue;

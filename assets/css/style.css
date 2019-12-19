@@ -9202,6 +9202,9 @@ i.color-btn {
   color: #344051;
   font-size: 16px;
 }
+.card .card-footer span img {
+  height: 30px;
+}
 .card .hover-icon {
   position: absolute;
   right: 20px;
@@ -9415,6 +9418,10 @@ i.color-btn {
 .table-card .table-img {
   width: 80px;
   float: left;
+}
+.table-card .table-img img {
+  max-width: 100%;
+  max-height: 50px;
 }
 .table-card .table-content {
   width: calc(100% - 300px);
@@ -12366,6 +12373,11 @@ ul.simple-list li:last-of-type {
   background: #ccc;
   border-color: #ccc;
   padding: 6px 12px;
+}
+.pagination li a:hover, .pagination li a:focus {
+  background: #5B616A !important;
+  border-color: #5B616A !important;
+  color: #fff !important;
 }
 .pagination li:hover a, .pagination li.active a {
   background: #5B616A;
