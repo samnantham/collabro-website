@@ -231,7 +231,7 @@
                     margin-bottom: 5px;
                     img{
                         width: calc(100% - 5px);  
-                        max-height: 45px;                  
+                        height: 45px;                  
                     }
                     &:nth-child(odd){
                         img{
@@ -263,7 +263,10 @@
                         text-align: center;
                         font-size: $font-l;
                         color: $black;
-                        min-height: 36px;
+                        min-height: 32px;
+                        img{
+                            height: 30px;
+                        }
                     }
                     .title{
                         width: 100%;

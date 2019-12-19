@@ -21,5 +21,8 @@
                 @extend .silver-gradient;
             }
         }
+        .disabled{
+            display: inline-block !important;
+        }
     }
 }
