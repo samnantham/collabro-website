@@ -4,7 +4,8 @@
     margin-bottom: 15px;
     position: relative;
     .card{
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+        width: calc(100% - 3px);
     }
     .slick-arrow{
         z-index: 999;

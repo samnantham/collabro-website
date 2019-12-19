@@ -7608,7 +7608,7 @@ a {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa15c", endColorstr="#ff6d41", GradientType=0);
 }
 
-.silver-gradient, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
+.silver-gradient, .pagination li:first-of-type a, .pagination li:last-of-type a, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
   background: white;
   /* Old browsers */
   background: -moz-linear-gradient(top, white 0%, #dfe4e8 100%);
@@ -8346,6 +8346,10 @@ p {
 }
 
 .panel-heading {
+  padding: 0px !important;
+}
+
+.panel-body {
   padding: 0px !important;
 }
 
@@ -12256,7 +12260,8 @@ ul.simple-list li:last-of-type {
   position: relative;
 }
 .slick-slider .card {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  width: calc(100% - 3px);
 }
 .slick-slider .slick-arrow {
   z-index: 999;
@@ -12338,6 +12343,28 @@ ul.simple-list li:last-of-type {
   height: 100%;
 }
 
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.pagination li {
+  margin: 0 4px;
+}
+.pagination li a {
+  color: #5B616A;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  background: #ccc;
+  border-color: #ccc;
+  padding: 6px 12px;
+}
+.pagination li:hover a, .pagination li.active a {
+  background: #5B616A;
+  border-color: #5B616A;
+  color: #fff;
+}
 .form-group {
   margin-bottom: 0;
 }
@@ -13156,6 +13183,9 @@ input:checked + .slider:before {
   width: 100%;
   float: left;
   padding: 0 15px;
+}
+.content-container .pagination {
+  width: auto;
 }
 
 .container-top {

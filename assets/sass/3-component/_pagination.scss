@@ -1,0 +1,25 @@
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    li{
+        margin: 0 4px;
+        a{
+            color: $deep-blue;
+            @include border-radius(5px);
+            background: $gray;
+            border-color: $gray;
+            padding: 6px 12px;
+        }
+        &:hover a, &.active a{
+            background: $deep-blue;
+            border-color: $deep-blue;
+            color: $white;
+        }
+        &:first-of-type, &:last-of-type{
+            a{
+                @extend .silver-gradient;
+            }
+        }
+    }
+}
