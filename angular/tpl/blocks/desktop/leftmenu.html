@@ -1,33 +1,28 @@
 <div class="left-sidebar">
-            
-            <div class="sidebar-card">
-                <h6 class="label-xs">My Total Earning</h6>
-                <span class="font-price">$80,800</span>
-            </div>
-            
-            <label class="custom-toggle" for="switch-toggle">
-                <div class="toggle-con">
-                    <input
-                    type="checkbox"
-                    id="switch-toggle"
-                    />
-                    <span class="switch-tog"></span>
-                    <span class="toggle-s"></span>
-                    <i class="fa fa-power-off"></i>
-                    <span class="status"></span>
-                </div>
-            </label>
+    <div class="sidebar-card">
+        <h6 class="label-xs">My Total Earning</h6>
+        <span class="font-price">$80,800</span>
+    </div>
 
-            <!-- Simple list -->
-            <ul class="simple-list">
-                <li><a href="#"><i class="fa fa-dashboard"></i> <span>MY DASHBOARD</span></a></li>
-                <li><a href="#"><i class="fa fa-list-alt"></i> <span>MY WISHLIST</span></a></li>
-                <li><a href="#"><i class="fa fa-briefcase"></i> <span>MY PROJECTS</span></a></li>
-                <li><a href="#"><i class="fa fa-user-plus"></i> <span>MY FRIENDS</span></a></li>
-                <li><a href="#"><i class="fa fa-list-ul"></i> <span>MY FEEDS</span></a></li>
-                <li><a href="#"><i class="fa fa-lightbulb-o"></i> <span>HOW IT WORKS</span></a></li>
-                <li><a href="#"><i class="fa fa-trophy"></i> <span>REWARDS & BENEFITS</span></a></li>
-                <li><a href="#"><i class="fa fa-cogs"></i> <span>SETINGS</span></a></li>
-            </ul>
-
+    <label class="custom-toggle" for="switch-toggle">
+        <div class="toggle-con">
+            <input type="checkbox" id="switch-toggle" ng-model="user.onlinestatus" ng-true-value="1" ng-false-value="0" ng-change="updatestatus(user.onlinestatus);"/>
+            <span class="switch-tog"></span>
+            <span class="toggle-s"></span>
+            <i class="fa fa-power-off"></i>
+            <span class="status"></span>
         </div>
+    </label>
+
+    <!-- Simple list -->
+    <ul class="simple-list">
+        <li><a ui-sref="app.mydashboard"><i class="fa fa-dashboard"></i> <span>MY DASHBOARD</span></a></li>
+        <li><a ui-sref="app.wishlist"><i class="fa fa-list-alt"></i> <span>MY WISHLIST</span></a></li>
+        <li><a ui-sref="app.projectlist"><i class="fa fa-briefcase"></i> <span>MY PROJECTS</span></a></li>
+        <li><a ui-sref="app.myfriends"><i class="fa fa-user-plus"></i> <span>MY FRIENDS</span></a></li>
+        <li><a ui-sref="app.feeds"><i class="fa fa-list-ul"></i> <span>MY FEEDS</span></a></li>
+        <li><a ui-sref="app.howitworks"><i class="fa fa-lightbulb-o"></i> <span>HOW IT WORKS</span></a></li>
+        <li><a ui-sref="app.rewardsandbenefits"><i class="fa fa-trophy"></i> <span>REWARDS & BENEFITS</span></a></li>
+        <li><a><i class="fa fa-cogs"></i> <span>SETINGS</span></a></li>
+    </ul>
+</div>

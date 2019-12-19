@@ -67,7 +67,7 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                 if (getData.status == 200) {
                     $scope.friendsandfollowers = getData.data;
                     $scope.firstloadingcompleted = true;
-                    $rootScope.stoploading();
+                    $rootScope.formLoading = false;
                 } else {
                     $rootScope.logout();
                 }
@@ -104,7 +104,7 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                         //animatedScroll.scroll('#peoples');
                     }
                     if (!$scope.firstloadingcompleted) {
-                        $rootScope.stoploading();
+                        $rootScope.formLoading = false;
                     }
                 }
             } else {
