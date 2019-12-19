@@ -11,9 +11,13 @@
         float: left;
         height: 365px;
         position: relative;
-        background: $white;
+        background: $silver;
         background-repeat: no-repeat;
+        background-repeat: no-repeat;
+        -moz-background-size: cover;
+        -o-background-size: cover;
         background-size: cover;
+        background-position: center center;
         @include border-radius(5px);
         .anguvideo{
             height: 365px;

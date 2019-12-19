@@ -7953,7 +7953,7 @@ td.visible-print {
   margin-left: 10px;
 }
 
-.content {
+.center-content {
   width: calc(100% - 420px);
   float: left;
 }
@@ -12243,9 +12243,13 @@ ul.simple-list li:last-of-type {
   float: left;
   height: 365px;
   position: relative;
-  background: #fff;
+  background: #dfe4e8;
   background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+  background-position: center center;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -13137,6 +13141,23 @@ input:checked + .slider:before {
 .container-top .container-left .slick-slider {
   overflow: hidden;
   margin-bottom: 10px;
+}
+.container-top .container-left .slick-slider .slick-list {
+  width: 100%;
+  height: 100%;
+}
+.container-top .container-left .slick-slider .slick-list .slick-track {
+  color: #5B616A;
+}
+.container-top .container-left .slick-slider .slick-list .slick-track .slick-slide .imgcontainer {
+  width: 100%;
+  height: 365px;
+  background: #dfe4e8;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
 }
 .container-top .container-left .slick-slider .slick-arrow {
   z-index: 999;

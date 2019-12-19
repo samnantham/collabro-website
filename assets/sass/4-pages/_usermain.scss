@@ -23,6 +23,25 @@
         .slick-slider{
             overflow: hidden;
             margin-bottom: 10px;
+            .slick-list{
+                width: 100%;
+                height: 100%;
+                .slick-track{
+                    color: $deep-blue;
+                    .slick-slide{
+                        .imgcontainer{
+                            width: 100%;
+                            height: 365px;
+                            background: $silver;
+                            background-repeat: no-repeat;
+                            -moz-background-size: cover;
+                            -o-background-size: cover;
+                            background-size: cover;
+                            background-position: center center;
+                        }
+                    }
+                }
+            }
             .slick-arrow{
                 z-index: 999;
                 &.slick-prev{
