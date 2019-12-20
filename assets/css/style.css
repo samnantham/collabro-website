@@ -13262,4 +13262,12 @@ input:checked + .slider:before {
   overflow: hidden;
 }
 
+.rank-icon {
+  height: 30px;
+}
+.rank-icon img {
+  width: 35px;
+  height: 30px;
+}
+
 /*# sourceMappingURL=style.css.map */
