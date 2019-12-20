@@ -141,7 +141,7 @@ angular.module('app')
                 .state('app.usermain', {
                     url: '/usermain',
                     templateUrl: 'tpl/'+folderpath+'/usermain.html',
-                    resolve: load(['chart.js','js/controllers/usermain.js'])
+                    resolve: load(['js/controllers/usermain.js'])
                 })
 
                 .state('app.search', {
@@ -237,7 +237,7 @@ angular.module('app')
                 .state('app.mydashboard', {
                     url: '/mydashboard',
                     templateUrl: 'tpl/'+folderpath+'/dashboard.html',
-                    resolve: load(['chart.js','cp.ngConfirm','js/controllers/dashboard.js'])
+                    resolve: load(['cp.ngConfirm','js/controllers/dashboard.js'])
                 })
 
                 .state('app.viewuser', {

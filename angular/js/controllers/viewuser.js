@@ -28,7 +28,7 @@ app.controller('ViewUserCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
         webServices.get('user/'+$stateParams.id).then(function(getData) {
             if (getData.status == 200) {
                 $scope.userData = getData.data;
-                $rootScope.stoploading();
+                $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();
             }
