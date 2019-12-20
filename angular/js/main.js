@@ -52,7 +52,7 @@ angular.module('app')
             $rootScope.labels = ["Profit Earned", "Rental Earned", "Experience Points", "Advertisement Spent"];
             $rootScope.Colors = ["#ffc500", "#ff1561", "#59c74a", "#00d8ff"];
             $rootScope.ChartOptions = {
-                cutoutPercentage: 60,
+                cutoutPercentage: 70,
                 responsive: true,
                 elements: {
                     arc: {
@@ -80,13 +80,14 @@ angular.module('app')
 
                         ctx.restore();
                         var fontSize = (height / 114).toFixed(2);
-                        ctx.font = "bold " + fontSize + "em sans-serif";
+                        ctx.font = "normal 2em Roboto";//"bold " + fontSize + "em Roboto";
                         ctx.textBaseline = "middle";
 
                         var text = $rootScope.user.experiencepoints,
                             textX = Math.round((width - ctx.measureText(text).width) / 2),
                             textY = height / 2;
 
+                        ctx.fillStyle = '#004F5F';
                         ctx.fillText(text, textX, textY);
                         ctx.save();
                     }

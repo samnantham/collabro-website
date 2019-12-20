@@ -10,6 +10,7 @@ app.controller('PrivateChatsCtrl', ['$scope', '$sce', '$http', '$state', '$state
             $rootScope.formLoading = false;
             if (getData.status == 200) {
                 $scope.chatInfo = getData.data;
+                console.log($scope.chatInfo)
                 if (($rootScope.user.id == $scope.chatInfo.firstuser) || ($rootScope.user.id == $scope.chatInfo.seconduser)) {
                     $scope.chattype = 'privatechat';
                     $scope.firebaseurl = '/private-' + $scope.chatInfo.id + '/';

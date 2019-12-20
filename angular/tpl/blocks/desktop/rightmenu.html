@@ -2,7 +2,7 @@
 
     <div class="right-wrapper">
         <div class="right-title">
-            <h4>APPRENTICE </h4>
+            <h4 class="text-uppercase">{{user.xprank.rankname}} </h4>
             <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
         </div>
         <div class="right-content">
@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<div class="right-sidebar" ng-if="stateurl=='app.myfriends' || stateurl=='app.userchats' || stateurl=='app.privatechat' || stateurl=='app.feedchat'">
+<div class="right-sidebar" ng-if="stateurl=='app.myfriends' || stateurl=='app.userchats' || stateurl=='app.userchat' || stateurl=='app.feedchat'">
 
     <div class="right-wrapper">
         <div class="right-title-new">
@@ -117,7 +117,7 @@
 <div class="right-sidebar" ng-if="stateurl=='app.mydashboard' || stateurl=='app.viewuser'">
     <div class="right-wrapper">
         <div class="right-title">
-            <h4>APPRENTICE </h4>
+            <h4 ><h4 class="text-uppercase">{{user.xprank.rankname}} </h4> </h4>
             <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
         </div>
         <div class="right-content">
