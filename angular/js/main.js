@@ -19,7 +19,7 @@ angular.module('app')
             $rootScope.pwtype = "password";
             $rootScope.redirectproduct = {};
             $rootScope.notificationInterval = 6000;
-            $rootScope.showheader = false;
+            $rootScope.showheader = true;
             $rootScope.userData = {};
             $rootScope.shareData = {};
             $rootScope.user = {};
