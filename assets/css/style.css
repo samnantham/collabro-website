@@ -11110,7 +11110,7 @@ i.color-btn {
   padding-top: 30px;
   transition: 0.3s;
 }
-.cookie-active .home-header {
+.cookie-active .home-header, .cookie-active .main-header {
   top: 30px !important;
 }
 
@@ -11617,6 +11617,57 @@ ul.simple-list li:last-of-type {
 }
 .right-wrapper .right-content canvas, .right-wrapper .right-content svg, .right-wrapper .right-content img {
   width: 100%;
+}
+.right-wrapper .right-content .chart-holder {
+  width: 100%;
+  float: left;
+  height: 160px;
+  background: url("../img/svg-bg.png") no-repeat center center;
+  position: relative;
+  color: #7E8EA4;
+}
+.right-wrapper .right-content .chart-holder:before {
+  width: 82px;
+  height: 82px;
+  background: transparent;
+  border: 4px solid #fff;
+  content: "";
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+}
+.right-wrapper .right-content .chart-holder .stats {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+}
+.right-wrapper .right-content .chart-holder .xp {
+  position: absolute;
+  right: 5px;
+  font-size: 16px;
+}
+.right-wrapper .right-content .chart-holder svg {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  max-width: 100%;
+  z-index: 0;
+}
+.right-wrapper .right-content .chart-holder iframe {
+  z-index: 9;
+}
+.right-wrapper .right-content .chart-holder canvas {
+  width: 140px !important;
+  height: 140px !important;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .member-list {

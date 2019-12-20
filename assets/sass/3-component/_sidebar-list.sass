@@ -86,6 +86,43 @@ ul.simple-list
         padding: 20px 0
         canvas, svg, img
             width: 100%
+        .chart-holder
+            width: 100%
+            float: left
+            height: 160px
+            background: url("../img/svg-bg.png") no-repeat center center
+            position: relative
+            color: $secondary-text
+            &:before
+                width: 82px
+                height: 82px
+                background: transparent
+                border: 4px solid $white
+                content: ""
+                @include border-radius(50%)
+                @include absolute-center()
+            .stats
+                position: absolute
+                top: 5px
+                left: 5px
+                font-size: $font-s
+            .xp
+                position: absolute
+                right: 5px
+                font-size: $font-m
+            svg
+                position: absolute
+                top: 0
+                left: 0px
+                max-width: 100%
+                z-index: 0
+            iframe
+                z-index: 9
+            canvas
+                width: 140px !important
+                height: 140px !important
+                margin-top: 10px
+                margin-left: 10px
 .member-list
     width: 100%
     float: left
