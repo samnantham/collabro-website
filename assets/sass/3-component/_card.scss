@@ -163,6 +163,7 @@
             width: 100%;
             float: left;
             @include wordlines();
+            min-height: 40px;
         }
     }
 }

@@ -111,18 +111,19 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             type: 'red',
             typeAnimated: true,
             buttons: {
+                cancel: {
+                    text: 'No',
+                    btnClass: 'transparent-btn',
+                    action: function () {
+                    }
+                },
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'btn-red',
+                    btnClass: 'danger-btn',
                     action: function() {
                         $scope.updatewish('remove',obj);
                     }
-                },
-                cancel: {
-                    text: 'No',
-                    action: function () {
-                    }
-                }
+                }                
             }
         });
     }
@@ -138,19 +139,20 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             type: 'red',
             typeAnimated: true,
             buttons: {
+                cancel: {
+                    text: 'No',
+                    btnClass: 'transparent-btn',
+                    action: function () {
+                    }
+                },
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'btn-red',
+                    btnClass: 'danger-btn',
                     action: function() {
                         $scope.wishedproducts.data[key].iscompared = 0;
                         $scope.updatewish('compare',obj);
                     }
-                },
-                cancel: {
-                    text: 'No',
-                    action: function () {
-                    }
-                }
+                }                
             }
         });
     }
@@ -166,18 +168,19 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             type: 'red',
             typeAnimated: true,
             buttons: {
+                cancel: {
+                    text: 'No',
+                    btnClass: 'transparent-btn',
+                    action: function () {
+                    }
+                },
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'btn-red',
+                    btnClass: 'danger-btn',
                     action: function() {
                         $scope.updatewish('remove',obj);
                     }
-                },
-                cancel: {
-                    text: 'No',
-                    action: function () {
-                    }
-                }
+                }                
             }
         });
     }
