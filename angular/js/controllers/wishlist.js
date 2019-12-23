@@ -111,19 +111,19 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             type: 'red',
             typeAnimated: true,
             buttons: {
-                cancel: {
-                    text: 'No',
-                    btnClass: 'transparent-btn',
-                    action: function () {
-                    }
-                },
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'danger-btn',
+                    btnClass: 'success-btn',
                     action: function() {
                         $scope.updatewish('remove',obj);
                     }
-                }                
+                },
+                cancel: {
+                    text: 'No',
+                    btnClass: 'danger-btn',
+                    action: function () {
+                    }
+                }                                
             }
         });
     }
@@ -134,17 +134,11 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.wishstatus = 1;
         obj.iscompared = 0;
         $ngConfirm({
-            title: 'Are you sure ?'/*'Are you sure, want to remove this item from compare list'*/,
+            title: 'Are you sure?'/*'Are you sure, want to remove this item from compare list'*/,
             content: '',
             type: 'red',
             typeAnimated: true,
             buttons: {
-                cancel: {
-                    text: 'No',
-                    btnClass: 'transparent-btn',
-                    action: function () {
-                    }
-                },
                 tryAgain: {
                     text: 'Yes',
                     btnClass: 'danger-btn',
@@ -152,7 +146,13 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                         $scope.wishedproducts.data[key].iscompared = 0;
                         $scope.updatewish('compare',obj);
                     }
-                }                
+                },     
+                cancel: {
+                    text: 'No',
+                    btnClass: 'transparent-btn',
+                    action: function () {
+                    }
+                }                           
             }
         });
     }
@@ -170,17 +170,17 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             buttons: {
                 cancel: {
                     text: 'No',
-                    btnClass: 'transparent-btn',
+                    btnClass: 'danger-btn',
                     action: function () {
                     }
                 },
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'danger-btn',
+                    btnClass: 'success-btn',
                     action: function() {
                         $scope.updatewish('remove',obj);
                     }
-                }                
+                }                                             
             }
         });
     }

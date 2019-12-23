@@ -17,6 +17,10 @@
             }
         }
     }
+    &.bg-gray{
+        background: $secondary-color;
+        color: $white !important;
+    }
     .topbar-left{
         width: auto;
         float: left;

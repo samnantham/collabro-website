@@ -7393,7 +7393,7 @@ a {
 }
 
 .text-white {
-  color: #fff;
+  color: #fff !important;
 }
 
 .primary-bg {
@@ -11260,6 +11260,38 @@ i.color-btn {
   height: 36px;
 }
 
+/* Confrm popup */
+.ng-confirm-box {
+  padding: 0px !important;
+}
+.ng-confirm-box .ng-confirm-closeIcon {
+  position: absolute;
+  top: 25px !important;
+  right: 30px !important;
+  z-index: 999;
+  display: inline-block !important;
+}
+.ng-confirm-box .ng-confirm-title-c {
+  width: 100%;
+  padding: 25px 30px !important;
+  float: left;
+  border-bottom: 1px solid #dfe4e8;
+}
+.ng-confirm-box .ng-confirm-content-pane {
+  padding: 25px 30px;
+  margin-bottom: 0px;
+}
+.ng-confirm-box .ng-confirm-buttons {
+  width: 100%;
+  float: left;
+  border-top: 1px solid #dfe4e8;
+  padding: 25px 30px !important;
+  text-align: right;
+}
+.ng-confirm-box .ng-confirm-buttons .btn {
+  margin-bottom: 0px;
+}
+
 .progress-wrapper {
   width: 100%;
   float: left;
@@ -12120,6 +12152,10 @@ ul.simple-list li:last-of-type {
 .topbar.result .topbar-left span.lefttext {
   color: #7E8EA4;
   font-size: 14px;
+}
+.topbar.bg-gray {
+  background: #7E8EA4;
+  color: #fff !important;
 }
 .topbar .topbar-left {
   width: auto;

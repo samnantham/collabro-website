@@ -136,3 +136,35 @@
         }
     }
 }
+
+/* Confrm popup */
+.ng-confirm-box{
+    padding: 0px !important;
+    .ng-confirm-closeIcon{
+        position: absolute;
+        top: 25px !important;
+        right: 30px !important; 
+        z-index: 999;
+        display: inline-block !important;
+    }
+    .ng-confirm-title-c{
+        width: 100%;
+        padding: 25px 30px !important;
+        float: left;
+        border-bottom: 1px solid $border;
+    }
+    .ng-confirm-content-pane{
+        padding: 25px 30px;
+        margin-bottom: 0px;
+    }
+    .ng-confirm-buttons{
+        width: 100%;
+        float: left;
+        border-top: 1px solid $border;
+        padding: 25px 30px !important;
+        text-align: right;
+        .btn{
+            margin-bottom: 0px;
+        }
+    }
+}
