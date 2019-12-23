@@ -5,10 +5,13 @@
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
-                        <h2><i class="fa fa-heart-o" aria-hidden="true"></i> &nbsp;My Wishlist</h2>
+                        <i class="fa fa-heart"></i>
+                        <h2 class="text-capitalize">My Wishlist</h2>
                     </div>
                     <div class="topbar-right">
-                        <span ng-if="wishedproducts.total > 0"><b>{{ wishedproducts.total > 0 ? wishedproducts.total : 'No ' }}</b> Items Available to Compare</span>
+                        <ul class="topbar-list">
+                            <li ng-if="wishedproducts.total > 0"><b>{{ wishedproducts.total > 0 ? wishedproducts.total : 'No ' }} &nbsp;</b> Items Available to Compare </li>         
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -64,12 +67,12 @@
         </div>
         <div class="row mt-15">
             <div class="col-lg-12 col-md-12">
-                <div class="topbar">
+                <div class="topbar bg-gray">
                     <div class="topbar-left">
-                        <h2><i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp;Items Added to Compare</h2>
+                        <h2 class="text-white"><i class="fa fa-check-circle text-white" aria-hidden="true"></i> &nbsp;Items Added to Compare</h2>
                     </div>
                     <div class="topbar-right">
-                        <span>{{  comparedproducts.length < 3 ? '[' + (3 - comparedproducts.length)  + '] MORE TO ADD' : 'SHORTLIST FILLED'}}</span>
+                        <span class="text-white"class="text-white">{{  comparedproducts.length < 3 ? '[' + (3 - comparedproducts.length)  + '] MORE TO ADD' : 'SHORTLIST FILLED'}}</span>
                     </div>
                 </div>
             </div>
@@ -113,3 +116,11 @@
     </div>
     <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
+<style type="text/css">
+    .bg-gray{
+        background: #7E8EA4;
+        color:#fff!important;
+    }.bg-gray h2,.text-white{
+        color:#fff!important;
+    }
+</style>
