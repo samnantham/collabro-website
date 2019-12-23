@@ -7392,6 +7392,10 @@ a {
   color: #C4AC83 !important;
 }
 
+.text-white {
+  color: #fff;
+}
+
 .primary-bg {
   background: #00C4E8;
 }
