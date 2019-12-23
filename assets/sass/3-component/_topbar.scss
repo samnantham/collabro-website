@@ -27,6 +27,7 @@
         }
         i{
             margin-right: 10px;
+            color: $black;
         }
         h2{
             margin: 0px;
@@ -46,7 +47,10 @@
         float: right;  
         .dropdown-toggle{
             cursor: pointer;
-        }     
+        }  
+        span{
+            color: $secondary-text;
+        }   
     }
 }
 .topbar-list{

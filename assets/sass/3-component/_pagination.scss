@@ -7,27 +7,35 @@
         a{
             color: $deep-blue;
             @include border-radius(5px);
-            background: $gray;
-            border-color: $gray;
+            background: $pagination-bg;
+            border: 0px solid transparent;
             padding: 6px 12px;
             &:hover, &:focus{
-                background: $deep-blue !important;
-                border-color: $deep-blue !important;
+                background: $pagination-active !important;
+                border-color: $pagination-active !important;
                 color: $white !important;
             }
         }
         &:hover a, &.active a{
-            background: $deep-blue;
-            border-color: $deep-blue;
+            background: $pagination-active;
             color: $white;
         }
         &:first-of-type, &:last-of-type{
             a{
                 @extend .silver-gradient;
+                color: $deep-blue;
+                border: 0px solid transparent;
+                @include box-shadow($box-shadow-card);
             }
         }
-        .disabled{
+        &.disabled{
             display: inline-block !important;
+            a{
+                background: $pagination-bg;
+                border-color: $pagination-bg;
+                color: $white;
+                @include border-radius(5px !important);
+            }
         }
     }
 }
