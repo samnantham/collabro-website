@@ -7,9 +7,10 @@
         a{
             color: $deep-blue;
             @include border-radius(5px);
-            background: $pagination-bg;
-            border: 0px solid transparent;
-            padding: 6px 12px;
+            @extend .silver-gradient;
+            border: 1px solid $pagination-border;
+            padding: 8px 16px;
+            @include box-shadow($pagination-shadow);
             &:hover, &:focus{
                 background: $pagination-active !important;
                 border-color: $pagination-active !important;
@@ -19,20 +20,28 @@
         &:hover a, &.active a{
             background: $pagination-active;
             color: $white;
+            border-color: $pagination-active !important;
         }
         &:first-of-type, &:last-of-type{
             a{
                 @extend .silver-gradient;
                 color: $deep-blue;
-                border: 0px solid transparent;
-                @include box-shadow($box-shadow-card);
+            }
+        }
+        &:first-of-type{
+            i{
+                margin-right: 8px;
+            }
+        }
+        &:last-of-type{
+            i{
+                margin-left: 8px;
             }
         }
         &.disabled{
             display: inline-block !important;
             a{
                 background: $pagination-bg;
-                border-color: $pagination-bg;
                 color: $white;
                 @include border-radius(5px !important);
             }

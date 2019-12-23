@@ -7608,7 +7608,7 @@ a {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa15c", endColorstr="#ff6d41", GradientType=0);
 }
 
-.silver-gradient, .pagination li:first-of-type a, .pagination li:last-of-type a, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
+.silver-gradient, .pagination li:first-of-type a, .pagination li:last-of-type a, .pagination li a, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
   background: white;
   /* Old browsers */
   background: -moz-linear-gradient(top, white 0%, #dfe4e8 100%);
@@ -12431,9 +12431,11 @@ ul.simple-list li:last-of-type {
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  background: #CFD1D3;
-  border: 0px solid transparent;
-  padding: 6px 12px;
+  border: 1px solid #CED1DA;
+  padding: 8px 16px;
+  box-shadow: 0 2px 0px #C0C1C1;
+  -webkit-box-shadow: 0 2px 0px #C0C1C1;
+  -moz-box-shadow: 0 2px 0px #C0C1C1;
 }
 .pagination li a:hover, .pagination li a:focus {
   background: #B0B6BC !important;
@@ -12443,20 +12445,22 @@ ul.simple-list li:last-of-type {
 .pagination li:hover a, .pagination li.active a {
   background: #B0B6BC;
   color: #fff;
+  border-color: #B0B6BC !important;
 }
 .pagination li:first-of-type a, .pagination li:last-of-type a {
   color: #5B616A;
-  border: 0px solid transparent;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+.pagination li:first-of-type i {
+  margin-right: 8px;
+}
+.pagination li:last-of-type i {
+  margin-left: 8px;
 }
 .pagination li.disabled {
   display: inline-block !important;
 }
 .pagination li.disabled a {
   background: #CFD1D3;
-  border-color: #CFD1D3;
   color: #fff;
   border-radius: 5px !important;
   -webkit-border-radius: 5px !important;
