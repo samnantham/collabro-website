@@ -99,15 +99,10 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.productid = product.productid;
         obj.wishstatus = 0;
         obj.iscompared = 0;
-        /*if(!product.iscompared){
-            var message = 'Are you sure, want to remove this item from wishlist'
-        }else{
-            var message = 'This item you have added in wishlist and compare list too, do you want to remove?'
-        }*/
-        var message = 'Are you sure?';
+        var message = 'Remove wishlist item';
         $ngConfirm({
             title: message,
-            content: '',
+            content: 'You are about to remove this wishlist item. Are you sure you want to remove it ?',
             type: 'red',
             typeAnimated: true,
             closeIcon: true,
@@ -115,14 +110,14 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             buttons: {
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'success-btn',
+                    btnClass: 'danger-btn',
                     action: function() {
                         $scope.updatewish('remove',obj);
                     }
                 },
                 cancel: {
                     text: 'No',
-                    btnClass: 'danger-btn',
+                    btnClass: 'success-btn',
                     action: function () {
                     }
                 }                                

@@ -16,13 +16,13 @@
 
     <!-- Simple list -->
     <ul class="simple-list">
-        <li><a ui-sref="app.mydashboard"><i class="fa fa-dashboard"></i> <span>MY DASHBOARD</span></a></li>
-        <li><a ui-sref="app.wishlist"><i class="fa fa-list-alt"></i> <span>MY WISHLIST</span></a></li>
-        <li><a ui-sref="app.projectlist"><i class="fa fa-briefcase"></i> <span>MY PROJECTS</span></a></li>
-        <li><a ui-sref="app.myfriends"><i class="fa fa-user-plus"></i> <span>MY FRIENDS</span></a></li>
-        <li><a ui-sref="app.feeds"><i class="fa fa-list-ul"></i> <span>MY FEEDS</span></a></li>
-        <li><a ui-sref="app.howitworks"><i class="fa fa-lightbulb-o"></i> <span>HOW IT WORKS</span></a></li>
-        <li><a ui-sref="app.rewardsandbenefits"><i class="fa fa-trophy"></i> <span>REWARDS & BENEFITS</span></a></li>
-        <li><a><i class="fa fa-cogs"></i> <span>SETINGS</span></a></li>
+        <li><a ui-sref="app.mydashboard" ng-class="{'primary bold':stateurl=='app.mydashboard'}"><i class="fa fa-dashboard"></i> <span>MY DASHBOARD</span></a></li>
+        <li><a ui-sref="app.wishlist" ng-class="{'primary bold':stateurl=='app.wishlist'}"><i class="fa fa-list-alt"></i> <span>MY WISHLIST</span></a></li>
+        <li><a ui-sref="app.projectlist" ng-class="{'primary bold':stateurl=='app.projectlist'}"><i class="fa fa-briefcase"></i> <span>MY PROJECTS</span></a></li>
+        <li><a ui-sref="app.myfriends" ng-class="{'primary bold':stateurl=='app.myfriends'}"><i class="fa fa-user-plus"></i> <span>MY FRIENDS</span></a></li>
+        <li><a ui-sref="app.feeds" ng-class="{'primary bold':stateurl=='app.feeds'}"><i class="fa fa-list-ul"></i> <span>MY FEEDS</span></a></li>
+        <li><a ui-sref="app.howitworks" ng-class="{'primary bold':stateurl=='app.howitworks'}"><i class="fa fa-lightbulb-o"></i> <span>HOW IT WORKS</span></a></li>
+        <li><a ui-sref="app.rewardsandbenefits" ng-class="{'primary bold':stateurl=='app.rewardsandbenefits'}"><i class="fa fa-trophy"></i> <span>REWARDS & BENEFITS</span></a></li>
+        <li><a ng-class="{'primary':stateurl=='app.settings'}"><i class="fa fa-cogs"></i> <span>SETINGS</span></a></li>
     </ul>
 </div>
