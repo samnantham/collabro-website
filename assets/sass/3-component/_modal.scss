@@ -185,9 +185,11 @@
         padding: 25px 30px !important;
         text-align: right;
         .btn{
-            margin-bottom: 0px;
+            margin-bottom: 0px !important;
             font-size: $font-m !important;
             font-weight: $font-regular !important;
+            padding: 7px 15px !important;
+            margin-left: 30px !important;
         }
     }
 }
