@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="row mb-30">
-            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="friends.to > 1 && !formLoading">
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="friends.last_page > 1 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pagination-ctrl" pagination-id="friends-pagination"></dir-pagination-controls>
             </div>
         </div>
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="row mb-30">
-            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="otherpeoples.to > 1 && !formLoading">
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="otherpeoples.last_page > 1 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'otherpeoples')" class="pagination-ctrl" pagination-id="peoples-pagination"></dir-pagination-controls>
             </div>
         </div>
