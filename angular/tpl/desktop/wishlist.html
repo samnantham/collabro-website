@@ -89,7 +89,7 @@
                     </div>
                     <div class="card-content">
                         <h4 class="title-default default">{{data.product.title | cut:true:20:'...'}}</h4>
-                        <span class="sub-head">{{data.product.owner.username}} | Last Update:{{convertDate(data.product.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                        <span class="sub-head">{{data.product.owner.username}} | Last Update: {{convertDate(data.product.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                     </div>
                     <div class="card-info price-border">
                         <span class="price">{{data.product.price ? '$' + data.product.price: 'Free'}}</span>
