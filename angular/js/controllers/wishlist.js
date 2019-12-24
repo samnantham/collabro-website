@@ -110,6 +110,8 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             content: '',
             type: 'red',
             typeAnimated: true,
+            closeIcon: true,
+            closeIconClass: 'fa fa-close',
             buttons: {
                 tryAgain: {
                     text: 'Yes',
@@ -138,10 +140,12 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             content: '',
             type: 'red',
             typeAnimated: true,
+            closeIcon: true,
+            closeIconClass: 'fa fa-close',
             buttons: {
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'danger-btn',
+                    btnClass: 'success-btn',
                     action: function() {
                         $scope.wishedproducts.data[key].iscompared = 0;
                         $scope.updatewish('compare',obj);
@@ -149,7 +153,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                 },     
                 cancel: {
                     text: 'No',
-                    btnClass: 'transparent-btn',
+                    btnClass: 'danger-btn',
                     action: function () {
                     }
                 }                           

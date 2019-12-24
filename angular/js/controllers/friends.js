@@ -15,20 +15,9 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
     $scope.peoplespageno = 1;
     $scope.totalData = 0;
     $scope.totalPerPage = 6;
-    $scope.friendspagination = {
-        current: 1
-    };
-    $scope.peoplespagination = {
-        current: 1
-    };
-    
+    $scope.dummyarray = [1,2,3,4];
     $scope.url = 'myfriends/';
     $scope.secondurl = 'otherpeoples/';
-    if ($rootScope.user) {
-        if (!$rootScope.user.username) {
-            $state.go('app.usermain');
-        }
-    }
 
     $scope.getfriends = function() {
         webServices.get($scope.url + $scope.totalPerPage + '?page=' + $scope.friendspageno).then(function(getData) {
