@@ -11271,6 +11271,13 @@ i.color-btn {
   z-index: 999;
   display: inline-block !important;
 }
+.ng-confirm-box .ng-confirm-closeIcon .modal-close:before {
+  font-size: 20px;
+  content: "x";
+  font-style: initial;
+  font-weight: 700;
+  font-family: "Lato";
+}
 .ng-confirm-box .ng-confirm-title-c {
   width: 100%;
   padding: 25px 30px !important;
@@ -12500,6 +12507,7 @@ ul.simple-list li:last-of-type {
   display: inline-block !important;
 }
 .pagination li.disabled a {
+  opacity: 0;
   background: #CFD1D3;
   color: #fff;
   border-radius: 5px !important;

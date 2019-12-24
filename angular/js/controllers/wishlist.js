@@ -106,7 +106,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             type: 'red',
             typeAnimated: true,
             closeIcon: true,
-            closeIconClass: 'fa fa-close',
+            closeIconClass: 'modal-close',
             buttons: {
                 tryAgain: {
                     text: 'Yes',
@@ -136,7 +136,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             type: 'red',
             typeAnimated: true,
             closeIcon: true,
-            closeIconClass: 'fa fa-close',
+            closeIconClass: 'modal-close',
             buttons: {
                 tryAgain: {
                     text: 'Yes',

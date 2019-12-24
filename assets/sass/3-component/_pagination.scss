@@ -41,6 +41,7 @@
         &.disabled{
             display: inline-block !important;
             a{
+                opacity: 0;
                 background: $pagination-bg;
                 color: $white;
                 @include border-radius(5px !important);

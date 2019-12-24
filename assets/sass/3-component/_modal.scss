@@ -146,6 +146,13 @@
         right: 30px !important; 
         z-index: 999;
         display: inline-block !important;
+        .modal-close:before{
+            font-size: $font-l;
+            content: "x";
+            font-style: initial;
+            font-weight: $font-bold;
+            font-family: $font-default;
+        }
     }
     .ng-confirm-title-c{
         width: 100%;
