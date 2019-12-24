@@ -140,18 +140,28 @@
 /* Confrm popup */
 .ng-confirm-box{
     padding: 0px !important;
+    .ng-confirm-title{
+        font-size: $font-xlx !important;
+        color: $black !important;
+        font-weight: $font-bold !important;
+    }
     .ng-confirm-closeIcon{
         position: absolute;
         top: 25px !important;
         right: 30px !important; 
         z-index: 999;
         display: inline-block !important;
+        opacity: 1 !important;
         .modal-close:before{
             font-size: $font-l;
-            content: "x";
+            content: "";
+            background: url(../img/close.png) no-repeat center center; 
             font-style: initial;
             font-weight: $font-bold;
             font-family: $font-default;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
         }
     }
     .ng-confirm-title-c{
@@ -163,6 +173,10 @@
     .ng-confirm-content-pane{
         padding: 25px 30px;
         margin-bottom: 0px;
+        .ng-confirm-content{
+            font-size: $font-r;
+            color: $secondary-text;
+        }
     }
     .ng-confirm-buttons{
         width: 100%;
@@ -172,6 +186,8 @@
         text-align: right;
         .btn{
             margin-bottom: 0px;
+            font-size: $font-m !important;
+            font-weight: $font-regular !important;
         }
     }
 }

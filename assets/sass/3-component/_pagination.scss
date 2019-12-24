@@ -9,7 +9,7 @@
             @include border-radius(5px);
             @extend .silver-gradient;
             border: 1px solid $pagination-border;
-            padding: 8px 16px;
+            padding: 5px 10px;
             @include box-shadow($pagination-shadow);
             &:hover, &:focus{
                 background: $pagination-active !important;

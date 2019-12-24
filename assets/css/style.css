@@ -7428,6 +7428,10 @@ a {
   background: #C4AC83;
 }
 
+.black-bg {
+  background: #344051;
+}
+
 .aqua-bg {
   background: #7FDBFF;
 }
@@ -9170,7 +9174,7 @@ i.color-btn {
 .card .card-info .price {
   float: left;
   font-family: "Roboto", sans-serif;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 400;
 }
 .card .card-info .price-sub {
@@ -11264,19 +11268,29 @@ i.color-btn {
 .ng-confirm-box {
   padding: 0px !important;
 }
+.ng-confirm-box .ng-confirm-title {
+  font-size: 26px !important;
+  color: #344051 !important;
+  font-weight: 700 !important;
+}
 .ng-confirm-box .ng-confirm-closeIcon {
   position: absolute;
   top: 25px !important;
   right: 30px !important;
   z-index: 999;
   display: inline-block !important;
+  opacity: 1 !important;
 }
 .ng-confirm-box .ng-confirm-closeIcon .modal-close:before {
   font-size: 20px;
-  content: "x";
+  content: "";
+  background: url(../img/close.png) no-repeat center center;
   font-style: initial;
   font-weight: 700;
   font-family: "Lato";
+  width: 10px;
+  height: 10px;
+  display: inline-block;
 }
 .ng-confirm-box .ng-confirm-title-c {
   width: 100%;
@@ -11288,6 +11302,10 @@ i.color-btn {
   padding: 25px 30px;
   margin-bottom: 0px;
 }
+.ng-confirm-box .ng-confirm-content-pane .ng-confirm-content {
+  font-size: 14px;
+  color: #7E8EA4;
+}
 .ng-confirm-box .ng-confirm-buttons {
   width: 100%;
   float: left;
@@ -11297,6 +11315,8 @@ i.color-btn {
 }
 .ng-confirm-box .ng-confirm-buttons .btn {
   margin-bottom: 0px;
+  font-size: 16px !important;
+  font-weight: 400 !important;
 }
 
 .progress-wrapper {
@@ -12175,6 +12195,7 @@ ul.simple-list li:last-of-type {
 .topbar .topbar-left i {
   margin-right: 10px;
   color: #344051;
+  font-size: 22px;
 }
 .topbar .topbar-left h2 {
   margin: 0px;
@@ -12479,7 +12500,7 @@ ul.simple-list li:last-of-type {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border: 1px solid #CED1DA;
-  padding: 8px 16px;
+  padding: 5px 10px;
   box-shadow: 0 2px 0px #C0C1C1;
   -webkit-box-shadow: 0 2px 0px #C0C1C1;
   -moz-box-shadow: 0 2px 0px #C0C1C1;
