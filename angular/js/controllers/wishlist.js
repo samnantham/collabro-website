@@ -131,8 +131,8 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.wishstatus = 1;
         obj.iscompared = 0;
         $ngConfirm({
-            title: 'Are you sure?'/*'Are you sure, want to remove this item from compare list'*/,
-            content: '',
+            title: 'Remove comparelist item',
+            content: 'You are about to remove this comparelist item. Are you sure you want to remove it ?',
             type: 'red',
             typeAnimated: true,
             closeIcon: true,
