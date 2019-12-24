@@ -27,6 +27,7 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                 };
                 $scope.friendspagedata[$scope.friendspageno] = getData.data;
                 $scope.friends = getData.data;
+                console.log($scope.friends)
                 if (!$scope.firstloadingcompleted || $scope.isfriendchanged) {
                     $scope.isfriendchanged = false;
                     $scope.getotherpeoples();
@@ -82,6 +83,7 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                 };
                 $scope.otherpeoplespagedata[$scope.peoplespageno] = getData.data;
                 $scope.otherpeoples = getData.data;
+                console.log($scope.otherpeoples)
                 if (!$scope.firstloadingcompleted) {
                     $scope.getfriendsfollowers();
                 } else {

@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="row mt-15">
-            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" dir-paginate="(key,friend) in friends.data | itemsPerPage: totalPerPage" total-items="friends.total" current-page="friendspagination.current" pagination-id="friends">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" dir-paginate="(key,friend) in friends.data | itemsPerPage: totalPerPage" total-items="friends.total" current-page="friendspagination.current" pagination-id="friends-pagination">
                <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
@@ -74,8 +74,8 @@
                     </div>
                 </div>
             </div>   
-            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="friends.total > 0 && !formLoading">
-                <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pagination-ctrl" pagination-id="friends"></dir-pagination-controls>
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="friends.to > 1 && !formLoading">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pagination-ctrl" pagination-id="friends-pagination"></dir-pagination-controls>
             </div>         
         </div>
         <div class="row">
@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="row mt-15">
-            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" dir-paginate="(key,people) in otherpeoples.data | itemsPerPage: totalPerPage" total-items="otherpeoples.total" current-page="friendspagination.current" pagination-id="otherpeoples">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" dir-paginate="(key,people) in otherpeoples.data | itemsPerPage: totalPerPage" total-items="otherpeoples.total" current-page="peoplespagination.current" pagination-id="peoples-pagination">
                <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
@@ -133,8 +133,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="otherpeoples.total > 0 && !formLoading">
-                <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'otherpeoples')" class="pull-right pagination-ctrl" pagination-id="peoples"></dir-pagination-controls>
+            <div class="col-lg-12 col-md-12 col-sm-12"  ng-if="otherpeoples.to > 1 && !formLoading">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'otherpeoples')" class="pagination-ctrl" pagination-id="peoples-pagination"></dir-pagination-controls>
             </div>
         </div>
    </div>
