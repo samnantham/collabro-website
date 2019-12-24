@@ -66,10 +66,12 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
             content: 'Not possible to recover once you delete',
             type: 'red',
             typeAnimated: true,
+            closeIcon: true,
+            closeIconClass: 'fa fa-close',
             buttons: {
                 tryAgain: {
-                    text: 'Delete',
-                    btnClass: 'btn-red',
+                    text: 'Yes',
+                    btnClass: 'success-btn',
                     action: function() {
                         webServices.delete('feed/' + feedid).then(function(getData) {
                             if (getData.status == 200) {
@@ -78,7 +80,12 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
                         });
                     }
                 },
-                close: function() {}
+                cancel: {
+                    text: 'No',
+                    btnClass: 'danger-btn',
+                    action: function () {
+                    }
+                }            
             }
         });
         

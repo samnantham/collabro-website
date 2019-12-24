@@ -1,14 +1,18 @@
 <div class="content-wrapper" ng-controller="FriendsCtrl">
-   <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-   <div class="center-content">
-      <div class="row">
+    <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
-                        <h2><i class="fa fa-user-circle" aria-hidden="true"></i> &nbsp;My Friends</h2>
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <h2>My Friends</h2>
                     </div>
                     <div class="topbar-right">
-                        <span><b class="mr-10"><i class="fa fa-binoculars"></i> Followers | {{user.followers}}</b> <b class="ml-10"><i class="fa fa-user"></i> Following | {{user.following}}</b></span>
+                        <ul class="topbar-list">
+                            <li><i class="fa fa-binoculars"></i> Followers &nbsp; <b>{{user.followers}}</b> </li>
+                            <li><i class="fa fa-user"></i> Following &nbsp; <b>{{user.following}}</b> </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -20,11 +24,11 @@
                         <span class="lefttext">Showing <b>{{friends.from}}</b> to <b>{{friends.to}}</b> of <b>{{friends.total}}</b> Results.</span>
                     </div>
                     <div class="topbar-right">
-                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Sort by <i class="fa fa-angle-down ml-10"></i></span>
                         <ul class="dropdown-menu">
-                           <li><a ng-click="sortfriends('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
-                           <li><a ng-click="sortfriends('username','asc')"><i class="fa fa-sort-amount-asc"></i> Name ASC</a></li>
-                           <li><a ng-click="sortfriends('username','desc')"><i class="fa fa-sort-amount-desc"></i> Name DESC</a></li>
+                            <li><a ng-click="sortfriends('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                            <li><a ng-click="sortfriends('username','asc')"><i class="fa fa-sort-amount-asc"></i> Name ASC</a></li>
+                            <li><a ng-click="sortfriends('username','desc')"><i class="fa fa-sort-amount-desc"></i> Name DESC</a></li>
                         </ul>
                     </div>
                 </div>
@@ -32,24 +36,24 @@
         </div>
         <div class="row mt-15">
             <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" dir-paginate="(key,friend) in friends.data | itemsPerPage: totalPerPage" total-items="friends.total" current-page="friendspagination.current" pagination-id="friends-pagination">
-               <div class="card friend-card">
+                <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
                             <h4 class="title-default" ui-sref="app.viewuser({'id':friend.id})">{{friend.username| cut:true:10:'...'}}</h4>
-                            <span class="sub-head">{{friend.profession}}</span>                        
+                            <span class="sub-head">{{friend.profession}}</span>
                         </div>
                         <div class="content-right">
                             <button type="button" class="btn silver-btn right ml-auto dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
                             <ul class="dropdown-menu">
-                                 <li><a ng-click="collaborate(friend)">Collaborate</a></li>
-                                 <li><a title="Share to Earn" ng-click="sharefriendtosocial(friend)">Share</a></li>
-                                 <li><a ng-click="changefriendfollowstatus(key,friend);">Un Follow</a></li>
+                                <li><a ng-click="collaborate(friend)">Collaborate</a></li>
+                                <li><a title="Share to Earn" ng-click="sharefriendtosocial(friend)">Share</a></li>
+                                <li><a ng-click="changefriendfollowstatus(key,friend);">Un Follow</a></li>
                             </ul>
-                        </div>    
+                        </div>
                     </div>
                     <div class="card-info price-border">
-                        <div class="card-left"  ui-sref="app.viewuser({'id':friend.id})">
-                            <img ng-src="{{IMGURL}}{{friend.avatar}}"/>
+                        <div class="card-left" ui-sref="app.viewuser({'id':friend.id})">
+                            <img ng-src="{{IMGURL}}{{friend.avatar}}" />
                         </div>
                         <div class="card-right">
                             <ul class="card-thumbs">
@@ -73,10 +77,12 @@
                         <a class="btn default-btn" ng-click="gotoprivatechat(friend.id)"><i class="fa fa-phone-square"></i> Chat</a>
                     </div>
                 </div>
-            </div>   
+            </div>
+        </div>
+        <div class="row mb-30">
             <div class="col-lg-12 col-md-12 col-sm-12" ng-if="friends.to > 1 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pagination-ctrl" pagination-id="friends-pagination"></dir-pagination-controls>
-            </div>         
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -94,10 +100,10 @@
                         <span class="lefttext">Showing <b>{{otherpeoples.from}}</b> to <b>{{otherpeoples.to}}</b> of <b>{{otherpeoples.total}}</b> Results.</span>
                     </div>
                     <div class="topbar-right">
-                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Sort by <i class="fa fa-angle-down ml-10"></i></span>
                         <ul class="dropdown-menu">
-                           <li><a ng-click="sortotherpeoples('username','asc')"><i class="fa fa-sort-amount-asc"></i> Name ASC</a></li>
-                           <li><a ng-click="sortotherpeoples('username','desc')"><i class="fa fa-sort-amount-desc"></i> Name DESC</a></li>
+                            <li><a ng-click="sortotherpeoples('username','asc')"><i class="fa fa-sort-amount-asc"></i> Name ASC</a></li>
+                            <li><a ng-click="sortotherpeoples('username','desc')"><i class="fa fa-sort-amount-desc"></i> Name DESC</a></li>
                         </ul>
                     </div>
                 </div>
@@ -105,15 +111,15 @@
         </div>
         <div class="row mt-15">
             <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" dir-paginate="(key,people) in otherpeoples.data | itemsPerPage: totalPerPage" total-items="otherpeoples.total" current-page="peoplespagination.current" pagination-id="peoples-pagination">
-               <div class="card friend-card">
+                <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
                             <h4 class="title-default" ui-sref="app.viewuser({'id':people.id})">{{people.username | cut:true:10:'...'}}</h4>
-                            <span class="sub-head">{{people.profession}}</span>                        
+                            <span class="sub-head">{{people.profession}}</span>
                         </div>
                         <div class="content-right">
-                            <button type="button" class="btn unfollow-btn right ml-auto" ng-click="changefollowstatus(key,people);"><i class="fa" ng-class="people.isfollow ? 'fa-user-times':'fa-user-plus'" title="Unfollow" ></i></button>
-                        </div>    
+                            <button type="button" class="btn unfollow-btn right ml-auto" ng-click="changefollowstatus(key,people);"><i class="fa" ng-class="people.isfollow ? 'fa-user-times':'fa-user-plus'" title="Unfollow"></i></button>
+                        </div>
                     </div>
                     <div class="card-info price-border">
                         <div class="card-left" ui-sref="app.viewuser({'id':people.id})">
@@ -121,7 +127,7 @@
                         </div>
                         <div class="card-right">
                             <ul class="card-thumbs">
-                                <li ng-repeat="(no,product) in people.ownerproducts| limitTo: 4"><img ng-src="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}"/></li>
+                                <li ng-repeat="(no,product) in people.ownerproducts| limitTo: 4"><img ng-src="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}" /></li>
                                 <li ng-repeat="i in dummyarray | limitTo: (dummyarray.length - people.ownerproducts.length)" ng-if="people.ownerproducts.length < 4"><img ng-src="../assets/img/not-avail.png" /></li>
                             </ul>
                         </div>
@@ -133,10 +139,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12"  ng-if="otherpeoples.to > 1 && !formLoading">
+        </div>
+        <div class="row mb-30">
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="otherpeoples.to > 1 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'otherpeoples')" class="pagination-ctrl" pagination-id="peoples-pagination"></dir-pagination-controls>
             </div>
         </div>
-   </div>
-   <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+    </div>
+    <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>

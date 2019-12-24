@@ -1,14 +1,17 @@
-<div class="content-wrapper" ng-controller="ProjectListCtrl" >
-   <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-   <div class="center-content">
-      <div class="row">
+<div class="content-wrapper" ng-controller="ProjectListCtrl">
+    <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
-                        <h2><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;Project List</h2>
+                        <i class="fa fa-list-alt"></i>
+                        <h2 class="text-capitalize">Project List</h2>
                     </div>
                     <div class="topbar-right">
-                        <span><b> Total Projects | {{projects.total}} </b></span>
+                        <ul class="topbar-list">
+                            <li>Total Projects &nbsp; <b>{{projects.total}} </b></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -17,14 +20,14 @@
             <div class="col-lg-12 col-md-12">
                 <div class="topbar result">
                     <div class="topbar-left">
-                        <span class="lefttext">Active Projects | <b>{{projects.total}}</b> Projects.</span>
+                        <span class="lefttext">Active Projects <b>{{projects.total}}</b> Projects.</span>
                     </div>
                     <div class="topbar-right">
-                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by <i class="fa fa-angle-down ml-10"></i></span>
                         <ul class="dropdown-menu">
-                           <li><a ng-click="sortproject('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
-                           <li><a ng-click="sortproject('deadline','asc')"><i class="fa fa-sort-amount-asc"></i> Expiry ASC</a></li>
-                           <li><a ng-click="sortproject('deadline','desc')"><i class="fa fa-sort-amount-desc"></i> Expiry DESC</a></li>
+                            <li><a ng-click="sortproject('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                            <li><a ng-click="sortproject('deadline','asc')"><i class="fa fa-sort-amount-asc"></i> Expiry ASC</a></li>
+                            <li><a ng-click="sortproject('deadline','desc')"><i class="fa fa-sort-amount-desc"></i> Expiry DESC</a></li>
                         </ul>
                     </div>
                 </div>
@@ -32,7 +35,7 @@
         </div>
         <div class="row mt-15">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in projects.data | itemsPerPage: totalPerPage" total-items="projects.total" current-page="pagination.current" ui-sref="app.projectdetails({id:data.id})">
-               <div class="table-card">
+                <div class="table-card">
                     <div class="flex-top-space">
                         <div class="table-img">
                             <img ng-src="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" />
@@ -57,17 +60,17 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row mb-30">
             <div class="col-lg-12 col-md-12 col-sm-12" ng-if="projects.total > 0 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl"></dir-pagination-controls>
             </div>
         </div>
-   </div>
-   <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
-
+    </div>
+    <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
-
 <style type="text/css">
-   .table-img img{
-      width: 100px;
-   }
+    .table-img img {
+        width: 100px;
+    }
 </style>

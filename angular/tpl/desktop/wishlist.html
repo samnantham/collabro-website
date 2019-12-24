@@ -6,11 +6,11 @@
                 <div class="topbar">
                     <div class="topbar-left">
                         <i class="fa fa-heart"></i>
-                        <h2 class="text-capitalize">My Wishlist</h2>
+                        <h2>My Wishlist</h2>
                     </div>
                     <div class="topbar-right">
                         <ul class="topbar-list">
-                            <li ng-if="wishedproducts.total > 0"><b>{{ wishedproducts.total > 0 ? wishedproducts.total : 'No ' }} &nbsp;</b> Items Available to Compare </li>         
+                            <li ng-if="wishedproducts.total > 0">Items Available to Compare &nbsp; <b>{{ wishedproducts.total > 0 ? wishedproducts.total : 'No ' }} </b> </li>
                         </ul>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <span class="lefttext">Showing <b>{{wishedproducts.from}}</b> to <b>{{wishedproducts.to}}</b> of <b>{{wishedproducts.total}}</b> Results.</span>
                     </div>
                     <div class="topbar-right">
-                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">| Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Sort by <i class="fa fa-angle-down ml-10"></i></span>
                         <ul class="dropdown-menu">
                             <li><a ng-click="sortwishlist('created_at','desc')"><i class="fa fa-clock-o"></i> Recently Wished</a></li>
                             <li><a ng-click="sortwishlist('price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
@@ -39,7 +39,7 @@
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" dir-paginate="(key,data) in wishedproducts.data | itemsPerPage: totalPerPage" total-items="wishedproducts.total" current-page="pagination.current">
                 <div class="card">
                     <div class="card-img" background-image="{{data.product.images[0].filetype == 1 ? IMGURL:''}}{{data.product.images[0].thumbnail}}">
-                        
+
                     </div>
                     <div class="card-content">
                         <h4 class="word-line">{{data.product.title | cut:true:15:'...'}}</h4>
@@ -59,8 +59,9 @@
                         <i class="fa fa-check"></i>
                     </div>
                 </div>
-            </div>            
-        
+            </div>
+        </div>
+        <div class="row mb-30">
             <div class="col-lg-12 col-md-12 col-sm-12" ng-if="wishedproducts.total > 0 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl"></dir-pagination-controls>
             </div>
@@ -69,10 +70,11 @@
             <div class="col-lg-12 col-md-12">
                 <div class="topbar bg-gray">
                     <div class="topbar-left">
-                        <h2 class="text-white"><i class="fa fa-check-circle text-white" aria-hidden="true"></i> &nbsp;Items Added to Compare</h2>
+                        <h2 class="text-white">
+                            <i class="fa fa-check-circle text-white"></i> &nbsp;Items Added to Compare</h2>
                     </div>
                     <div class="topbar-right">
-                        <span class="text-white"class="text-white">{{  comparedproducts.length < 3 ? '[' + (3 - comparedproducts.length)  + '] MORE TO ADD' : 'SHORTLIST FILLED'}}</span>
+                        <span class="text-white">{{  comparedproducts.length < 3 ? '[' + (3 - comparedproducts.length)  + '] MORE TO ADD' : 'SHORTLIST FILLED'}}</span>
                     </div>
                 </div>
             </div>
@@ -87,7 +89,7 @@
                     </div>
                     <div class="card-content">
                         <h4 class="title-default default">{{data.product.title | cut:true:20:'...'}}</h4>
-                        <span class="sub-head">{{data.product.owner.username}} | Last Update:{{convertDate(data.product.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>                        
+                        <span class="sub-head">{{data.product.owner.username}} | Last Update:{{convertDate(data.product.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                     </div>
                     <div class="card-info price-border">
                         <span class="price">{{data.product.price ? '$' + data.product.price: 'Free'}}</span>
