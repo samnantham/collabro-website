@@ -45,7 +45,9 @@
                             <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
                                 <div class="info">{{message.message}}
                                     <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);" alt="Chat" ng-if="message.isfile">
-                                    <div class="time-left" am-time-ago="message.created_at"></div>
+                                    <div class="time-left">
+                                        <span am-time-ago="message.created_at" ng-if="checkDate(message.created_at) == true"></span>
+                                        <time ng-if="checkDate(message.created_at) == false">{{ message.created_at | amDateFormat: 'DD-MMM-YY hh:mm a' }}</time></div>
                                 </div>
                             </div>
                         </div>

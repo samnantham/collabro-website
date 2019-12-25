@@ -64,8 +64,9 @@ angular.module('app')
                 },
                 type: 'xppoints',
                 plugins: {
-                  labels: false
-                },tooltips: {
+                    labels: false
+                },
+                tooltips: {
                     enabled: false
                 }
             };
@@ -73,27 +74,27 @@ angular.module('app')
             $rootScope.assignDoughnutdata = function() {
                 Chart.pluginService.register({
                     beforeDraw: function(chart, easing) {
-                    if (chart.config.options.type == 'xppoints') {
-                        var width = chart.chart.width,
-                            height = chart.chart.height,
-                            ctx = chart.chart.ctx;
+                        if (chart.config.options.type == 'xppoints') {
+                            var width = chart.chart.width,
+                                height = chart.chart.height,
+                                ctx = chart.chart.ctx;
 
-                        ctx.restore();
-                        var fontSize = (height / 114).toFixed(2);
-                        ctx.font = "normal 2em Roboto";//"bold " + fontSize + "em Roboto";
-                        ctx.textBaseline = "middle";
+                            ctx.restore();
+                            var fontSize = (height / 114).toFixed(2);
+                            ctx.font = "normal 2em Roboto"; //"bold " + fontSize + "em Roboto";
+                            ctx.textBaseline = "middle";
 
-                        var text = $rootScope.user.experiencepoints,
-                            textX = Math.round((width - ctx.measureText(text).width) / 2),
-                            textY = height / 2;
+                            var text = $rootScope.user.experiencepoints,
+                                textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                textY = height / 2;
 
-                        ctx.fillStyle = '#004F5F';
-                        ctx.fillText(text, textX, textY);
-                        ctx.save();
+                            ctx.fillStyle = '#004F5F';
+                            ctx.fillText(text, textX, textY);
+                            ctx.save();
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
 
             if (!localStorage.showheader) {
                 $rootScope.showheader = true;
@@ -108,11 +109,11 @@ angular.module('app')
             }
 
             $rootScope.showhidepassword = function() {
-               if($rootScope.pwtype == "password"){
+                if ($rootScope.pwtype == "password") {
                     $rootScope.pwtype = 'text';
-               }else{
+                } else {
                     $rootScope.pwtype = 'password';
-               }
+                }
             }
 
             $rootScope.openAuthModal = function(auth) {
@@ -277,7 +278,7 @@ angular.module('app')
             }
 
 
-            $rootScope.setUserInfo = function(){
+            $rootScope.setUserInfo = function() {
                 if ($sessionStorage.user != null) {
                     $rootScope.user = authServices.currentUser();
                     $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
@@ -438,7 +439,9 @@ angular.module('app')
                 $rootScope.searchData = {};
                 if (Object.keys($rootScope.redirectproduct).length > 0) {
                     console.log($rootScope.redirectproduct)
-                    $state.go('app.viewitem',{'id':$rootScope.redirectproduct.id});
+                    $state.go('app.viewitem', {
+                        'id': $rootScope.redirectproduct.id
+                    });
                 } else {
                     $state.go('app.usermain');
                 }
@@ -683,11 +686,24 @@ angular.module('app')
                 }
             });
 
-            $rootScope.scrollTop = function(){
+            $rootScope.scrollTop = function() {
                 $document.scrollTopAnimated(0, 2000).then(function() {
-                  console && console.log('You just scrolled to the top!');
+                    console && console.log('You just scrolled to the top!');
                 });
             }
+
+            $rootScope.checkDate = function(date) {
+                var status = false;
+                var varDate = new Date(date); //dd-mm-YYYY
+                var yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                if(varDate > yesterday){
+                    status = true;
+                }
+                return status;
+
+            }
+
 
             $rootScope.closeModal = function() {
                 $('.modal-content > .ng-scope').each(function() {

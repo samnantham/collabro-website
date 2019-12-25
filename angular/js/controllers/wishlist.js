@@ -76,12 +76,9 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
     };
 
     $scope.changeiscompared = function(key,item){
-        console.log(item)
-        if(item.iscompared == 1){
-            $scope.wishedproducts.data[key].iscompared = 0;
+        if(item.iscompared){
             $scope.removewishcompare(key,item);
         }else{
-            $scope.wishedproducts.data[key].iscompared = 1;
             $scope.addtocompare(item);
         }
     }
@@ -131,7 +128,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.wishstatus = 1;
         obj.iscompared = 0;
         $ngConfirm({
-            title: 'Remove comparelist item',
+            title: 'Remove compared item',
             content: 'You are about to remove this comparelist item. Are you sure you want to remove it ?',
             type: 'red',
             typeAnimated: true,
@@ -162,7 +159,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.wishstatus = 1;
         obj.iscompared = 0;
         $ngConfirm({
-            title: 'Are you sure?',/*'Are you sure, want to remove this item from compare list',*/
+            title: 'Remove compared item?',
             content: '',
             type: 'red',
             typeAnimated: true,
