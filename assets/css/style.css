@@ -9302,8 +9302,11 @@ i.color-btn {
   align-items: center;
   justify-content: space-between;
 }
-.friend-card .card-content h3.title-default {
+.friend-card .card-content h4.title-default {
   color: #344051;
+}
+.friend-card .card-content .sub-head {
+  color: #7E8EA4;
 }
 .friend-card .card-content .content-right {
   position: relative;
@@ -9406,12 +9409,11 @@ i.color-btn {
   color: #00C4E8;
 }
 .friend-card .card-footer a.btn {
-  padding: 10px 20px;
   color: #fff;
   height: auto;
 }
 .friend-card .card-footer a.btn i {
-  font-size: 20px;
+  font-size: 16px;
   color: #fff;
   margin-right: 5px;
 }
@@ -9434,6 +9436,7 @@ i.color-btn {
 }
 .table-card .table-img img {
   max-width: 100%;
+  width: 100px;
   max-height: 50px;
 }
 .table-card .table-content {
@@ -11301,6 +11304,7 @@ i.color-btn {
 .ng-confirm-box .ng-confirm-content-pane {
   padding: 25px 30px;
   margin-bottom: 0px;
+  min-height: 70px;
 }
 .ng-confirm-box .ng-confirm-content-pane .ng-confirm-content {
   font-size: 14px;
@@ -11319,6 +11323,7 @@ i.color-btn {
   font-weight: 400 !important;
   padding: 7px 15px !important;
   margin-left: 30px !important;
+  text-transform: capitalize !important;
 }
 
 .progress-wrapper {

@@ -194,8 +194,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        h3.title-default{
+        h4.title-default{
             color: $black;
+        }
+        .sub-head{
+            color: $secondary-text;
         }
         .content-right{
             position: relative;
@@ -299,11 +302,10 @@
                 color: $default;
             }
             &.btn{
-                padding: 10px 20px;
                 color: $white;
                 height: auto;
                 i{
-                    font-size: $font-l;
+                    font-size: $font-m;
                     color: $white;
                     margin-right: 5px;
                 }
@@ -325,6 +327,7 @@
         float: left;
         img{
             max-width: 100%;
+            width: 100px;
             max-height: 50px;
         }
     }

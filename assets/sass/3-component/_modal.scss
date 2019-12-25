@@ -173,6 +173,7 @@
     .ng-confirm-content-pane{
         padding: 25px 30px;
         margin-bottom: 0px;
+        min-height: 70px;
         .ng-confirm-content{
             font-size: $font-r;
             color: $secondary-text;
@@ -190,6 +191,7 @@
             font-weight: $font-regular !important;
             padding: 7px 15px !important;
             margin-left: 30px !important;
+            text-transform: capitalize !important;
         }
     }
 }
