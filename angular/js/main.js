@@ -116,11 +116,11 @@ angular.module('app')
             }
 
             $rootScope.openAuthModal = function(auth) {
-                $rootScope.formLoading = true;
+                $rootScope.authLoading = true;
                 $rootScope.currentauth = auth;
                 $rootScope.loginModel = {};
                 $timeout(function() {
-                    $rootScope.formLoading = false;
+                    $rootScope.authLoading = false;
                     $rootScope.dialogInst = $modal.open({
                         ariaLabelledBy: 'modal-title',
                         ariaDescribedBy: 'modal-body',
