@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document',
-        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $modalStack) {
+    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm',
+        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalStack) {
             $rootScope.isMobile = isMobile.phone;
             $rootScope.screenWidth = window.innerWidth;
             if ($rootScope.isMobile) {
@@ -114,6 +114,32 @@ angular.module('app')
                 } else {
                     $rootScope.pwtype = 'password';
                 }
+            }
+
+            $rootScope.viewChatImg = function(img){
+                var src = '<img src="'+ $rootScope.IMGURL + img +'">';
+                $ngConfirm({
+                    title: '',
+                    //content: src,
+                    contentUrl:'',
+                    type: 'red',
+                    typeAnimated: true,
+                    closeIcon: true,
+                    closeIconClass: 'modal-close',
+                    buttons: {
+                        white: {
+                            text: 'Maximize',
+                            btnClass: 'btn-green',
+                            action: function (scope, button) {
+                                this.setColumnClass('large');
+                                button.setDisabled(true);
+                                return false;
+                            }
+                        },
+                        close: function () {
+                        },
+                    },
+                });
             }
 
             $rootScope.openAuthModal = function(auth) {
@@ -671,9 +697,9 @@ angular.module('app')
                 if (!$rootScope.settings) {
                     $rootScope.getSettings();
                 }
-                if (authServices.isLoggedIn()) {
-                    $timeout($rootScope.getnotiCount, $rootScope.notificationInterval);
-                }
+                /*if (authServices.isLoggedIn()) {
+                    //$timeout($rootScope.getnotiCount, $rootScope.notificationInterval);
+                }*/
                 if ($rootScope.notauthroutes.includes($rootScope.stateurl)) {
                     if (authServices.isLoggedIn()) {
                         $rootScope.getUserInfo();

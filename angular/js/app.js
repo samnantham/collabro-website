@@ -36,5 +36,6 @@ angular.module('app', [
     'duScroll',
     'skitter',
     'angular-web-notification',
-    'chart.js'
+    'chart.js',
+    'cp.ngConfirm'
 ]);

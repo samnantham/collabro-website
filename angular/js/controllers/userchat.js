@@ -14,9 +14,13 @@ app.controller('PrivateChatsCtrl', ['$scope', '$sce', '$http', '$state', '$state
                     $scope.chattype = 'privatechat';
                     $scope.firebaseurl = '/private-' + $scope.chatInfo.id + '/';
                     $rootScope.getChatContent();
-                    // $timeout(function() {
-                    //     $scope.scrollTo();  
-                    // }, 4000);
+                    $timeout(function() {
+                        $("#emojionearea").emojioneArea({
+                            pickerPosition: "top",
+                            tonesStyle: "bullet",
+                            useSprite : true
+                          });
+                    }, 4000);
                 } else {
                     $state.go('app.usermain');
                 }
@@ -85,6 +89,7 @@ app.controller('PrivateChatsCtrl', ['$scope', '$sce', '$http', '$state', '$state
                     $rootScope.chatMessage.message = '';
                     $rootScope.chatMessage.isfile = 0;
                     $rootScope.chatMessage.fileurl = '-';
+                    jQuery('#messageDiv img').html('');
                 }, 500);
             });
         }
