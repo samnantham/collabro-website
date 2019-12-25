@@ -11674,7 +11674,6 @@ ul.simple-list li:last-of-type {
   float: left;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #CED0DA;
   padding-bottom: 15px;
 }
 .right-wrapper .right-title-new h2 {
@@ -11687,7 +11686,6 @@ ul.simple-list li:last-of-type {
 .right-wrapper .right-content {
   width: 100%;
   float: left;
-  border-bottom: 1px solid #CED0DA;
   padding: 20px 0;
 }
 .right-wrapper .right-content canvas, .right-wrapper .right-content svg, .right-wrapper .right-content img {
@@ -11934,7 +11932,6 @@ ul.simple-list li:last-of-type {
 .post-content .member-list li {
   padding-bottom: 15px;
   margin-bottom: 15px;
-  border-bottom: 1px solid #CED0DA;
 }
 .post-content .member-list li a {
   flex-direction: row-reverse;
@@ -12236,7 +12233,7 @@ ul.simple-list li:last-of-type {
 .topbar-list li {
   float: left;
   font-size: 14px;
-  margin-left: 20px;
+  margin-left: 15px;
   color: #7E8EA4;
   position: relative;
 }
@@ -13423,6 +13420,173 @@ input:checked + .slider:before {
 .rank-icon img {
   width: 35px;
   height: 30px;
+}
+
+.product-detail-left {
+  width: calc(66.6666666667% - 15px);
+  float: left;
+}
+
+.slider-wrapper {
+  width: 100%;
+  float: left;
+  min-height: 450px;
+}
+
+.product-detail-info {
+  width: 100%;
+  float: left;
+  padding: 20px 25px;
+  background: #fff;
+}
+.product-detail-info h3 {
+  margin-top: 0px;
+  color: #344051;
+  margin-bottom: 5px;
+}
+.product-detail-info .sub-title {
+  font-size: 11px;
+  color: #7E8EA4;
+}
+.product-detail-info p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.product-detail-info .check-list {
+  width: 100%;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  margin-bottom: 20px;
+}
+.product-detail-info .check-list li {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+.product-detail-info .check-list li::before {
+  content: "";
+  font-family: FontAwesome;
+  color: #7E8EA4;
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.product-info-row {
+  width: 100%;
+  float: left;
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-end;
+}
+.product-info-row img {
+  width: 100%;
+}
+.product-info-row .product-info-column {
+  width: 50%;
+  float: left;
+}
+.product-info-row .product-info-column span {
+  color: #7E8EA4;
+}
+.product-info-row .product-info-column h5 {
+  margin-top: 15px;
+  color: #344051;
+  margin-bottom: 0px;
+}
+.product-info-row .product-info-column.price-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+.product-info-row .product-info-column .price {
+  float: left;
+  color: #344051;
+  font-family: "Roboto", sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+.product-info-row .product-info-column .price-sub {
+  float: left;
+  font-size: 12px;
+  color: #7E8EA4;
+  margin-left: 5px;
+  margin-bottom: 8px;
+}
+.product-info-row .product-info-column .product-option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.product-info-row .product-info-column .product-option span {
+  color: #7E8EA4;
+  font-size: 20px;
+}
+.product-info-row .product-info-column .product-option i {
+  font-size: 24px;
+  margin-left: 30px;
+}
+
+.contact-info-cards {
+  display: flex;
+  align-items: center;
+}
+.contact-info-cards .contact-info {
+  width: 33.3333333333%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.contact-info-cards .contact-info:first-of-type {
+  text-align: left;
+}
+.contact-info-cards .contact-info i {
+  color: #7E8EA4;
+  font-size: 26px;
+  margin-top: 15px;
+}
+
+.product-detail-right {
+  width: 33.3333333333%;
+  float: right;
+}
+
+.product-card {
+  width: 100%;
+  float: left;
+  padding: 12px;
+  background: #fff;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+.product-card .product-img {
+  width: 80px;
+  float: left;
+  margin-right: 12px;
+}
+.product-card .product-img img {
+  width: 100%;
+}
+.product-card .product-content {
+  width: calc(100% - 80px);
+  float: right;
+  line-height: 1.35;
+}
+.product-card .product-content h5 {
+  margin-top: 0px;
+  color: #344051;
+  margin-bottom: 0px;
+  width: 99%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.product-card .product-content span {
+  font-size: 12px;
+  color: #7E8EA4;
 }
 
 /*# sourceMappingURL=style.css.map */
