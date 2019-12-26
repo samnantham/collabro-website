@@ -13438,13 +13438,15 @@ input:checked + .slider:before {
   min-height: 438px;
   padding-bottom: 12px;
 }
-.slider-wrapper .slick-slider {
-  width: 100%;
-  float: left;
-}
 .slider-wrapper .thumbslider {
-  width: 100%;
-  float: left;
+  background: transparent;
+}
+.slider-wrapper .thumbslider .slick-slider {
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+.slider-wrapper .thumbslider .thumbholder {
+  width: 150px !important;
 }
 
 .product-detail-info {

@@ -8,13 +8,15 @@
     float: left;
     min-height: 438px;
     padding-bottom: 12px;
-    .slick-slider{
-        width: 100%;
-        float: left;
-    }
     .thumbslider{
-        width: 100%;
-        float: left;
+        background: transparent;
+        .slick-slider{
+            margin-bottom: 0px;
+            margin-top: 10px;
+        }
+        .thumbholder{
+            width: 150px !important;
+        }
     }
 }
 
