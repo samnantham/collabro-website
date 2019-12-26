@@ -332,7 +332,7 @@
             
             <div class="right-wrapper">
                 <div class="right-title">
-                    <button type="button" class="btn unfollow-btn block-btn" ng-click="changefollowstatus();" ng-if="(viewData.owner.id != user.id) && (!viewData.commisionData)"><i class="fa" ng-class="viewData.isfollow ? 'fa-user-times':'fa-user-plus'" title="Follow"></i> {{ viewData.isfollow ? 'UnFollow':'Follow'}}</button>
+                    <!-- <button type="button" class="btn unfollow-btn block-btn" ng-click="changefollowstatus();" ng-if="(viewData.owner.id != user.id) && (!viewData.commisionData)"><i class="fa" ng-class="viewData.isfollow ? 'fa-user-times':'fa-user-plus'" title="Follow"></i> {{ viewData.isfollow ? 'UnFollow':'Follow'}}</button> -->
 
                     <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(viewData.owner.id == user.id)&&(viewData.is_request)"> Edit Request</button>
 

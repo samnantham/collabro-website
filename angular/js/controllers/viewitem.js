@@ -13,7 +13,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                     $scope.viewproduct();
                 }
                 $rootScope.redirectproduct = {};
-                console.log($rootScope.viewData)
+                $rootScope.viewData.address = $rootScope.viewData.address.split(",").join(',<br/>');
                 $rootScope.viewData.showExtra = 0;
                 if ($rootScope.viewData.showmap) {
                     if($rootScope.viewData.postalcode){

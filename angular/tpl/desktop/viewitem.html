@@ -1,167 +1,182 @@
 <div ng-controller="ViewItemCtrl" class="content-wrapper">
-   <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-   <div class="center-content">
-   	<div class="topbar">
-                <div class="topbar-left">
-                    <div class="avatar avatar-xs">
-                        <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" />
-                    </div>
-                    <ul class="topbar-list">
-                        <li>{{viewData.owner.username | cut:true:15:''}} </li>
-                        <li><img ng-src="{{IMGURL}}{{viewData.owner.xprank.icon}}" class="rank-icon"/> {{viewData.owner.xprank.rankname}} </li>
-                    </ul>
+    <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <div class="topbar">
+            <div class="topbar-left">
+                <div class="avatar avatar-xs">
+                    <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" />
                 </div>
-                <div class="topbar-right">
-                    <ul class="topbar-list">
-                        <li><i class="fa fa-binoculars"></i> Followers | {{viewData.owner.followers}} </li>
-                        <li><i class="fa fa-user"></i> Following | {{viewData.owner.following}} </li>
-                        <li><i class="fa fa-eye"></i> Deals | {{viewData.owner.noofdeals}} </li>
-                    </ul>
-                </div>
-                <div class="topbar-right">
-                    <ul class="topbar-list">
-                        <li><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus? 'Online':'Offline'}}</span></li>
-                    </ul>
-                </div>
+                <ul class="topbar-list">
+                    <li>{{viewData.owner.username | cut:true:15:''}} </li>
+                    <li><img ng-src="{{IMGURL}}{{viewData.owner.xprank.icon}}" class="rank-icon" /> {{viewData.owner.xprank.rankname}} </li>
+                </ul>
+            </div>
+            <div class="topbar-right">
+                <ul class="topbar-list">
+                    <li><i class="fa fa-binoculars"></i> Followers | {{viewData.owner.followers}} </li>
+                    <li><i class="fa fa-user"></i> Following | {{viewData.owner.following}} </li>
+                    <li><i class="fa fa-eye"></i> Deals | {{viewData.owner.noofdeals}} </li>
+                </ul>
+            </div>
+            <div class="topbar-right">
+                <ul class="topbar-list">
+                    <li><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus? 'Online':'Offline'}}</span></li>
+                </ul>
+            </div>
         </div>
 
         <div class="container-top mt-15">
-                <!-- product left -->
-                <div class="content-detail-left">
-                    <div class="slider-wrapper">
-                        <div class="custom-slider">
-                            <slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
-                                <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
-                                    <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
-                                        <span ng-if="image.filetype == 2">
+            <!-- product left -->
+            <div class="content-detail-left">
+                <div class="slider-wrapper">
+                    <div class="custom-slider">
+                        <slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                            <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
+                                <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                                    <span ng-if="image.filetype == 2">
                                         <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
                                         <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
                                     </span>
-                                    </div>
+                                </div>
+                            </div>
+                        </slick>
+                        <div class="thumbslider">
+                            <slick data="viewData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
+                                <div class="thumbholder" ng-repeat="(key,image) in viewData.images">
+                                    <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
                                 </div>
                             </slick>
-                            <div class="thumbslider">
-                                <slick data="viewData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
-                                    <div class="thumbholder" ng-repeat="(key,image) in viewData.images" >
-                                        <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
-                                    </div>
-                                </slick>
-                            </div>
                         </div>
                     </div>
-                    <div class="product-detail-info">
-                        
-                        <h3>{{viewData.title}}</h3>
-                        <span class="sub-title">{{viewData.profession ? viewData.profession : 'Photographer'}}: 
-                        	<span class="default"> {{viewData.owner.username}} </span>
-                        </span>
-                        <p>{{viewData.description}}</p>
-                        
-                        <ul class="check-list">
-                            <li>Prosthetic Make-Up</li>
-                            <li>Bridal Make-Up</li>
-                            <li>Event Make-Up</li>
-                            <li>Studio Make-Up</li>
-                        </ul>
+                </div>
+                <div class="product-detail-info">
 
-                        <div class="product-info-row">
+                    <h3 class="text-capitalize">{{viewData.title}}</h3>
+                    <span class="sub-title">{{viewData.profession ? viewData.profession : 'Photographer'}}: 
+                        <span class="default"> {{viewData.owner.username}} </span>
+                    </span>
+                    <p>{{viewData.description}}</p>
+
+                    <div class="product-info-row" ng-if="viewData.type == 'Event'">
+                        <div class="product-info-column">
+                            <span>  Start Date </span>
+                            <h5> <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.alldayevent ? 'Every Day': (viewData.startdate | date:"dd-MM-yyyy")}}</h5>
+                        </div>
+                        <div class="product-info-column">
+                            <span>  End Date </span>
+                            <h5> <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.alldayevent ? 'Every Day': (viewData.enddate | date:"dd-MM-yyyy")}}</h5>
+                        </div>
+                        <div class="product-info-column">
+                            <span>  Start Time </span>
+                            <h5> <i class="fa fa-clock-o" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.starttime}}</h5>
+                        </div>
+                        <div class="product-info-column">
+                            <span>  End Time </span>
+                            <h5> <i class="fa fa-clock-o" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.endtime}}</h5>
+                        </div>
+                    </div>
+
+                    <div class="product-info-row" ng-if="viewData.type == 'Rental'">
+                        <div class="product-info-column" ng-if="viewData.startdate">
+                            <span>  Start Date </span>
+                            <h5> <i class="fa fa-calendar"></i> &nbsp; &nbsp; {{viewData.startdate | date:"dd-MM-yyyy"}}</h5>
+                        </div>
+                        <div class="product-info-column" ng-if="viewData.enddate">
+                            <span>  End Date </span>
+                            <h5> <i class="fa fa-calendar"></i> &nbsp; &nbsp; {{viewData.enddate | date:"dd-MM-yyyy"}}</h5>
+                        </div>
+                        <div class="product-info-column">
+                            <span>  Location </span>
+                            <h5> <i class="fa fa-map-marker"></i> &nbsp; &nbsp; {{viewData.location}}</h5>
+                        </div>
+                    </div>
+
+                    <div class="product-info-row">
+                        <div class="product-info-column">
+                            <span> Date Posted : {{convertDate(viewData.created_at) | dateToISO | date:'dd MMMM yyyy'}}</span>
+                        </div>
+                        <div class="product-info-column">
+                            <span><i class="fa fa-caret-down pull-right" ng-class="viewData.showExtra ? 'fa-caret-up' : 'fa-caret-down'" ng-click="viewData.showExtra = !viewData.showExtra" ng-if="(viewData.type != 'Service')&&((!viewData.isprivate)||(viewData.showmap))"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <hr/>
+
+                    <div class="extra-features slide-toggle-js" ng-if="viewData.showExtra">
+                        <div class="product-info-row" ng-if="user.iscompany == 1&&viewData.organisation">
                             <div class="product-info-column">
-                                <span>
-                                    Organization
-                                </span>
-                                <h5>Name of company or organiser</h5>
+                                <span>  Organization </span>
+                                <h5>{{viewData.organisation}}</h5>
                             </div>
-                            <div class="product-info-column">
-                                <span>
-                                    Company UEN No.
-                                </span>
-                                <h5>Company registration No.</h5>
+                            <div class="product-info-column" ng-if="user.iscompany == 1">
+                                <span> Company UEN No. </span>
+                                <h5>{{viewData.company_uen ? viewData.company_uen : 'Not Provided'}}</h5>
                             </div>
                         </div>
 
                         <div class="product-info-row">
                             <div class="product-info-column">
-                                <span>
-                                    Address
-                                </span>
-                                <h5>12 Ang Mo Kio<br/>
-                                    #01-30<br/>
-                                    Avenue 5<br/>
-                                    Singapore<br/>
-                                    S386712</h5>
+                                <span> Address </span>
+                                <h5 ng-bind-html="viewData.address"></h5>
                             </div>
-                            <div class="product-info-column contact-info-cards">
+                            <div class="product-info-column contact-info-cards" ng-if="!viewData.isprivate">
                                 <div class="contact-info">
-                                    <span>
-                                        Email
-                                    </span>
+                                    <a href="mailto:{{viewData.email}}"> Email </a>
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <div class="contact-info">
-                                    <span>
-                                        Contact No
-                                    </span>
+                                    <a href="tel:{{viewData.phoneno}}"> Contact No </a>
                                     <i class="fa fa-phone-square"></i>
                                 </div>
-                                <div class="contact-info">
-                                    <span>
-                                        Order Link
-                                    </span>
+                                <div class="contact-info" ng-if="viewData.orderlink">
+                                    <a href="{{viewData.orderlink}}" target="_blank"> Order Link </a>
                                     <i class="fa fa-shopping-cart"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="product-info-row">
-                            <img src="../assets/img/map.png" />
+                        <div class="product-info-row product-map" ng-if="viewData.showmap && viewData.type != 'Service'">
+                            <ng-map center="{{viewData.latitude}},{{viewData.longitude}}" zoom="17">
+                                <marker icon="{{customIcon}}" position="{{viewData.latitude}}, {{viewData.longitude}}"></marker>
+                            </ng-map>
                         </div>
-
-                        <div class="product-info-row">
-                            <div class="product-info-column">
-                                <span>
-                                    Date Posted : 27 September 2017
-                                </span>
-                            </div>
-                        </div>
-                        <hr/>
-                        <div class="product-info-row mb-20">
-                            <div class="product-info-column price-wrapper">
-                                <span class="price">
-                                    $300
-                                </span>
-                                <span class="price-sub">
-                                    Per hour
-                                </span>
-                            </div>
-                            <div class="product-info-column">
-                                <div class="product-option">
-                                    <span><i class="fa fa-thumbs-up default"></i> 456K</span>
-                                    <span><i class="fa fa-plus"></i></span>
-                                    <span><i class="fa fa-share"></i></span>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
+                    <hr/ ng-if="viewData.showExtra">
 
-                <!-- product right -->
-                <div class="content-detail-right">
-                    <div class="product-card" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})">
-                        <div class="product-img">
-                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" />
+                    <div class="product-info-row mb-20">
+                        <div class="product-info-column price-wrapper">
+                            <span class="price"> {{viewData.price ? '$' + viewData.price: 'Free'}} </span>
+                            <span class="price-sub" ng-if="viewData.price > 0 && viewData.type!='Shop'">  Per {{viewData.periodtype}} </span>
                         </div>
-                        <div class="product-content">
-                            <h5>{{data.title}}</h5>
-                            <span><span class="default">{{data.type}}</span>&nbsp; &nbsp;|&nbsp; &nbsp;Updated: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                        <div class="product-info-column">
+                            <div class="product-option">
+                                <span title="Add to Wishlist" ng-if="viewData.ownerid != user.id"><i class="fa fa-heart" ng-class="{'primary': viewData.wishstatus }"></i></span>
+                                <span title="Add to Cart" ng-if="viewData.ownerid!=user.id" ng-click="addTocart(viewData.id)" ng-if="viewData.ownerid != user.id"><i class="fa fa-plus"></i></span>
+                                <span class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetosocial(viewData)"><i class="fa fa-share"></i></span>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-   	
-   </div>
-   <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+
+            <!-- product right -->
+            <div class="content-detail-right">
+                <div class="product-card" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})">
+                    <div class="product-img">
+                        <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" />
+                    </div>
+                    <div class="product-content">
+                        <h5>{{data.title}}</h5>
+                        <span><span class="default">{{data.type}}</span>&nbsp; &nbsp;|&nbsp; &nbsp;Updated: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
 
 <style type="text/css">
@@ -174,5 +189,13 @@
     .slider-wrapper .thumbslider {
         background: #7E8EA4;
         padding: 10px;
+    }
+    .product-detail-info p{
+        white-space: pre-wrap;
+        text-align: start !important;
+    }.product-map{
+        display: block!important;
+    }.topbar .rank-icon{
+        height: 20px;
     }
 </style>
