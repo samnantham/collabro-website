@@ -1,4 +1,4 @@
-.product-detail-left{
+.content-detail-left{
     width: calc(66.6666666667% - 15px);
     float: left;
 }
@@ -75,20 +75,7 @@
             display: flex;
             align-items: flex-end;
         }
-        .price{
-            float: left;
-            color: $black;
-            font-family: $font-special;
-            font-size: $font-price;
-            font-weight: $font-regular;
-        }
-        .price-sub{
-            float: left;
-            font-size: $font-s;
-            color: $secondary-text;
-            margin-left: 5px;
-            margin-bottom: 8px;
-        }
+        
         .product-option{
             display: flex;
             align-items: center;
@@ -103,6 +90,21 @@
             }
         }
     }
+}
+
+.price{
+    float: left;
+    color: $black;
+    font-family: $font-special;
+    font-size: $font-price;
+    font-weight: $font-regular;
+}
+.price-sub{
+    float: left;
+    font-size: $font-s;
+    color: $secondary-text;
+    margin-left: 5px;
+    margin-bottom: 8px;
 }
 
 .contact-info-cards{
@@ -124,7 +126,7 @@
     }
 }
 
-.product-detail-right{
+.content-detail-right{
     width: 33.3333333333%;
     float: right;
 }

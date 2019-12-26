@@ -1,0 +1,63 @@
+.feeds-wrapper{
+    width: 100%;
+    float: left;
+    padding: $card-pad;
+    background: $white;
+    height: 438px;
+    .feed-head{
+        width: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .feed-head-left{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            h3{
+                margin-left: 5px;
+                @include word(90%);
+            }
+        }
+        .feed-head-right{
+            color: $secondary-text;
+            i{
+                font-size: $font-m;
+            }
+        }
+    }
+    .feed-body{
+        width: 100%;
+        float: left;
+        padding: 12px 0;
+        height: calc(100% - 105px);
+        overflow: hidden auto;
+        h4{
+            color: $black;
+        }
+    }
+    .feed-footer{
+        width: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 10px;
+        border-top: 1px solid $border;
+        .feed-footer-left{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+        .feed-footer-right{
+            a{
+                color: $secondary-text;
+                margin-left: 15px;
+            }
+            color: $secondary-text;
+            i{
+                font-size: $font-m;
+            }
+        }
+    }
+}
