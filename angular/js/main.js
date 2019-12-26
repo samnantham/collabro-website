@@ -71,6 +71,41 @@ angular.module('app')
                 }
             };
 
+            $rootScope.productslick = {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: true,
+                asNavFor: '.slider-nav',
+                method: {},
+                event: {
+                    afterChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.slickCurrentIndex2 = currentSlide;
+                    },
+                    init: function(event, slick) {
+                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
+                    }
+                }
+            };
+
+            $rootScope.productthumbslick = {
+                focusOnSelect: true,
+                infinite: true,
+                initialSlide: 0,
+                slidesToShow: 5,
+                asNavFor: '.slider-for',
+                slidesToScroll: 1,
+                method: {},
+                event: {
+                    afterChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.slickCurrentIndex2 = currentSlide;
+                    },
+                    init: function(event, slick) {
+                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
+                    }
+                }
+            };
+
             $rootScope.assignDoughnutdata = function() {
                 Chart.pluginService.register({
                     beforeDraw: function(chart, easing) {
