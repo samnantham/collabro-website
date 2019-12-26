@@ -13440,13 +13440,12 @@ input:checked + .slider:before {
   padding-bottom: 12px;
 }
 .slider-wrapper .thumbslider {
-  background: transparent;
+  background: transparent !important;
+  padding: 0px !important;
+  cursor: pointer;
 }
 .slider-wrapper .thumbslider .slick-slider {
   margin-bottom: 0px;
-}
-.slider-wrapper .thumbslider .thumbholder {
-  width: 150px !important;
 }
 
 .product-detail-info {
