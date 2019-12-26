@@ -27,16 +27,16 @@
 
         <div class="container-top mt-15">
                 <!-- product left -->
-                <div class="product-detail-left">
+                <div class="content-detail-left">
                     <div class="slider-wrapper">
                     	<slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
                            <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
 		                        <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
-		                        <span ng-if="image.filetype == 2">
+		                            <span ng-if="image.filetype == 2">
 		                              <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
 		                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
 		                          </span>
-		                          </div>
+		                        </div>
 		                    </div>
                         </slick>
                         <div class="thumbslider">
@@ -45,7 +45,7 @@
                               <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
                            </div>
 				         </slick>
-				      </div>
+				        </div>
                     </div>
                     <div class="product-detail-info">
                         
@@ -144,7 +144,7 @@
                 </div>
 
                 <!-- product right -->
-                <div class="product-detail-right">
+                <div class="content-detail-right">
                     <div class="product-card" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})">
                         <div class="product-img">
                             <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" />

@@ -63,6 +63,8 @@
     float: left;
     margin: 0;
     list-style: none;
+    display: flex;
+    align-items: center;
     li{
         float: left;
         @extend .flex-center;
@@ -70,6 +72,9 @@
         margin-left: 15px;
         color: $secondary-text;
         position: relative;
+        img{
+            margin-right: 10px;
+        }
         i{
             font-size: $font-m;
             margin-right: 10px;

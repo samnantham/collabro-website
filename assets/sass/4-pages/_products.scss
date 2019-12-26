@@ -6,7 +6,16 @@
 .slider-wrapper{
     width: 100%;
     float: left;
-    min-height: 450px;
+    min-height: 438px;
+    padding-bottom: 12px;
+    .slick-slider{
+        width: 100%;
+        float: left;
+    }
+    .thumbslider{
+        width: 100%;
+        float: left;
+    }
 }
 
 .product-detail-info{
@@ -145,6 +154,7 @@
         margin-right: 12px;
         img{
             width: 100%;
+            max-height: 55px;
         }
     }
     .product-content{
