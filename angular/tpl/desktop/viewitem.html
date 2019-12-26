@@ -1,5 +1,163 @@
 <div ng-controller="ViewItemCtrl" class="content-wrapper">
    <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-   <div class="center-content"></div>
+   <div class="center-content">
+   	<div class="topbar">
+                <div class="topbar-left">
+                    <div class="avatar avatar-xs">
+                        <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" />
+                    </div>
+                    <ul class="topbar-list">
+                        <li>{{viewData.owner.username | cut:true:15:''}} </li>
+                        <li><img ng-src="{{IMGURL}}{{viewData.owner.xprank.icon}}" class="rank-icon"/> {{viewData.owner.xprank.rankname}} </li>
+                    </ul>
+                </div>
+                <div class="topbar-right">
+                    <ul class="topbar-list">
+                        <li><i class="fa fa-binoculars"></i> Followers | {{viewData.owner.followers}} </li>
+                        <li><i class="fa fa-user"></i> Following | {{viewData.owner.following}} </li>
+                        <li><i class="fa fa-eye"></i> Deals | {{viewData.owner.noofdeals}} </li>
+                    </ul>
+                </div>
+                <div class="topbar-right">
+                    <ul class="topbar-list">
+                        <li><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus? 'Online':'Offline'}}</span></li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="container-top mt-15">
+                <!-- product left -->
+                <div class="product-detail-left">
+                    <div class="slider-wrapper">
+                    	<slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                           <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
+		                        <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+		                        <span ng-if="image.filetype == 2">
+		                              <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+		                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+		                          </span>
+		                          </div>
+		                    </div>
+                        </slick>
+                        <div class="thumbslider">
+				         <slick data="viewData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
+				            <div class="thumbholder" ng-repeat="(key,image) in viewData.images" >
+                              <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                           </div>
+				         </slick>
+				      </div>
+                    </div>
+                    <div class="product-detail-info">
+                        
+                        <h3>{{viewData.title}}</h3>
+                        <span class="sub-title">{{viewData.profession ? viewData.profession : 'Photographer'}}: 
+                        	<span class="default"> {{viewData.owner.username}} </span>
+                        </span>
+                        <p>{{viewData.description}}</p>
+                        
+                        <ul class="check-list">
+                            <li>Prosthetic Make-Up</li>
+                            <li>Bridal Make-Up</li>
+                            <li>Event Make-Up</li>
+                            <li>Studio Make-Up</li>
+                        </ul>
+
+                        <div class="product-info-row">
+                            <div class="product-info-column">
+                                <span>
+                                    Organization
+                                </span>
+                                <h5>Name of company or organiser</h5>
+                            </div>
+                            <div class="product-info-column">
+                                <span>
+                                    Company UEN No.
+                                </span>
+                                <h5>Company registration No.</h5>
+                            </div>
+                        </div>
+
+                        <div class="product-info-row">
+                            <div class="product-info-column">
+                                <span>
+                                    Address
+                                </span>
+                                <h5>12 Ang Mo Kio<br/>
+                                    #01-30<br/>
+                                    Avenue 5<br/>
+                                    Singapore<br/>
+                                    S386712</h5>
+                            </div>
+                            <div class="product-info-column contact-info-cards">
+                                <div class="contact-info">
+                                    <span>
+                                        Email
+                                    </span>
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <span>
+                                        Contact No
+                                    </span>
+                                    <i class="fa fa-phone-square"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <span>
+                                        Order Link
+                                    </span>
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-info-row">
+                            <img src="../assets/img/map.png" />
+                        </div>
+
+                        <div class="product-info-row">
+                            <div class="product-info-column">
+                                <span>
+                                    Date Posted : 27 September 2017
+                                </span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="product-info-row mb-20">
+                            <div class="product-info-column price-wrapper">
+                                <span class="price">
+                                    $300
+                                </span>
+                                <span class="price-sub">
+                                    Per hour
+                                </span>
+                            </div>
+                            <div class="product-info-column">
+                                <div class="product-option">
+                                    <span><i class="fa fa-thumbs-up default"></i> 456K</span>
+                                    <span><i class="fa fa-plus"></i></span>
+                                    <span><i class="fa fa-share"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- product right -->
+                <div class="product-detail-right">
+                    <div class="product-card" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})">
+                        <div class="product-img">
+                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" />
+                        </div>
+                        <div class="product-content">
+                            <h5>{{data.title}}</h5>
+                            <span><span class="default">{{data.type}}</span>&nbsp; &nbsp;|&nbsp; &nbsp;Updated: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+   	
+   </div>
    <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
