@@ -12465,6 +12465,7 @@ ul.simple-list li:last-of-type {
   float: left;
   background: #fff;
   padding: 0px;
+  margin-top: 10px;
 }
 .custom-slider .thumbslider .slick-arrow {
   z-index: 999;
@@ -13443,7 +13444,6 @@ input:checked + .slider:before {
 }
 .slider-wrapper .thumbslider .slick-slider {
   margin-bottom: 0px;
-  margin-top: 10px;
 }
 .slider-wrapper .thumbslider .thumbholder {
   width: 150px !important;
