@@ -96,10 +96,10 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.productid = product.productid;
         obj.wishstatus = 0;
         obj.iscompared = 0;
-        var message = 'Remove wishlist item';
+        var message = 'Remove wishlist item?';
         $ngConfirm({
             title: message,
-            content: 'You are about to remove this wishlist item. Are you sure you want to remove it ?',
+            content: 'You are about to remove this wishlist item. Are you sure you want to remove it?',
             type: 'red',
             typeAnimated: true,
             closeIcon: true,
@@ -128,8 +128,8 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.wishstatus = 1;
         obj.iscompared = 0;
         $ngConfirm({
-            title: 'Remove compared item',
-            content: 'You are about to remove this comparelist item. Are you sure you want to remove it ?',
+            title: 'Remove compared item?',
+            content: 'You are about to remove this compared item. Are you sure you want to remove it?',
             type: 'red',
             typeAnimated: true,
             closeIcon: true,
@@ -160,9 +160,11 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.iscompared = 0;
         $ngConfirm({
             title: 'Remove compared item?',
-            content: 'You are about to remove this comparelist item. Are you sure you want to remove it ?',
+            content: 'You are about to remove this compared item. Are you sure you want to remove it?',
             type: 'red',
             typeAnimated: true,
+            closeIcon: true,
+            closeIconClass: 'modal-close',
             buttons: {
                 cancel: {
                     text: 'No',
