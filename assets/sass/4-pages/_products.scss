@@ -9,12 +9,11 @@
     min-height: 438px;
     padding-bottom: 12px;
     .thumbslider{
-        background: transparent;
+        background: transparent !important;
+        padding: 0px !important;
+        cursor: pointer;
         .slick-slider{
             margin-bottom: 0px;
-        }
-        .thumbholder{
-            width: 150px !important;
         }
     }
 }
