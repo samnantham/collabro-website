@@ -73,7 +73,7 @@
                             <img ng-src="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" />
                         </div>
                         <div class="table-content">
-                            <div class="table-col">
+                            <div class="table-col full-width">
                                 <h5>{{data.title}}</h5>
                                 <span>{{data.owner.username}}  |  Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                             </div>

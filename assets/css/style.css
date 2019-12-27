@@ -7396,6 +7396,18 @@ a {
   color: #fff !important;
 }
 
+.facebook {
+  color: #3b5998;
+}
+
+.twitter {
+  color: #55acee;
+}
+
+.whatsapp {
+  color: #43d854;
+}
+
 .primary-bg {
   background: #00C4E8;
 }
@@ -9182,7 +9194,10 @@ i.color-btn {
   font-size: 12px;
   color: #7E8EA4;
   margin-left: 5px;
-  margin-bottom: -10px;
+  margin-bottom: 8px;
+  width: 40px;
+  margin-bottom: 1px;
+  line-height: 12px;
 }
 .card .card-info.price-border {
   border-top: 1px solid #dfe4e8;
@@ -9232,6 +9247,49 @@ i.color-btn {
   font-size: 30px;
   transition: all 0.2s;
 }
+.card.share-card {
+  padding: 10px 25px;
+  display: flex;
+  align-items: center;
+}
+.card.share-card .card-left {
+  width: 50%;
+  float: left;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+.card.share-card .card-left h4 {
+  color: #344051;
+  margin-left: 8px;
+}
+.card.share-card .card-left i {
+  font-size: 26px;
+}
+.card.share-card .card-right {
+  width: 50%;
+  float: left;
+  text-align: right;
+  color: #FF6E4B;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.card.share-card .card-right span {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FF6E4B;
+  color: #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  margin-right: 8px;
+}
+
 .compare-card .card-footer {
   border-top: 0px;
   padding: 20px;
@@ -9452,12 +9510,26 @@ i.color-btn {
   max-width: 50%;
   padding: 0 15px;
 }
+.table-card .table-content .table-col.full-width {
+  max-width: 100%;
+}
 .table-card .table-content .table-col p {
   margin-bottom: 0px;
 }
 .table-card .table-content .table-col h5 {
   color: #344051;
   margin-top: 0px;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 40px;
 }
 .table-card .table-content .table-col span {
   font-size: 12px;
@@ -13544,6 +13616,9 @@ input:checked + .slider:before {
   color: #7E8EA4;
   margin-left: 5px;
   margin-bottom: 8px;
+  width: 40px;
+  margin-bottom: 1px;
+  line-height: 12px;
 }
 
 .contact-info-cards {
