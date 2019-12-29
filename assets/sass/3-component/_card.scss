@@ -54,6 +54,7 @@
             margin-top: 5px;
         }
         .word-line{
+            min-height: 40px;
             @include wordlines();
         }
     }
@@ -255,17 +256,17 @@
         align-items: flex-start;
         min-height: 205px;
         .card-left{
-            width: 48%;
+            width: 50%;
             float: left;
             text-align: center;
+            padding-right: 20px;
             img{
-                width: auto;
-                max-width: 100%;
+                width: 100%;
                 @include border-radius(50%);
             }
         }
         .card-right{
-            width: 48%;
+            width: 50%;
             float: right;
             margin-left: auto;
             .card-thumbs{
@@ -276,22 +277,22 @@
                 list-style: none;
                 margin-bottom: 15px;
                 li{
-                    width: 50%;
+                    width: calc(50% - 2px);
                     float: left;
-                    margin-bottom: 5px;
+                    margin-bottom: 4px;
+                    height: 40px;
+                    @include cover();
                     img{
                         width: calc(100% - 5px);  
                         height: 45px;                  
                     }
                     &:nth-child(odd){
-                        img{
-                            margin: 0 5px 0px 0px;
-                        }
+                        margin: 0 4px 0px 0px;
                     }
-                    &:nth-child(even){
-                        img{
-                            margin: 0px;
-                        }
+                }
+                @media (min-width: 1441px) {
+                    li{
+                        height: 55px;
                     }
                 }
             }
@@ -309,13 +310,14 @@
                     }
                     .count{
                         width: 100%;
-                        float: left;
-                        text-align: center;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
                         font-size: $font-l;
                         color: $black;
                         min-height: 32px;
                         img{
-                            height: 30px;
+                            height: 25px;
                         }
                     }
                     .title{

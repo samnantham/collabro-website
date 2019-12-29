@@ -57,8 +57,11 @@
                         </div>
                         <div class="card-right">
                             <ul class="card-thumbs">
-                                <li ng-repeat="(no,product) in friend.ownerproducts| limitTo: 4"><img ng-src="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}" /></li>
-                                <li ng-repeat="i in dummyarray | limitTo: (dummyarray.length - friend.ownerproducts.length)" ng-if="friend.ownerproducts.length < 4"><img ng-src="../assets/img/not-avail.png" /></li>
+                                <!-- <li ng-repeat="(no,product) in friend.ownerproducts| limitTo: 4"><img ng-src="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}" /></li>
+                                <li ng-repeat="i in dummyarray | limitTo: (dummyarray.length - friend.ownerproducts.length)" ng-if="friend.ownerproducts.length < 4"><img ng-src="../assets/img/not-avail.png" /></li> -->
+
+                                <li background-image="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}" ng-repeat="(no,product) in friend.ownerproducts| limitTo: 4"></li>
+                                <li background-image="../assets/img/not-avail.png" ng-repeat="i in dummyarray | limitTo: (dummyarray.length - friend.ownerproducts.length)" ng-if="friend.ownerproducts.length < 4"></li>
                             </ul>
                             <div class="rewards">
                                 <div class="rewards-left">
@@ -127,8 +130,11 @@
                         </div>
                         <div class="card-right">
                             <ul class="card-thumbs">
-                                <li ng-repeat="(no,product) in people.ownerproducts| limitTo: 4"><img ng-src="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}" /></li>
-                                <li ng-repeat="i in dummyarray | limitTo: (dummyarray.length - people.ownerproducts.length)" ng-if="people.ownerproducts.length < 4"><img ng-src="../assets/img/not-avail.png" /></li>
+                                <!-- <li ng-repeat="(no,product) in people.ownerproducts| limitTo: 4"><img ng-src="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}" /></li>
+                                <li ng-repeat="i in dummyarray | limitTo: (dummyarray.length - people.ownerproducts.length)" ng-if="people.ownerproducts.length < 4"><img ng-src="../assets/img/not-avail.png" /></li> -->
+
+                                <li background-image="{{product.images[0].filetype == 1 ? IMGURL:''}}{{product.images[0].thumbnail}}" ng-repeat="(no,product) in people.ownerproducts| limitTo: 4"></li>
+                                <li background-image="../assets/img/not-avail.png" ng-repeat="i in dummyarray | limitTo: (dummyarray.length - people.ownerproducts.length)" ng-if="people.ownerproducts.length < 4"></li>
                             </ul>
                         </div>
                     </div>

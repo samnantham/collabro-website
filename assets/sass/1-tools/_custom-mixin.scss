@@ -119,3 +119,12 @@
 		margin-top: calc((#{$capital-letter} - #{$line-height}) * 0.5em);
 	}
 }
+
+
+@mixin cover() {
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}

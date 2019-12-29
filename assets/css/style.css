@@ -9163,6 +9163,7 @@ i.color-btn {
   margin-top: 5px;
 }
 .card .card-content .word-line {
+  min-height: 40px;
   /* autoprefixer: off */
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
@@ -9378,19 +9379,19 @@ i.color-btn {
   min-height: 205px;
 }
 .friend-card .card-info .card-left {
-  width: 48%;
+  width: 50%;
   float: left;
   text-align: center;
+  padding-right: 20px;
 }
 .friend-card .card-info .card-left img {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
 }
 .friend-card .card-info .card-right {
-  width: 48%;
+  width: 50%;
   float: right;
   margin-left: auto;
 }
@@ -9403,19 +9404,27 @@ i.color-btn {
   margin-bottom: 15px;
 }
 .friend-card .card-info .card-right .card-thumbs li {
-  width: 50%;
+  width: calc(50% - 2px);
   float: left;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  height: 40px;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
 }
 .friend-card .card-info .card-right .card-thumbs li img {
   width: calc(100% - 5px);
   height: 45px;
 }
-.friend-card .card-info .card-right .card-thumbs li:nth-child(odd) img {
-  margin: 0 5px 0px 0px;
+.friend-card .card-info .card-right .card-thumbs li:nth-child(odd) {
+  margin: 0 4px 0px 0px;
 }
-.friend-card .card-info .card-right .card-thumbs li:nth-child(even) img {
-  margin: 0px;
+@media (min-width: 1441px) {
+  .friend-card .card-info .card-right .card-thumbs li {
+    height: 55px;
+  }
 }
 .friend-card .card-info .card-right .rewards {
   width: 100%;
@@ -9433,14 +9442,15 @@ i.color-btn {
 }
 .friend-card .card-info .card-right .rewards .rewards-left .count, .friend-card .card-info .card-right .rewards .rewards-right .count {
   width: 100%;
-  float: left;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
   color: #344051;
   min-height: 32px;
 }
 .friend-card .card-info .card-right .rewards .rewards-left .count img, .friend-card .card-info .card-right .rewards .rewards-right .count img {
-  height: 30px;
+  height: 25px;
 }
 .friend-card .card-info .card-right .rewards .rewards-left .title, .friend-card .card-info .card-right .rewards .rewards-right .title {
   width: 100%;
