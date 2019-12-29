@@ -53,6 +53,9 @@
         .dropdown-toggle{
             cursor: pointer;
         }  
+        i{
+            font-size: $font-ml;
+        }
         span{
             color: $secondary-text;
         }   

@@ -3,7 +3,7 @@
     float: left;
     padding: $card-pad;
     background: $white;
-    height: 438px;
+    height: 562px;
     .feed-head{
         width: 100%;
         float: left;
@@ -30,7 +30,7 @@
         width: 100%;
         float: left;
         padding: 12px 0;
-        height: calc(100% - 105px);
+        height: calc(100% - 153px);
         overflow: hidden auto;
         h4{
             color: $black;
@@ -54,10 +54,31 @@
                 color: $secondary-text;
                 margin-left: 15px;
             }
+            .btn{
+                color: $white !important;
+            }
             color: $secondary-text;
             i{
                 font-size: $font-m;
             }
         }
+        &.top-feed-footer{
+            border-top: 0px;
+            padding-top: 0px;
+            padding-bottom: 10px;
+        }
+    }
+}
+
+.more-info{
+    width: 100%;
+    float: left;
+    padding: 16px;
+    background: $white;
+    margin-top: 15px;
+    .count{
+        font-size: $font-price;
+        color: $default;
+        font-weight: $font-bold;
     }
 }
