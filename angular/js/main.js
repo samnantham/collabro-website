@@ -179,7 +179,7 @@ angular.module('app')
             $rootScope.opensharepopover = function(){
                 $ngConfirm({
                     columnClass:'sharepopover',
-                    title: '',
+                    title: 'Share',
                     contentUrl:'tpl/blocks/popover/sharepopover.html',
                     type: 'red',
                     useBootstrap:true,

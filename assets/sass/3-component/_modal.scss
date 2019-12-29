@@ -195,3 +195,12 @@
         }
     }
 }
+
+/* Share popover */
+.sharepopover{
+    width: 500px;
+    margin: 0 auto;
+    .ng-confirm-content-pane{
+        min-height: 250px !important;
+    }
+}

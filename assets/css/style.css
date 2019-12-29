@@ -11408,6 +11408,15 @@ i.color-btn {
   text-transform: capitalize !important;
 }
 
+/* Share popover */
+.sharepopover {
+  width: 500px;
+  margin: 0 auto;
+}
+.sharepopover .ng-confirm-content-pane {
+  min-height: 250px !important;
+}
+
 .progress-wrapper {
   width: 100%;
   float: left;
