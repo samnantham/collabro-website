@@ -186,6 +186,10 @@ angular.module('app')
                     typeAnimated: true,
                     closeIcon: true,
                     closeIconClass: 'modal-close',
+                    buttons: {
+                        close: function () {
+                        },
+                    },
                 });
             }
 

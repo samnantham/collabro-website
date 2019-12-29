@@ -12,6 +12,8 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
             if (getData.status == 200) {
                 $scope.feedchat = getData.data;
                 $scope.feedData = getData.data.feed;
+                console.log($scope.feedchat)
+                console.log($scope.feedData)
                 if (($rootScope.user.id == $scope.feedchat.userid) || ($rootScope.user.id == $scope.feedchat.feed.owner.id)) {
                     $scope.chattype = 'feedchat';
                     $scope.firebaseurl = '/feed-' + $scope.feedchat.id + '/';

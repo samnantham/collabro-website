@@ -1,6 +1,44 @@
 <div ng-controller="PrivateChatsCtrl" class="content-wrapper">
     <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
     <div class="center-content">
+        <div class="row ">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar">
+                    <div class="topbar-left">
+                        <div class="avatar avatar-xs">
+                            <img ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})" ng-if="chatInfo.seconduser == user.id">
+                            <img class="rank-icon" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})" ng-if="chatInfo.firstuser == user.id">
+                        </div>
+                        <ul class="topbar-list" ng-if="chatInfo.firstuser == user.id">
+                            <li>{{chatInfo.seconduserinfo.username}}</li>
+                            <li><img class="rank-icon" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.xprank.icon}}"> Apperentice </li>
+                        </ul>
+                        <ul class="topbar-list" ng-if="chatInfo.seconduser == user.id">
+                            <li>{{chatInfo.firstuserinfo.username}}</li>
+                            <li><img class="rank-icon" ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.xprank.icon}}"> {{chatInfo.firstuserinfo.xprank.rankname}} </li>
+                        </ul>
+                    </div>
+                    <div class="topbar-right">
+                        <ul class="topbar-list" ng-if="chatInfo.seconduser == user.id">
+                            <li><i class="fa fa-binoculars"></i> Followers | {{chatInfo.firstuserinfo.followers}} </li>
+                            <li><i class="fa fa-user"></i> Following | {{chatInfo.firstuserinfo.following}} </li>
+                            <li><i class="fa fa-eye"></i> Deal made | {{chatInfo.firstuserinfo.noofdeals}} </li>
+                        </ul>
+                        <ul class="topbar-list" ng-if="chatInfo.firstuser == user.id">
+                            <li><i class="fa fa-binoculars"></i> Followers | {{chatInfo.seconduserinfo.followers}} </li>
+                            <li><i class="fa fa-user"></i> Following | {{chatInfo.seconduserinfo.following}} </li>
+                            <li><i class="fa fa-eye"></i> Deal made | {{chatInfo.seconduserinfo.noofdeals}} </li>
+                        </ul>
+                    </div>
+                    <div class="topbar-right">
+                        <ul class="topbar-list">
+                            <li ng-if="chatInfo.seconduser == user.id"><i class="fa fa-circle success"></i> <span>{{chatInfo.firstuserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span></li>
+                            <li ng-if="chatInfo.firstuser == user.id"><i class="fa fa-circle success"></i> <span>{{chatInfo.seconduserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
@@ -27,7 +65,7 @@
                 </div>
             </div>
         </div> -->
-        <div class="row">
+        <div class="row  mt-15">
             <div class="col-lg-12 col-md-12">
                 <div class="chat-wrap">
                     <div class="message-head">
