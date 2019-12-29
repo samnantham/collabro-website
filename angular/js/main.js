@@ -155,8 +155,7 @@ angular.module('app')
                 var src = '<img src="'+ $rootScope.IMGURL + img +'">';
                 $ngConfirm({
                     title: '',
-                    //content: src,
-                    contentUrl:'',
+                    content: src,
                     type: 'red',
                     typeAnimated: true,
                     closeIcon: true,
@@ -174,6 +173,182 @@ angular.module('app')
                         close: function () {
                         },
                     },
+                });
+            }
+
+            $rootScope.opensharepopover = function(){
+                $ngConfirm({
+                    columnClass:'sharepopover',
+                    title: '',
+                    contentUrl:'tpl/blocks/popover/sharepopover.html',
+                    type: 'red',
+                    useBootstrap:true,
+                    typeAnimated: true,
+                    closeIcon: true,
+                    closeIconClass: 'modal-close',
+                });
+            }
+
+            $rootScope.sharefeedtosocial = function(data) {
+                $rootScope.shareData = {};
+                $rootScope.shareData = data;
+                $rootScope.shareData.shareurl = app.feedshareurl;
+                $rootScope.sharetype = 'feed';
+                $rootScope.opensharepopover();
+            }
+
+            $rootScope.sharetosocial = function(data) {
+                $rootScope.shareData = {};
+                $rootScope.shareData = data;
+                $rootScope.shareData.shareurl = app.productshareurl;
+                $rootScope.sharetype = 'product';
+                $rootScope.opensharepopover();
+            }
+
+            $rootScope.fbshare = function() {
+                if ($rootScope.sharetype == 'product') {
+                    if ($rootScope.shareData.images[0].filetype == 1) {
+                        var IMGURL = $rootScope.IMGURL + $rootScope.shareData.images[0].thumbnail;
+                    } else {
+                        var IMGURL = $rootScope.shareData.images[0].thumbnail;
+                    }
+                    Facebook.ui({
+                        method: 'feed',
+                        name: $rootScope.shareData.title,
+                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
+                        picture: IMGURL,
+                        caption: $rootScope.shareData.title,
+                        description: $rootScope.shareData.description
+                    }, function(response) {
+                        if (response === null) {
+                            console.log('was not shared');
+                        } else {
+                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
+                                console.log('not shared');
+                            } else {
+                                $rootScope.updateforsocialshare(1);
+                                $rootScope.closepopoverItem();
+                                console.log('shared success');
+                            }
+                        }
+                    });
+                } else if ($rootScope.sharetype == 'friend') {
+                    var IMGURL = $rootScope.IMGURL + $rootScope.shareData.avatar;
+                    Facebook.ui({
+                        method: 'feed',
+                        name: $rootScope.shareData.username,
+                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
+                        picture: IMGURL,
+                        caption: $rootScope.shareData.username,
+                        description: $rootScope.shareData.aboutme
+                    }, function(response) {
+                        if (response === null) {
+                            console.log('was not shared');
+                        } else {
+                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
+                                console.log('not shared');
+                            } else {
+                                //$rootScope.updateforsocialshare(1);
+                                $rootScope.closepopoverItem();
+                                console.log('shared success');
+                            }
+                        }
+                    });
+                } else if ($rootScope.sharetype == 'feed') {
+                    var IMGURL = $rootScope.IMGURL + $rootScope.shareData.owner.avatar;
+                    Facebook.ui({
+                        method: 'feed',
+                        name: $rootScope.shareData.title,
+                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
+                        picture: IMGURL,
+                        caption: $rootScope.shareData.title,
+                        description: $rootScope.shareData.description
+                    }, function(response) {
+                        if (response === null) {
+                            console.log('was not shared');
+                        } else {
+                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
+                                console.log('not shared');
+                            } else {
+                                //$rootScope.updateforsocialshare(1);
+                                $rootScope.closepopoverItem();
+                                console.log('shared success');
+                            }
+                        }
+                    });
+                } else if ($rootScope.sharetype == 'project') {
+                    if ($rootScope.shareData.files[0].filetype == 1) {
+                        var IMGURL = $rootScope.IMGURL + $rootScope.shareData.files[0].thumbnail;
+                    } else {
+                        var IMGURL = $rootScope.shareData.files[0].thumbnail;
+                    }
+                    Facebook.ui({
+                        method: 'feed',
+                        name: $rootScope.shareData.title,
+                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
+                        picture: IMGURL,
+                        caption: $rootScope.shareData.title,
+                        description: $rootScope.shareData.description
+                    }, function(response) {
+                        if (response === null) {
+                            console.log('was not shared');
+                        } else {
+                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
+                                console.log('not shared');
+                            } else {
+                                $rootScope.updateforsocialshare(1);
+                                $rootScope.closepopoverItem();
+                                console.log('shared success');
+                            }
+                        }
+                    });
+                }else if ($rootScope.sharetype == 'todo') {
+                    if ($rootScope.shareData.images[0].filetype == 1) {
+                        var IMGURL = $rootScope.IMGURL + $rootScope.shareData.images[0].thumbnail;
+                    } else {
+                        var IMGURL = $rootScope.shareData.images[0].thumbnail;
+                    }
+                    Facebook.ui({
+                        method: 'feed',
+                        name: $rootScope.shareData.title,
+                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
+                        picture: IMGURL,
+                        caption: $rootScope.shareData.title,
+                        description: $rootScope.shareData.description
+                    }, function(response) {
+                        if (response === null) {
+                            console.log('was not shared');
+                        } else {
+                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
+                                console.log('not shared');
+                            } else {
+                                $rootScope.updateforsocialshare(1);
+                                $rootScope.closepopoverItem();
+                                console.log('shared success');
+                            }
+                        }
+                    });
+                }
+
+            }
+
+
+            $rootScope.updateforsocialshare = function(type) {
+                webServices.put('addsocialxp/' + type).then(function(getData) {
+                    if (getData.status == 200) {
+                        $rootScope.$emit("showsuccessmsg", getData.data.message);
+                        $rootScope.getUserInfo();
+                    }
+                });
+            }
+
+            $rootScope.updatestatus = function(status) {
+                webServices.put('mystatus/' + status).then(function(getData) {
+                    if (getData.status == 200) {
+                        $sessionStorage.user.onlinestatus = status;
+                        localStorage.user = JSON.stringify($sessionStorage.user);
+                        $rootScope.user = $sessionStorage.user;
+                    }
                 });
             }
 
