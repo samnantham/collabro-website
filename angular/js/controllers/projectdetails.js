@@ -10,6 +10,7 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
         webServices.get('project/' + $stateParams.id).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.projectData = getData.data;
+                console.log($rootScope.projectData)
                 $rootScope.ispresentmember = false;
                 if($rootScope.user.id == $rootScope.projectData.ownerid){
                     $rootScope.ispresentmember = true;

@@ -801,6 +801,7 @@ angular.module('app')
             });
 
             $rootScope.$on("callStickyMenu", function() {
+                console.log('hahahaha')
                 if (!isMobile.phone) {
                     $('.leftSidebar, .content, .rightSidebar').theiaStickySidebar({
                         additionalMarginTop: 50
@@ -923,6 +924,9 @@ angular.module('app')
                     }
                 } else {
                     $rootScope.getUserInfo();
+                    $timeout(function() {
+                        $rootScope.$emit("callStickyMenu", {});
+                    }, 3000);
                 }
             });
 
