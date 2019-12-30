@@ -28,3 +28,9 @@
     color: $white;
     border-color: darken($info, 5%);    
 }
+
+.alert-orange{
+    @extend .orange-gradient;
+    color: $white;
+    border-color: darken($orange, 5%);
+}
