@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="container-top mt-15" ng-if="viewData.title">
+        <div class="container-top mt-15 mb-15" ng-if="viewData.title">
             <div class="content-detail-left">
                 <div class="slider-wrapper">
                     <div class="custom-slider">
@@ -57,36 +57,65 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-detail-right">
-                <div class="feeds-wrapper">
-                    <div class="feed-head">
-                        <div class="feed-head-left">
-                            <div class="avatar avatar-xs">
-                                <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" ui-sref="app.viewuser({'id':viewData.owner.id})" />
+                <div class="more-info">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 text-center">
+                                <h5>Collection Items</h5>
+                                <div class="count">20</div>
                             </div>
-                            <h3>{{viewData.owner.username | cut:true:20:''}} </h3>
+                            <div class="col-lg-4 col-md-4 text-center br-v">
+                                <h5>Completed Projects</h5>
+                                <div class="count">50</div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 text-center">
+                                <h5>{{viewData.owner.xprank.rankname}}</h5>
+                                <img class="rank-icon" ng-src="{{IMGURL}}{{viewData.owner.xprank.icon}}" />
+                            </div>
                         </div>
-                        <div class="feed-head-right">
-                            <i class="fa fa-circle" ng-class="viewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                </div>
+            </div>
+             <div class="content-detail-right">
+                    <div class="feeds-wrapper">
+                        <div class="feed-head">
+                            <div class="feed-head-left">
+                                <div class="avatar avatar-xs">
+                                    <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" ui-sref="app.viewuser({'id':viewData.owner.id})" />
+                                </div>
+                                <h3>{{viewData.owner.username | cut:true:20:''}}</h3>
+                            </div>
+                            <div class="feed-head-right">
+                                <i class="fa fa-circle" ng-class="viewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feed-body">
-                        <h4>{{viewData.title}}</h4>
-                        <p>{{viewData.description | cut:true:385:''}}</p>
-                    </div>
-                    <div class="feed-footer">
-                        <div class="feed-footer-left">
-                            <span class="price">&nbsp;</span>
-                            <span class="price-sub">&nbsp;</span>
+                        <div class="feed-body">
+                            <h4>{{viewData.title}}</h4>
+                            <p>{{viewData.description | cut:true:385:''}}</p>
                         </div>
-                        <div class="feed-footer-right">
-                            <a title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="viewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': feedchat.wishstatus == 1}"></i></a>
-                            <a title="Share to Earn" ng-click="sharefeedtosocial(viewData)"><i class="fa fa-share"></i></a>
+                        <div class="feed-footer top-feed-footer">
+                            <div class="feed-footer-left">
+                                <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:viewData.id})">View More</button>
+                            </div>
+                            <div class="feed-footer-right">
+                                <a title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="viewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': feedchat.wishstatus == 1}"></i></a>
+                                <a href="#"><i class="fa fa-plus"></i></a>
+                                <a title="Share to Earn" ng-click="sharefeedtosocial(viewData)"><i class="fa fa-share"></i></a>
+                            </div>
+                        </div>
+                        <div class="feed-footer">
+                            <div class="feed-footer-left">
+                                <span class="price">{{viewData.price ? '$' + viewData.price: 'Free'}}</span>
+                                <span class="price-sub" ng-if="viewData.price > 0 && viewData.type!='Shop'">per {{viewData.periodtype}}</span>
+                            </div>
+                            <div class="feed-footer-right">
+                                <a class="btn success-btn right" ng-click="editProduct();" ng-if="viewData.owner.id == user.id">Edit Product</a>
+
+                                <a class="btn success-btn right" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)">{{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type))  }}</a>
+
+                                <a class="btn success-btn right" ng-click="gotoChat(viewData.id)" ng-if="(viewData.owner.id != user.id) && (viewData.commisionData)">View  {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type))  }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         <div class="row mt-15">
