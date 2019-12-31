@@ -48,13 +48,6 @@ angular.module('app')
 
                 if (!isMobile.phone) {
                   $stateProvider
-
-                    .state('app.htmlcomponent', {
-                        url: '/htmlcomponent',
-                        templateUrl: 'tpl/desktop/htmlcomponent.html',
-                        resolve: load(['js/controllers/htmlcomponent.js'])
-                    })
-
                     .state('app.main', {
                         url: '/main',
                         templateUrl: 'tpl/desktop/main.html',
