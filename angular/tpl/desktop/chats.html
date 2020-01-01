@@ -34,7 +34,7 @@
                 <div class="table-card" ng-repeat="(key,data) in chatusers">
                     <div class="flex-top-space">
                         <div class="table-img" ng-click="gotochatpage(key,data)">
-                            <img ng-src="{{IMGURL}}{{data.fromuser.avatar}}">
+                            <img class="avatar-img" ng-src="{{IMGURL}}{{data.fromuser.avatar}}">
                         </div>
                         <div class="table-content">
                             <div class="table-col">
