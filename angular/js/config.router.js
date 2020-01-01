@@ -50,13 +50,13 @@ angular.module('app')
                   $stateProvider
                     .state('app.main', {
                         url: '/main',
-                        templateUrl: 'tpl/desktop/main.html',
+                        templateUrl: 'tpl/desktop/noauth/main.html',
                         resolve: load(['js/controllers/main.js'])
                     })
 
                     .state('app.searchitems', {
                         url: '/searchitems/:keyword',
-                        templateUrl: 'tpl/desktop/searchitem.html',
+                        templateUrl: 'tpl/desktop/noauth/searchitem.html',
                         resolve: load(['js/controllers/searchitem.js'])
                     })
 
@@ -127,7 +127,7 @@ angular.module('app')
                 $stateProvider
                 .state('app.home', {
                     url: '/home',
-                    templateUrl: 'tpl/'+folderpath+'/home.html',
+                    templateUrl: 'tpl/'+folderpath+'/noauth/home.html',
                     resolve: load(['js/controllers/home.js'])
                 })
 
@@ -241,13 +241,13 @@ angular.module('app')
 
                 .state('app.howitworks', {
                     url: '/howitworks',
-                    templateUrl: 'tpl/'+folderpath+'/howitworks.html',
+                    templateUrl: 'tpl/'+folderpath+'/cms/howitworks.html',
                     resolve: load(['js/controllers/howitworks.js'])
                 })
 
                 .state('app.rewardsandbenefits', {
                     url: '/rewardsandbenefits',
-                    templateUrl: 'tpl/'+folderpath+'/rewardsandbenefits.html',
+                    templateUrl: 'tpl/'+folderpath+'/cms/rewardsandbenefits.html',
                     resolve: load(['js/controllers/rewardsandbenefits.js'])
                 })
 
