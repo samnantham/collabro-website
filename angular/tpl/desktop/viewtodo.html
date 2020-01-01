@@ -1,5 +1,76 @@
 <div ng-controller="ViewTodoCtrl" class="content-wrapper">
     <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-    <div class="center-content"></div>
+    <div class="center-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar">
+                    <div class="topbar-left">
+                        <ul class="topbar-list">
+                            <li>Active Todos</li>
+                            <li>{{user.activetodo}} Todos </li>
+                        </ul>
+                    </div>
+                    <div class="topbar-right">
+                        <i class="fa fa-window-close-o secondary" ng-click="goback();"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-top mt-15">
+            <div class="content-detail-left">
+                <div class="slider-wrapper">
+                    <div class="custom-slider">
+                        <slick data="todoData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                            <div class="width100 sliderframer" ng-repeat="(key,image) in todoData.images">
+                                <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                                    <span ng-if="image.filetype == 2">
+                                        <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                                        <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                                    </span>
+                                </div>
+                            </div>
+                        </slick>
+                        <div class="thumbslider">
+                            <slick data="todoData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
+                                <div class="thumbholder" ng-repeat="(key,image) in todoData.images">
+                                    <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-detail-right feeds-no-options">
+                <div class="feeds-wrapper">
+                    <div class="feed-head">
+                        <div class="feed-head-left">
+                            <div class="avatar avatar-xs">
+                                <img ng-src="{{IMGURL}}{{todoData.owner.avatar}}" ui-sref="app.viewuser({'id':todoData.owner.id})" />
+                            </div>
+                            <h3>{{todoData.owner.username | cut:true:20:''}} </h3>
+                        </div>
+                        <div class="feed-head-right">
+                            <i class="fa fa-circle" ng-class="todoData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{todoData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                        </div>
+                    </div>
+                    <div class="feed-body">
+                        <h4>{{todoData.title}} ({{todoData.type}})</h4>
+                        <p>{{todoData.description | cut:true:385:''}}</p>
+                    </div>
+                    <div class="feed-footer">
+                        <div class="feed-footer-left">
+                            <span class="price">&nbsp;</span>
+                            <span class="price-sub">&nbsp;</span>
+                        </div>
+                        <div class="feed-footer-right">
+                            <a title="Edit Todo" ng-if="todoData.userid == user.id" ng-click="editTodo(todoData)"><i class="fa fa-edit"></i></a>
+                            <a title="Remove Todo" ng-if="todoData.userid == user.id" ng-click="deletetodo(todoData)"><i class="fa fa-trash-o"></i></a>
+                            <a title="Share to Earn" ng-click="sharetodo(todoData)"><i class="fa fa-share"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
