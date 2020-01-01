@@ -1,7 +1,7 @@
 <div class="content-wrapper" ng-controller="NotificationCtrl">
-   <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-   <div class="center-content">
-      <div class="row">
+    <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
@@ -9,48 +9,60 @@
                     </div>
                 </div>
             </div>
-      </div>
-      <div class="row mt-15">
+        </div>
+        <div class="row mt-15">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" infinite-scroll="loadMoreRecords()" infinite-scroll-distance="0" infinite-scroll-disabled="((formLoading || notifications.length > 0) && (totalData == notifications.length))" infinite-scroll-use-document-bottom="true">
-                <div class="table-card" ng-repeat="(key,data) in notifications" ng-class="{'main-unread': !data.status , 'main-read' : data.status }">
-                  <div ng-class="{'accordion-msg':data.messages.length > 1, 'single-msg':data.messages.length == 1}">
-                     <div class="flex-center-space" ng-if="data.messages.length == 1" ng-class="{'seller-msg':data.notificationclass==1,'buyer-msg':data.notificationclass==2,'collaborate-msg':data.notificationclass==3,'rejected-msg':data.notificationclass==4,'negotiated-msg':data.notificationclass==5}">
-                        <div class="table-content">
-                            <div class="table-col1" ng-click="readmessage(data.messages[0],data.notificationtype,'single',key,'0')">
-                                <i class="fa fa-check-circle"  ng-class="{'primary':data.notificationclass==1,'success':data.notificationclass==2,'collaborate-msg':data.notificationclass==3,'error':data.notificationclass==4,'warning':data.notificationclass==5}"></i>
-                                <h5>{{data.messages[0].message}}</h5>
-                            </div>
-                        </div>
-                        <div class="table-option flex-right">
-                            <a ng-click="deletenotification(key,data.messages[0],'single', '0')"><i class="fa fa-minus-circle"></i></a>
-                        </div>
-                     </div>
-                     <accordion close-others="oneAtATime" ng-if="data.messages.length > 1">
-                              <accordion-group is-open="data.isopen">
-                                 <accordion-heading>
-                                    <i class="fa fa-check-circle marginright10"></i> <span class="notificationtext">{{data.messages[0].message}} </span> 
-                                    <span class="pull-right">
-                                       <p  class="float-lt notificationtext">({{data.messages.length}})</p>
-                                       <i class="pull-right fa fa-caret-down color-999" ng-class="{'fa-caret-up': data.isopen, 'fa-caret-down': !data.isopen}"></i>
-                                    </span>
-                                 </accordion-heading>
-                                 <div class="innernotifications" ng-repeat="(no,notification) in data.messages" ng-class="{'innerunreaded':!notification.status,'isreaded':notification.status}">
-                                    <div ng-class="{'fromseller':data.notificationclass==1 && no == 0,'frombuyer':data.notificationclass==2 && no == 0,'iscollaborate':data.notificationclass==3 && no == 0,'rejected':data.notificationclass==4 && no == 0,'negotiated':data.notificationclass==5 && no == 0,'accordion-subitem': no > 0}"  class="notificationlist">
-                                       <div class="col-md-12 col-sm-12 col-lg-12 nopadding" ng-click="readmessage(notification,data.notificationtype,'accordion',key,no)">
-                                      <div class="col-md-11 col-sm-11 nopadding" ><i class="fa fa-check-circle"></i> <span class="notificationtext" >{{notification.message}} </span></div> <div class="col-md-1 col-sm-1 nopadding"><span><i class="fa fa-minus-circle float-rt color-999" ng-click="deletenotification(key,notification,'accordion',no)"></i></span></div></div>
-                                       <div class="clear"></div>
-                                    </div>
-                                 </div>
-                              </accordion-group>
-                           </accordion>
-                  </div>
+                <div ng-repeat="(key,data) in notifications" ng-class="{ 'accordion' : data.messages.length > 1 }">
+                    <div ng-if="data.messages.length == 1" class="alert alert-dismissible show" role="alert" ng-class="{'alert-primary': (!data.status && data.notificationclass == 1) , 'alert-success': (!data.status && data.notificationclass == 2), 'alert-orange' : (!data.status && data.notificationclass == 3), 'alert-danger' : (!data.status && data.notificationclass == 4) , 'alert-warning' : (!data.status && data.notificationclass == 5)}">
+                        <i class="fa fa-info-circle" ng-class="{'primary': (data.status && data.notificationclass == 1) , 'success': (data.status && data.notificationclass == 2), 'orange' : (data.status && data.notificationclass == 3), 'danger' : (data.status && data.notificationclass == 4) , 'warning' : (data.status && data.notificationclass == 5)}"></i> <span ng-click="readmessage(data.messages[0],data.notificationtype,'single',key,'0')">{{data.messages[0].message}}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="deletenotification(key,data.messages[0],'single', '0')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-               </div>
+                    <accordion close-others="oneAtATime" ng-if="data.messages.length > 1" class="alert alert-dismissible show">
+                        <accordion-group is-open="data.isopen">
+                            <accordion-heading>
+                                <i class="fa fa-check-circle" ng-class="{'primary': (!notification.status && data.notificationclass == 1) , 'success': (!notification.status && data.notificationclass == 2), 'orange' : (!notification.status && data.notificationclass == 3), 'danger' : (!notification.status && data.notificationclass == 4) , 'warning' : (!notification.status && data.notificationclass == 5)}"></i> <span>{{data.messages[0].message}} </span>
+                                <span class="pull-right">
+                                       <p class="pull-left">({{data.messages.length}})</p>
+                                       <i class="pull-right fa fa-caret-down" ng-class="{'fa-caret-up': data.isopen, 'fa-caret-down': !data.isopen}"></i>
+                                    </span>
+                            </accordion-heading>
+                            <div class="alert alert-dismissible show" ng-repeat="(no,notification) in data.messages" ng-class="{'alert-primary': (!data.status && data.notificationclass == 1) , 'alert-success': (!data.status && data.notificationclass == 2), 'alert-orange' : (!data.status && data.notificationclass == 3), 'alert-danger' : (!data.status && data.notificationclass == 4) , 'alert-warning' : (!data.status && data.notificationclass == 5)}">
+
+                                <i class="fa fa-info-circle" ng-class="{'primary': (data.status && data.notificationclass == 1) , 'success': (data.status && data.notificationclass == 2), 'orange' : (data.status && data.notificationclass == 3), 'danger' : (data.status && data.notificationclass == 4) , 'warning' : (data.status && data.notificationclass == 5)}"></i> <span ng-click="readmessage(notification,data.notificationtype,'accordion',key,no)">{{notification.message}}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="deletenotification(key,notification,'accordion',no)">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pull-right pagination-ctrl" pagination-id="friends"></dir-pagination-controls>
             </div>
         </div>
-   </div>
-   <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+    </div>
+    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
+<style type="text/css">
+  .alert{
+    background: #fff;
+    }.orange{
+      color: #ff6d41;
+    }.alert .close{
+      color:#000;
+    }.alert .panel-group{
+      margin-bottom: 0px;
+    }.alert .panel-default {
+      border-color: #fff;
+    }.alert .panel-default > .panel-heading {
+        color: #000;
+        background-color: #fff;
+        border-color: #fff!important;
+    }.accordion .alert{
+      border: none!important;
+    }
+</style>

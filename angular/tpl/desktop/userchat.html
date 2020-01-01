@@ -93,7 +93,7 @@
                     <div class="sender">
                         <div class="msg-text">
                             <a class="small-btn"><i class="fa fa-smile-o"></i></a>
-                            <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendPrivateReplymessage()" id="emojionearea">
+                            <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendPrivateReplymessage()">
                             <a class="small-btn" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="senduserchatattachment($files);"><i class="fa fa-paperclip"></i></a>
                         </div>
                         <div class="chat-btn" ng-click="sendPrivateReplymessage()"><i class="fa fa-send"></i></div>
@@ -104,8 +104,3 @@
     </div>
     <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
-<style type="text/css">
-    .emojionearea-editor {
-  min-height: 3em !important;
-}
-</style>
