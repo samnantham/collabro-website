@@ -10625,6 +10625,14 @@ i.color-btn {
   position: relative;
   cursor: pointer;
 }
+.upload-container.upload-wrapper {
+  width: 100%;
+  padding: 0px;
+}
+.upload-container.upload-wrapper iframe, .upload-container.upload-wrapper img, .upload-container.upload-wrapper video {
+  width: 100%;
+  height: 100%;
+}
 .upload-container .upload-file {
   width: 100%;
   height: 100%;
@@ -10708,16 +10716,24 @@ i.color-btn {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  background: #fff;
-  transition: all 0.2s;
   margin-bottom: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-.thumb-wrapper .thumbs:hover, .thumb-wrapper .thumbs.active {
+.thumb-wrapper .thumbs .thumb {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transition: all 0.2s;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.thumb-wrapper .thumbs .thumb:hover, .thumb-wrapper .thumbs .thumb.active {
   background: #34AA44;
   border: 5px solid #34AA44;
+  transition: all 0.2s;
 }
 .thumb-wrapper .thumbs .add-thumb {
   width: 38px;
