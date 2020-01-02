@@ -7396,6 +7396,10 @@ a {
   color: #fff !important;
 }
 
+.orange {
+  color: #FE9454 !important;
+}
+
 .facebook {
   color: #3b5998;
 }
@@ -8151,6 +8155,14 @@ p {
   padding: 0px;
 }
 
+.notification-scroll {
+  height: calc(100% - 36px);
+}
+.notification-scroll .accordion-container {
+  height: 100%;
+  overflow: hidden auto;
+}
+
 /* Tabs for notification */
 .tabset-wrapper {
   width: 100%;
@@ -8476,14 +8488,66 @@ p {
 }
 
 .alert {
+  background: #fff;
   font-size: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
 }
 .alert .close {
-  color: #fff;
+  color: #344051;
   opacity: 1;
 }
 .alert i {
   margin-right: 10px;
+}
+.alert .panel-group {
+  margin-bottom: 0px;
+}
+.alert .panel-default {
+  border: 0px;
+}
+.alert .panel-default .panel-heading {
+  color: #344051;
+  background: #fff;
+  border: 0px;
+  width: 100%;
+}
+.alert .panel-default .panel-collapse {
+  width: 100%;
+}
+.alert .panel-default .panel-body {
+  width: 100%;
+}
+.alert .accordion .alert {
+  border: 0px !important;
+}
+
+.custom-alert .accordion .alert-dismissible {
+  padding-right: 15px;
+  border: 0px !important;
+}
+.custom-alert .accordion .alert-dismissible .panel {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.custom-alert .accordion .alert-dismissible .pull-right {
+  margin-right: 0px;
+}
+.custom-alert .accordion .alert-dismissible .panel-collapse.in {
+  margin-top: 15px;
+}
+.custom-alert .accordion .alert-dismissible .panel-body {
+  border: 0px;
+  padding: 5px !important;
+}
+.custom-alert .accordion .alert-dismissible .panel-body .alert-dismissible {
+  padding-right: 35px;
+}
+.custom-alert .accordion .alert-dismissible .panel-body .alert-dismissible:last-of-type {
+  margin-bottom: 0px;
 }
 
 .alert-warning {
@@ -9686,13 +9750,10 @@ i.color-btn {
   width: 100%;
   float: left;
   background: #fff;
-  max-height: calc(100% - 83px);
+  max-height: calc(100vh - 310px) !important;
   overflow-x: hidden;
   overflow-y: auto;
   -moz-appearance: none !important;
-}
-.messenger.private-chat {
-  max-height: calc(100vh - 310px) !important;
 }
 .messenger::-webkit-scrollbar {
   width: 4px;

@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-15">
+        <div class="row mt-15 custom-alert">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" infinite-scroll="loadMoreRecords()" infinite-scroll-distance="0" infinite-scroll-disabled="((formLoading || notifications.length > 0) && (totalData == notifications.length))" infinite-scroll-use-document-bottom="true">
                 <div ng-repeat="(key,data) in notifications" ng-class="{ 'accordion' : data.messages.length > 1 }">
                     <div ng-if="data.messages.length == 1" class="alert alert-dismissible show" role="alert" ng-class="{'alert-primary': (!data.status && data.notificationclass == 1) , 'alert-success': (!data.status && data.notificationclass == 2), 'alert-orange' : (!data.status && data.notificationclass == 3), 'alert-danger' : (!data.status && data.notificationclass == 4) , 'alert-warning' : (!data.status && data.notificationclass == 5)}">
@@ -47,22 +47,3 @@
     </div>
     <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
-<style type="text/css">
-  .alert{
-    background: #fff;
-    }.orange{
-      color: #ff6d41;
-    }.alert .close{
-      color:#000;
-    }.alert .panel-group{
-      margin-bottom: 0px;
-    }.alert .panel-default {
-      border-color: #fff;
-    }.alert .panel-default > .panel-heading {
-        color: #000;
-        background-color: #fff;
-        border-color: #fff!important;
-    }.accordion .alert{
-      border: none!important;
-    }
-</style>
