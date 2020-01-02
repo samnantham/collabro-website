@@ -12622,9 +12622,6 @@ ul.simple-list li:last-of-type {
   -o-background-size: cover;
   background-size: cover;
   background-position: center center;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
 }
 .custom-slider .imgcontainer .anguvideo {
   height: 365px;
