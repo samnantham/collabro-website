@@ -1,6 +1,7 @@
 app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
 	$rootScope.broadcastData = {};
     $rootScope.broadcastData.images = [];
+    $rootScope.broadcastData.category = 'Service';
 
 	$rootScope.resetFeedItems = function() {
         $rootScope.broadcastData.title = "";
@@ -23,20 +24,7 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
             newobj.file = $rootScope.broadcastData.embedvideo;
             var thumbnail = $rootScope.broadcastData.embedvideo;
             if ($rootScope.broadcastData.embedvideo.includes('youtu')) {
-                if (thumbnail.includes('youtu.')) {
-                    var splitted = thumbnail.split("youtu.be");
-                    var videothumb = splitted[1].replace('/', '');
-                } else {
-                    if (thumbnail.includes('watch')) {
-                        var splitted = thumbnail.split("v=");
-                        var videothumb = splitted[1];
-                    } else if (thumbnail.includes('embed')) {
-                        var splitted = thumbnail.split("embed");
-                        var videothumb = splitted[1].replace('/', '');
-                    }
-                }
-
-                newobj.thumbnail = 'http://img.youtube.com/vi/' + videothumb + '/0.jpg';
+                newobj.thumbnail = 'img/youtube.png';
             } else if ($rootScope.broadcastData.embedvideo.includes('vimeo')) {
                 newobj.thumbnail = 'img/vimeo.png';
             } else if ($rootScope.broadcastData.embedvideo.includes('soundcloud')) {
@@ -63,7 +51,7 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
         }
         else{
             $rootScope.$emit("showerrormsg", 'Please upload valid video url.');
-            $rootScope.formData.embedvideo = '';
+            $rootScope.broadcastData.embedvideo = '';
         }
     }
 
@@ -114,15 +102,6 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
         $rootScope.editkey = null;
     }
 
-    $rootScope.closeModalPopover = function() {
-        if ($rootScope.ismodalPopover) {
-            $rootScope.ismodalPopover = false;
-            $rootScope.selectedKey = null;
-            $rootScope.viewingThumb = {};
-            $rootScope.editkey = null;
-        }
-    }
-
     $rootScope.removefileItem = function() {
         $rootScope.broadcastData.images.splice($rootScope.selectedKey, 1);
         $rootScope.ismodalPopover = false;
@@ -142,7 +121,9 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
                     newobj.filename = files[0].name;
                     newobj.filetype = 1;
                     newobj.isfile = 1;
-                    $rootScope.converttobase64(files[0], newobj);
+                    $rootScope.viewingThumb = newobj;
+                    $rootScope.broadcastData.images[$rootScope.editkey] = newobj;
+                    $rootScope.broadcastData.thumbimage = angular.copy($rootScope.editkey);
                 } else {
                     $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
                 }
@@ -171,7 +152,9 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
                             newobj.filename = files[i].name;
                             newobj.filetype = 1;
                             newobj.isfile = 1;
-                            $rootScope.converttobase64(files[i], newobj);
+                            $rootScope.broadcastData.images.push(newobj);
+                            $rootScope.viewingThumb = $rootScope.broadcastData.images[$rootScope.broadcastData.images.length - 1];
+                            $rootScope.broadcastData.thumbimage = $rootScope.broadcastData.images.length - 1;
                         } else {
                             $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
                         }
@@ -194,27 +177,6 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
             files = null;
             $rootScope.$emit("showerrormsg", 'Now you can upload maximum of ' + remainingimages + ' images only.');
         }
-    }
-
-    $rootScope.converttobase64 = function(file, obj) {
-        var fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = function(e) {
-            obj.base64 = e.target.result;
-            $timeout(function() {
-                if ($rootScope.editkey != null) {
-                    $rootScope.broadcastData.images[$rootScope.editkey] = obj;
-                    $rootScope.viewingThumb = obj;
-                    $rootScope.broadcastData.thumbimage = angular.copy($rootScope.editkey);
-                } else {
-                    $rootScope.broadcastData.images.push(obj);
-                    $rootScope.viewingThumb = $rootScope.broadcastData.images[$rootScope.broadcastData.images.length - 1];
-                    $rootScope.broadcastData.thumbimage = $rootScope.broadcastData.images.length - 1;
-                }
-                $rootScope.selectedKey = null;
-                $rootScope.editkey = null;
-            }, 500);
-        };
     }
 
 	$scope.addbroadCast = function(form) {

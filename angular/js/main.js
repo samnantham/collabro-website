@@ -176,6 +176,16 @@ angular.module('app')
                 });
             }
 
+            $rootScope.closeItem = function() {
+                console.log('haaahaa')
+                $rootScope.viewingThumb = {};
+                $rootScope.selectedKey = null;
+                $rootScope.editkey = null;
+                if($rootScope.ismodalPopover){
+                    $rootScope.ismodalPopover = false; 
+                }
+            }
+
             $rootScope.opensharepopover = function(){
                 $ngConfirm({
                     columnClass:'sharepopover',
@@ -192,6 +202,41 @@ angular.module('app')
                     },
                 });
             }
+
+            $rootScope.openbroadcastModal = function(){
+                $ngConfirm({
+                    columnClass:'broadcastModal',
+                    title: 'Broadcast',
+                    contentUrl:'tpl/blocks/modals/broadcast.html',
+                    scope: $scope,
+                    useBootstrap:true,
+                    typeAnimated: true,
+                    closeIcon: true,
+                    closeIconClass: 'modal-close',
+                    buttons: {
+                       cancel: {
+                            text: 'Cancel',
+                            btnClass: 'danger-btn',
+                            action: function() {
+                            }
+                        },
+                        tryAgain: {
+                            text: 'Publish Item',
+                            btnClass: 'success-btn',
+                            action: function () {
+                                $rootScope.addbroadCast()
+                            }
+                        }    
+                    },
+                });
+            }
+
+
+            $(document).keyup(function(e) {
+                if (e.key === "Escape") { // escape key maps to keycode `27`
+                    $rootScope.closeItem();
+                }
+            });
 
             $rootScope.sharefeedtosocial = function(data) {
                 $rootScope.shareData = {};
@@ -801,7 +846,6 @@ angular.module('app')
             });
 
             $rootScope.$on("callStickyMenu", function() {
-                console.log('hahahaha')
                 if (!isMobile.phone) {
                     $('.leftSidebar, .content, .rightSidebar').theiaStickySidebar({
                         additionalMarginTop: 50

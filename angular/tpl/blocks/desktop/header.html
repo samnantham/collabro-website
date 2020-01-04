@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 text-right flex-center-space">
-                        <a class="btn secondary-btn" href="#"><i class="fa fa-bolt mr-10"></i> BROADCAST</a>
+                        <a class="btn secondary-btn" ng-click="openbroadcastModal()"><i class="fa fa-bolt mr-10"></i> BROADCAST</a>
                         <a class="btn white-btn" href="#">POST <i class="fa fa-plus-circle ml-10"></i></a>                        
                         <ul class="top-nav">
                             <li class="dropdown" ui-sref="app.notification">
@@ -123,3 +123,15 @@
 <div class="loader" ng-if="formLoading || authLoading">
     <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
 </div> 
+
+<style type="text/css">
+    .broadcastmodal .ng-confirm-content-pane {
+        min-height: 700px;
+    }.broadcastmodal .ng-confirm-title-c{
+        display: none!important;
+    }.broadcastmodal .ui-select-match{
+        display: block!important;
+    }.broadcastmodal .control-label{
+        text-align: left!important;
+    }
+</style>
