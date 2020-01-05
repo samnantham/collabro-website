@@ -1,0 +1,221 @@
+.dashboard-wrapper{
+    width: 100%;
+    float: left;
+    background: $white;
+    padding: 15px;
+}
+
+.dashboard-left{
+    width: 66%;
+    float: left;
+}
+.dashboard-top{
+    width: 100%;
+    float: left;        
+}
+.dashboard-bottom{
+    width: 100%;
+    float: left;
+}
+
+.gray-header{
+    width: 100%;
+    float: left;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    i{
+        margin-right: 10px;
+        color: $secondary-text;
+    }
+}
+
+.accounts-wrapper{
+    width: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chart-wrapper{
+    width: 100%;
+    float: left;
+}
+
+.charts-wrapper{
+    width: 30%;
+    float: left;
+    &:first-of-type{
+        margin-right: 5%;
+    }
+    &:last-of-type{
+        margin-left: 5%;
+    }
+}
+
+.table-listing{
+    width: 100%;
+    float: left;
+    max-height: 460px;
+    overflow: hidden auto;
+}
+
+.interest-area{
+    width: 100%;
+    float: left;
+    padding: 0px 0;
+    .interest-space{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        label{
+            width: 100%;
+            font-size: $font-m;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.payment-method{
+    width: 100%;
+    float: left;
+    padding: 10px 5px;
+    @include border-radius(5px);
+    background: $half-white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .form-group{
+        width: auto;
+        margin-right: 5px;
+        margin-bottom: 0px;
+    }
+    p{
+        font-size: $font-s;
+        margin-bottom: 0px;
+    }
+    img{
+        width: 40px;
+    }
+}
+
+.followers-area{
+    width: 100%;
+    float: left;
+    .followers-list{
+        width: 100%;
+        float: left;
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        li{
+            width: 100%;
+            float: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-transform: uppercase;
+            span{
+                color: $black;
+                font-size: $font-m;
+                font-family: $font-special;
+                font-weight: $font-medium;
+            }
+        }
+    }
+}
+
+.category-card{
+    width: 100%;
+    float: left;
+    margin-bottom: 30px;
+    h4{
+        text-transform: uppercase;
+    }
+    span{
+        font-size: $font-xlx;
+        font-family: $font-special;
+        font-weight: $font-medium;
+    }
+    &:last-of-type{
+        margin-bottom: 0px;
+    }
+}
+
+.account-card{
+    width: 48%;
+    float: left;
+    margin-top: 30px;
+    .secondary-price{
+        display: block;
+    }
+    &.new{
+        border: 1px solid $border;
+        @include border-radius(5px);
+        padding: 15px 10px;
+    }
+    .card-info{
+        font-size: $font-s;
+    }
+}
+
+.dashboard-list{
+    width: 100%;
+    float: left;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    li{
+        float: left;
+        min-width: 20%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        text-align: center;
+        span{
+            color: $secondary-text;
+            font-size: $font-s;
+            min-height: 34px;
+        }
+    }
+}
+
+.dashboard-right{
+    width: 32%;
+    float: right;
+}
+
+.statistic-info{
+    display: flex;
+    flex-direction: column;
+    min-height: 170px;
+    justify-content: space-between;
+    border-left: 1px solid $border;
+    padding-left: 15px;
+}
+
+/* profile */
+.profile-tab{
+    .website-name{
+        color: $default;
+        font-size: $font-xl;
+    }
+    h2{
+        margin-top: 0px;
+    }
+    p{
+        color: $secondary-text;
+        margin-bottom: 0px;
+    }
+    .info-label{
+        width: 100% !important;
+        color: $secondary-text;
+        text-transform: uppercase;
+    }
+}

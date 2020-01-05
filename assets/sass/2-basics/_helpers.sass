@@ -1,6 +1,10 @@
 *
   outline: none !important
   @include box-sizing(border-box)
+
+hr
+  margin: 15px 0  
+
 a
   cursor: pointer
 .primary
@@ -33,6 +37,8 @@ a
 .whatsapp
   color: $whatsapp
 
+.opacity-0
+  opacity: 0  
 
 .primary-bg
   background: $primary
@@ -73,6 +79,9 @@ a
 
 .caps
   text-transform: capitalize
+
+.ucase
+  text-transform: uppercase !important
 
 .bold
   font-weight: $font-bold !important
@@ -134,6 +143,9 @@ a
 .br-v
   border-left: 1px solid $border
   border-right: 1px solid $border
+
+.br-t
+  border-top: 1px solid $border 
 
 .border
   border: 1px solid
@@ -221,6 +233,19 @@ a
   color: $default
   font-weight: $font-medium
 
+.secondary-price
+  font-size: $font-xl
+  color: $secondary-text
+  font-weight: $font-medium 
+
+.font-rating
+  font-size: $font-m
+  color: $secondary-text
+  i
+    color: $secondary-text
+    cursor: pointer
+    &:hover, &.active
+      color: $default
 hr
   @extend .wd-100
 
@@ -283,6 +308,8 @@ hr
 
 .mb-0
   margin-bottom: 0px !important
+.mb-2
+  margin-bottom: 2px !important
 .mb-5
   margin-bottom: 5px !important
 .mb-10
