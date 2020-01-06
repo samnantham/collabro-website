@@ -203,8 +203,14 @@ angular.module('app')
                 });
             }
 
+            $rootScope.hidebroadcasterrors = function() {
+                $rootScope.broadcasttitleerror = false;
+                $rootScope.broadcastdescriptionerror = false;
+                $rootScope.imageerror = false;
+            }
             $rootScope.openbroadcastModal = function(){
-                $ngConfirm({
+                $rootScope.hidebroadcasterrors();
+                var a = $ngConfirm({
                     columnClass:'broadcastModal',
                     title: 'Broadcast',
                     contentUrl:'tpl/blocks/modals/broadcast.html',
@@ -219,14 +225,49 @@ angular.module('app')
                             btnClass: 'danger-btn',
                             action: function() {
                             }
-                        },
-                        tryAgain: {
+                        },formSubmit: {
+            text: 'Publish Item',
+           btnClass: 'success-btn',
+                            keys: ['enter'],
+            action: function () {
+                var title = this.$content.find('.broad-title').val();
+                var description = this.$content.find('.broad-description').val();
+                var images = this.$content.find('.broad-images').val();
+                if(!title||!description||!images){
+                    if(!title){
+                        $rootScope.broadcasttitleerror = true;
+                    }if(!description){
+                        $rootScope.broadcastdescriptionerror = true;
+                    }if(!images){
+                        $rootScope.imageerror = true;
+                    }
+                    return false;
+                }else{
+                    $rootScope.formLoading = true;
+                    webServices.upload('feed', $rootScope.broadcastData).then(function(getData) {
+                        $rootScope.formLoading = false;
+                        if (getData.status == 200) {
+                            $rootScope.$emit("showsuccessmsg", getData.data.message);
+                            $rootScope.broadcastData = {};
+                            a.close();
+                        } else {
+                            $rootScope.$emit("showerror", getData);
+                        }
+                    });
+                }
+                
+                
+            }
+        },
+                        /*publish: {
                             text: 'Publish Item',
                             btnClass: 'success-btn',
+                            keys: ['enter'],
                             action: function () {
                                 $rootScope.addbroadCast()
+                                return false; //
                             }
-                        }    
+                        }    */
                     },
                 });
             }

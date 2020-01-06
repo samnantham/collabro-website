@@ -2,6 +2,8 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
 	$rootScope.broadcastData = {};
     $rootScope.broadcastData.images = [];
     $rootScope.broadcastData.category = 'Service';
+    $rootScope.broadcastData.productfile = '';
+    $rootScope.imageerrormsg = "Please Add some images or Videos";
 
 	$rootScope.resetFeedItems = function() {
         $rootScope.broadcastData.title = "";
@@ -179,33 +181,16 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
         }
     }
 
-	$scope.addbroadCast = function(form) {
-        $rootScope.hidebroadcasterrors();
-        if (form.$valid) {
+	$rootScope.addbroadCast = function(form) {
             $rootScope.formLoading = true;
             webServices.upload('feed', $rootScope.broadcastData).then(function(getData) {
                 $rootScope.formLoading = false;
                 if (getData.status == 200) {
-                    $rootScope.closebroadcastModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $rootScope.broadcastData = {};
-                    if($rootScope.currentdevice == 'mobile'){
-                        $state.go('app.feeds');
-                    }
-                } else if (getData.status == 401) {
-                    $scope.errors = utility.getError(getData.data.message);
-                    $scope.showerrors();
                 } else {
                     $rootScope.$emit("showerror", getData);
                 }
             });
-        } else {
-            if (!form.title.$valid) {
-                $rootScope.broadcasttitleerror = true;
-            }
-            if (!form.description.$valid) {
-                $rootScope.broadcastdescriptionerror = true;
-            }
-        }
-    }
+        } 
 }]);

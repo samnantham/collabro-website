@@ -37,6 +37,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
         $rootScope.formLoading = false;
         $timeout(function() {
             $scope.userData = angular.copy($rootScope.user);
+            console.log($scope.userData)
         }, 1000);
     }
 
@@ -170,8 +171,8 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
         }
     }
 
-    $scope.showhideedit = function() {
-        if ($scope.activetab == 'profile') {
+    $scope.showhideedit = function(tab) {
+        if (tab == 'profile') {
             $timeout(function() {
                 $scope.profileedit = !$scope.profileedit;
                 if ($scope.profileedit) {
@@ -183,7 +184,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
                     console.log($scope.profileedit);
                 }
             }, 1000);
-        } else if ($scope.activetab == 'address') {
+        } else if (tab == 'address') {
             $timeout(function() {
                 $scope.addressedit = !$scope.addressedit;
                 $scope.setMyData();
