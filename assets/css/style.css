@@ -7420,32 +7420,36 @@ a {
   opacity: 0;
 }
 
-.primary-bg {
+.primary-bg, .bg-primary {
   background: #00C4E8;
 }
 
-.secondary-bg {
+.secondary-bg, .bg-secondary {
   background: #7E8EA4;
 }
 
-.success-bg {
+.success-bg, .bg-success {
   background: #34AA44;
 }
 
-.info-bg {
+.info-bg, .bg-info {
   background: #00C4E8;
 }
 
-.warning-bg {
+.warning-bg, .bg-warning {
   background: #FFB100;
 }
 
-.danger-bg {
+.danger-bg, .bg-danger {
   background: #FF1561;
 }
 
-.default-bg {
+.default-bg, .bg-default {
   background: #00C4E8;
+}
+
+.bg-pink {
+  background: #D4145A;
 }
 
 .gold-bg {
@@ -8217,6 +8221,14 @@ p {
 }
 .grid3 label.tabs-label:first-of-type, .grid3 label.tabs-label:last-of-type {
   width: calc( 33.3333333333% - 15px );
+}
+
+.grid4 label.tabs-label {
+  width: 25%;
+  float: left;
+}
+.grid4 label.tabs-label:first-of-type, .grid4 label.tabs-label:last-of-type {
+  width: calc( 25% - 15px );
 }
 
 .tabset {
@@ -11626,6 +11638,71 @@ i.color-btn {
   width: 100%;
   float: left;
 }
+.progress-wrapper .progress {
+  width: 100%;
+  height: 10px;
+  float: left;
+  margin-bottom: 10px;
+}
+.progress-wrapper .progress-bar-success {
+  background: #34AA44;
+}
+.progress-wrapper .progress-bar-warning {
+  background: #FFB100;
+}
+.progress-wrapper .progress-bar-info {
+  background: #00C4E8;
+}
+.progress-wrapper .progress-bar-danger {
+  background: #FF1561;
+}
+
+.progress-vertical-wrapper {
+  float: left;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.progress-vertical-wrapper .progress-bar {
+  width: 12px;
+}
+.progress-vertical-wrapper .progress-bar-vertical {
+  margin-right: 0px;
+  margin-bottom: 10px;
+}
+.progress-vertical-wrapper span {
+  font-size: 12px;
+  color: #7E8EA4;
+  text-transform: uppercase;
+}
+
+.progress-bar-vertical {
+  width: 12px;
+  min-height: 90px;
+  display: inline-flex;
+  align-items: flex-end;
+  margin-right: 18px;
+  float: left;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+}
+
+.progress-label {
+  width: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.progress-label h6 {
+  margin: 0px;
+}
+.progress-label span {
+  font-size: 12px;
+}
 
 .progress-con {
   position: relative;
@@ -14071,6 +14148,13 @@ input:checked + .slider:before {
 }
 .charts-wrapper:last-of-type {
   margin-left: 5%;
+}
+.charts-wrapper .chart-wrapper {
+  width: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .table-listing {

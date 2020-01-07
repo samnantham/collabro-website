@@ -42,7 +42,7 @@
                 </div>
                 <div class="dashboard-bottom">
                     <div class="tabset-wrapper">
-                        <div class="tabset grid3">
+                        <div class="tabset grid4">
                             <input type="radio" name="tabset" id="tab1" aria-controls="tabset-one" checked/>
                             <label for="tab1" class="tabs-label">Profile</label>
                             <input type="radio" name="tabset" id="tab2" aria-controls="tabset-two" />
@@ -419,20 +419,44 @@
                 <div class="dashboard-bottom br-t mb-30">
                     <p class="secondary mt-10 mb-10">Financial Distribution</p>
                     <div class="chart-wrapper">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.experiencepoints*100)/user.allowedXP) + '%'}" tooltip="{{user.experiencepoints}}" tooltip-trigger="mouseenter">
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle success"></i> Experience Points</h6>
+                                <span class="secondary-price">8452</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.experiencepoints*100)/user.allowedXP) + '%'}" tooltip="{{user.experiencepoints}}" tooltip-trigger="mouseenter">
+                                </div>                            
+                            </div>
+                        </div>    
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle warning"></i> Profit Earned</h6>
+                                <span class="secondary-price">$452</span>
+                            </div>                    
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                </div>
                             </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle info"></i> Advertisement Spent</h6>
+                                <span class="secondary-price">$452</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                </div>
                             </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle danger"></i> Rental Earned</h6>
+                                <span class="secondary-price">$452</span>
                             </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -452,8 +476,10 @@
                         <div class="charts-wrapper">
                             <p class="ucase secondary mt-10 mb-10">XP Earning</p>
                             <div class="chart-wrapper">
-                                <div class="col-md-2 col-sm-2 col-lg-2" ng-repeat="(key,data) in chartData.xpData">
-                                    <div class="progress progress-bar-vertical bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.xpData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                        </div>
                                     </div>
                                     <span>{{data.monthname | cut:true:3:'' }}</span>
                                 </div>
@@ -462,11 +488,9 @@
                         <div class="charts-wrapper">
                             <p class="ucase secondary mt-10 mb-10">Reach Viewers</p>
                             <div class="chart-wrapper">
-                                <div class="col-md-2 col-sm-2 col-lg-2" ng-repeat="(key,data) in chartData.reachViewersData">
-                                    <!-- <div class="progress progress-bar-vertical bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter">
-										 </div> -->
-                                    <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
-                                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.reachViewersData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
                                         </div>
                                     </div>
                                     <span>{{data.monthname | cut:true:3:'' }}</span>
@@ -476,9 +500,9 @@
                         <div class="charts-wrapper">
                             <p class="ucase secondary mt-10 mb-10">Impressions</p>
                             <div class="chart-wrapper">
-                                <div class="col-md-2 col-sm-2 col-lg-2" ng-repeat="(key,data) in chartData.impressionData">
-                                    <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
-                                        <div class="progress-bar chart3bg" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.impressionData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
                                         </div>
                                     </div>
                                     <span>{{data.lable}}</span>
@@ -606,18 +630,3 @@
     </div>
     <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
-<style type="text/css">
-    .progress {
-        height: 10px;
-    }
-    
-    .progress-bar-vertical {
-        width: 12px;
-        min-height: 90px;
-        display: flex;
-        align-items: flex-end;
-        margin-right: 18px;
-        float: left;
-        border-radius: 9px;
-    }
-</style>
