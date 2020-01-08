@@ -13,12 +13,12 @@ $magic-disabled-checked-color: lighten($magic-main-color, 30%) !default;
     border-radius: 3px;
   }
   &:after {
-    top: 3px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
     left: 6px;
     box-sizing: border-box;
     width: 6px;
     height: 12px;
-    transform: rotate(45deg);
     border-width: 2px;
     border-style: solid;
     border-color: $white;

@@ -8272,7 +8272,7 @@ p {
   text-transform: uppercase;
   font-weight: 400;
   text-align: center;
-  padding: 15px;
+  padding: 15px 0;
   margin-bottom: 15px;
 }
 .tabset > label:first-of-type {
@@ -9659,7 +9659,15 @@ i.color-btn {
   justify-content: space-between;
 }
 .table-card .table-content.listing {
-  width: calc(100% - 145px) !important;
+  width: calc(100% - 95px) !important;
+}
+.table-card .table-content.listing .table-col {
+  padding: 0px;
+  max-width: 30%;
+}
+.table-card .table-content.listing .table-col:first-of-type {
+  min-width: 30%;
+  max-width: 30%;
 }
 .table-card .table-content .table-flex {
   display: flex;
@@ -9770,6 +9778,16 @@ i.color-btn {
 .table-card .table-single-option {
   width: auto;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.table-card .table-single-option a {
+  position: relative;
+}
+.table-card .table-single-option i {
+  font-size: 16px;
+  color: #FF1561;
 }
 .table-card .table-single-option img {
   width: 35px;
@@ -9788,7 +9806,7 @@ i.color-btn {
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
-  color: #fff;
+  color: #fff !important;
 }
 .table-card .full-col {
   width: calc(100% - 170px);
@@ -10249,12 +10267,12 @@ i.color-btn {
   border-radius: 3px;
 }
 .magic-checkbox + label:after {
-  top: 3px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
   left: 6px;
   box-sizing: border-box;
   width: 6px;
   height: 12px;
-  transform: rotate(45deg);
   border-width: 2px;
   border-style: solid;
   border-color: #fff;
@@ -13020,7 +13038,6 @@ ul.simple-list li:last-of-type {
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   background: transparent;
-  border: 0;
 }
 
 .form-holder {
@@ -14177,6 +14194,7 @@ input:checked + .slider:before {
   width: 100%;
   font-size: 16px;
   text-transform: uppercase;
+  min-height: 70px;
 }
 
 .payment-method {

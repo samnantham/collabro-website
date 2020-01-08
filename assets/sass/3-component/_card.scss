@@ -385,7 +385,15 @@
         flex-direction: row;
         justify-content: space-between;
         &.listing{
-            width: calc(100% - 145px) !important;
+            width: calc(100% - 95px) !important;
+            .table-col{
+                padding: 0px;
+                max-width: 30%;
+                &:first-of-type{
+                    min-width: 30%;
+                    max-width: 30%;
+                }
+            }
         }
         .table-flex{
             display: flex;
@@ -489,6 +497,16 @@
     .table-single-option{
         width: auto;
         position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        a{
+            position: relative;
+        }
+        i{
+            font-size: $font-m;
+            color: $danger;
+        }
         img{
             width: 35px;
         }
@@ -504,7 +522,7 @@
             font-size: $font-xs;
             background: $danger;
             @include border-radius(50%);
-            color: $white;
+            color: $white !important;
         }
     }
     .full-col{

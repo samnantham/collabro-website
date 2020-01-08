@@ -592,24 +592,24 @@
                                                         <span ng-if="data.price > 0 && data.type != 'Shop'">Per Hour</span>
                                                     </div>
                                                     <div class="table-col table-flex">
-                                                        <div class="table-subcol">
+                                                        <div class="table-col">
                                                             <h5>{{data.wishcount}}</h5>
                                                             <span><i class="fa fa-heart"></i></span>
                                                         </div>
-                                                        <div class="table-subcol">
+                                                        <div class="table-col">
                                                             <h5>{{data.noofviews}}</h5>
                                                             <span><i class="fa fa-eye"></i></span>
                                                         </div>
-                                                        <div class="table-subcol table-single-option">
-                                                            <a><img src="../assets/img/message-icon.png" /></a>
+                                                        <div class="table-col table-single-option">
+                                                            <a><img src="../assets/img/message-icon.png" />
                                                             <span class="count" ng-if="data.chats.length > 0">{{data.chats.length}}</span>
+                                                        </a>
+                                                        </div>
+                                                        <div class="table-col table-single-option pr-5">
+                                                            <a><i class="fa fa-minus-circle"></i></a>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="table-single-option">
-                                                    <a><img src="../assets/img/message-icon.png" /></a>
-                                                    <span class="count" ng-if="data.chats.length > 0">{{data.chats.length}}</span>
-                                                </div>
+                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>
