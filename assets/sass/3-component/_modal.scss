@@ -51,7 +51,41 @@
         .ui-select-bootstrap{
             width: 100%;
             float: right;
-            min-width: 240px;
+            min-width: 200px;
+            .form-control{
+                @extend .silver-gradient;
+                p{
+                    margin-bottom: 0px;
+                    i{
+                        color: $default;
+                        margin-right: 6px;
+                    }
+                }
+            }
+            .ui-select-choices{
+                background: $white;
+                .ui-select-choices-row{
+                    .ui-select-choices-row-inner{
+                        background: $white;
+                        display: flex;
+                        align-items: center;
+                        height: 38px;
+                        color: $black;
+                        padding-left: 33px !important;
+                        &:hover{
+                            background: $default;
+                            color: $white;
+                            @include border-radius(0px !important)
+                        }                        
+                    }
+                    &:first-of-type a{
+                        @include border-radius(5px 5px 0 0 !important);
+                    }
+                    &:last-of-type a{
+                        @include border-radius(0px 0px 5px 5px !important);
+                    }
+                }
+            }
         }
     }
     .custom-modal-body{
