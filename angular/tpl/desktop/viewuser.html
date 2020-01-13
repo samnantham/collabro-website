@@ -1,6 +1,268 @@
 <div ng-controller="ViewUserCtrl" class="content-wrapper">
     <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-    <div class="center-content"></div>
+    <div class="center-content">
+        <div class="dashboard-wrapper">
+            <div class="dashboard-top">
+                <ul class="dashboard-list">
+                    <li>
+                        <span>Collection Items</span>
+                        <div class="font-price">
+                            {{userData.totalproducts}}
+                        </div>
+                    </li>
+                    <li>
+                        <span>Completed
+                                    Projects</span>
+                        <div class="font-price">
+                            {{userData.totalprojects ? userData.totalprojects: 0 }}
+                        </div>
+                    </li>
+                    <li>
+                        <span>Viewers</span>
+                        <div class="font-price">
+                            {{userData.totalviewers}}
+                        </div>
+                    </li>
+                    <li>
+                        <span>Followers</span>
+                        <div class="font-price">
+                            {{userData.followers}}
+                        </div>
+                    </li>
+                    <li>
+                        <span>Following</span>
+                        <div class="font-price">
+                            {{userData.following}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-bottom">
+                <div class="tabset-wrapper">
+                    <div class="tabset grid4">
+                        <input type="radio" name="tabset" id="tab1" aria-controls="tabset-one" checked/>
+                        <label for="tab1" class="tabs-label">Profile</label>
+                        <input type="radio" name="tabset" id="tab2" aria-controls="tabset-two" />
+                        <label for="tab2" class="tabs-label">Address</label>
+                        <div class="tab-panels">
+                            <section id="tabset-one" class="tab-panel profile-tab">
+
+                                <div class="row mt-20 flex-center">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                        <div class="avatar avatar-l">
+                                            <img ng-src="{{IMGURL}}{{userData.avatar}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5">
+                                        <h2 class="ucase">{{userData.username}}</h2>
+                                        <p class="ucase mb-0" ng-if="userData.iscompany">{{user.organisation ? user.organisation : 'COMPANY NAME (Optional)'}}</p>
+                                        <hr/>
+                                        <p class="ucase mb-0" ng-if="userData.iscompany">{{user.company_uen ? user.company_uen : 'COMPANY UEN NO. (Optional)'}}</p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h3>{{user.countrycode ? user.countrycode : '' }} {{userData.phonenumber}}</h3>
+                                        <div class="wd-100">
+                                            <input type="button" class="btn silver-btn block-btn ucase right mt-10 mb-15" value="Verify Mobile" ng-if="!user.otpverified" ng-click="openOTPModal()" />
+                                        </div>
+                                        <h5 class="ucase"><i class="fa fa-map-marker"></i> {{userData.country}}</h5>
+                                    </div>
+                                </div>
+                                <div class="row mt-20 flex-center">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Website</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p class="website-name">{{userData.website}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-20">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Skills</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p>{{userData.profession}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-20 mb-20">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Who am i?</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p>{{userData.aboutme ? userData.aboutme : 'This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!'}}</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <section id="tabset-two" class="tab-panel">
+                                <div class="row mt-20">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Email</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p>{{userData.email}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-20">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Contact No</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p>{{userData.countrycode}} {{userData.phonenumber}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-20">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Address</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p>{{userData.address ? userData.address: ' ----- '}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-20" ng-if="userData.iscompany">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Organization</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p>{{userData.organisation}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-20" ng-if="userData.iscompany">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="info-label">Company UEN No</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9">
+                                        <p>{{userData.company_uen}}</p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="gray-header">
+                <i class="fa fa-bar-chart"></i>
+                <h3 class="ucase">Performance Statistic</h3>
+            </div>
+            <div class="dashboard-wrapper">
+                <div class="dashboard-top">
+                    <div class="dashboard-left">
+                        <div class="charts-wrapper">
+                            <p class="ucase secondary mt-10 mb-10">XP Earning</p>
+                            <div class="chart-wrapper">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.xpData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                        </div>
+                                    </div>
+                                    <span>{{data.monthname | cut:true:3:'' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="charts-wrapper">
+                            <p class="ucase secondary mt-10 mb-10">Reach Viewers</p>
+                            <div class="chart-wrapper">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.reachViewersData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                        </div>
+                                    </div>
+                                    <span>{{data.monthname | cut:true:3:'' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="charts-wrapper">
+                            <p class="ucase secondary mt-10 mb-10">Impressions</p>
+                            <div class="chart-wrapper">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.impressionData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                        </div>
+                                    </div>
+                                    <span>{{data.lable}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-right statistic-info">
+                        <div class="flex-center-space">
+                            <h5 class="ucase">mutual friends</h5>
+                            <div class="font-price">
+                                {{chartData.mutualFriends}}
+                            </div>
+                        </div>
+                        <div class="flex-center-space">
+                            <h5 class="ucase">APPRECIATIONS</h5>
+                            <div class="font-rating">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="flex-center-space">
+                            <h5 class="ucase">LIKES</h5>
+                            <div class="font-price">
+                                {{chartData.totallikes}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-bottom mt-15">
+                    <div class="tabset-wrapper">
+                        <div class="tabset grid3">
+                            <input type="radio" name="tabset1" id="tab6" aria-controls="tabset-six" checked/>
+                            <label for="tab6" class="tabs-label">User Listings</label>
+                            <div class="tab-panels">
+                                <section id="tabset-six" class="tab-panel">
+                                    <div class="table-listing">
+                                        <div class="table-card" dir-paginate="(key,data) in userProducts.data | itemsPerPage: totalPerPage" total-items="userProducts.total" current-page="pagination.current">
+                                            <div class="flex-top-space">
+                                                <div class="table-img" ui-sref="app.viewitem({'id':data.id})">
+                                                    <img ng-src="{{data.images[0].filetype == 1 ? IMGURL:''}}{{data.images[0].thumbnail}}" />
+                                                </div>
+                                                <div class="table-content listing">
+                                                    <div class="table-col">
+                                                        <h5>{{data.title}}</h5>
+                                                        <span>Last Updated: {{convertDate(data.updated_at) | dateToISO | date:'dd MMMM yyyy'}}</span>
+                                                    </div>
+                                                    <div class="table-col">
+                                                        <h5>{{data.price ? (data.price | currency) + 'SGD': 'Free'}}</h5>
+                                                        <span ng-if="data.price > 0 && data.type != 'Shop'">Per Hour</span>
+                                                    </div>
+
+                                                    <div class="table-col">
+                                                        <h5>{{data.wishcount}}</h5>
+                                                        <span><i class="fa fa-heart"></i></span>
+                                                    </div>
+                                                    <div class="table-col">
+                                                        <h5>{{data.noofviews}}</h5>
+                                                        <span><i class="fa fa-eye"></i></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-30">
+                                        <div class="col-lg-12 col-md-12 col-sm-12" ng-if="userProducts.total > 0 && !formLoading">
+                                            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl"></dir-pagination-controls>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
-

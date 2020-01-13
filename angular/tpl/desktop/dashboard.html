@@ -53,54 +53,123 @@
                             <label for="tab4" class="tabs-label">Password</label>
                             <div class="tab-panels">
                                 <section id="tabset-one" class="tab-panel profile-tab">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <input type="button" class="btn silver-btn right" value="Edit Profile" />
-                                        </div>
-                                    </div>
-                                    <div class="row mt-20 flex-center">
-                                        <div class="col-lg-3 col-md-3 col-sm-3 text-right">
-                                            <div class="avatar avatar-l">
-                                                <img ng-src="{{IMGURL}}{{userData.avatar}}" />
+                                    <div class="not-edit" ng-if="!profileedit">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <input type="button" class="btn silver-btn right" value="Edit Profile" ng-click="showhideedit('profile')" />
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 col-md-5 col-sm-5">
-                                            <h2 class="ucase">{{userData.username}}</h2>
-                                            <p class="ucase mb-0" ng-if="userData.iscompany">{{user.organisation ? user.organisation : 'COMPANY NAME (Optional)'}}</p>
-                                            <hr/>
-                                            <p class="ucase mb-0" ng-if="userData.iscompany">{{user.company_uen ? user.company_uen : 'COMPANY UEN NO. (Optional)'}}</p>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <h3>{{user.countrycode ? user.countrycode : '' }} {{userData.phonenumber}}</h3>
-                                            <div class="wd-100">
-                                                <input type="button" class="btn silver-btn block-btn ucase right mt-10 mb-15" value="Verify Mobile" ng-if="!user.otpverified" ng-click="openOTPModal()" />
+                                        <div class="row mt-20 flex-center">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                                <div class="avatar avatar-l">
+                                                    <img ng-src="{{IMGURL}}{{userData.avatar}}" />
+                                                </div>
                                             </div>
-                                            <h5 class="ucase"><i class="fa fa-map-marker"></i> {{userData.country}}</h5>
+                                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                                <h2 class="ucase">{{userData.username}}</h2>
+                                                <p class="ucase mb-0" ng-if="userData.iscompany">{{user.organisation ? user.organisation : 'COMPANY NAME (Optional)'}}</p>
+                                                <hr/>
+                                                <p class="ucase mb-0" ng-if="userData.iscompany">{{user.company_uen ? user.company_uen : 'COMPANY UEN NO. (Optional)'}}</p>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <h3>{{user.countrycode ? user.countrycode : '' }} {{userData.phonenumber}}</h3>
+                                                <div class="wd-100">
+                                                    <input type="button" class="btn silver-btn block-btn ucase right mt-10 mb-15" value="Verify Mobile" ng-if="!user.otpverified" ng-click="openOTPModal()" />
+                                                </div>
+                                                <h5 class="ucase"><i class="fa fa-map-marker"></i> {{userData.country}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20 flex-center">
+                                            <div class="col-lg-3 col-md-3 text-right">
+                                                <label class="info-label">Website</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9">
+                                                <p class="website-name">{{userData.website}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20">
+                                            <div class="col-lg-3 col-md-3 text-right">
+                                                <label class="info-label">Skills</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9">
+                                                <p>{{userData.profession}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20">
+                                            <div class="col-lg-3 col-md-3 text-right">
+                                                <label class="info-label">Who am i?</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9">
+                                                <p>{{userData.aboutme ? userData.aboutme : 'This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!'}}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-20 flex-center">
-                                        <div class="col-lg-3 col-md-3 text-right">
-                                            <label class="info-label">Website</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9">
-                                            <p class="website-name">{{userData.website}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-20">
-                                        <div class="col-lg-3 col-md-3 text-right">
-                                            <label class="info-label">Skills</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9">
-                                            <p>{{userData.profession}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-20">
-                                        <div class="col-lg-3 col-md-3 text-right">
-                                            <label class="info-label">Who am i?</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9">
-                                            <p>{{userData.aboutme ? userData.aboutme : 'This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!'}}</p>
-                                        </div>
+                                    <div class="is-edit" ng-if="profileedit">
+                                        <form name="profileform" ng-submit="saveProfile(profileform)">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <input type="submit" class="btn silver-btn right" value="Save Profile" />
+                                                    <input type="button" class="btn silver-btn right mr-20" value="Cancel" ng-click="showhideedit('profile')"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-20">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                                    <div class="avatar avatar-l" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="1" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="uploadProfileimg($files);">
+                                                        <img ng-src="{{IMGURL}}{{userData.avatar}}" ng-if="!editData.profileimg"/>
+                                                        <img ngf-src="editData.profileimg" ng-if="editData.profileimg">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9">
+                                                    <h2 class="ucase"><input type="text" name="username" class="form-control" placeholder="Username" ng-model="editData.username" required/></h2>
+                                                    <p class="ucase" ng-if="user.iscompany"><input type="text" class="form-control" placeholder="Company name" ng-model="editData.organisation"  name="organisation"/></p>
+                                                    <p class="ucase mt-10 mb-0" ng-if="user.iscompany"><input type="text" class="form-control" placeholder="UEN No" ng-model="editData.company_uen" name="company_uen"/></p>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Phone No</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2">
+                                                    <input type="text" class="form-control" placeholder="+65" ng-model="editData.countrycode" name="countrycode"/>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7">
+                                                    <input type="text" class="form-control" placeholder="676 677 777" required ng-model="editData.phonenumber" name="phonenumber"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Location</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <input type="text" class="form-control" placeholder="Location" ng-model="editData.country" name="country" required/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Website</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <input type="text" class="form-control" placeholder="website name" ng-model="editData.website"  name="website"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Skills</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <input type="text" class="form-control" placeholder="skills" ng-model="editData.profession"  name="profession" required/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Who am i?</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <textarea class="form-control" rows="4" ng-model="editData.aboutme" name="aboutme" placeholder="This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!"></textarea>
+                                                </div>
+                                            </div>
+                                        </form>
+                               
                                     </div>
                                 </section>
                                 <section id="tabset-two" class="tab-panel">
@@ -206,12 +275,12 @@
                                     </form>
                                 </section>
                                 <section id="tabset-three" class="tab-panel">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <input type="button" class="btn silver-btn right" value="Edit Info" />
                                         </div>
-                                    </div>
-                                    <div class="row mt-20">
+                                    </div> -->
+                                    <!-- <div class="row mt-20">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12">
@@ -295,7 +364,7 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group">
                                                         <input type="text" class="opacity-0 form-control" placeholder="Card Number" />
-                                                        <!-- for place holder -->
+                                                         for place holder
                                                     </div>
                                                 </div>
                                             </div>
@@ -323,16 +392,16 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
-                                    <div class="row mt-20">
+                                    <!-- <div class="row mt-20">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label">Order Link</label>
                                                 <input type="text" class="form-control" placeholder="Product order or Booking link" />
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </section>
                                 <section id="tabset-four" class="tab-panel">
                                     <form name="passwordform" ng-submit="changePassword(passwordform)" novalidate>
