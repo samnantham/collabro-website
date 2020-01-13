@@ -10,9 +10,12 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
         $rootScope.broadcastData.description = "";
         $rootScope.broadcastData.images = [];
         $rootScope.broadcastData.thumbimage = 0;
+        $rootScope.viewingThumb = {};
+        $rootScope.hidebroadcasterrors();
     }
 
     $rootScope.hidebroadcasterrors = function() {
+        $rootScope.imageerror = false;
         $rootScope.broadcasttitleerror = false;
         $rootScope.broadcastdescriptionerror = false;
     }
@@ -182,15 +185,35 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
     }
 
 	$rootScope.addbroadCast = function(form) {
+        $rootScope.hidebroadcasterrors();
+        if (form.$valid) {
             $rootScope.formLoading = true;
             webServices.upload('feed', $rootScope.broadcastData).then(function(getData) {
                 $rootScope.formLoading = false;
                 if (getData.status == 200) {
+                    $rootScope.closeModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $rootScope.broadcastData = {};
+                    if($rootScope.currentdevice == 'mobile'){
+                        $state.go('app.feeds');
+                    }
+                } else if (getData.status == 401) {
+                    $scope.errors = utility.getError(getData.data.message);
+                    $scope.showerrors();
                 } else {
                     $rootScope.$emit("showerror", getData);
                 }
             });
+        } else {
+            if (!form.title.$valid) {
+                $rootScope.broadcasttitleerror = true;
+            }if (!form.description.$valid) {
+                $rootScope.broadcastdescriptionerror = true;
+            }if (!form.images.$valid) {
+                $rootScope.imageerror = true;
+            }
         } 
+    } 
+
+    $rootScope.resetFeedItems();
 }]);

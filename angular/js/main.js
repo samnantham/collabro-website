@@ -19,10 +19,12 @@ angular.module('app')
             $rootScope.pwtype = "password";
             $rootScope.redirectproduct = {};
             $rootScope.notificationInterval = 6000;
+            $rootScope.ismodalopen = false;
             $rootScope.showheader = false;
             $rootScope.userData = {};
             $rootScope.shareData = {};
             $rootScope.user = {};
+            $rootScope.toDay = new Date();
             $rootScope.chatImages = {};
             $rootScope.categories = [];
             $rootScope.validextensions = angular.copy(app.imgextensions);
@@ -203,81 +205,37 @@ angular.module('app')
                 });
             }
 
-            $rootScope.hidebroadcasterrors = function() {
-                $rootScope.broadcasttitleerror = false;
-                $rootScope.broadcastdescriptionerror = false;
-                $rootScope.imageerror = false;
-            }
-            $rootScope.openbroadcastModal = function(){
-                $rootScope.hidebroadcasterrors();
-                var a = $ngConfirm({
-                    columnClass:'broadcastModal',
-                    title: 'Broadcast',
-                    contentUrl:'tpl/blocks/modals/broadcast.html',
-                    scope: $scope,
-                    useBootstrap:true,
-                    typeAnimated: true,
-                    closeIcon: true,
-                    closeIconClass: 'modal-close',
-                    buttons: {
-                       cancel: {
-                            text: 'Cancel',
-                            btnClass: 'danger-btn',
-                            action: function() {
-                            }
-                        },formSubmit: {
-            text: 'Publish Item',
-           btnClass: 'success-btn',
-                            keys: ['enter'],
-            action: function () {
-                var title = this.$content.find('.broad-title').val();
-                var description = this.$content.find('.broad-description').val();
-                var images = this.$content.find('.broad-images').val();
-                if(!title||!description||!images){
-                    if(!title){
-                        $rootScope.broadcasttitleerror = true;
-                    }if(!description){
-                        $rootScope.broadcastdescriptionerror = true;
-                    }if(!images){
-                        $rootScope.imageerror = true;
-                    }
-                    return false;
-                }else{
-                    $rootScope.formLoading = true;
-                    webServices.upload('feed', $rootScope.broadcastData).then(function(getData) {
-                        $rootScope.formLoading = false;
-                        if (getData.status == 200) {
-                            $rootScope.$emit("showsuccessmsg", getData.data.message);
-                            $rootScope.broadcastData = {};
-                            a.close();
-                        } else {
-                            $rootScope.$emit("showerror", getData);
-                        }
-                    });
+            $rootScope.openbroadcastModal = function() {
+                if (!$rootScope.ismodalopen) {
+                    $rootScope.openModalPopup('broadcast');
                 }
-                
-                
-            }
-        },
-                        /*publish: {
-                            text: 'Publish Item',
-                            btnClass: 'success-btn',
-                            keys: ['enter'],
-                            action: function () {
-                                $rootScope.addbroadCast()
-                                return false; //
-                            }
-                        }    */
-                    },
-                });
             }
 
+            $rootScope.opentodoModal = function() {
+                if (!$rootScope.ismodalopen) {
+                    $rootScope.openModalPopup('todo');
+                }
+            }
 
             $(document).keyup(function(e) {
                 if (e.key === "Escape") { // escape key maps to keycode `27`
                     $rootScope.closeItem();
                 }
             });
+
+
+            $rootScope.openModalPopup = function(modalfile) {
+                $rootScope.ismodalopen = true;
+                var dialogInst = $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    backdrop: 'static',
+                    keyboard: false,
+                    templateUrl: 'tpl/blocks/modals/' + modalfile + '.html',
+                    size: 'lg',
+                    windowClass: modalfile+'modal',
+                });
+            }
 
             $rootScope.sharefeedtosocial = function(data) {
                 $rootScope.shareData = {};
@@ -1035,9 +993,14 @@ angular.module('app')
 
 
             $rootScope.closeModal = function() {
+
                 $('.modal-content > .ng-scope').each(function() {
                     $(this).scope().$dismiss();
                 });
+
+                $rootScope.ismodalopen = false;
+                $rootScope.broadcastData = {};
+                $rootScope.viewingThumb = {};
             };
 
         }

@@ -10,40 +10,40 @@ angular.module('app')
         };
     })
 
-    .directive('emptyTypeahead', function () {
-      return {
+.directive('emptyTypeahead', function() {
+    return {
         require: 'ngModel',
-        link: function (scope, element, attrs, modelCtrl) {
-          // this parser run before typeahead's parser
-          modelCtrl.$parsers.unshift(function (inputValue) {
-            var value = (inputValue ? inputValue : '[$empty$]'); // replace empty string with secretEmptyKey to bypass typeahead-min-length check
-            modelCtrl.$viewValue = value; // this $viewValue must match the inputValue pass to typehead directive
-            return value;
-          });
-          
-          // this parser run after typeahead's parser
-          modelCtrl.$parsers.push(function (inputValue) {
-            return inputValue === '[$empty$]' ? '' : inputValue; // set the secretEmptyKey back to empty string
-          });
-        }
-      }
-    })
+        link: function(scope, element, attrs, modelCtrl) {
+            // this parser run before typeahead's parser
+            modelCtrl.$parsers.unshift(function(inputValue) {
+                var value = (inputValue ? inputValue : '[$empty$]'); // replace empty string with secretEmptyKey to bypass typeahead-min-length check
+                modelCtrl.$viewValue = value; // this $viewValue must match the inputValue pass to typehead directive
+                return value;
+            });
 
-    .directive('focusMe', function($timeout, $parse) {
-      return {
-          //scope: true,   // optionally create a child scope
-          link: function(scope, element, attrs) {
-              var model = $parse(attrs.focusMe);
-              scope.$watch(model, function(value) {
-                  if(value === true) { 
-                      $timeout(function() {
-                          element[0].focus();
-                      });
-                  }
-              });
-          }
-      };
-    })
+            // this parser run after typeahead's parser
+            modelCtrl.$parsers.push(function(inputValue) {
+                return inputValue === '[$empty$]' ? '' : inputValue; // set the secretEmptyKey back to empty string
+            });
+        }
+    }
+})
+
+.directive('focusMe', function($timeout, $parse) {
+    return {
+        //scope: true,   // optionally create a child scope
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.focusMe);
+            scope.$watch(model, function(value) {
+                if (value === true) {
+                    $timeout(function() {
+                        element[0].focus();
+                    });
+                }
+            });
+        }
+    };
+})
 
 .directive('popoverClose', function($timeout) {
         return {
@@ -154,46 +154,20 @@ angular.module('app')
         }
     ])
 
-.directive("datepicker", function () {
-  return {
-    restrict: "A",
-    require: "ngModel",
-    link: function (scope, elem, attrs, ngModelCtrl) {
-      var updateModel = function (dateText) {
-        scope.$apply(function () {
-          ngModelCtrl.$setViewValue(dateText);
-        });
-      };
-      var options = {
-        dateFormat: "mm/dd/yy",
-        autoSize: true,
-        changeYear: true,
-        changeMonth: true,
-        appendToBody:true,
-        minDate:new Date(),
-        onSelect: function (dateText) {
-          updateModel(dateText);
+.directive('datepicker', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, el, attr, ngModel) {
+            $(el).datepicker({
+                onSelect: function(dateText) {
+                    scope.$apply(function() {
+                        ngModel.$setViewValue(dateText);
+                    });
+                }
+            });
         }
-      };
-      elem.datepicker(options);
-    }
-  }
+    };
 })
-    .directive('datetimez', function() {
-        return {
-            restrict: 'A',
-            require: 'ngModel',
-            link: function(scope, element, attrs, ngModelCtrl) {
-                element.datetimepicker({
-                    language: 'en',
-                    pickDate: false,
-                }).on('changeDate', function(e) {
-                    ngModelCtrl.$setViewValue(e.date);
-                    scope.$apply();
-                });
-            }
-        };
-    })
 
 .directive('soundCloudPlayer', function() {
     return {
@@ -483,79 +457,84 @@ angular.module('app')
             }
         };
     })
-    .service('anchorSmoothScroll', function(){
-    
-    this.scrollTo = function(eID) {
+    .service('anchorSmoothScroll', function() {
 
-        // This scrolling function 
-        // is from http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
-        
-        var startY = currentYPosition();
-        var stopY = elmYPosition(eID);
-        var distance = stopY > startY ? stopY - startY : startY - stopY;
-        if (distance < 100) {
-            scrollTo(0, stopY); return;
-        }
-        var speed = Math.round(distance / 100);
-        if (speed >= 20) speed = 20;
-        var step = Math.round(distance / 25);
-        var leapY = stopY > startY ? startY + step : startY - step;
-        var timer = 0;
-        if (stopY > startY) {
-            for ( var i=startY; i<stopY; i+=step ) {
-                setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
-                leapY += step; if (leapY > stopY) leapY = stopY; timer++;
-            } return;
-        }
-        for ( var i=startY; i>stopY; i-=step ) {
-            setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
-            leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
-        }
-        
-        function currentYPosition() {
-            // Firefox, Chrome, Opera, Safari
-            if (self.pageYOffset) return self.pageYOffset;
-            // Internet Explorer 6 - standards mode
-            if (document.documentElement && document.documentElement.scrollTop)
-                return document.documentElement.scrollTop;
-            // Internet Explorer 6, 7 and 8
-            if (document.body.scrollTop) return document.body.scrollTop;
-            return 0;
-        }
-        
-        function elmYPosition(eID) {
-            var elm = document.getElementById(eID);
-            var y = elm.offsetTop;
-            var node = elm;
-            while (node.offsetParent && node.offsetParent != document.body) {
-                node = node.offsetParent;
-                y += node.offsetTop;
-            } return y;
-        }
+        this.scrollTo = function(eID) {
 
-    };
-    
-})
-
-    .directive('scrollToBottom', function($timeout, $window) {
-    return {
-        scope: {
-            scrollToBottom: "="
-        },
-        restrict: 'A',
-        link: function(scope, element, attr) {
-            scope.$watchCollection('scrollToBottom', function(newVal) {
-                if (newVal) {
-                    $timeout(function() {
-                        element[0].scrollTop =  element[0].scrollHeight;
-                    }, 0);
+            var startY = currentYPosition();
+            var stopY = elmYPosition(eID);
+            var distance = stopY > startY ? stopY - startY : startY - stopY;
+            if (distance < 100) {
+                scrollTo(0, stopY);
+                return;
+            }
+            var speed = Math.round(distance / 100);
+            if (speed >= 20) speed = 20;
+            var step = Math.round(distance / 25);
+            var leapY = stopY > startY ? startY + step : startY - step;
+            var timer = 0;
+            if (stopY > startY) {
+                for (var i = startY; i < stopY; i += step) {
+                    setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                    leapY += step;
+                    if (leapY > stopY) leapY = stopY;
+                    timer++;
                 }
+                return;
+            }
+            for (var i = startY; i > stopY; i -= step) {
+                setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                leapY -= step;
+                if (leapY < stopY) leapY = stopY;
+                timer++;
+            }
 
-            });
-        }
-    };
-})
-    .directive('resize', function($window) {
+            function currentYPosition() {
+                // Firefox, Chrome, Opera, Safari
+                if (self.pageYOffset) return self.pageYOffset;
+                // Internet Explorer 6 - standards mode
+                if (document.documentElement && document.documentElement.scrollTop)
+                    return document.documentElement.scrollTop;
+                // Internet Explorer 6, 7 and 8
+                if (document.body.scrollTop) return document.body.scrollTop;
+                return 0;
+            }
+
+            function elmYPosition(eID) {
+                var elm = document.getElementById(eID);
+                var y = elm.offsetTop;
+                var node = elm;
+                while (node.offsetParent && node.offsetParent != document.body) {
+                    node = node.offsetParent;
+                    y += node.offsetTop;
+                }
+                return y;
+            }
+
+        };
+
+    })
+
+.directive('scrollToBottom', function($timeout, $window) {
+        return {
+            scope: {
+                scrollToBottom: "="
+            },
+            restrict: 'A',
+            link: function(scope, element, attr) {
+                scope.$watchCollection('scrollToBottom', function(newVal) {
+                    if (newVal) {
+                        $timeout(function() {
+                            element[0].scrollTop = element[0].scrollHeight;
+                        }, 0);
+                    }
+
+                });
+            }
+        };
+    })
+
+.directive('resize', function($window) {
         return function(scope, element) {
             var w = angular.element($window);
             scope.getWindowDimensions = function() {

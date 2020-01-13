@@ -37,5 +37,6 @@ angular.module('app', [
     'skitter',
     'angular-web-notification',
     'chart.js',
-    'cp.ngConfirm'
+    'cp.ngConfirm',
+    'pickadate'
 ]);

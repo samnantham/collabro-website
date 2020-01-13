@@ -1,5 +1,6 @@
 app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
 	$rootScope.todoData = {};
+    $rootScope.todoData.type = 'Personal';
     $rootScope.todoData.images = [];
     $rootScope.imageerrormsg = "Please Upload todo images";
 
@@ -35,20 +36,7 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
             newobj.file = $rootScope.todoData.embedvideo;
             var thumbnail = $rootScope.todoData.embedvideo;
             if ($rootScope.todoData.embedvideo.includes('youtu')) {
-                if (thumbnail.includes('youtu.')) {
-                    var splitted = thumbnail.split("youtu.be");
-                    var videothumb = splitted[1].replace('/', '');
-                } else {
-                    if (thumbnail.includes('watch')) {
-                        var splitted = thumbnail.split("v=");
-                        var videothumb = splitted[1];
-                    } else if (thumbnail.includes('embed')) {
-                        var splitted = thumbnail.split("embed");
-                        var videothumb = splitted[1].replace('/', '');
-                    }
-                }
-
-                newobj.thumbnail = 'http://img.youtube.com/vi/' + videothumb + '/0.jpg';
+                newobj.thumbnail = 'img/youtube.png';
             } else if ($rootScope.todoData.embedvideo.includes('vimeo')) {
                 newobj.thumbnail = 'img/vimeo.png';
             } else if ($rootScope.todoData.embedvideo.includes('soundcloud')) {
@@ -75,7 +63,7 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         }
         else{
             $rootScope.$emit("showerrormsg", 'Please upload valid video url.');
-            $rootScope.formData.embedvideo = '';
+            $rootScope.todoData.embedvideo = '';
         }
     }
 
@@ -143,7 +131,7 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         $rootScope.editkey = null;
     }
 
-    $rootScope.replaceImage = function(files,key) {
+ $rootScope.replaceImage = function(files,key) {
         if (files && files.length) {
             $rootScope.editkey = key;
             var extn = files[0].name.split(".").pop();
@@ -154,7 +142,9 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                     newobj.filename = files[0].name;
                     newobj.filetype = 1;
                     newobj.isfile = 1;
-                    $rootScope.converttobase64(files[0], newobj);
+                    $rootScope.viewingThumb = newobj;
+                    $rootScope.todoData.images[$rootScope.editkey] = newobj;
+                    $rootScope.todoData.thumbimage = angular.copy($rootScope.editkey);
                 } else {
                     $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
                 }
@@ -164,9 +154,7 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
             $rootScope.ismodalPopover = false;
         }
     }
-
-
-     $rootScope.addImages = function(files) {
+    $rootScope.addImages = function(files) {
         $rootScope.selectedKey = null;
         $rootScope.imageerrormsg = "";
         $rootScope.viewingThumb = {};
@@ -183,7 +171,9 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                             newobj.filename = files[i].name;
                             newobj.filetype = 1;
                             newobj.isfile = 1;
-                            $rootScope.converttobase64(files[i], newobj);
+                            $rootScope.todoData.images.push(newobj);
+                            $rootScope.viewingThumb = $rootScope.todoData.images[$rootScope.todoData.images.length - 1];
+                            $rootScope.todoData.thumbimage = $rootScope.todoData.images.length - 1;
                         } else {
                             $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
                         }
@@ -208,26 +198,6 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         }
     }
 
-    $rootScope.converttobase64 = function(file, obj) {
-        var fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = function(e) {
-            obj.base64 = e.target.result;
-            $timeout(function() {
-                if ($rootScope.editkey != null) {
-                    $rootScope.todoData.images[$rootScope.editkey] = obj;
-                    $rootScope.viewingThumb = obj;
-                    $rootScope.todoData.thumbimage = angular.copy($rootScope.editkey);
-                } else {
-                    $rootScope.todoData.images.push(obj);
-                    $rootScope.viewingThumb = $rootScope.todoData.images[$rootScope.todoData.images.length - 1];
-                    $rootScope.todoData.thumbimage = $rootScope.todoData.images.length - 1;
-                }
-                $rootScope.selectedKey = null;
-                $rootScope.editkey = null;
-            }, 500);
-        };
-    }
 
 	$scope.addtodo = function(form) {
         $rootScope.hidetodoerrors();
@@ -238,7 +208,7 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                 $rootScope.formLoading = false;
                 console.log(getData)
                 if (getData.status == 200) {
-                    $rootScope.closetodoModal();
+                    $rootScope.closeModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $rootScope.todoData = {};
                     $rootScope.viewingThumb = {};
@@ -247,9 +217,6 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                     }else{
                         $state.reload();
                     }
-                    // if($rootScope.currentdevice == 'mobile'){
-                    //     $state.go('app.todos');
-                    // }
                 } else if (getData.status == 401) {
                     $scope.errors = utility.getError(getData.data.message);
                     $rootScope.$emit("showerrors", $scope.errors);
