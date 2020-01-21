@@ -236,7 +236,63 @@
     };
   }])
   ; 
- 
+  app.controller('DatepickerDemoCtrl', ['$scope','$timeout', function($scope,$timeout) {
+    $scope.today = function() {
+      $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+      $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+       if($scope.opened) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      } else {
+        $timeout(function() {
+          $scope.opened = true;
+        })
+      }
+    };
+    
+    $scope.open2 = function($event) {
+     if($scope.opened2) {
+      // Prevent datepicker from closing this calendar popup
+      $event.preventDefault();
+      $event.stopPropagation();
+    } else {
+      // Delay opening until next tick, otherwise calendar popup will be immediately closed
+      $timeout(function() {
+        $scope.opened2 = true;
+      })
+    }
+  };
+
+
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 0,
+      class: 'datepicker',
+      showWeeks:false,
+    };
+
+    $scope.initDate = new Date();
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+  }])
+  ; 
   app.controller('TimepickerDemoCtrl', ['$scope', function($scope) {
     $scope.mytime = new Date();
 

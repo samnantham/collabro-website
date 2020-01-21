@@ -31,15 +31,15 @@
         </div>
 
         <div class="row mt-15">
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in todos.data | itemsPerPage: totalPerPage" total-items="todos.total" current-page="pagination.current" ui-sref="app.projectdetails({id:data.id})">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in todos.data | itemsPerPage: totalPerPage" total-items="todos.total" current-page="pagination.current">
                <div class="table-card">
                     <div class="flex-top-space">
                         <div class="table-img">
-                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" />
+                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.projectdetails({id:data.id})" />
                         </div>
                         <div class="table-content">
                             <div class="table-col">
-                                <h5>{{data.title | cut:true:25:'..'}}</h5>
+                                <h5 ui-sref="app.projectdetails({id:data.id})" >{{data.title | cut:true:25:'..'}}</h5>
                                 <span>{{data.type}} todo | {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                             </div>
                             <div class="table-col">

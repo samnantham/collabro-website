@@ -2,8 +2,6 @@
 app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
     $rootScope.activediv = 'info';
     $rootScope.viewingThumb = {};
-    $rootScope.formData.type = '';
-    $rootScope.formData.images = [];
     $scope.isOpen = false;
 
     $rootScope.resetProductItems = function() {
@@ -84,6 +82,90 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         }
     }
 
+    $rootScope.addImages = function(files) {
+        $rootScope.selectedKey = null;
+        $rootScope.imageerrormsg = "";
+        $rootScope.viewingThumb = {};
+        $rootScope.errors = [];
+        var remainingimages = 6 - $rootScope.formData.images.length;
+        if (files.length <= remainingimages) {
+            if (files && files.length) {
+                for (var i = 0; i < files.length; i++) {
+                    var extn = files[i].name.split(".").pop();
+                    if ($rootScope.validextensions.includes(extn.toLowerCase())) {
+                        if (files[i].size <= $rootScope.maxUploadsize) {
+                            var newobj = {};
+                            newobj.file = files[i];
+                            newobj.filename = files[i].name;
+                            newobj.filetype = 1;
+                            newobj.isfile = 1;
+                            $rootScope.formData.images.push(newobj);
+                            $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.formData.images.length - 1];
+                            $rootScope.formData.thumbimage = $rootScope.formData.images.length - 1;
+                        } else {
+                            $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
+                        }
+                    } else {
+                        $rootScope.$emit("showerrormsg", files[i].name + ' format unsupported.');
+                    }
+                }
+                if ($rootScope.errors.length > 0) {
+                    angular.forEach($rootScope.errors, function(error, no) {
+                        if (no == 0) {
+                            $rootScope.imageerrormsg += error;
+                        } else {
+                            $rootScope.imageerrormsg += ' & ' + error;
+                        }
+                    });
+                    $rootScope.imageerror = true;
+                }
+            }
+        } else {
+            files = null;
+            $rootScope.$emit("showerrormsg", 'Now you can upload maximum of ' + remainingimages + ' images only.');
+        }
+    }
+
+    $rootScope.uploadvideo = function() {
+        if (($rootScope.validURL($rootScope.formData.embedvideo))&&($rootScope.validvideo($rootScope.formData.embedvideo))) {
+            $rootScope.viewingThumb = {};
+            $rootScope.videoerror = false;
+            var newobj = {};
+            newobj.filetype = 2;
+            newobj.file = $rootScope.formData.embedvideo;
+            var thumbnail = $rootScope.formData.embedvideo;
+            if ($rootScope.formData.embedvideo.includes('youtu')) {
+                newobj.thumbnail = 'img/youtube.png';
+            } else if ($rootScope.formData.embedvideo.includes('vimeo')) {
+                newobj.thumbnail = 'img/vimeo.png';
+            } else if ($rootScope.formData.embedvideo.includes('soundcloud')) {
+                newobj.thumbnail = 'img/soundcloud.png';
+            }
+            if ($rootScope.editkey) {
+                $rootScope.formData.images[$rootScope.editkey] = newobj;
+                $rootScope.viewingThumb = newobj;
+                $rootScope.formData.thumbimage = $rootScope.selectedKey;
+                $rootScope.selectedKey = null;
+                $rootScope.editkey = null;
+            } else {
+                if ($rootScope.formData.images.length < 6) {
+                    $rootScope.formData.images.push(newobj);
+                    $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.formData.images.length - 1];
+                    $rootScope.formData.thumbimage = $rootScope.formData.images.length - 1;
+                    $rootScope.selectedKey = null;
+                    $rootScope.editkey = null;
+                } else if ($rootScope.formData.images.length >= 6) {
+                    $rootScope.$emit("showerrormsg", 'Already 6 items uploaded.');
+                }
+            }
+            $rootScope.formData.embedvideo = '';
+        }
+        else{
+            $rootScope.$emit("showerrormsg", 'Please upload valid video url.');
+            $rootScope.formData.embedvideo = '';
+        }
+    }
+
     $rootScope.validURL = function(url) {
         var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -111,58 +193,6 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.editkey = key;
         $rootScope.formData.embedvideo = $rootScope.formData.images[$rootScope.selectedKey].file;
         $rootScope.ismodalPopover = false;
-    }
-
-    $rootScope.uploadvideo = function() {
-        if (($rootScope.validURL($rootScope.formData.embedvideo))&&($rootScope.validvideo($rootScope.formData.embedvideo))) {
-            $rootScope.viewingThumb = {};
-            $rootScope.videoerror = false;
-            var newobj = {};
-            newobj.filetype = 2;
-            newobj.file = $rootScope.formData.embedvideo;
-            var thumbnail = $rootScope.formData.embedvideo;
-            if ($rootScope.formData.embedvideo.includes('youtu')) {
-                if (thumbnail.includes('youtu.')) {
-                    var splitted = thumbnail.split("youtu.be");
-                    var videothumb = splitted[1].replace('/', '');
-                } else {
-                    if (thumbnail.includes('watch')) {
-                        var splitted = thumbnail.split("v=");
-                        var videothumb = splitted[1];
-                    } else if (thumbnail.includes('embed')) {
-                        var splitted = thumbnail.split("embed");
-                        var videothumb = splitted[1].replace('/', '');
-                    }
-                }
-
-                newobj.thumbnail = 'http://img.youtube.com/vi/' + videothumb + '/0.jpg';
-            } else if ($rootScope.formData.embedvideo.includes('vimeo')) {
-                newobj.thumbnail = 'img/vimeo.png';
-            } else if ($rootScope.formData.embedvideo.includes('soundcloud')) {
-                newobj.thumbnail = 'img/soundcloud.png';
-            }
-            if ($rootScope.editkey) {
-                $rootScope.formData.images[$rootScope.editkey] = newobj;
-                $rootScope.viewingThumb = newobj;
-                $rootScope.formData.thumbimage = $rootScope.selectedKey;
-                $rootScope.selectedKey = null;
-                $rootScope.editkey = null;
-            } else {
-                if ($rootScope.formData.images.length < 6) {
-                    $rootScope.formData.images.push(newobj);
-                    $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.formData.images.length - 1];
-                    $rootScope.formData.thumbimage = $rootScope.formData.images.length - 1;
-                    $rootScope.selectedKey = null;
-                    $rootScope.editkey = null;
-                } else if ($rootScope.formData.images.length >= 6) {
-                    $rootScope.$emit("showerrormsg", 'Already 6 items uploaded.');
-                }
-            }
-            $rootScope.formData.embedvideo = '';
-        }else{
-            $rootScope.$emit("showerrormsg", 'Please upload valid video url.');
-            $rootScope.formData.embedvideo = '';
-        }
     }
 
     $rootScope.chooseItem = function(key) {
@@ -203,29 +233,6 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.ismodalPopover = false;
         $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.selectedKey];
     }
-
-    $rootScope.replaceImage = function(files,key) {
-        if (files && files.length) {
-            $rootScope.editkey = key;
-            var extn = files[0].name.split(".").pop();
-            if ($rootScope.validextensions.includes(extn.toLowerCase())) {
-                if (files[0].size <= $rootScope.maxUploadsize) {
-                    var newobj = {};
-                    newobj.file = files[0];
-                    newobj.filename = files[0].name;
-                    newobj.filetype = 1;
-                    newobj.isfile = 1;
-                    $rootScope.converttobase64(files[0], newobj);
-                } else {
-                    $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
-                }
-            } else {
-                $rootScope.$emit("showerrormsg", files[i].name + ' format unsupported.');
-            }
-            $rootScope.ismodalPopover = false;
-        }
-    }
-
 
     $rootScope.changeactiveDiv = function(div) {
         $rootScope.activediv = div;
@@ -407,69 +414,6 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.membererror = false;
     }
 
-    $rootScope.addImages = function(files) {
-        $rootScope.selectedKey = null;
-        $rootScope.imageerrormsg = "";
-        $rootScope.viewingThumb = {};
-        $rootScope.errors = [];
-        var remainingimages = 6 - $rootScope.formData.images.length;
-        if (files.length <= remainingimages) {
-            if (files && files.length) {
-                for (var i = 0; i < files.length; i++) {
-                    var extn = files[i].name.split(".").pop();
-                    if ($rootScope.validextensions.includes(extn.toLowerCase())) {
-                        if (files[i].size <= $rootScope.maxUploadsize) {
-                            var newobj = {};
-                            newobj.file = files[i];
-                            newobj.filename = files[i].name;
-                            newobj.filetype = 1;
-                            newobj.isfile = 1;
-                            $rootScope.converttobase64(files[i], newobj);
-                        } else {
-                            $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
-                        }
-                    } else {
-                        $rootScope.$emit("showerrormsg", files[i].name + ' format unsupported.');
-                    }
-                }
-                if ($rootScope.errors.length > 0) {
-                    angular.forEach($rootScope.errors, function(error, no) {
-                        if (no == 0) {
-                            $rootScope.imageerrormsg += error;
-                        } else {
-                            $rootScope.imageerrormsg += ' & ' + error;
-                        }
-                    });
-                    $rootScope.imageerror = true;
-                }
-            }
-        } else {
-            files = null;
-            $rootScope.$emit("showerrormsg", 'Now you can upload maximum of ' + remainingimages + ' images only.');
-        }
-    }
-
-    $rootScope.converttobase64 = function(file, obj) {
-        var fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = function(e) {
-            obj.base64 = e.target.result;
-            $timeout(function() {
-                if ($rootScope.editkey != null) {
-                    $rootScope.formData.images[$rootScope.editkey] = obj;
-                    $rootScope.viewingThumb = obj;
-                    $rootScope.formData.thumbimage = angular.copy($rootScope.editkey);
-                } else {
-                    $rootScope.formData.images.push(obj);
-                    $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.formData.images.length - 1];
-                    $rootScope.formData.thumbimage = $rootScope.formData.images.length - 1;
-                }
-                $rootScope.selectedKey = null;
-                $rootScope.editkey = null;
-            }, 500);
-        };
-    }
-
     $rootScope.getBrands = function() {
         if (!$scope.formData.category) {
             $rootScope.brands = [];
@@ -514,6 +458,11 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 $rootScope.logout();
             }
         });
+    }else{
+        $rootScope.formData = {};
+        $rootScope.formData.type = '';
+        $rootScope.formData.images = [];
+        $rootScope.resetProductItems();
     }
 
 }]);

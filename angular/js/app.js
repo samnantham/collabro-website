@@ -38,5 +38,5 @@ angular.module('app', [
     'angular-web-notification',
     'chart.js',
     'cp.ngConfirm',
-    'pickadate'
+    '720kb.datepicker'
 ]);

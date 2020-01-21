@@ -1,0 +1,210 @@
+<script src="js/modal-js/productmodal.js"></script>
+<div class="custom-modal" ng-controller="ProductModalCtrl">
+    <!-- Modal title -->
+    <div class="custom-modal-title modal-default">
+        <div class="row flex-center">
+            <div class="col-lg-4 col-md-4">
+                <h3><i class="fa fa-bolt"></i> New Post</h3>
+            </div>
+            <div class="col-lg-4 col-md-4 ml-15 flex-center">
+                <div class="dropdown-label">Category</div>
+                <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false">
+                    <ui-select-match allow-clear="true" class="selected-item float-lt">
+                        <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category'}}</p>
+                    </ui-select-match>
+                    <ui-select-choices repeat="type in servicetypes | filter: $select.search">
+                        <span ng-bind-html="type | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal body -->
+    <div class="custom-modal-body">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 br-1">
+                <div class="modal-left">
+
+                    <div class="form-group mb-0">
+                        <label class="control-label">Add Images</label>
+                        <span class="error error-text" ng-if="imageerror">{{imageerrormsg}}</span>
+                    </div>
+                    <input name="images" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0" class="broad-images">
+                    <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
+                        ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type" ng-class="{'upload-btn-disabled': !formData.type}" ng-if="!viewingThumb.file">
+                        <div class="upload-inner">
+                            <div class="icon-container">
+                                <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
+                                <div class="img-holder"><img src="./../assets/img/video.png" title="upload"></div>
+                                <div class="img-holder"><img src="./../assets/img/camera.png" title="upload"></div>
+                            </div>
+                            <div class="upload-content">
+                                Add images, video from the web or take photos to upload to your page
+                            </div>
+                        </div>
+                        <div class="preview-img">
+                            <div class="img-holder" ng-if="viewingThumb.filetype == 1 && viewingThumb.isfile" ngf-background="viewingThumb.file"></div>
+                            <div class="img-holder" ng-if="viewingThumb.filetype == 1 && !viewingThumb.isfile" background-image="{{IMGURL}}{{viewingThumb.file}}"></div>
+                            <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
+                            </anguvideo>
+                            <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
+                            </sound-cloud-player>
+                        </div>
+                    </div>
+                    <div class="upload-container upload-wrapper" ng-if="viewingThumb.file && viewingThumb.isfile  && viewingThumb.filetype == 1" ngf-background="viewingThumb.file"></div>
+                    <div class="upload-container upload-wrapper" ng-if="viewingThumb.file && !viewingThumb.isfile  && viewingThumb.filetype == 1" background-image="{{IMGURL}}{{viewingThumb.file}}"></div>
+                    <div class="upload-container upload-wrapper" ng-if="viewingThumb.filetype == 2">
+                        <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
+                        </anguvideo>
+                        <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
+                        </sound-cloud-player>
+                    </div>
+                    <div class="upload-info"><i class="fa fa-info-circle"></i> Up to 6 representative Image and video</div>
+
+                    <div class="form-group mt-30 mb-0">
+                        <label class="control-label">Embeded Media</label>
+                    </div>
+
+                    <div class="form-group flex-center-space mb-0">
+                        <input type="text" class="form-control" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/"
+                            ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)">
+                        <button type="button" class="btn silver-btn ml-20" ng-click="uploadvideo();" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)">Add</button>
+                    </div>
+
+                    <div class="thumb-wrapper mt-30">
+                        <div class="thumbs" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/popover/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)"
+                            tooltip-class="preview-tooltip">
+                            <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" ngf-background="data.file" ng-if="data.filetype == 1 && data.isfile"></div>
+                            <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == formData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
+                            <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
+                        </div>
+                        <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
+                            ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type">
+                            <div class="add-thumb">+</div>
+                        </div>
+                    </div>
+                    <div class="upload-info mt-0"><i class="fa fa-info-circle"></i> Up to 6 representative Image and video</div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-8">
+                <div class="modal-right">
+
+                    <div class="form-group mb-0">
+                        <label class="control-label">Post Title</label>
+                        <input type="text" class="form-control" name="title" placeholder="e.g. Title of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100" />
+                        <span class="error error-text" ng-if="titleerror">Enter post Title</span>
+                    </div>
+
+                    <div class="form-group mt-30 mb-0">
+                        <label class="control-label">Post Description</label>
+                        <textarea class="form-control" rows="10" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000"></textarea>
+                        <span class="error error-text" ng-if="descriptionerror">Enter post Description</span>
+                    </div>
+
+                    <div class="form-row mt-20" ng-if="formData.type == 'service">
+                        <div class="form-column flex-top-space">
+                            <div class="form-group">
+                                <label class="control-label">Location</label>
+                                <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                 <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                    <p>
+                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
+                                    </p>
+                                 </ui-select-match>
+                                 <ui-select-choices repeat="location in locations">
+                                    <span ng-bind-html="location | highlight: $select.search"></span>
+                                 </ui-select-choices>
+                              </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-column flex-top-space ml-30">
+                            <div class="form-group">
+                                <label class="control-label">End date</label>
+                                <input type="text" class="form-control" placeholder="16-06-2018" />
+                            </div>
+                            <div class="form-group ml-15">
+                                <label class="control-label">NA</label>
+                                <input class="magic-checkbox" type="checkbox" name="layout" id="na1" value="option" />
+                                <label class="text" for="na1"></label>
+                            </div>
+                        </div>
+                        <div class="form-column flex-center-space ml-30">
+                            <div class="form-group">
+                                <label class="control-label">Price</label>
+                                <input type="text" class="form-control" placeholder="form value" />
+                            </div>
+                        </div>
+                        <div class="form-column flex-center-space ml-30">
+                            <div class="form-group wd-100">
+                                <label class="control-label">&nbsp;</label>
+                                <input type="button" class="btn silver-btn block-btn" value="Hour" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-15">
+                        <div class="form-column flex-top-space">
+                            <div class="form-group">
+                                <label class="control-label">From</label>
+                                <input type="button" class="btn silver-btn block-btn" value="08:00" />
+                            </div>
+                            <div class="form-group ml-30">
+                                <label class="control-label">To</label>
+                                <input type="button" class="btn silver-btn block-btn" value="16:00" />
+                            </div>
+                        </div>
+                        <div class="form-column flex-top-space ml-15">
+                            <div class="form-group">
+                                <label class="control-label">&nbsp;</label>
+                                <input class="magic-checkbox" type="checkbox" name="layout" id="allday" value="option" />
+                                <label class="text" for="allday">All day event</label>
+                            </div>
+                        </div>
+                        <div class="form-column-50 flex-top-space ml-15">
+                            <div class="form-group">
+                                <label class="control-label">Collection and Physical Store Address</label>
+                                <input type="button" class="btn silver-btn block-btn" value="Insert Address?" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input class="magic-checkbox" type="checkbox" name="layout" id="save" value="option" />
+                            <label class="text" for="save">Save the date</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="custom-modal-footer text-right">
+        <a class="btn danger-btn" href="#">Cancel</a>
+        <a href="#" class="btn success-btn ml-30">Publish Item</a>
+    </div>
+
+</div>
+
+<style type="text/css">
+    .thumb,
+        .upload-wrapper {
+            background-repeat: no-repeat!important;
+            background-position: center center!important;
+            background-size: cover!important;
+            background-size: 100%!important;
+        }
+        .selected-item .ng-hide{
+            display: block!important;
+        }
+</style>

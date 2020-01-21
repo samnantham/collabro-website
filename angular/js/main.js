@@ -207,13 +207,25 @@ angular.module('app')
 
             $rootScope.openbroadcastModal = function() {
                 if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('broadcast');
+                    $rootScope.openModalPopup('broadcastModal');
+                }
+            }
+
+            $rootScope.openCollaborateModal = function() {
+                if (!$rootScope.ismodalopen) {
+                    $rootScope.openModalPopup('collaborateModal');
                 }
             }
 
             $rootScope.opentodoModal = function() {
                 if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('todo');
+                    $rootScope.openModalPopup('todoModal');
+                }
+            }
+
+            $rootScope.openproductModal = function() {
+                if (!$rootScope.ismodalopen) {
+                    $rootScope.openModalPopup('productModal');
                 }
             }
 
@@ -233,7 +245,7 @@ angular.module('app')
                     keyboard: false,
                     templateUrl: 'tpl/blocks/modals/' + modalfile + '.html',
                     size: 'lg',
-                    windowClass: modalfile+'modal',
+                    windowClass: modalfile+'modal broadcastmodal',
                 });
             }
 

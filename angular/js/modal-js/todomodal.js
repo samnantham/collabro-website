@@ -2,9 +2,11 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
 	$rootScope.todoData = {};
     $rootScope.todoData.type = 'Personal';
     $rootScope.todoData.images = [];
+    $rootScope.selectedproject = {};
     $rootScope.imageerrormsg = "Please Upload todo images";
 
 	$rootScope.resetTodoItems = function() {
+        $rootScope.hidetodoerrors();
         $rootScope.todoData.title = "";
         $rootScope.todoData.deadline = "";
         $rootScope.todoData.description = "";
@@ -16,6 +18,7 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
 
     $rootScope.hidetodoerrors = function() {
         $rootScope.todotitleerror = false;
+        $rootScope.imageerror = false;
         $rootScope.tododescriptionerror = false;
         $rootScope.tododeadlineerror = false;
         $rootScope.projecterror = false;
@@ -203,10 +206,9 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         $rootScope.hidetodoerrors();
         if (form.$valid) {
             $rootScope.formLoading = true;
-            $rootScope.todoData.deadline = $filter('date')(new Date($rootScope.todoData.tododeadline), 'yyyy-MM-dd');
+            $rootScope.todoData.deadline = $filter('date')($rootScope.todoData.tododeadline, 'yyyy-MM-dd');
             webServices.upload('todo', $rootScope.todoData).then(function(getData) {
                 $rootScope.formLoading = false;
-                console.log(getData)
                 if (getData.status == 200) {
                     $rootScope.closeModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
@@ -254,18 +256,18 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         webServices.get('todo/' + $rootScope.edittodoid).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.todoData = getData.data;
-                $rootScope.todoData.tododeadline = $filter('date')(new Date($rootScope.todoData.deadline), 'MM/dd/yyyy');
-                
+                $rootScope.todoData.tododeadline = $filter('date')(new Date($rootScope.todoData.deadline), 'dd/MM/yyyy');
                 if($rootScope.todoData.type == 'Personal'){
                     $rootScope.todoData.thumbimage = 0;
                     $rootScope.viewingThumb = $rootScope.todoData.images[0];
                 }else{
                     $rootScope.applyproject($rootScope.todoData.projectinfo);
                 }
-                console.log($rootScope.todoData)
             } else {
                 $rootScope.logout();
             }
         });
+    }else{
+        $rootScope.resetTodoItems();
     }
 }]);
