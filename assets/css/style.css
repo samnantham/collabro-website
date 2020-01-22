@@ -11687,6 +11687,131 @@ i.color-btn {
   min-height: 250px !important;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  text-align: center;
+}
+
+.modal:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog.mini {
+  min-width: 500px !important;
+}
+
+.modal-dialog {
+  min-width: 80%;
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  margin: 10px auto;
+}
+
+.modal-dialog-content {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  float: left;
+  padding: 20px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  transform: none !important;
+  height: auto;
+}
+.modal-dialog-content .modal-header {
+  width: 100%;
+  border: 0;
+  padding: 0;
+}
+.modal-dialog-content h2 {
+  margin: 0px 0 10px 0;
+  font-size: 20px;
+}
+.modal-dialog-content .option {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 9999;
+  cursor: pointer;
+  color: #d4dae3;
+}
+.modal-dialog-content .option:hover {
+  color: #344051;
+}
+.modal-dialog-content .option svg {
+  height: 20px;
+  color: #344051;
+}
+.modal-dialog-content .custom-modal-content {
+  width: 100%;
+  float: left;
+  height: calc(100% - 35px);
+  position: relative;
+}
+.modal-dialog-content .card-popup {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border: 0;
+}
+.modal-dialog-content .modal-footer {
+  width: 100%;
+  float: left;
+  border: 0px;
+  padding: 0px;
+  margin-top: 20px;
+}
+
+.modal-z {
+  z-index: 9999999 !important;
+}
+
+/* Modal */
+.custom-modal-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Confirm-head {
+  color: #FF1561;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.Confirm-content {
+  padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    min-width: auto !important;
+  }
+}
 .progress-wrapper {
   width: 100%;
   float: left;
