@@ -278,7 +278,7 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 $rootScope.fromfriendspage = false;
                 $rootScope.formLoading = false;
                 if (getData.status == 200) {
-                    $rootScope.closeproductModal();
+                    $rootScope.closeModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     if (oldData.id) {
                         if ($rootScope.currentdevice == 'desktop') {
@@ -303,7 +303,7 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 }
             });
         } else {
-            if (!form.productfile.$valid) {
+            if (!form.images.$valid) {
                 $rootScope.imageerrormsg = "(Upload Images or add Video)";
                 $rootScope.imageerror = true;
             }
@@ -366,7 +366,7 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
             } else {
                 $rootScope.activediv = 'info';
             }
-            if ($rootScope.formData.type != 'Service') {
+            /*if ($rootScope.formData.type != 'Service') {
                 if (!form.phoneno.$valid) {
                     $rootScope.phoneerror = true;
                 }
@@ -387,7 +387,7 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 if (!form.postalcode.$valid) {
                     $rootScope.postalcodeerror = true;
                 }
-            }
+            }*/
         }
     }
 
