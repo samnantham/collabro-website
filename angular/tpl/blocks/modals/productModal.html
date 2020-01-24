@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="col-lg-8 col-md-8">
-                    <div class="modal-right" ng-if="activediv =='info'">
+                    <div class="modal-right" ng-show="activediv =='info'">
 
                         <div class="form-group mb-0">
                             <label class="control-label">Post Title</label>
@@ -384,27 +384,29 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-right" ng-if="activediv =='address'">
+                    <div class="modal-right" ng-show="activediv =='address'">
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Address</label>
-                                    <textarea class="form-control" rows="4" placeholder="Address"></textarea>
+                                    <textarea class="form-control" rows="4" placeholder="Address" name="address" ng-model="formData.address" required></textarea>
+                                    <span class="error error-text" ng-if="addresserror">Enter Address</span>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Business Email</label>
-                                    <input type="email" class="form-control" placeholder="Email" />
+                                    <input type="email" class="form-control" name="emailid" placeholder="Email" ng-model="formData.email" required/>
+                                    <span class="error error-text" ng-if="emailerror">Enter valid Email</span>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
                                             <input class="magic-checkbox"
-                                                type="checkbox"
+                                                type="radio"
                                                 name="layout"
                                                 id="private"
-                                                value="option"
+                                                name="isprivate" value="1" ng-model="formData.isprivate"
                                             />
                                             <label class="text" for="allday">Private</label>
                                         </div>
@@ -412,10 +414,10 @@
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
                                             <input class="magic-checkbox"
-                                                type="checkbox"
+                                                type="radio"
                                                 name="layout"
                                                 id="public"
-                                                value="option"
+                                                name="isprivate" value="0" ng-model="formData.isprivate"
                                             />
                                             <label class="text" for="allday">Public</label>
                                         </div>
@@ -431,7 +433,8 @@
                                     <div class="col-lg-8 col-md-8">
                                         <div class="form-group">
                                             <label class="control-label">Postal code</label>
-                                            <input type="text" class="form-control" placeholder="postal code" />
+                                            <input type="text" class="form-control" placeholder="postal code" name="postalcode" ng-model="formData.postalcode" required numbers-only required/>
+                                            <span class="error error-text" ng-if="postalcodeerror">Enter Postal Code</span>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4">
@@ -439,9 +442,8 @@
                                             <label class="control-label">&nbsp;</label>
                                             <input class="magic-checkbox"
                                                 type="checkbox"
-                                                name="layout"
+                                                name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap"
                                                 id="map"
-                                                value="option"
                                             />
                                             <label class="text" for="allday">Show map</label>
                                         </div>
@@ -450,11 +452,29 @@
                             </div>
                         </div>
 
+                        <div class="row" ng-if="user.iscompany == 1">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Organisation</label>
+                                    <input type="text" class="form-control"  type="text" name="organisation" placeholder="Name of company or organiser" ng-model="formData.organisation" required/>
+                                    <span class="error error-text" ng-if="organisationerror">Enter your Organization Name</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Company UEN No.</label>
+                                    <input type="text" class="form-control"  name="company_uen" placeholder="Company registrtion No." ng-model="formData.company_uen" required />
+                                    <span class="error error-text" ng-if="companyuenerror">Enter your Company UEN</span>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Order Link (Optional)</label>
-                                    <input type="text" class="form-control" placeholder="Prodyuct order or Booking link" />
+                                    <input type="text" class="form-control"  name="orderlink" placeholder="Product order or booking link" ng-model="formData.orderlink" ng-required="formData.orderlink" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" />
                                 </div>
                             </div>
                         </div>
@@ -463,15 +483,16 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4">
-                                        <label class="control-label">&nbsp;</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="+91" />
+                                            <label class="control-label">Contact No.</label>
+                                            <input type="text" class="form-control" placeholder="+65" ng-model="formData.countrycode"  />
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-8">
                                         <div class="form-group">
                                             <label class="control-label">&nbsp;</label>
-                                            <input type="text" class="form-control" placeholder="9999 9999" />
+                                            <input type="text" class="form-control" name="phoneno" placeholder="2358 8070" ng-model="formData.phoneno"
+                                            required numbers-only />
                                         </div>
                                     </div>
                                 </div>

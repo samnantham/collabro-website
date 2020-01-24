@@ -366,7 +366,7 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
             } else {
                 $rootScope.activediv = 'info';
             }
-            /*if ($rootScope.formData.type != 'Service') {
+            if ($rootScope.formData.type != 'Service') {
                 if (!form.phoneno.$valid) {
                     $rootScope.phoneerror = true;
                 }
@@ -387,7 +387,7 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 if (!form.postalcode.$valid) {
                     $rootScope.postalcodeerror = true;
                 }
-            }*/
+            }
         }
     }
 
