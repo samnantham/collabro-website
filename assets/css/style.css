@@ -11465,6 +11465,10 @@ i.color-btn {
   border: 0px;
 }
 
+.form-modal {
+  width: 90% !important;
+}
+
 .custom-modal {
   width: 100%;
   float: left;
@@ -13009,6 +13013,8 @@ ul.simple-list li:last-of-type {
 
 .form-group {
   margin-bottom: 0;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .form-group {
@@ -13026,6 +13032,7 @@ ul.simple-list li:last-of-type {
   z-index: 10;
   margin-bottom: 5px;
   text-transform: uppercase;
+  text-align: left;
 }
 .form-group .label-img {
   padding: 5px;
