@@ -244,8 +244,8 @@ angular.module('app')
                     backdrop: 'static',
                     keyboard: false,
                     templateUrl: 'tpl/blocks/modals/' + modalfile + '.html',
-                    size: 'lg',
-                    windowClass: modalfile+'modal broadcastmodal modal-dialog',
+                    size: 'lg form-modal',
+                    windowClass: modalfile+'modal',
                 });
             }
 
