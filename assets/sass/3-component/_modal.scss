@@ -4,9 +4,9 @@
     max-width: 1180px;
 }
 
-.modal-dialog{
-    min-width: 85%;
-    max-width: 1200px;
+.modal-content{
+    @include box-shadow(none);
+    border: 0px;
 }
 
 .custom-modal{

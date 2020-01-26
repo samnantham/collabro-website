@@ -6,7 +6,6 @@
     bottom: 0
     z-index: 1050
     text-align: center
-
 .modal:before
     content: ''
     display: inline-block
@@ -17,7 +16,6 @@
 .modal-dialog.mini
     min-width: 500px !important
 .modal-dialog
-    min-width: 80%
     text-align: left
     display: inline-block
     vertical-align: middle
@@ -25,6 +23,8 @@
     @include box-shadow($box-shadow-default)
     @include border-radius(5px)
     margin: 10px auto
+    &.form-modals
+        width: 90%
 
 // custom modal
 .modal-dialog-content
