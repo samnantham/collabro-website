@@ -59,11 +59,7 @@
         </div>
         <!-- app container -->
         <div class="content-container">
-            <div class="row mt-15">
-                <div class="col-lg-12 col-md-12 text-center">
-                    <h1>The Platform for Entrepreneur to Collaborate and Do Business</h1>
-                </div>
-            </div>
+            
             <div class="row mt-15">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <ul class="search-tab">
@@ -73,6 +69,12 @@
                         <li ng-click="setactivetab('rental')"><a ng-class="{'active':activetab=='rental'}">Rentals</a></li>
                         <li ng-click="setactivetab('event')"><a ng-class="{'active':activetab=='event'}">Events</a></li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="row mt-15">
+                <div class="col-lg-12 col-md-12 text-center">
+                    <h1>The Platform for Entrepreneur to Collaborate and Do Business</h1>
                 </div>
             </div>
             
@@ -96,7 +98,7 @@
                         </div>
                         <div class="row">
                             <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
                                     <div class="card" ng-click="showItem(data)">
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
@@ -136,7 +138,7 @@
                         </div>
                         <div class="row">
                             <slick ng-if="!formLoading" init-onload="true" data="products.shop" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.shop">
                                     <div class="card" ng-click="showItem(data)">
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
@@ -176,7 +178,7 @@
                         </div>
                         <div class="row">
                             <slick ng-if="!formLoading" init-onload="true" data="products.rental" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.rental">
                                     <div class="card" ng-click="showItem(data)">
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
@@ -217,7 +219,7 @@
                         </div>
                         <div class="row">
                             <slick ng-if="!formLoading" init-onload="true" data="products.event" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.event">
                                     <div class="card" ng-click="showItem(data)">
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
@@ -259,7 +261,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
                                 <div class="card" ng-click="showItem(data)">
                                     <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>

@@ -245,7 +245,7 @@ angular.module('app')
                     keyboard: false,
                     templateUrl: 'tpl/blocks/modals/' + modalfile + '.html',
                     size: 'lg',
-                    windowClass: modalfile+'modal broadcastmodal',
+                    windowClass: modalfile+'modal broadcastmodal modal-dialog',
                 });
             }
 
@@ -530,14 +530,14 @@ angular.module('app')
                         $rootScope.scrollslides = 3;
                         $rootScope.slidecount = 3;
                     } else if (($rootScope.screenWidth > 1151) && ($rootScope.screenWidth < 1320)) {
-                        $rootScope.scrollslides = 4;
-                        $rootScope.slidecount = 4;
+                        $rootScope.scrollslides = 3;
+                        $rootScope.slidecount = 3;
                     } else if (($rootScope.screenWidth >= 1320) && ($rootScope.screenWidth < 1500)) {
-                        $rootScope.scrollslides = 4;
-                        $rootScope.slidecount = 4;
+                        $rootScope.scrollslides = 3;
+                        $rootScope.slidecount = 3;
                     } else {
-                        $rootScope.scrollslides = 4;
-                        $rootScope.slidecount = 4;
+                        $rootScope.scrollslides = 3;
+                        $rootScope.slidecount = 3;
                     }
                 } else {
                     $rootScope.slidecount = 2;
