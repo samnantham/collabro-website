@@ -8055,11 +8055,18 @@ a:hover, a:focus {
   text-decoration: none !important;
 }
 
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
 /* Body elements */
 body {
   background-color: #eff1f3;
   font-size: 14px;
   font-family: "Lato";
+  overflow: auto;
+  height: 100%;
 }
 body.nothome {
   background: #eff1f3;
@@ -11456,6 +11463,10 @@ i.color-btn {
   width: 100%;
   margin: 0 auto;
   max-width: 1180px;
+}
+
+.modal-open {
+  overflow: auto;
 }
 
 .modal-content {

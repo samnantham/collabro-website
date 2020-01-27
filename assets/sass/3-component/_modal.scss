@@ -4,6 +4,10 @@
     max-width: 1180px;
 }
 
+.modal-open{
+    overflow: auto;
+}
+
 .modal-content{
     @include box-shadow(none);
     border: 0px;
