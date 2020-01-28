@@ -8056,7 +8056,7 @@ a:hover, a:focus {
 }
 
 html {
-  overflow: hidden;
+  overflow: hidden auto;
   height: 100%;
 }
 
@@ -12747,8 +12747,8 @@ ul.simple-list li:last-of-type {
   padding: 80px 8px 40px 8px;
 }
 .search-container .slick-slider .slick-prev:before, .search-container .slick-slider .slick-next:before {
-  font-size: 24px !important;
-  color: #5B616A !important;
+  font-size: 34px !important;
+  color: #fff !important;
 }
 .search-container .slick-slider .slick-next {
   right: 5px;
@@ -12905,10 +12905,44 @@ ul.simple-list li:last-of-type {
   z-index: 999;
 }
 .slick-slider .slick-arrow.slick-prev {
-  left: 5px !important;
+  left: 10px !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  background: #ccc;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.slick-slider .slick-arrow.slick-prev:before {
+  content: "" !important;
+  display: inline-block;
+  font-family: FontAwesome !important;
 }
 .slick-slider .slick-arrow.slick-next {
-  right: 5px !important;
+  right: 10px !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  background: #ccc;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.slick-slider .slick-arrow.slick-next:before {
+  content: "" !important;
+  display: inline-block;
+  font-family: FontAwesome !important;
+}
+
+.slick-disabled {
+  display: none !important;
 }
 
 .custom-slider {
@@ -12968,6 +13002,7 @@ ul.simple-list li:last-of-type {
   -moz-border-radius: 5px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 .custom-slider .thumbslider .thumbholder:first-of-type, .custom-slider .thumbslider .thumbholder:last-of-type {
   padding-left: 0px;
@@ -13453,6 +13488,10 @@ input:checked + .slider:before {
   position: fixed;
   top: 30px;
   right: 15px;
+}
+
+.cookie-active .signin-modal {
+  top: 60px !important;
 }
 
 .login-wrap-modal {
@@ -14078,7 +14117,8 @@ input:checked + .slider:before {
   align-items: center;
 }
 .product-card .product-img {
-  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
   float: left;
   margin-right: 12px;
 }
@@ -14087,7 +14127,7 @@ input:checked + .slider:before {
   max-height: 55px;
 }
 .product-card .product-content {
-  width: calc(100% - 80px);
+  width: calc(100% - 92px);
   float: right;
   line-height: 1.35;
 }

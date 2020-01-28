@@ -5,8 +5,8 @@
     .slick-slider{
         .slick-prev, .slick-next{
             &:before{
-                font-size: $font-xxl !important;
-                color: $deep-blue !important;
+                font-size: $font-large !important;
+                color: $white !important;
             }
         }
         .slick-next{

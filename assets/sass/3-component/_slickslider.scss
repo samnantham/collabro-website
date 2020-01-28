@@ -10,12 +10,41 @@
     .slick-arrow{
         z-index: 999;
         &.slick-prev{
-            left: 5px !important;
+            left: 10px !important;
+            width: 50px;
+            height: 50px;
+            @include border-radius(50%);
+            background: $gray;
+            opacity: 0.8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            &:before{
+                content: "\f104" !important;
+                display: inline-block;
+                font-family: FontAwesome !important;
+            }            
         }
         &.slick-next{
-            right: 5px !important;
+            right: 10px !important;
+            width: 50px;
+            height: 50px;
+            @include border-radius(50%);
+            background: $gray;
+            opacity: 0.8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            &:before{
+                content: "\f105" !important;
+                display: inline-block;
+                font-family: FontAwesome !important;
+            }
         }
     }
+}
+.slick-disabled{
+    display: none !important;
 }
 .custom-slider{
     width: 100%;
@@ -68,6 +97,7 @@
                 @include border-radius(5px);
                 background-repeat: no-repeat;
                 background-size: cover;
+                background-position: center center;
             }
             &:first-of-type, &:last-of-type{
                 padding-left: 0px;
