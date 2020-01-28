@@ -8065,8 +8065,6 @@ body {
   background-color: #eff1f3;
   font-size: 14px;
   font-family: "Lato";
-  overflow: auto;
-  height: 100%;
 }
 body.nothome {
   background: #eff1f3;
@@ -10767,6 +10765,10 @@ i.color-btn {
 .upload-container.upload-wrapper {
   width: 100%;
   padding: 0px;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-size: 100% !important;
 }
 .upload-container.upload-wrapper iframe, .upload-container.upload-wrapper img, .upload-container.upload-wrapper video {
   width: 100%;
@@ -10868,6 +10870,10 @@ i.color-btn {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-size: 100% !important;
 }
 .thumb-wrapper .thumbs .thumb:hover, .thumb-wrapper .thumbs .thumb.active {
   background: #34AA44;
