@@ -9321,7 +9321,7 @@ i.color-btn {
   -moz-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 40px;
+  max-height: 50px;
 }
 .card .card-info {
   width: 100%;
@@ -9476,7 +9476,7 @@ i.color-btn {
   -moz-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 40px;
+  max-height: 50px;
   min-height: 40px;
 }
 
@@ -9712,7 +9712,7 @@ i.color-btn {
   -moz-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 40px;
+  max-height: 50px;
 }
 .table-card .table-content .table-col span {
   font-size: 12px;
