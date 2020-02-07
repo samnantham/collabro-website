@@ -234,6 +234,30 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.selectedKey];
     }
 
+    $rootScope.replaceImage = function(files,key) {
+        if (files && files.length) {
+            $rootScope.editkey = key;
+            var extn = files[0].name.split(".").pop();
+            if ($rootScope.validextensions.includes(extn.toLowerCase())) {
+                if (files[0].size <= $rootScope.maxUploadsize) {
+                    var newobj = {};
+                    newobj.file = files[0];
+                    newobj.filename = files[0].name;
+                    newobj.filetype = 1;
+                    newobj.isfile = 1;
+                    $rootScope.viewingThumb = newobj;
+                    $rootScope.broadcastData.images[$rootScope.editkey] = newobj;
+                    $rootScope.broadcastData.thumbimage = angular.copy($rootScope.editkey);
+                } else {
+                    $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
+                }
+            } else {
+                $rootScope.$emit("showerrormsg", files[i].name + ' format unsupported.');
+            }
+            $rootScope.ismodalPopover = false;
+        }
+    }
+
     $rootScope.changeactiveDiv = function(div) {
         $rootScope.activediv = div;
     }

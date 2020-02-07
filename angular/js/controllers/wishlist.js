@@ -56,6 +56,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
     };
 
     $scope.sortwishlist = function(key,order){
+        $scope.pageno = 1;
         $scope.url = 'sortmywishlist/'+key+'/'+order+'/';
         $scope.getWishedproducts();
     }

@@ -98,7 +98,7 @@
                         </div>
                         <div class="row">
                             <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig" slides-to-scroll="1" dots="false" infinite="false">
-                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" ng-repeat="(key,data) in products.service">
+                                <div ng-class="slidecount < 4 ? 'col-lg-4 col-md-4 col-sm-4' : 'col-lg-3 col-md-3 col-sm-3' " class=" col-xs-12" ng-repeat="(key,data) in products.service">
                                     <div class="card" ng-click="showItem(data)">
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
@@ -106,7 +106,7 @@
                                             <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                                <span class="price-sub" ng-if="data.price > 0 && data.periodtype">Per {{data.periodtype}}</span>
                                             </div>
                                         </div>
                                         <div class="card-footer">
@@ -146,7 +146,7 @@
                                             <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                                <span class="price-sub"><!-- Per {{data.periodtype}} --></span>
                                             </div>
                                         </div>
                                         <div class="card-footer">
@@ -186,7 +186,7 @@
                                             <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                                <span class="price-sub" ng-if="data.price > 0  && data.periodtype">Per {{data.periodtype}}</span>
                                             </div>
                                         </div>
                                         <div class="card-footer">
@@ -227,7 +227,7 @@
                                             <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                                <span class="price-sub">Per {{data.periodtype}}</span>
+                                                <span class="price-sub" ng-if="data.price > 0 && data.periodtype">Per {{data.periodtype}}</span>
                                             </div>
                                         </div>
                                         <div class="card-footer">
@@ -261,7 +261,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
+                            <div ng-class="slidecount < 4 ? 'col-lg-4 col-md-4 col-sm-4' : 'col-lg-3 col-md-3 col-sm-3'" class="col-xs-12" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
                                 <div class="card" ng-click="showItem(data)">
                                     <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
@@ -269,7 +269,7 @@
                                         <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
                                         <div class="card-info">
                                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                            <span class="price-sub">Per {{data.periodtype}}</span>
+                                            <span class="price-sub" ng-if="data.price > 0 && data.type!='Shop' && data.periodtype">Per {{data.periodtype}}</span>
                                         </div>
                                     </div>
                                     <div class="card-footer">

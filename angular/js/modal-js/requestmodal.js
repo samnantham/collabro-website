@@ -1,12 +1,13 @@
 'use strict';
-app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
+app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', '$modal', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter, $modal) {
     $rootScope.viewingThumb = {};
-    $rootScope.formData.type = '';
-    $rootScope.formData.images = [];
 
-    $rootScope.resetProductItems = function() {
+    $rootScope.resetRequestData = function() {
+        $rootScope.showCatError = false;
         $rootScope.viewingThumb = {};
-        $rootScope.formData.type = "Service";
+        $rootScope.formData.request_type = "Service";
+        $rootScope.formData.categoryText = 'Please select Category';
+        $rootScope.formData.productfile = '';
         $rootScope.formData.title = "";
         $rootScope.formData.description = "";
         $rootScope.formData.embedvideo = '';
@@ -29,10 +30,22 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         return !!pattern.test(url);
     }
 
-    $rootScope.validvideo = function(url){
+    $rootScope.showTooltip = function(){
+        if(!$rootScope.formData.request_category){
+            $rootScope.showCatError = true;
+        }
+        console.log($rootScope.showCatError)
+    }
+
+    $rootScope.hideTooltip = function(){
+        $rootScope.showCatError = false;
+        console.log($rootScope.showCatError)
+    }
+
+    $rootScope.validvideo = function(url) {
         var status = false;
         if (url.includes('youtu')) {
-            status = true;   
+            status = true;
         } else if (url.includes('vimeo')) {
             status = true;
         } else if (url.includes('soundcloud')) {
@@ -48,7 +61,7 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
     }
 
     $rootScope.uploadvideo = function() {
-        if (($rootScope.validURL($rootScope.formData.embedvideo))&&($rootScope.validvideo($rootScope.formData.embedvideo))) {
+        if (($rootScope.validURL($rootScope.formData.embedvideo)) && ($rootScope.validvideo($rootScope.formData.embedvideo))) {
             $rootScope.viewingThumb = {};
             $rootScope.videoerror = false;
             var newobj = {};
@@ -56,20 +69,7 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
             newobj.file = $rootScope.formData.embedvideo;
             var thumbnail = $rootScope.formData.embedvideo;
             if ($rootScope.formData.embedvideo.includes('youtu')) {
-                if (thumbnail.includes('youtu.')) {
-                    var splitted = thumbnail.split("youtu.be");
-                    var videothumb = splitted[1].replace('/', '');
-                } else {
-                    if (thumbnail.includes('watch')) {
-                        var splitted = thumbnail.split("v=");
-                        var videothumb = splitted[1];
-                    } else if (thumbnail.includes('embed')) {
-                        var splitted = thumbnail.split("embed");
-                        var videothumb = splitted[1].replace('/', '');
-                    }
-                }
-
-                newobj.thumbnail = 'http://img.youtube.com/vi/' + videothumb + '/0.jpg';
+                newobj.thumbnail = 'img/youtube.png';
             } else if ($rootScope.formData.embedvideo.includes('vimeo')) {
                 newobj.thumbnail = 'img/vimeo.png';
             } else if ($rootScope.formData.embedvideo.includes('soundcloud')) {
@@ -93,7 +93,7 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 }
             }
             $rootScope.formData.embedvideo = '';
-        }else{
+        } else {
             $rootScope.$emit("showerrormsg", 'Please upload valid video url.');
             $rootScope.formData.embedvideo = '';
         }
@@ -138,7 +138,7 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.selectedKey];
     }
 
-    $rootScope.replaceImage = function(files,key) {
+    $rootScope.replaceImage = function(files, key) {
         if (files && files.length) {
             $rootScope.editkey = key;
             var extn = files[0].name.split(".").pop();
@@ -149,7 +149,9 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                     newobj.filename = files[0].name;
                     newobj.filetype = 1;
                     newobj.isfile = 1;
-                    $rootScope.converttobase64(files[0], newobj);
+                    $rootScope.viewingThumb = newobj;
+                    $rootScope.broadcastData.images[$rootScope.editkey] = newobj;
+                    $rootScope.broadcastData.thumbimage = angular.copy($rootScope.editkey);
                 } else {
                     $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
                 }
@@ -159,7 +161,6 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
             $rootScope.ismodalPopover = false;
         }
     }
-
 
     $scope.addData = function(form) {
         $rootScope.hideerrors();
@@ -196,13 +197,17 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         } else {
             if (!form.productfile.$valid) {
                 $rootScope.imageerror = true;
-            }if (!form.title.$valid) {
+            }
+            if (!form.title.$valid) {
                 $rootScope.titleerror = true;
-            }if (!form.description.$valid) {
+            }
+            if (!form.description.$valid) {
                 $rootScope.descriptionerror = true;
-            }if (!form.price.$valid) {
+            }
+            if (!form.price.$valid) {
                 $rootScope.priceerror = true;
-            }if (!form.deadline.$valid) {
+            }
+            if (!form.deadline.$valid) {
                 $rootScope.deadlineerror = true;
             }
         }
@@ -232,7 +237,8 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                             newobj.filetype = 1;
                             newobj.isfile = 1;
                             $rootScope.formData.images.push(newobj);
-                            $rootScope.viewingThumb = newobj;
+                            $rootScope.viewingThumb = $rootScope.formData.images[$rootScope.formData.images.length - 1];
+                            $rootScope.formData.thumbimage = $rootScope.formData.images.length - 1;
                         } else {
                             $rootScope.$emit("showerrormsg", files[i].name + ' size exceeds 2MB.');
                         }
@@ -269,6 +275,9 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 $rootScope.logout();
             }
         });
+    } else {
+        $rootScope.formData = {};
+        $rootScope.resetRequestData();
     }
 
 }]);

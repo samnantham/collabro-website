@@ -24,7 +24,7 @@
                 </span>
             </div>
             <div class="form-group flex-center-space mt-15">
-                <input class="magic-checkbox" type="checkbox" id="remember" value="option" ng-model="userData.rememberme" name="remember_me" ng-true-value="1" ng-false-value="0" />
+                <input class="magic-checkbox" type="checkbox" id="remember" ng-model="userData.rememberme" name="remember_me" ng-true-value="1" ng-false-value="0" />
                 <label class="text" for="remember">Remember Me</label>
                 <a class="forgot-password right" ng-click="changeauthTab('forgotpw')">Forgot Password?</a>
             </div>
@@ -92,11 +92,14 @@
     <div class="login-modal" ng-if="currentauth == 'forgotpw'">
         <h1>Forgot Password</h1>
         <form name="forgotForm" novalidate ng-submit="forgotpassword(forgotForm)">
+            <div class="form-group" ng-if="(forgotForm.$valid)&&(forgoterrors.errormsg || forgoterrors.successmsg)">
+                <label class="control-label">&nbsp;</label>
+                <span ng-if="forgoterrors.errormsg && forgotForm.email.$error" class="error error-text">{{forgoterrors.errormsg}}</span>
+                <span ng-if="forgoterrors.successmsg && forgotForm.email.$error" class="error success-text">{{forgoterrors.successmsg}}</span>
+            </div>
             <div class="form-group">
                 <label class="control-label">E-mail address</label>
                 <input type="email" name="email" class="form-control" placeholder="email@address.com" ng-model="forgotModel.email" required/>
-                <span ng-if="forgoterrors.errormsg" class="error error-text">{{forgoterrors.errormsg}}</span>
-                <span ng-if="forgoterrors.successmsg" class="error success-text">{{forgoterrors.successmsg}}</span>
                 <span ng-messages="forgotForm.email.$error" role="alert">
                     <span class="error error-text" ng-message="required">Email Required</span>
                     <span class="error error-text" ng-message="email">Not valid email.</span> 

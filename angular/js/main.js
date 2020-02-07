@@ -6,7 +6,7 @@ angular.module('app')
     .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm',
         function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalStack) {
             $rootScope.isMobile = isMobile.phone;
-            $rootScope.screenWidth = window.innerWidth;
+            $rootScope.screenWidth = window.screen.width * window.devicePixelRatio;
             if ($rootScope.isMobile) {
                 $rootScope.currentdevice = 'mobile';
             } else {
@@ -229,6 +229,12 @@ angular.module('app')
                 }
             }
 
+            $rootScope.openRequestModal = function() {
+                if (!$rootScope.ismodalopen) {
+                    $rootScope.openModalPopup('requestmodal');
+                }
+            }
+
             $(document).keyup(function(e) {
                 if (e.key === "Escape") { // escape key maps to keycode `27`
                     $rootScope.closeItem();
@@ -413,11 +419,11 @@ angular.module('app')
             }
 
             $rootScope.openAuthModal = function(auth) {
-                $rootScope.authLoading = true;
+                //$rootScope.authLoading = true;
                 $rootScope.currentauth = auth;
                 $rootScope.loginModel = {};
-                $timeout(function() {
-                    $rootScope.authLoading = false;
+                /*$timeout(function() {*/
+                    //$rootScope.authLoading = false;
                     $rootScope.dialogInst = $modal.open({
                         ariaLabelledBy: 'modal-title',
                         ariaDescribedBy: 'modal-body',
@@ -427,7 +433,7 @@ angular.module('app')
                         windowClass: 'authmodal',
                     });
 
-                }, 1000);
+                /*}, 400);*/
             };
 
             $rootScope.changeauthTab = function(tab) {
@@ -439,6 +445,9 @@ angular.module('app')
                 $rootScope.loginerrors = {};
                 $rootScope.errors = [];
                 if (form.$valid) {
+                    if($rootScope.userData.rememberme){
+                        localStorage.userData = JSON.stringify($rootScope.userData);
+                    }
                     $rootScope.authloading = true;
                     $rootScope.loginLoading = true;
                     webServices.normalpost('login', $rootScope.userData).then(function(getData) {
@@ -486,6 +495,7 @@ angular.module('app')
                         }
                         if (localStorage.userData && !isMobile.phone) {
                             var userData = JSON.parse(localStorage.userData);
+                            console.log(userData)
                             if (userData.rememberme == 1) {
                                 $rootScope.userData = JSON.parse(localStorage.userData);
                             }
@@ -536,13 +546,16 @@ angular.module('app')
                         $rootScope.scrollslides = 3;
                         $rootScope.slidecount = 3;
                     } else {
-                        $rootScope.scrollslides = 3;
-                        $rootScope.slidecount = 3;
+                        $rootScope.scrollslides = 4;
+                        $rootScope.slidecount = 4;
                     }
                 } else {
                     $rootScope.slidecount = 2;
                     $rootScope.scrollslides = 2;
                 }
+
+                console.log($rootScope.slidecount)
+                console.log($rootScope.screenWidth)
 
                 $rootScope.slickConfig = {
                     enabled: true,
