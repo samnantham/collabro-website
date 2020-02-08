@@ -10,6 +10,7 @@ app.controller('ViewFeedCtrl', ['$scope', '$ngConfirm', '$http', '$state', '$sta
                 if($rootScope.feedData.owner.id != $rootScope.user.id){
                     $scope.gotofeedchat();
                 }
+                localStorage.redirectData = '';
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();

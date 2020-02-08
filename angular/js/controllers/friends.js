@@ -32,7 +32,6 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                     $scope.getotherpeoples();
                 } else {
                     if($scope.ispagechanged){
-                        //animatedScroll.scroll('#friends');
                     }
                     $rootScope.formLoading = false;
                 }
@@ -90,7 +89,6 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                         $scope.getfriends();
                     }
                     if($scope.ispagechanged){
-                        //animatedScroll.scroll('#peoples');
                     }
                     if (!$scope.firstloadingcompleted) {
                         $rootScope.formLoading = false;
@@ -107,6 +105,7 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
         $scope.isfriendchanged = true;
         webServices.put('followuser/' + user.id + '/0').then(function(getData) {
             if (getData.status == 200) {
+                $rootScope.$emit("showsuccessmsg", getData.data.message);
                 $scope.getfriends();
             }
         });
@@ -129,12 +128,16 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
         }
         webServices.put('followuser/' + user.id + '/' + status).then(function(getData) {
             if (getData.status == 200) {
+                $rootScope.$emit("showsuccessmsg", getData.data.message);
                 if (status) {
                     $scope.otherpeoples.data[key].isfollow = 1;
                 } else {
                     $scope.otherpeoples.data[key].isfollow = 0;
                 }
-                $scope.getfriends();
+                $scope.getotherpeoples();
+                if(getData.data.isfollow > 0){
+                    $scope.getfriends();
+                }
             }
         });
     }
@@ -148,7 +151,6 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                 $scope.getfriends();
             } else {
                 $scope.friends = $scope.friendspagedata[$scope.friendspageno];
-                //animatedScroll.scroll('#friends');
             }
         }else if(type == 'otherpeoples'){
             $scope.peoplespageno = newPage;
@@ -156,7 +158,6 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                 $scope.getotherpeoples();
             } else {
                 $scope.otherpeoples = $scope.otherpeoplespagedata[$scope.peoplespageno];
-                //animatedScroll.scroll('#peoples');
             }
         }  
     };

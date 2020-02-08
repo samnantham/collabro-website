@@ -73,11 +73,11 @@
 
     <div class="right-wrapper">
         <div class="right-title">
-            <h4>Recent Members</h4>
+            <h4>Followers</h4>
         </div>
         <div class="right-content">
             <ul class="member-list">
-                <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
+                <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
                     <a>
                         <div class="list-left">
                             <h5>{{user.username | cut:true:10:''}}</h5>
@@ -92,13 +92,13 @@
         </div>
     </div>
 
-    <div class="right-wrapper">
+        <div class="right-wrapper">
         <div class="right-title">
-            <h4>Followers</h4>
+            <h4>Recent Members</h4>
         </div>
         <div class="right-content">
             <ul class="member-list">
-                <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
+                <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
                     <a>
                         <div class="list-left">
                             <h5>{{user.username | cut:true:10:''}}</h5>

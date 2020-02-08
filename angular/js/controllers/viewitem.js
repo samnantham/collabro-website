@@ -15,6 +15,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                 $rootScope.redirectproduct = {};
                 $rootScope.viewData.address = $rootScope.viewData.address.split(",").join(',<br/>');
                 $rootScope.viewData.showExtra = 0;
+                localStorage.redirectData = '';
                 if ($rootScope.viewData.showmap) {
                     if($rootScope.viewData.postalcode){
                         $scope.getLatandLong($rootScope.viewData.postalcode +' , '+ $rootScope.viewData.address);

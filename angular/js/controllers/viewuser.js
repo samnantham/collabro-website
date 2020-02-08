@@ -18,16 +18,15 @@ app.controller('ViewUserCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
     $scope.userProducts = [];
     $scope.pagedata = [];
 
-    if ($rootScope.user) {
-        if (!$rootScope.user.username) {
-            $rootScope.logout();
-        }
-    }
 
     $scope.setUserData = function(){
         webServices.get('user/'+$stateParams.id).then(function(getData) {
             if (getData.status == 200) {
+                if($rootScope.user.id == $stateParams.id){
+                    $state.go('app.mydashboard');
+                }
                 $scope.userData = getData.data;
+                localStorage.redirectData = '';
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();
@@ -74,10 +73,6 @@ app.controller('ViewUserCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
         }
     };
 
-    $scope.scrollTo = function() {
-        $('html').animate({scrollTop: 800}, 'slow');
-    }
-
     $scope.getfriendsfollowers = function() {
         webServices.get('myrecentfriendsandfollowers').then(function(getData) {
             if (getData.status == 200) {
@@ -119,12 +114,6 @@ app.controller('ViewUserCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
         }
     }
 
-    if($rootScope.user.id == $stateParams.id){
-        $state.go('app.mydashboard');
-    }else{
-        $scope.getfriendsfollowers();
-    }
-
     $scope.changefollowstatus = function(followstatus) {
         if (followstatus) {
             var status = 0;
@@ -137,6 +126,9 @@ app.controller('ViewUserCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
             }
         });
     }
+
+        $scope.getfriendsfollowers();
+    
 
 
 }]);

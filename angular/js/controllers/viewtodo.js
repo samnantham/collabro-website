@@ -10,6 +10,7 @@ app.controller('ViewTodoCtrl', ['$scope', '$ngConfirm', '$http', '$state', '$sta
                 if($rootScope.todoData.type == 'Project'){
                     $rootScope.todoData.images = $rootScope.todoData.projectinfo.files;
                 }
+                localStorage.redirectData = '';
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();

@@ -713,6 +713,7 @@ angular.module('app')
             };
 
             $rootScope.goafterLogin = function() {
+
                 $rootScope.getUserInfo();
                 $rootScope.closeModal();
                 $rootScope.authloading = false;
@@ -729,7 +730,16 @@ angular.module('app')
                     $state.go('app.viewitem', {
                         'id': $rootScope.redirectproduct.id
                     });
+                }
+                if($rootScope.redirectroutes.includes($rootScope.previousstate)){
+                    if(localStorage.redirectData){
+                        var redirectData = JSON.parse(localStorage.redirectData);
+                        $state.go(redirectData.redirectto, {
+                            'id': redirectData.redirectid
+                        });
+                    }
                 } else {
+                    localStorage.redirectData = '';
                     $state.go('app.usermain');
                 }
             }
@@ -973,6 +983,7 @@ angular.module('app')
                 }
                 $rootScope.formLoading = true;
                 $rootScope.stateurl = toState.name;
+                $rootScope.previousstate = fromState.name;
                 if (!$rootScope.settings) {
                     $rootScope.getSettings();
                 }
@@ -1001,9 +1012,15 @@ angular.module('app')
             }
 
             $rootScope.scrollToPoint = function(point) {
-                $document.scrollTopAnimated(point, 2000).then(function() {
+                $document.scrollTopAnimated(point, 1000).then(function() {
                     console && console.log('You just scrolled to the top!');
                 });
+            }
+
+            $rootScope.scrollToPoint = function(id) {
+                var offset = 30;  
+                var someElement = angular.element(document.getElementById(id));
+                $document.scrollToElement(someElement, offset, 2000);
             }
 
             $rootScope.checkDate = function(date) {
