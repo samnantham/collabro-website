@@ -163,8 +163,8 @@
             <!-- product right -->
             <div class="content-detail-right">
                 <div class="product-card" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})">
-                    <div class="product-img">
-                        <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" />
+                    <div class="product-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                        <!-- <img ng-src="" /> -->
                     </div>
                     <div class="product-content">
                         <h5>{{data.title}}</h5>
