@@ -8079,7 +8079,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Lato";
   font-weight: 500;
   margin: 10px 0;
-  line-height: unset;
+  line-height: normal;
   color: #7E8EA4;
 }
 
@@ -8539,6 +8539,9 @@ p {
 .accordion-body .accordion-body-bottom .icons-left {
   width: 100px;
   float: left;
+}
+.accordion-body .accordion-body-bottom .icons-left a {
+  color: #00C4E8;
 }
 .accordion-body .accordion-body-bottom .icons-left i {
   margin-right: 10px;
@@ -9752,7 +9755,7 @@ i.color-btn {
   width: 180px;
   float: right;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 }
 .table-card .table-option a {
@@ -9964,7 +9967,8 @@ i.color-btn {
 }
 .messenger .message-wrap .message .info img {
   width: auto;
-  max-width: 100%;
+  max-width: 150px;
+  margin: 10px 0;
 }
 .messenger .message-wrap .message .info:before {
   position: absolute;
@@ -12384,6 +12388,7 @@ ul.simple-list li:last-of-type {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+  cursor: pointer;
 }
 .msg-post svg {
   width: 30px;
@@ -14048,7 +14053,7 @@ input:checked + .slider:before {
 }
 .product-info-row .product-info-column.price-wrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 .product-info-row .product-info-column .product-option {
   display: flex;
@@ -14121,6 +14126,10 @@ input:checked + .slider:before {
   max-width: 80px;
   float: left;
   margin-right: 12px;
+  height: 55px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 .product-card .product-img img {
   width: 100%;
