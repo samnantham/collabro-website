@@ -524,7 +524,7 @@ angular.module('app')
             }
 
             $(window).resize(function() {
-                $rootScope.screenWidth = window.innerWidth;
+                $rootScope.screenWidth = window.screen.width * window.devicePixelRatio;
                 $rootScope.setSliderConfig();
                 if ($rootScope.screenWidth < 800) {
                     $rootScope.currentdevice = 'mobile';
@@ -535,28 +535,6 @@ angular.module('app')
             });
 
             $rootScope.setSliderConfig = function() {
-                if (!isMobile.phone) {
-                    if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1151)) {
-                        $rootScope.scrollslides = 3;
-                        $rootScope.slidecount = 3;
-                    } else if (($rootScope.screenWidth > 1151) && ($rootScope.screenWidth < 1320)) {
-                        $rootScope.scrollslides = 3;
-                        $rootScope.slidecount = 3;
-                    } else if (($rootScope.screenWidth >= 1320) && ($rootScope.screenWidth < 1500)) {
-                        $rootScope.scrollslides = 3;
-                        $rootScope.slidecount = 3;
-                    } else {
-                        $rootScope.scrollslides = 4;
-                        $rootScope.slidecount = 4;
-                    }
-                } else {
-                    $rootScope.slidecount = 2;
-                    $rootScope.scrollslides = 2;
-                }
-
-                console.log($rootScope.slidecount)
-                console.log($rootScope.screenWidth)
-
                 $rootScope.slickConfig = {
                     enabled: true,
                     autoplay: false,
@@ -975,6 +953,24 @@ angular.module('app')
             }
 
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+                if (!isMobile.phone) {
+                    if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1151)) {
+                        $rootScope.scrollslides = 3;
+                        $rootScope.slidecount = 3;
+                    } else if (($rootScope.screenWidth > 1151) && ($rootScope.screenWidth < 1320)) {
+                        $rootScope.scrollslides = 3;
+                        $rootScope.slidecount = 3;
+                    } else if (($rootScope.screenWidth >= 1320) && ($rootScope.screenWidth < 1500)) {
+                        $rootScope.scrollslides = 3;
+                        $rootScope.slidecount = 3;
+                    } else {
+                        $rootScope.scrollslides = 4;
+                        $rootScope.slidecount = 4;
+                    }
+                } else {
+                    $rootScope.slidecount = 2;
+                    $rootScope.scrollslides = 2;
+                }
                 $rootScope.formLoading = true;
                 $rootScope.stateurl = toState.name;
                 if (!$rootScope.settings) {
@@ -1000,6 +996,12 @@ angular.module('app')
 
             $rootScope.scrollTop = function() {
                 $document.scrollTopAnimated(0, 2000).then(function() {
+                    console && console.log('You just scrolled to the top!');
+                });
+            }
+
+            $rootScope.scrollToPoint = function(point) {
+                $document.scrollTopAnimated(point, 2000).then(function() {
                     console && console.log('You just scrolled to the top!');
                 });
             }

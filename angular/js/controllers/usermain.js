@@ -273,6 +273,11 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
             $scope.typeproductdata = $scope.pagedata[$scope.typespageno];
             $rootScope.formLoading = false;
         }
+
+        $timeout(function() {
+            $rootScope.scrollToPoint(500);
+        }, 1000);
+
     };
 
     $scope.getfeeds();

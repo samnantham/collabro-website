@@ -168,12 +168,13 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
             $rootScope.formLoading = true;
             $rootScope.formData.thumbkey = $rootScope.formData.thumbimage;
             $rootScope.formData.is_request = 1;
+            $rootScope.formData.is_request = 1;
             $rootScope.formData.deadline = $filter('date')(new Date($rootScope.formData.requestdeadline), 'yyyy-MM-dd');
             webServices.upload('request', $rootScope.formData).then(function(getData) {
                 $rootScope.formLoading = false;
                 console.log(getData)
                 if (getData.status == 200) {
-                    $rootScope.closerequestModal();
+                    $rootScope.closeModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     // if (oldData.id) {
                     //     if ($rootScope.currentdevice == 'desktop') {
