@@ -170,7 +170,7 @@ angular.module('app')
                 .state('app.feedchat', {
                     url: '/feedchat/:chatid',
                     templateUrl: 'tpl/'+folderpath+'/feedchat.html',
-                    resolve: load(['js/controllers/feedchat.js'])
+                    resolve: load(['cp.ngConfirm','js/controllers/feedchat.js'])
                 })
 
                 .state('app.viewitem', {

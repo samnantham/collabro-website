@@ -1,5 +1,5 @@
 'use strict';
-app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessionStorage', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', '$ngConfirm', function($scope, $http, $state, authServices, $sessionStorage, webServices, utility, $rootScope, Facebook, GoogleSignin, $ngConfirm) {
+app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessionStorage', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', '$ngConfirm', '$modal', function($scope, $http, $state, authServices, $sessionStorage, webServices, utility, $rootScope, Facebook, GoogleSignin, $ngConfirm, $modal) {
     $scope.wishedfeeddata = [];
     $scope.myfeeddata = [];
     $scope.wishedfeeds = [];

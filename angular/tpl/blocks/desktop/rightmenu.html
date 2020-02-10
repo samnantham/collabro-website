@@ -346,11 +346,12 @@
 
             <div class="right-wrapper">
                 <div class="right-no-project">   
-                    <div class="msg-top">
+                    <div class="msg-top" ng-if="viewData.ownerproducts.length > 0">
                         <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
                         <ul>
-                            <li ng-repeat="(key,data) in viewData.searchownerproducts | limitTo: 2"/>
-                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" /></li>
+                            <li ng-repeat="(key,data) in viewData.ownerproducts | limitTo: 2">
+                                <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                            </li>
                         </ul>
                     </div>
 
@@ -425,7 +426,7 @@
                         </ul>
                     </div>
 
-                    <div class="msg-post">
+                    <div class="msg-post" ng-click="goprochat();">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
                             <defs>
                                 <clipPath id="clip-path">

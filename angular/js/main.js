@@ -4,7 +4,7 @@
 
 angular.module('app')
     .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm',
-        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalStack) {
+        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalInstance) {
             $rootScope.isMobile = isMobile.phone;
             $rootScope.screenWidth = window.screen.width * window.devicePixelRatio;
             if ($rootScope.isMobile) {
@@ -593,18 +593,6 @@ angular.module('app')
                 });
             }
 
-            $rootScope.addTocart = function(product) {
-                webServices.post('cart/' + product).then(function(getData) {
-                    if (getData.status == 200) {
-                        $rootScope.$emit("showsuccessmsg", getData.data.message);
-                    } else {
-                        $rootScope.errors = [];
-                        $rootScope.errors.push(getData.data.message);
-                        $rootScope.$emit("showerrors", $rootScope.errors);
-                    }
-                });
-            }
-
             $rootScope.getCategories = function() {
                 webServices.get('shopcategories').then(function(getData) {
                     if (getData.status == 200) {
@@ -1000,8 +988,9 @@ angular.module('app')
                 } else {
                     $rootScope.getUserInfo();
                     $timeout(function() {
+                        console.log('sticky called')
                         $rootScope.$emit("callStickyMenu", {});
-                    }, 3000);
+                    }, 2000);
                 }
             });
 

@@ -105,6 +105,9 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
         $scope.isfriendchanged = true;
         webServices.put('followuser/' + user.id + '/0').then(function(getData) {
             if (getData.status == 200) {
+                if($scope.friends.data.length == 1){
+                    $scope.friendspageno --;
+                }
                 $rootScope.$emit("showsuccessmsg", getData.data.message);
                 $scope.getfriends();
             }

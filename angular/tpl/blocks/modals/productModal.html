@@ -72,8 +72,7 @@
                         </div>
 
                         <div class="form-group flex-center-space mb-0">
-                            <input type="text" class="form-control" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/"
-                                ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)">
+                            <input type="text" class="form-control" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)">
                             <button type="button" class="btn silver-btn ml-20" ng-click="uploadvideo();" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)">Add</button>
                         </div>
 
@@ -384,7 +383,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-right" ng-show="activediv =='address'">
+                    <div class="modal-right" ng-show="activediv =='address'" ng-if="formData.type != 'Service'">
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">

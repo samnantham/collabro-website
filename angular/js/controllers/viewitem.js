@@ -6,8 +6,11 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
 
     $rootScope.getItem = function() {
         webServices.get('product/' + $stateParams.id).then(function(getData) {
-            $rootScope.formLoading = false;
-            if (getData.status == 200) {
+           $timeout(function() {
+                    $rootScope.formLoading = false;
+                }, 1000);
+
+           if (getData.status == 200) {
                 $rootScope.viewData = getData.data;
                 if (!$rootScope.viewData.userview) {
                     $scope.viewproduct();
@@ -28,6 +31,14 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
             }
         });
     };
+
+    $rootScope.goprochat = function(){
+
+        if($rootScope.viewData.owner.id == $rootScope.user.id){
+            $state.go('app.chats');
+        }
+
+    }
 
     $rootScope.setcommisionData = function() {
         $rootScope.commisionData = angular.copy($rootScope.viewData);
@@ -83,6 +94,31 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         }
     }
 
+
+    $scope.addTocart = function() {
+                var status = 1;
+                if($rootScope.viewData.cart){
+                    if(Object.entries($rootScope.viewData.cart).length === 0){
+                        status = 1;
+                    }else{
+                        if($rootScope.viewData.cart.status){
+                            status = 0;
+                        }
+                    }
+                }
+                
+                webServices.post('cart/' + $rootScope.viewData.id + '/' + status).then(function(getData) {
+                    if (getData.status == 200) {
+                        $rootScope.viewData.cart = getData.data.data;
+                        $rootScope.$emit("showsuccessmsg", getData.data.message);
+                    } else {
+                        $rootScope.errors = [];
+                        $rootScope.errors.push(getData.data.message);
+                        $rootScope.$emit("showerrors", $rootScope.errors);
+                    }
+                });
+            }
+
     $scope.updatewishstatus = function(){
         var obj = {};
         obj.productid = $rootScope.viewData.id;
@@ -130,7 +166,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
     $rootScope.editProduct = function() {
         $rootScope.iseditproduct = true;
         $rootScope.editproductid = $rootScope.viewData.id;
-        $rootScope.openModal();
+        $rootScope.openproductModal();
     }
 
     $rootScope.editRequest = function() {

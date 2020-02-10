@@ -203,6 +203,34 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
         });
     }
 
+    $scope.addTocart = function(product, type, key) {
+                var status = 1;
+                if(product.cart){
+                    if(Object.entries(product.cart).length === 0){
+                        status = 1;
+                    }else{
+                        if(product.cart.status){
+                            status = 0;
+                        }
+                    }
+                }
+                
+                webServices.post('cart/' + product.id + '/' + status).then(function(getData) {
+                    if (getData.status == 200) {
+                        if($scope.activetab == 'all'){
+                            $scope.products[type][key].cart = getData.data.data;
+                        }else{
+                            $scope.typeproductdata.data[key].cart = getData.data.data;
+                        }
+                        $rootScope.$emit("showsuccessmsg", getData.data.message);
+                    } else {
+                        $rootScope.errors = [];
+                        $rootScope.errors.push(getData.data.message);
+                        $rootScope.$emit("showerrors", $rootScope.errors);
+                    }
+                });
+            }
+
     $scope.setactivetab = function(tab) {
         $scope.issort = false;
         $scope.pagedata = [];

@@ -1,5 +1,5 @@
 <div ng-controller="SearchCtrl" class="content-wrapper">
-    <div ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
     <div class="center-content">
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -96,9 +96,9 @@
                                 <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:viewData.id})">View More</button>
                             </div>
                             <div class="feed-footer-right">
-                                <a title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="viewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': feedchat.wishstatus == 1}"></i></a>
-                                <a href="#"><i class="fa fa-plus"></i></a>
-                                <a title="Share to Earn" ng-click="sharefeedtosocial(viewData)"><i class="fa fa-share"></i></a>
+                                <a title="Add to Wishlist" ng-click="updatewishstatus(viewData,'preview')" ng-if="viewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': viewData.wishstatus == 1}"></i></a>
+                                <a title="Add to Cart" ng-if="viewData.owner.id!=user.id" ng-click="addTocart(viewData,'preview')"><i class="fa fa-plus" ng-class="{'primary': viewData.cart && viewData.cart.status}"></i></a>
+                                <a title="Share to Earn" ng-click="sharetosocial(viewData)"><i class="fa fa-share"></i></a>
                             </div>
                         </div>
                         <div class="feed-footer">
@@ -121,19 +121,19 @@
         <div class="row mt-15">
 
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" dir-paginate="(key,data) in products.data | itemsPerPage: totalPerPage" total-items="products.total" current-page="pagination.current" pagination-id="search-pagination">
-                <div class="card" ng-click="showitem(key,data)" >
-                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                <div class="card">
+                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ng-click="showitem(key,data)" >
                     </div>
                     <div class="card-content">
-                        <h4 class="word-line">{{data.title | cut:true:18:''}}</h4>
+                        <h4 class="word-line" ng-click="showitem(key,data)">{{data.title | cut:true:18:''}}</h4>
                         <div class="card-info">
                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                             <span class="price-sub" ng-if=" data.price > 0 && data.type != 'Shop' ">Per {{data.periodtype}}</span>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
-                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'search',key)" ng-if="data.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'search',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
                         <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                     </div>
                 </div>
@@ -170,13 +170,13 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
-                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'likedproducts',key)" ng-if="data.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'likedproducts',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
                         <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>

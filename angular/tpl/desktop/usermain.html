@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <a title="Add to Wishlist" ng-click="updatewishstatus(data,'service',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
-                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'service',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
                                             <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                                         </div>
                                         <div class="hover-icon active" ng-if="data.is_request">
@@ -154,7 +154,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <a title="Add to Wishlist" ng-click="updatewishstatus(data,'shop',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
-                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'shop',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
                                             <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                                         </div>
                                     </div>
@@ -194,7 +194,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <a title="Add to Wishlist" ng-click="updatewishstatus(data,'rental',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
-                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'rental',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
                                             <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                                         </div>
                                     </div>
@@ -235,7 +235,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <a ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
-                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                            <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'event',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
                                             <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                                         </div>
                                     </div>
@@ -276,8 +276,8 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
-                                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'all',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'all',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
                                         <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                                     </div>
                                     <div class="hover-icon active" ng-if="data.is_request && data.type == 'Service'">

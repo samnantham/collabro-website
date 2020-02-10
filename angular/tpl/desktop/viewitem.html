@@ -30,7 +30,7 @@
             <div class="content-detail-left">
                 <div class="slider-wrapper">
                     <div class="custom-slider">
-                        <slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                        <slick id="prodSlider" data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
                             <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
                                 <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
                                     <span ng-if="image.filetype == 2">
@@ -150,8 +150,8 @@
                         </div>
                         <div class="product-info-column">
                             <div class="product-option">
-                                <span title="Add to Wishlist" ng-if="viewData.ownerid != user.id"><i class="fa fa-heart" ng-class="{'primary': viewData.wishstatus }"></i></span>
-                                <span title="Add to Cart" ng-if="viewData.ownerid!=user.id" ng-click="addTocart(viewData.id)" ng-if="viewData.ownerid != user.id"><i class="fa fa-plus"></i></span>
+                                <span title="Add to Wishlist" ng-if="viewData.ownerid != user.id" ng-click="updatewishstatus();"><i class="fa fa-heart" ng-class="{'primary': viewData.wishstatus }"></i></span>
+                                <span title="Add to Cart" ng-if="viewData.ownerid!=user.id" ng-click="addTocart(viewData)" ng-if="viewData.ownerid != user.id"><i class="fa fa-plus" ng-class="{'primary': viewData.cart && viewData.cart.status}"></i></span>
                                 <span class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetosocial(viewData)"><i class="fa fa-share"></i></span>
                             </div>
                         </div>

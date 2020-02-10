@@ -2,8 +2,7 @@
 app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
     $rootScope.activediv = 'info';
     $rootScope.viewingThumb = {};
-    $scope.isOpen = false;
-
+    
     $rootScope.resetProductItems = function() {
         if ($rootScope.categories.length == 0) {
             $rootScope.getCategories();
@@ -327,6 +326,7 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 }
             });
         } else {
+            console.log('kkkkkkkkkkkkkkkkkk')
             if (!form.images.$valid) {
                 $rootScope.imageerrormsg = "(Upload Images or add Video)";
                 $rootScope.imageerror = true;

@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 ml-15 flex-center">
                     <div class="dropdown-label">Category</div>
-                    <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" tooltip-template="'tpl/blocks/popover/tooltippopover.html'" tooltip-enable="ishover" tooltip-placement="left" tooltip-trigger="outsideClick">
+                    <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" tooltip-placement="left" tooltip-html="formData.categoryText" tooltip-append-to-body="true" tooltip-trigger="ishover">
                         <ui-select-match allow-clear="true" class="selected-item">
                             <p><i class="fa fa-circle-o"></i> {{formData.request_category ? formData.request_category : 'Select Category'}}</p>
                         </ui-select-match>
