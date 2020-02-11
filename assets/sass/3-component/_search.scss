@@ -149,3 +149,29 @@
         width: 20%;
     }
 }
+
+/* Modal search */
+.searchsuggestions{
+    width: 100%;
+    float: left;
+    list-style: none;
+    background: $white;
+    z-index: 999;
+    position: absolute;
+    border: 1px solid $border;
+    @include border-radius(4px);
+    li{
+        width: 100%;
+        float: left;
+        a{
+            width: 100%;
+            float: left;
+            color: $black;
+            padding: 5px 10px;
+            &:hover{
+                background: $default;
+                color: $white;
+            }
+        }
+    }
+}

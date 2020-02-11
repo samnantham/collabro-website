@@ -10850,12 +10850,12 @@ i.color-btn {
   padding-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .thumb-wrapper .thumbs {
   float: left;
-  width: 31%;
-  flex-basis: 31%;
+  width: calc(33.3333333333% - 10px);
+  flex-basis: 30%;
   min-height: 60px;
   border: 1px solid #dfe4e8;
   border-radius: 4px;
@@ -10865,6 +10865,8 @@ i.color-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .thumb-wrapper .thumbs .thumb {
   width: 100%;
@@ -12897,6 +12899,34 @@ ul.simple-list li:last-of-type {
     width: 20%;
   }
 }
+/* Modal search */
+.searchsuggestions {
+  width: 100%;
+  float: left;
+  list-style: none;
+  background: #fff;
+  z-index: 999;
+  position: absolute;
+  border: 1px solid #dfe4e8;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.searchsuggestions li {
+  width: 100%;
+  float: left;
+}
+.searchsuggestions li a {
+  width: 100%;
+  float: left;
+  color: #344051;
+  padding: 5px 10px;
+}
+.searchsuggestions li a:hover {
+  background: #00C4E8;
+  color: #fff;
+}
+
 .slick-slider {
   width: 100%;
   float: left;
@@ -14152,6 +14182,66 @@ input:checked + .slider:before {
 .product-card .product-content span {
   font-size: 12px;
   color: #7E8EA4;
+}
+
+/* Add project member */
+.project-member {
+  width: 100%;
+  float: left;
+  margin-bottom: 20px;
+}
+.project-member .member-head {
+  width: 100%;
+  float: left;
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.project-member .member-head .remove-user {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.project-member .member-head .remove-user i {
+  font-size: 14px;
+  color: #B0B6BC;
+}
+.project-member .member-name, .project-member .member-status {
+  width: 100%;
+  float: left;
+  text-align: center;
+  color: #7E8EA4;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.project-member .rate-holder {
+  width: 100%;
+  float: left;
+}
+.project-member .rate-holder .currency {
+  width: 15px;
+  float: left;
+  text-align: center;
+  color: #7E8EA4;
+  font-size: 14px;
+}
+.project-member .rate-holder .currency-text {
+  width: calc(100% - 15px);
+  float: left;
+}
+.project-member .rate-holder .currency-text input {
+  width: 100%;
+  float: left;
+  border: 1px solid #E2E5ED;
+  height: 35px;
+  font-size: 26px;
+  color: #344051;
+  text-align: right;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  padding: 0px 5px;
 }
 
 .feeds-wrapper {

@@ -108,9 +108,9 @@
                             <span class="error error-text" ng-if="descriptionerror">Enter Feed Description</span>
                         </div>
 
-                        <div class="form-group mt-30 mb-0">
-                            <div class="col-lg-4 col-md-4">
-                                <label class="control-label">Location</label>
+                        <div class="form-row mt-30 mb-0">
+                            <div class="form-column">
+                                <label class="control-label left">Location</label>
                                 <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type">
                                     <ui-select-match allow-clear="true" class="selected-item float-lt">
                                         <p>
@@ -123,10 +123,11 @@
                                 </ui-select>
                             </div>
 
-                            <div class="col-lg-4 col-md-4"></div>
+                            <div class="form-column"></div>
+                            <div class="form-column"></div>
 
-                            <div class="col-lg-4 col-md-4">
-                                <label class="control-label">Deadline</label>
+                            <div class="form-column">
+                                <label class="control-label left">Deadline</label>
                                 <datepicker date-format="yyyy-MM-dd" selector="form-control">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -158,25 +159,26 @@
                         
                         <div class="form-group mb-30">
                             <label class="control-label">Added Project Members</label>
-                            <div class="col-lg-3 col-md-3 col-sm-3" ng-repeat="(key,member) in formData.projectmembers">
-                           <div class="border-1px p_relative">
-                           <i class=" fa fa-minus-circle cursor float-rt miniholder" ng-click="removeprojectfriend(key,member)"></i>
-                           <div>
-                            <div class="avatar avatar-l">
-                            <img ng-src="{{IMGURL}}{{member.avatar}}">
+                            <div class="row mt-20">
+                                <div class="col-lg-3 col-md-3 col-sm-3" ng-repeat="(key,member) in formData.projectmembers">
+                                    <div class="project-member">
+                                        <div class="member-head">
+                                            <span class="remove-user"><i class=" fa fa-minus-circle cursor float-rt miniholder" ng-click="removeprojectfriend(key,member)"></i></span>
+                                            <div class="avatar avatar-l">
+                                                <img ng-src="{{IMGURL}}{{member.avatar}}">
+                                            </div>                              
+                                        </div>
+                                        <div class="member-name">{{member.username}}</div>
+                                        <div class="member-status">Amount Allocated <span class="text-danger" ng-if="!member.price"> (Required)</span></div>
+                                        <div class="rate-holder">
+                                            <div class="currency">$</div>
+                                            <div class="currency-text" > <input type="text" placeholder="0.00" name="amount" ng-model="member.price"></div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
                         </div>
-                              
-                           </div>
-                           <div class="amountallocated font-weight-bold border-bar">{{member.username}}</div>
-                           <div class="amountallocated">Amount Allocated <span class="text-danger" ng-if="!member.price"> (Required)</span></div>
-                           <div class="rate_holder ">
-                              <div class="rate_currency">$</div>
-                              <div class="col-lg-12 col-md-12 col-sm-12 " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="amount" ng-model="member.price"></div>
-                           
-                           </div>
-                           </div>
-                        </div>
-                    </div>
 
                         <div class="form-group mt-30">
                             <div class="col-lg-4 col-md-4 pull-right">

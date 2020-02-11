@@ -181,3 +181,62 @@
         }
     }
 }
+
+
+/* Add project member */
+.project-member{
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+    .member-head{
+        width: 100%;
+        float: left;
+        position: relative;
+        text-align: center;
+        margin-bottom: 10px;
+        .remove-user{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            i{
+                font-size: $font-r;
+                color: #B0B6BC;
+            }
+        }
+    }
+    .member-name, .member-status{
+        width: 100%;
+        float: left;
+        text-align: center;
+        color: $secondary-text;
+        font-size: $font-s;
+        font-weight: $font-semibold;
+        margin-bottom: 10px;
+    }
+    .rate-holder{
+        width: 100%;
+        float: left;
+        .currency{
+            width: 15px;
+            float: left;
+            text-align: center;
+            color: $secondary-text;
+            font-size: $font-r;
+        }
+        .currency-text{
+            width: calc(100% - 15px);
+            float: left;
+            input{
+                width: 100%;
+                float: left;
+                border: 1px solid $input-border;
+                height: 35px;
+                font-size: $font-price;
+                color: $black;
+                text-align: right;
+                @include border-radius(4px);
+                padding: 0px 5px;
+            }
+        }
+    }
+}
