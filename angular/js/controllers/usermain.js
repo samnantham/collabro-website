@@ -97,11 +97,6 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
             }
         });
     }
-    
-    /* $(window).scroll(function () { 
-        console.log($(window).scrollTop());
-    });
-*/
 
     $scope.setcoverslickconfig = function(){
         $scope.coverslickConfig = {

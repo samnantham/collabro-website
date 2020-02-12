@@ -1006,7 +1006,7 @@ angular.module('app')
                 });
             }
 
-            $rootScope.scrollToPoint = function(id) {
+            $rootScope.scrollToID = function(id) {
                 var offset = 30;  
                 var someElement = angular.element(document.getElementById(id));
                 $document.scrollToElement(someElement, offset, 2000);

@@ -103,7 +103,7 @@
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
+                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                                 <span class="price-sub" ng-if="data.price > 0 && data.periodtype">Per {{data.periodtype}}</span>
@@ -146,7 +146,7 @@
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
+                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                                 <span class="price-sub"><!-- Per {{data.periodtype}} --></span>
@@ -186,7 +186,7 @@
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
+                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                                 <span class="price-sub" ng-if="data.price > 0  && data.periodtype">Per {{data.periodtype}}</span>
@@ -227,7 +227,7 @@
                                         <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
+                                            <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                                 <span class="price-sub" ng-if="data.price > 0 && data.periodtype">Per {{data.periodtype}}</span>
@@ -269,7 +269,7 @@
                                     <div class="card-img" ui-sref="app.viewitem({id:data.id})"background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
+                                        <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title}}</h4>
                                         <div class="card-info">
                                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                                             <span class="price-sub" ng-if="data.price > 0 && data.type!='Shop' && data.periodtype">Per {{data.periodtype}}</span>

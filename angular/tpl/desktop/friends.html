@@ -1,7 +1,7 @@
 <div class="content-wrapper" ng-controller="FriendsCtrl">
     <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
     <div class="center-content">
-        <div class="row">
+        <div class="row" id="Friends">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
@@ -39,7 +39,7 @@
                 <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
-                            <h4 class="title-default" ui-sref="app.viewuser({'id':friend.id})">{{friend.username| cut:true:10:'...'}}</h4>
+                            <h4 class="title-default" ui-sref="app.viewuser({'id':friend.id})">{{friend.username}}</h4>
                             <span class="sub-head">{{friend.profession}}</span>
                         </div>
                         <div class="content-right">
@@ -87,7 +87,7 @@
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pagination-ctrl" pagination-id="friends-pagination"></dir-pagination-controls>
             </div>
         </div>
-        <div class="row">
+        <div class="row"  id="Others">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar bg-gray">
                     <div class="topbar-left">
@@ -117,7 +117,7 @@
                 <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
-                            <h4 class="title-default" ui-sref="app.viewuser({'id':people.id})">{{people.username | cut:true:10:'...'}}</h4>
+                            <h4 class="title-default" ui-sref="app.viewuser({'id':people.id})">{{people.username}}</h4>
                             <span class="sub-head">{{people.profession}}</span>
                         </div>
                         <div class="content-right">

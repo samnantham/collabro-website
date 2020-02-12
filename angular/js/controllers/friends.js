@@ -155,6 +155,9 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
             } else {
                 $scope.friends = $scope.friendspagedata[$scope.friendspageno];
             }
+            $timeout(function() {
+                $rootScope.scrollToID('Friends');
+            }, 500);
         }else if(type == 'otherpeoples'){
             $scope.peoplespageno = newPage;
             if (!$scope.otherpeoplespagedata[$scope.peoplespageno]) {
@@ -162,6 +165,9 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
             } else {
                 $scope.otherpeoples = $scope.otherpeoplespagedata[$scope.peoplespageno];
             }
+            $timeout(function() {
+                $rootScope.scrollToID('Others');
+            }, 500);
         }  
     };
 
