@@ -12342,12 +12342,19 @@ ul.simple-list li:last-of-type {
 }
 .msg-top ul li {
   float: left;
-}
-.msg-top ul li img {
-  width: 100%;
+  width: 48%;
+  height: 45px;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+}
+.msg-top ul li img {
+  max-width: 100%;
 }
 
 .msg-bottom {
