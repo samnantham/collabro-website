@@ -11,7 +11,7 @@
                         </ul>
                     </div>
                     <div class="topbar-right">
-                        <i class="fa fa-window-close-o secondary"></i>
+                        <i class="fa fa-window-close-o secondary" ng-click="goback();"></i>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                                     <span class="price-sub">&nbsp;</span>
                                 </div>
                                 <div class="feed-footer-right">
-                                    <a title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="feedData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': feedchat.wishstatus == 1}"></i></a>
+                                    <a title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="feedData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': feedchat.wishstatus == 1}"></i></a>
                                     <a title="Share to Earn" ng-click="sharefeedtosocial(feedData)"><i class="fa fa-share"></i></a>
                                 </div>
                             </div>
