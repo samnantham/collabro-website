@@ -45,7 +45,7 @@
                     <div class="feed-head">
                         <div class="feed-head-left">
                             <div class="avatar avatar-xs">
-                                <img ng-src="{{IMGURL}}{{projectData.owner.avatar}}" ui-sref="app.viewuser({'id':projectData.owner.id})" />
+                                <img ng-src="{{IMGURL}}{{projectData.owner.avatar}}" ui-sref="app.viewuser({'id':projectData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
                             </div>
                             <h3>{{projectData.owner.username | cut:true:20:''}} </h3>
                         </div>

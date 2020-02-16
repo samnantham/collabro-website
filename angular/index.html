@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <title>Collabro</title>
-    <!-- <base href="/project/Collabro/angular/"> -->
-    <base href="/collabro-v1/collabro-website/angular/" />
+    <base href="/project/Collabro/angular/">
+    <!-- <base href="/collabro-v1/collabro-website/angular/" /> -->
     <meta name="keywords" content="Collabro" />
     <meta name="description" content="Collabro" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -46,7 +46,9 @@
     <link rel="stylesheet" href="libs/confirm/angular-confirm.css" type="text/css" />
     <link rel="stylesheet" href="libs/datepicker/angular-datepicker.css" type="text/css" />
   
-    
+</head>
+    <body ng-controller="AppCtrl" ng-class="{'cookie-active' : showheader}">
+    <div class="app" ui-view></div>
     <!-- Skitter Slider -->
     <!-- // Main Css Files -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -157,6 +159,35 @@
     <script src="js/config.lazyload.js"></script>
     <script src="js/config.router.js"></script>
     <script src="js/main.js"></script>
+
+    <script src="js/controllers/chats.js"></script>
+    <script src="js/controllers/dashboard.js"></script>
+    <script src="js/controllers/feedchat.js"></script>
+    <script src="js/controllers/feeds.js"></script>
+    <script src="js/controllers/friends.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/howitworks.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/notification.js"></script>
+    <script src="js/controllers/productchat.js"></script>
+    <script src="js/controllers/projectdetails.js"></script>
+    <script src="js/controllers/projectlist.js"></script>
+    <script src="js/controllers/rewardsandbenefits.js"></script>
+    <script src="js/controllers/search.js"></script>
+    <script src="js/controllers/searchitem.js"></script>
+    <script src="js/controllers/todos.js"></script>
+    <script src="js/controllers/userchat.js"></script>
+    <script src="js/controllers/userchats.js"></script>
+    <script src="js/controllers/usermain.js"></script>
+    <script src="js/controllers/viewfeed.js"></script>
+    <script src="js/controllers/viewitem.js"></script>
+    <script src="js/controllers/viewproduct.js"></script>
+    <script src="js/controllers/viewtodo.js"></script>
+    <script src="js/controllers/viewuser.js"></script>
+    <script src="js/controllers/wishlist.js"></script>
+
+    
+
     <script src="js/services/ui-load.js"></script>
     <script src="js/services/authServices.js"></script>
     <script src="js/services/webServices.js"></script>
@@ -174,10 +205,8 @@
     <script src="js/modal-js/otpmodal.js"></script>
     <script src="js/modal-js/chatusermodal.js"></script>
     <script src="js/modal-js/requestmodal.js"></script>
-</head>
 
-<body ng-controller="AppCtrl" ng-class="{'cookie-active' : showheader}">
-    <div class="app" ui-view></div>
+
 </body>
 
 </html>

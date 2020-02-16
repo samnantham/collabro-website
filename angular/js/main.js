@@ -78,6 +78,7 @@ angular.module('app')
                 slidesToScroll: 1,
                 arrows: false,
                 fade: true,
+                initialSlide: 0,
                 asNavFor: '.slider-nav',
                 method: {},
                 event: {
@@ -951,6 +952,8 @@ angular.module('app')
             }
 
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+                $rootScope.formLoading = true;
+                console.log('state changed')
                 if (!isMobile.phone) {
                     if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1151)) {
                         $rootScope.scrollslides = 3;
@@ -969,7 +972,6 @@ angular.module('app')
                     $rootScope.slidecount = 2;
                     $rootScope.scrollslides = 2;
                 }
-                $rootScope.formLoading = true;
                 $rootScope.stateurl = toState.name;
                 $rootScope.previousstate = fromState.name;
                 if (!$rootScope.settings) {

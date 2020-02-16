@@ -39,7 +39,7 @@
                 <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
-                            <h4 class="title-default" ui-sref="app.viewuser({'id':friend.id})">{{friend.username}}</h4>
+                            <h4 class="title-default" ui-sref="app.viewuser({'id':friend.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{friend.username}}</h4>
                             <span class="sub-head">{{friend.profession}}</span>
                         </div>
                         <div class="content-right">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="card-info price-border">
-                        <div class="card-left" ui-sref="app.viewuser({'id':friend.id})">
+                        <div class="card-left" ui-sref="app.viewuser({'id':friend.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                             <img ng-src="{{IMGURL}}{{friend.avatar}}" />
                         </div>
                         <div class="card-right">
@@ -117,7 +117,7 @@
                 <div class="card friend-card">
                     <div class="card-content">
                         <div class="content-left">
-                            <h4 class="title-default" ui-sref="app.viewuser({'id':people.id})">{{people.username}}</h4>
+                            <h4 class="title-default" ui-sref="app.viewuser({'id':people.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{people.username}}</h4>
                             <span class="sub-head">{{people.profession}}</span>
                         </div>
                         <div class="content-right">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <div class="card-info price-border">
-                        <div class="card-left" ui-sref="app.viewuser({'id':people.id})">
+                        <div class="card-left" ui-sref="app.viewuser({'id':people.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                             <img ng-src="{{IMGURL}}{{people.avatar}}" />
                         </div>
                         <div class="card-right">

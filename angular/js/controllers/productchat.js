@@ -55,6 +55,30 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
         });
     }
 
+    $scope.addTocart = function() {
+                var status = 1;
+                if($rootScope.ProductViewData.cart){
+                    if(Object.entries($rootScope.ProductViewData.cart).length === 0){
+                        status = 1;
+                    }else{
+                        if($rootScope.ProductViewData.cart.status){
+                            status = 0;
+                        }
+                    }
+                }
+                
+                webServices.post('cart/' + $rootScope.ProductViewData.id + '/' + status).then(function(getData) {
+                    if (getData.status == 200) {
+                        $rootScope.ProductViewData.cart = getData.data.data;
+                        $rootScope.$emit("showsuccessmsg", getData.data.message);
+                    } else {
+                        $rootScope.errors = [];
+                        $rootScope.errors.push(getData.data.message);
+                        $rootScope.$emit("showerrors", $rootScope.errors);
+                    }
+                });
+            }
+
     $scope.updatewishstatus = function(){
         var obj = {};
         obj.productid = $rootScope.ProductViewData.id;

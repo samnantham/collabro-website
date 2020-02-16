@@ -6,8 +6,8 @@
                 <div class="topbar">
                     <div class="topbar-left">
                         <div class="avatar avatar-xs">
-                            <img ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})" ng-if="chatInfo.seconduser == user.id">
-                            <img class="rank-icon" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})" ng-if="chatInfo.firstuser == user.id">
+                            <img ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" ng-if="chatInfo.seconduser == user.id">
+                            <img class="rank-icon" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" ng-if="chatInfo.firstuser == user.id">
                         </div>
                         <ul class="topbar-list" ng-if="chatInfo.firstuser == user.id">
                             <li>{{chatInfo.seconduserinfo.username}}</li>
