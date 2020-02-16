@@ -79,7 +79,7 @@
                         <div class="feed-head">
                             <div class="feed-head-left">
                                 <div class="avatar avatar-xs">
-                                    <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" ui-sref="app.viewuser({'id':viewData.owner.id})" />
+                                    <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" ui-sref="app.viewuser({'id':viewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
                                 </div>
                                 <h3>{{viewData.owner.username | cut:true:20:''}}</h3>
                             </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="feed-footer top-feed-footer">
                             <div class="feed-footer-left">
-                                <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:viewData.id})">View More</button>
+                                <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:viewData.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">View More</button>
                             </div>
                             <div class="feed-footer-right">
                                 <a title="Add to Wishlist" ng-click="updatewishstatus(viewData,'preview')" ng-if="viewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': viewData.wishstatus == 1}"></i></a>
@@ -160,10 +160,10 @@
 
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4" ng-repeat="(key,data) in alsolikeproducts">
                 <div class="card">
-                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
+                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                     </div>
                     <div class="card-content">
-                        <h4 class="word-line" ui-sref="app.viewitem({id:data.id})">{{data.title | cut:true:18:''}}</h4>
+                        <h4 class="word-line" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title | cut:true:18:''}}</h4>
                         <div class="card-info">
                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                             <span class="price-sub" ng-if=" data.price > 0 && data.type != 'Shop' ">Per {{data.periodtype}}</span>

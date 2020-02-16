@@ -15,18 +15,18 @@ angular.module('app')
     .config(
         ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'JQ_CONFIG', 'MODULE_CONFIG', 'isMobileProvider',
             function($stateProvider, $urlRouterProvider, $locationProvider, JQ_CONFIG, MODULE_CONFIG, isMobile) {
-                
+
                 var base = '';
                 var layout = "tpl/blocks/app.html";
                 var current_url = window.location.href;
-                
+
                 if (isMobile.phone) {
                     var base = '/mobile';
                     var folderpath = 'mobile';
-                    if(!current_url.includes('mobile')){
+                    if (!current_url.includes('mobile')) {
                         var parts = current_url.split('/');
-                        if(current_url.includes('responsive')){
-                            window.open(current_url.replace('responsive','responsive/mobile'),"_self");
+                        if (current_url.includes('responsive')) {
+                            window.open(current_url.replace('responsive', 'responsive/mobile'), "_self");
                         }
                     }
                     $urlRouterProvider.otherwise('/mobile/mobilemain');
@@ -35,33 +35,37 @@ angular.module('app')
                     $urlRouterProvider.otherwise(base + '/home');
                 }
 
-                $locationProvider.html5Mode(true);
+                $locationProvider.html5Mode({ enabled: true,  requireBase: false }).hashPrefix('!');
 
                 $stateProvider
                     .state('app', {
                         abstract: true,
                         url: base,
+                        cache: false,
                         templateUrl: layout
                     })
 
                 /*Only Desktop Routes*/
 
                 if (!isMobile.phone) {
-                  $stateProvider
-                    .state('app.main', {
-                        url: '/main',
-                        templateUrl: 'tpl/desktop/noauth/main.html',
-                        resolve: load(['js/controllers/main.js'])
-                    })
+                    $stateProvider
+                        .state('app.main', {
+                            url: '/main',
+                            cache: false,
+                            templateUrl: 'tpl/desktop/noauth/main.html',
+                            resolve: load(['js/controllers/main.js'])
+                        })
 
                     .state('app.searchitems', {
                         url: '/searchitems/:keyword',
+                        cache: false,
                         templateUrl: 'tpl/desktop/noauth/searchitem.html',
                         resolve: load(['js/controllers/searchitem.js'])
                     })
 
                     /*.state('app.viewproduct', {
                         url: '/viewproduct/:id',
+                        cache: false,
                         templateUrl: 'tpl/'+folderpath+'/viewproduct.html',
                         resolve: load(['js/controllers/viewproduct.js'])
                     })*/
@@ -71,51 +75,59 @@ angular.module('app')
                 /*Only Mobile Routes*/
 
                 if (isMobile.phone) {
-                  $stateProvider
-                    .state('app.mobilemain', {
-                        url: '/mobilemain',
-                        templateUrl: 'tpl/mobile/mobilemain.html',
-                        resolve: load(['js/controllers/home.js'])
-                    })
+                    $stateProvider
+                        .state('app.mobilemain', {
+                            url: '/mobilemain',
+                            cache: false,
+                            templateUrl: 'tpl/mobile/mobilemain.html',
+                            resolve: load(['js/controllers/home.js'])
+                        })
 
                     .state('app.forgotpassword', {
                         url: '/forgotpassword',
+                        cache: false,
                         templateUrl: 'tpl/mobile/forgotpassword.html',
                         resolve: load(['js/controllers/home.js'])
                     })
 
                     .state('app.signup', {
                         url: '/signup',
+                        cache: false,
                         templateUrl: 'tpl/mobile/signup.html',
                         resolve: load(['js/controllers/home.js'])
                     })
 
                     /*.state('app.addproduct', {
                         url: '/addproduct',
+                        cache: false,
                         templateUrl: 'tpl/mobile/addproduct.html',
                         resolve: load(['js/productmodal.js'])
                     })
 
                     .state('app.editproduct', {
                         url: '/editproduct/:id',
+                        cache: false,
                         templateUrl: 'tpl/mobile/addproduct.html',
                         resolve: load(['js/productmodal.js'])
                     })
 
                     .state('app.addproject', {
                         url: '/addproject',
+                        cache: false,
                         templateUrl: 'tpl/mobile/addproject.html',
                         resolve: load(['js/productmodal.js'])
                     })*/
 
                     .state('app.userproducts', {
                         url: '/userproducts/:id',
+                        cache: false,
                         templateUrl: 'tpl/mobile/userproducts.html',
                         resolve: load(['js/controllers/viewuser.js'])
                     })
 
                     /*.state('app.addbroadcast', {
                         url: '/addbroadcast',
+                        cache: false,
                         templateUrl: 'tpl/mobile/addbroadcast.html',
                         resolve: load(['js/productmodal.js'])
                     })*/
@@ -125,135 +137,158 @@ angular.module('app')
 
                 /*Common Routes*/
                 $stateProvider
-                .state('app.home', {
-                    url: '/home',
-                    templateUrl: 'tpl/'+folderpath+'/noauth/home.html',
-                    resolve: load(['js/controllers/home.js'])
-                })
+                    .state('app.home', {
+                        url: '/home',
+                        cache: false,
+                        templateUrl: 'tpl/' + folderpath + '/noauth/home.html',
+                        resolve: load(['js/controllers/home.js'])
+                    })
 
                 .state('app.usermain', {
                     url: '/usermain',
-                    templateUrl: 'tpl/'+folderpath+'/usermain.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/usermain.html',
                     resolve: load(['js/controllers/usermain.js'])
                 })
 
                 .state('app.search', {
                     url: '/search/:keyword',
-                    templateUrl: 'tpl/'+folderpath+'/search.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/search.html',
                     resolve: load(['js/controllers/search.js'])
                 })
 
                 .state('app.notification', {
                     url: '/notification',
-                    templateUrl: 'tpl/'+folderpath+'/notification.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/notification.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/notification.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/notification.js'])
                 })
 
                 .state('app.chats', {
                     url: '/userchats',
-                    templateUrl: 'tpl/'+folderpath+'/chats.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/chats.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/chats.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/chats.js'])
                 })
 
                 .state('app.feeds', {
                     url: '/feeds',
-                    templateUrl: 'tpl/'+folderpath+'/feeds.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/feeds.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/feeds.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/feeds.js'])
                 })
 
                 .state('app.userchat', {
                     url: '/privatechat/:chatid',
-                    templateUrl: 'tpl/'+folderpath+'/userchat.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/userchat.html',
                     resolve: load(['js/controllers/userchat.js'])
                 })
 
                 .state('app.feedchat', {
                     url: '/feedchat/:chatid',
-                    templateUrl: 'tpl/'+folderpath+'/feedchat.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/feedchat.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/feedchat.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/feedchat.js'])
                 })
 
                 .state('app.viewitem', {
                     url: '/viewitem/:id',
-                    templateUrl: 'tpl/'+folderpath+'/viewitem.html',
-                    resolve: load(['ngMap','js/controllers/viewitem.js'])
+                    cache: false,
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/viewitem.html',
+                    resolve: load(['ngMap', 'js/controllers/viewitem.js'])
                 })
 
                 .state('app.viewtodo', {
                     url: '/viewtodo/:id',
-                    templateUrl: 'tpl/'+folderpath+'/viewtodo.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/viewtodo.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/viewtodo.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/viewtodo.js'])
                 })
 
                 .state('app.viewfeed', {
                     url: '/viewfeed/:id',
-                    templateUrl: 'tpl/'+folderpath+'/viewfeed.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/viewfeed.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/viewfeed.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/viewfeed.js'])
                 })
 
                 .state('app.productchat', {
                     url: '/productchat/:id',
-                    templateUrl: 'tpl/'+folderpath+'/productchat.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/productchat.html',
                     resolve: load(['js/controllers/productchat.js'])
                 })
 
                 .state('app.wishlist', {
                     url: '/wishlist',
-                    templateUrl: 'tpl/'+folderpath+'/wishlist.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/wishlist.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/wishlist.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/wishlist.js'])
                 })
 
                 .state('app.projectlist', {
                     url: '/projectlist',
-                    templateUrl: 'tpl/'+folderpath+'/projectlist.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/projectlist.html',
                     resolve: load(['js/controllers/projectlist.js'])
                 })
 
                 .state('app.todos', {
                     url: '/todos',
-                    templateUrl: 'tpl/'+folderpath+'/todos.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/todos.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/todos.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/todos.js'])
                 })
 
                 .state('app.projectdetails', {
                     url: '/projectdetails/:id',
-                    templateUrl: 'tpl/'+folderpath+'/projectdetails.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/projectdetails.html',
                     resolve: load(['js/controllers/projectdetails.js'])
                 })
 
                 .state('app.myfriends', {
                     url: '/myfriends',
-                    templateUrl: 'tpl/'+folderpath+'/friends.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/friends.html',
                     resolve: load(['js/controllers/friends.js'])
                 })
 
                 .state('app.mydashboard', {
                     url: '/mydashboard',
-                    templateUrl: 'tpl/'+folderpath+'/dashboard.html',
-                    resolve: load(['cp.ngConfirm','js/controllers/dashboard.js'])
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/dashboard.html',
+                    resolve: load(['cp.ngConfirm', 'js/controllers/dashboard.js'])
                 })
 
                 .state('app.viewuser', {
                     url: '/viewuser/:id',
-                    templateUrl: 'tpl/'+folderpath+'/viewuser.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/viewuser.html',
                     resolve: load(['js/controllers/viewuser.js'])
                 })
 
                 .state('app.howitworks', {
                     url: '/howitworks',
-                    templateUrl: 'tpl/'+folderpath+'/cms/howitworks.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/cms/howitworks.html',
                     resolve: load(['js/controllers/howitworks.js'])
                 })
 
                 .state('app.rewardsandbenefits', {
                     url: '/rewardsandbenefits',
-                    templateUrl: 'tpl/'+folderpath+'/cms/rewardsandbenefits.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/cms/rewardsandbenefits.html',
                     resolve: load(['js/controllers/rewardsandbenefits.js'])
                 })
 
                 .state('app.viewproduct', {
                     url: '/viewproduct/:id',
-                    templateUrl: 'tpl/'+folderpath+'/viewproduct.html',
+                    cache: false,
+                    templateUrl: 'tpl/' + folderpath + '/viewproduct.html',
                     resolve: load(['js/controllers/viewproduct.js'])
                 })
 

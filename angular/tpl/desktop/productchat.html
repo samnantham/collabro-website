@@ -46,7 +46,7 @@
                         <div class="feed-head">
                             <div class="feed-head-left">
                                 <div class="avatar avatar-xs">
-                                    <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" ui-sref="app.viewuser({'id':ProductViewData.owner.id})" />
+                                    <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" ui-sref="app.viewuser({'id':ProductViewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
                                 </div>
                                 <h3>{{ProductViewData.owner.username | cut:true:20:''}}</h3>
                             </div>
@@ -60,12 +60,12 @@
                         </div>
                         <div class="feed-footer top-feed-footer">
                             <div class="feed-footer-left">
-                                <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:ProductViewData.id})">View More</button>
+                                <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:ProductViewData.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">View More</button>
                             </div>
                             <div class="feed-footer-right">
-                                <a title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': feedchat.wishstatus == 1}"></i></a>
-                                <a href="#"><i class="fa fa-plus"></i></a>
-                                <a title="Share to Earn" ng-click="sharefeedtosocial(ProductViewData)"><i class="fa fa-share"></i></a>
+                                <a title="Add to Wishlist" ng-click="updatewishstatus()" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
+                                <a ng-click="addTocart(ProductViewData)" ng-if="ProductViewData.ownerid != user.id"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
+                                <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
                             </div>
                         </div>
                         <div class="feed-footer">
@@ -90,8 +90,8 @@
                     <div class="message-head">
                         <h2>Product Discussions</h2>
                         <div class="option">
-                            <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" popover={{ProductViewData.owner.username}} popover-trigger="mouseenter"  />
-                            <img ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}" popover={{ProductViewData.buyer.username}} popover-trigger="mouseenter">
+                            <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" tooltip-html="ProductViewData.owner.username" tooltip-append-to-body="true" tooltip-placement="top"/>
+                            <img ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}" tooltip-html="ProductViewData.buyer.username" tooltip-append-to-body="true" tooltip-placement="top">
                         </div>
                     </div>
 

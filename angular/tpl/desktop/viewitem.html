@@ -28,9 +28,9 @@
         <div class="container-top mt-15">
             <!-- product left -->
             <div class="content-detail-left">
-                <div class="slider-wrapper">
+                <div class="slider-wrapper"  id="slick-slider">
                     <div class="custom-slider">
-                        <slick id="prodSlider" data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                        <slick id="prodSlider" data="viewData.images" infinite="false" init-onload="false" settings="productslick" ng-if="!formLoading" class="slider-for">
                             <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
                                 <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
                                     <span ng-if="image.filetype == 2">
@@ -162,7 +162,7 @@
 
             <!-- product right -->
             <div class="content-detail-right">
-                <div class="product-card" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})">
+                <div class="product-card" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                     <div class="product-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                         <!-- <img ng-src="" /> -->
                     </div>

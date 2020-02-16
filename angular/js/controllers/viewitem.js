@@ -26,6 +26,11 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                         $scope.getLatandLong($rootScope.viewData.address);
                     }
                 }
+
+                /*var template = document.getElementsByClassName('slick-slide');
+                $timeout(function () {
+                    $rootScope.productslick.method.slickAdd(template);
+                }, 2000);*/
             } else {
                 $rootScope.logout();
             }

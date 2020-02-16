@@ -224,7 +224,7 @@
                                     <div class="table-listing">
                                         <div class="table-card" dir-paginate="(key,data) in userProducts.data | itemsPerPage: totalPerPage" total-items="userProducts.total" current-page="pagination.current">
                                             <div class="flex-top-space">
-                                                <div class="table-img" ui-sref="app.viewitem({'id':data.id})">
+                                                <div class="table-img" ui-sref="app.viewitem({'id':data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                                                     <img ng-src="{{data.images[0].filetype == 1 ? IMGURL:''}}{{data.images[0].thumbnail}}" />
                                                 </div>
                                                 <div class="table-content listing">

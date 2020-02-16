@@ -36,12 +36,12 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in myfeeds.data | itemsPerPage: totalPerPage" total-items="myfeeds.total" pagination-id="myfeed-pagination" current-page="myfeedpagination.current" >
                 <div class="table-card">
                     <div class="flex-top-space">
-                        <div class="table-img" ui-sref="app.viewfeed({id:data.id})">
+                        <div class="table-img" ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                             <img ng-src="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" />
                         </div>
                         <div class="table-content">
                             <div class="table-col">
-                                <h5 ui-sref="app.viewfeed({id:data.id})">{{data.title}}</h5>
+                                <h5 ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title}}</h5>
                                 <span>{{data.owner.username}}  |  Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                             </div>
                             <div class="table-col">
@@ -69,7 +69,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in wishedfeeds.data | itemsPerPage: totalPerPage" total-items="wishedfeeds.total" current-page="wishedfeedpagination.current"  pagination-id="wishedfeed-pagination">
                 <div class="table-card">
                     <div class="flex-top-space">
-                        <div class="table-img" ui-sref="app.viewfeed({id:data.id})">
+                        <div class="table-img" ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                             <img ng-src="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" />
                         </div>
                         <div class="table-content">
@@ -81,7 +81,7 @@
                         <div class="table-option">
                             <a title="Add to Wishlist" ng-click="updatefeedwish(data)"><i class="fa fa-heart primary"></i></a>
                             <a ng-click="sharefeedtosocial(data)"><i class="fa fa-share"></i></a>
-                            <a ui-sref="app.projectdetails({id:data.id})"><img src="../assets/img/message-icon.png" /></a>
+                            <a ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"><img src="../assets/img/message-icon.png" /></a>
                         </div>
                     </div>
                     <div class="full-col mt-10">{{data.description | cut:true:120:'..'}}</div>

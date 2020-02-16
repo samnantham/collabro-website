@@ -35,11 +35,11 @@
                <div class="table-card">
                     <div class="flex-top-space">
                         <div class="table-img">
-                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.projectdetails({id:data.id})" />
+                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.projectdetails({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
                         </div>
                         <div class="table-content">
                             <div class="table-col">
-                                <h5 ui-sref="app.projectdetails({id:data.id})" >{{data.title | cut:true:25:'..'}}</h5>
+                                <h5 ui-sref="app.projectdetails({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title | cut:true:25:'..'}}</h5>
                                 <span>{{data.type}} todo | {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                             </div>
                             <div class="table-col">
