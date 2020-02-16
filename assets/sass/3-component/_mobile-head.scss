@@ -1,0 +1,85 @@
+.mobile-head{
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    background: $default;
+}
+
+.menu-bar{
+    float: left;
+    flex-basis: 25%;
+    button{
+        background: transparent;
+        border: 0px;
+        color: $white;
+        font-size: $font-l;
+        margin-left: 15px;
+    }
+}
+
+.mobile-logo{
+    width: auto;
+    max-width: 150px;
+    img{
+        height: 36px;
+    }
+}
+
+.menu-right{
+    flex-basis: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    i{
+        font-size: $font-l;
+        color: $white;
+    }
+    .search-wrapper{
+        input{
+            display: none;
+        }
+    }
+}
+
+.app-content{
+    width: 100%;
+    float: left;
+    padding-top: 59px;
+}
+
+.mobile-footer{
+    width: 100%;
+    height: 59px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    @extend .upload-gradient;
+    ul{
+        width: 100%;
+        height: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-bottom: 0px;
+        li{
+            flex-basis: 20%;
+            height: 100%;
+            float: left;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            .mob-home{
+                @include border-radius(50%);
+                border: 1px solid $white;
+            }
+        }
+    }
+}   
