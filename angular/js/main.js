@@ -997,13 +997,13 @@ angular.module('app')
             });
 
             $rootScope.scrollTop = function() {
-                $document.scrollTopAnimated(0, 2000).then(function() {
+                $document.scrollTopAnimated(0, 500).then(function() {
                     console && console.log('You just scrolled to the top!');
                 });
             }
 
             $rootScope.scrollToPoint = function(point) {
-                $document.scrollTopAnimated(point, 1000).then(function() {
+                $document.scrollTopAnimated(point, 500).then(function() {
                     console && console.log('You just scrolled to the top!');
                 });
             }
@@ -1011,7 +1011,7 @@ angular.module('app')
             $rootScope.scrollToID = function(id) {
                 var offset = 30;  
                 var someElement = angular.element(document.getElementById(id));
-                $document.scrollToElement(someElement, offset, 2000);
+                $document.scrollToElement(someElement, offset, 500);
             }
 
             $rootScope.checkDate = function(date) {
@@ -1036,6 +1036,27 @@ angular.module('app')
                 $rootScope.ismodalopen = false;
                 $rootScope.broadcastData = {};
                 $rootScope.viewingThumb = {};
+            }
+
+
+            $scope.openAside = function(position, backdrop) {
+
+                function postClose() {
+                    $rootScope.isAsideOpen = false;
+                    $scope.asideState.open = false;
+                }
+
+                if (!$rootScope.isAsideOpen) {
+                    $rootScope.isAsideOpen = true;
+                    $scope.asideInstance = $aside.open({
+                        templateUrl: 'tpl/blocks/mobile/sidemenu.html',
+                        placement: position,
+                        size: 'sm',
+                        backdrop: backdrop,
+                    });
+                }
+
+                $scope.asideInstance.result.then(postClose, postClose);
             };
 
         }

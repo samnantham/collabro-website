@@ -202,7 +202,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
     $scope.movetoTop = function(){
         $timeout(function() {
             $rootScope.scrollToPoint(100);
-        }, 1000);
+        }, 200);
     }
     
 
