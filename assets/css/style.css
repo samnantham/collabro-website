@@ -7598,6 +7598,10 @@ a {
   border-color: #dfe4e8;
 }
 
+.bt-1 {
+  border-top: 1px solid #dfe4e8;
+}
+
 .flex-center, .loader, .topbar-list li, .topbar .topbar-left, .card:hover .hover-icon, .card .hover-icon.active {
   display: flex;
   align-items: center;
@@ -14194,6 +14198,13 @@ input:checked + .slider:before {
 .product-info-row .product-info-column .product-option i {
   font-size: 24px;
   margin-left: 30px;
+}
+
+.price-group {
+  width: auto;
+  float: left;
+  display: inline-flex;
+  align-items: center;
 }
 
 .price {

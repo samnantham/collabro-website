@@ -101,6 +101,13 @@
     }
 }
 
+.price-group{
+    width: auto;
+    float: left;
+    display: inline-flex;
+    align-items: center;
+}
+
 .price{
     float: left;
     color: $black;
