@@ -12298,7 +12298,7 @@ ul.simple-list li:last-of-type {
 .right-no-project {
   width: 100%;
   float: left;
-  min-height: calc(100vh - 130px);
+  min-height: 430px;
   position: relative;
 }
 .right-no-project .empty-msg {
@@ -12407,8 +12407,8 @@ ul.simple-list li:last-of-type {
   transform: translateX(-50%);
   cursor: pointer;
 }
-.msg-post svg {
-  width: 30px;
+.msg-post svg, .msg-post img {
+  width: 40px;
 }
 
 .post-content {
