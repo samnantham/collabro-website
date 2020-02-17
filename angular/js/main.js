@@ -200,9 +200,12 @@ angular.module('app')
                     closeIcon: true,
                     closeIconClass: 'modal-close',
                     buttons: {
-                        close: function () {
-                        },
-                    },
+                        cancel: {
+                            text: 'Close',
+                            btnClass: 'danger-btn',
+                            action: function() {}
+                        }
+                    }
                 });
             }
 
@@ -232,7 +235,7 @@ angular.module('app')
 
             $rootScope.openRequestModal = function() {
                 if (!$rootScope.ismodalopen) {
-                    $rootScope.openModalPopup('requestmodal');
+                    $rootScope.openModalPopup('requestModal');
                 }
             }
 
@@ -273,6 +276,7 @@ angular.module('app')
             }
 
             $rootScope.fbshare = function() {
+                console.log('hahahahaa')
                 if ($rootScope.sharetype == 'product') {
                     if ($rootScope.shareData.images[0].filetype == 1) {
                         var IMGURL = $rootScope.IMGURL + $rootScope.shareData.images[0].thumbnail;
@@ -294,12 +298,14 @@ angular.module('app')
                                 console.log('not shared');
                             } else {
                                 $rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
+                                //$rootScope.closepopoverItem();
                                 console.log('shared success');
                             }
                         }
                     });
                 } else if ($rootScope.sharetype == 'friend') {
+                    console.log('friend hahahaha')
+
                     var IMGURL = $rootScope.IMGURL + $rootScope.shareData.avatar;
                     Facebook.ui({
                         method: 'feed',
@@ -316,7 +322,7 @@ angular.module('app')
                                 console.log('not shared');
                             } else {
                                 //$rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
+                                //$rootScope.closepopoverItem();
                                 console.log('shared success');
                             }
                         }
@@ -338,7 +344,7 @@ angular.module('app')
                                 console.log('not shared');
                             } else {
                                 //$rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
+                                //$rootScope.closepopoverItem();
                                 console.log('shared success');
                             }
                         }
@@ -364,7 +370,7 @@ angular.module('app')
                                 console.log('not shared');
                             } else {
                                 $rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
+                                //$rootScope.closepopoverItem();
                                 console.log('shared success');
                             }
                         }
@@ -390,7 +396,7 @@ angular.module('app')
                                 console.log('not shared');
                             } else {
                                 $rootScope.updateforsocialshare(1);
-                                $rootScope.closepopoverItem();
+                                //$rootScope.closepopoverItem();
                                 console.log('shared success');
                             }
                         }
@@ -748,7 +754,7 @@ angular.module('app')
                 }
                 $timeout(function() {
                     $rootScope.updateforsocialshare(2);
-                    $rootScope.closepopoverItem();
+                    //$rootScope.closepopoverItem();
                 }, 10000);
             }
 
@@ -759,7 +765,7 @@ angular.module('app')
                 }
                 $timeout(function() {
                     $rootScope.updateforsocialshare(3);
-                    $rootScope.closepopoverItem();
+                    //$rootScope.closepopoverItem();
                 }, 10000);
             }
 
@@ -771,7 +777,7 @@ angular.module('app')
                 }
                 $timeout(function() {
                     $rootScope.updateforsocialshare(4);
-                    $rootScope.closepopoverItem();
+                    //$rootScope.closepopoverItem();
                 }, 5000);
                 /*}*/
 

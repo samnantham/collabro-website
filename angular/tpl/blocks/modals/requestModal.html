@@ -147,14 +147,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-column flex-top-space">
-                                <div class="form-group wd-100">
-                                </div>
-                            </div>
-
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
-                                    <label class="control-label">Price</label>
+                                    <label class="control-label">Budget</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="fa fa-lg fa-dollar"></i>
@@ -162,7 +157,23 @@
                                         <input type="text" class="form-control" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.request_type" />
 
                                     </div>
-                                    <span class="error error-text" ng-if="priceerror">Enter Price</span>
+                                    <span class="error error-text" ng-if="priceerror">Enter Budget</span>
+                                </div>
+                            </div>
+
+                            <div class="form-column flex-top-space ml-30">
+                                <div class="form-group wd-100">
+                                    <label class="control-label">&nbsp;</label>
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false" ng-disabled="!formData.request_type" onkeypress="return false;" onfocus="blur();">
+                                        <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                            <p>
+                                                <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
+                                            </p>
+                                        </ui-select-match>
+                                        <ui-select-choices  class="default-select-items" repeat="periodtype in periodtypes">
+                                            <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
                                 </div>
                             </div>
                         </div>

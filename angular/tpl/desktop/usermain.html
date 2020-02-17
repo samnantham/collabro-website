@@ -106,7 +106,7 @@
                                             <h4 class="word-line" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title}}</h4>
                                             <div class="card-info">
                                                 <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                                <span class="price-sub" ng-if="data.price > 0 && data.periodtype">Per {{data.periodtype}}</span>
+                                                <span class="price-sub" ng-if="data.price > 0">{{data.is_request ? 'Budget' : 'Per'}} {{data.periodtype ? data.periodtype : ''}}</span>
                                             </div>
                                         </div>
                                         <div class="card-footer">
@@ -115,7 +115,7 @@
                                             <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                                         </div>
                                         <div class="hover-icon active" ng-if="data.is_request">
-                                            <i class="fa fa-bookmark"></i>
+                                            <i class="fa fa-bell-o"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +272,7 @@
                                         <h4 class="word-line" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title}}</h4>
                                         <div class="card-info">
                                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
-                                            <span class="price-sub" ng-if="data.price > 0 && data.type!='Shop' && data.periodtype">Per {{data.periodtype}}</span>
+                                            <span class="price-sub" ng-if="data.price > 0 && data.type!='Shop'">{{data.is_request ? 'Budget' : 'Per'}} {{data.periodtype ? data.periodtype : ''}}</span>
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -281,7 +281,7 @@
                                         <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
                                     </div>
                                     <div class="hover-icon active" ng-if="data.is_request && data.type == 'Service'">
-                                        <i class="fa fa-bookmark"></i>
+                                        <i class="fa fa-bell-o"></i>
                                     </div>
                                 </div>
                             </div>

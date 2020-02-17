@@ -16,6 +16,7 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.formData.images = [];
         $rootScope.formData.thumbimage = 0;
         $rootScope.formData.currency = $scope.currencies[0];
+        $rootScope.formData.periodtype = $scope.periodtypes[0];
         $rootScope.hideerrors();
     }
 

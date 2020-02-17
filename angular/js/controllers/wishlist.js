@@ -9,22 +9,24 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
     $scope.pageno = 1;
     $scope.totalPerPage = 12;
     $scope.url = 'mywishlist/';
+    $scope.isunwished = false;
 
     $scope.getWishedproducts = function() {
-        webServices.get($scope.url + $scope.totalPerPage+ '?page=' +$scope.pageno).then(function(getData) {
+        webServices.get($scope.url + $scope.totalPerPage + '?page=' + $scope.pageno).then(function(getData) {
             if (getData.status == 200) {
                 $scope.pagination = {
                     current: $scope.pageno
                 };
                 $scope.pagedata[$scope.pageno] = getData.data;
                 $scope.wishedproducts = getData.data;
-                if(!$scope.iscompared){
+                if (!$scope.iscompared) {
                     $scope.getComparedproducts();
                 }else{
-                    $rootScope.formLoading = false;
-                    $scope.movetoTop();
+                    if(!$scope.isunwished){
+                        $scope.movetoTop();
+                    }
                 }
-            } else{
+            } else {
                 $rootScope.logout();
             }
         });
@@ -36,10 +38,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             if (getData.status == 200) {
                 $rootScope.formLoading = false;
                 $scope.comparedproducts = getData.data;
-                $timeout(function() {
-                    $rootScope.scrollTop();
-                }, 1000);
-            } else{
+            } else {
                 $rootScope.logout();
             }
 
@@ -47,8 +46,9 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
     };
 
     $scope.pageChanged = function(newPage) {
+        $scope.isunwished = false;
         $scope.pageno = newPage;
-        if(!$scope.pagedata[$scope.pageno]) {
+        if (!$scope.pagedata[$scope.pageno]) {
             $scope.getWishedproducts();
         } else {
             $scope.wishedproducts = $scope.pagedata[$scope.pageno];
@@ -57,44 +57,45 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         $scope.movetoTop();
     };
 
-    $scope.sortwishlist = function(key,order){
+    $scope.sortwishlist = function(key, order) {
         $scope.pageno = 1;
-        $scope.url = 'sortmywishlist/'+key+'/'+order+'/';
+        $scope.url = 'sortmywishlist/' + key + '/' + order + '/';
         $scope.getWishedproducts();
     }
 
-    $scope.filtercompared =  function() {
-       if($scope.comparefilter){
-            webServices.get('filtercompared/'+$scope.comparefilter).then(function(getData) {
+    $scope.filtercompared = function() {
+        if ($scope.comparefilter) {
+            webServices.get('filtercompared/' + $scope.comparefilter).then(function(getData) {
                 if (getData.status == 200) {
                     $scope.comparedproducts = getData.data;
                     $rootScope.formLoading = false;
-                } else{
+                } else {
                     $rootScope.logout();
                 }
             });
-       }else{
+        } else {
             $scope.getComparedproducts();
-       }
+        }
     };
 
-    $scope.changeiscompared = function(key,item){
-        if(item.iscompared){
-            $scope.removewishcompare(key,item);
-        }else{
+    $scope.changeiscompared = function(key, item) {
+        if (item.iscompared) {
+            $scope.removewishcompare(key, item);
+        } else {
             $scope.addtocompare(item);
         }
     }
 
-    $scope.addtocompare = function(product){
+    $scope.addtocompare = function(product) {
         var obj = {};
         obj.productid = product.productid;
         obj.wishstatus = 1;
         obj.iscompared = 1;
-        $scope.updatewish('compare',obj);
+        $scope.updatewish('compare', obj);
     }
 
-    $scope.removefromwish = function(product){
+    $scope.removefromwish = function(product) {
+        $scope.isunwished = true;
         var obj = {};
         obj.productid = product.productid;
         obj.wishstatus = 0;
@@ -110,22 +111,21 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             buttons: {
                 tryAgain: {
                     text: 'Yes',
-                    btnClass: 'danger-btn',
-                    action: function() {
-                        $scope.updatewish('remove',obj);
-                    }
-                },
-                cancel: {
-                    text: 'No',
                     btnClass: 'success-btn',
-                    action: function () {
+                    action: function() {
+                        $scope.updatewish('remove', obj);
                     }
-                }                                
+                },cancel: {
+                    text: 'No',
+                    btnClass: 'danger-btn',
+                    action: function() {}
+                }
+
             }
         });
     }
 
-    $scope.removewishcompare = function(key,item){
+    $scope.removewishcompare = function(key, item) {
         var obj = {};
         obj.productid = item.productid;
         obj.wishstatus = 1;
@@ -143,20 +143,19 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                     btnClass: 'success-btn',
                     action: function() {
                         $scope.wishedproducts.data[key].iscompared = 0;
-                        $scope.updatewish('compare',obj);
+                        $scope.updatewish('compare', obj);
                     }
-                },     
-                cancel: {
+                },cancel: {
                     text: 'No',
                     btnClass: 'danger-btn',
-                    action: function () {
-                    }
-                }                           
+                    action: function() {}
+                }
+
             }
         });
     }
 
-    $scope.removecompared = function(product){
+    $scope.removecompared = function(product) {
         var obj = {};
         obj.productid = product.productid;
         obj.wishstatus = 1;
@@ -169,27 +168,25 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             closeIcon: true,
             closeIconClass: 'modal-close',
             buttons: {
-                cancel: {
-                    text: 'No',
-                    btnClass: 'danger-btn',
-                    action: function () {
-                    }
-                },
                 tryAgain: {
                     text: 'Yes',
                     btnClass: 'success-btn',
                     action: function() {
-                        $scope.updatewish('remove',obj);
+                        $scope.updatewish('remove', obj);
                     }
-                }                                             
+                },cancel: {
+                    text: 'No',
+                    btnClass: 'danger-btn',
+                    action: function() {}
+                }
             }
         });
     }
 
-    $scope.updatewish = function(type,data){
-        webServices.put('updatewish' , data).then(function(getData) {
+    $scope.updatewish = function(type, data) {
+        webServices.put('updatewish', data).then(function(getData) {
             if (getData.status == 200) {
-                    $scope.iscompared = false;
+                $scope.iscompared = false;
                 if (type == 'compare') {
                     $scope.getWishedproducts();
                 } else {
@@ -199,12 +196,12 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         });
     }
 
-    $scope.movetoTop = function(){
+    $scope.movetoTop = function() {
         $timeout(function() {
             $rootScope.scrollToPoint(100);
         }, 200);
     }
-    
+
 
     $scope.getWishedproducts();
 
