@@ -471,11 +471,17 @@ angular.module('app')
                             }
 
                         } else {
-                            $rootScope.loginerrors = getData.data.message;
+                                $rootScope.loginerrors.errormsg = getData.data.message.message[0];
                         }
                     });
                 }
             };
+
+            $rootScope.authtextChanged = function(){
+                $rootScope.loginerrors = {};
+                $rootScope.forgoterrors = {};
+                $rootScope.registererrors = {};
+            }
 
             $rootScope.forgotpassword = function(form) {
                 $rootScope.forgoterrors = {};
@@ -702,7 +708,7 @@ angular.module('app')
                             $rootScope.goafterLogin();
                         }
                     } else {
-                        $rootScope.loginerrors = getData.data.message;
+                        $rootScope.loginerrors.errormsg = getData.data.message.message[0];
                     }
                 });
             };
@@ -940,7 +946,9 @@ angular.module('app')
                         } else {
                             $rootScope.authloading = false;
                             $rootScope.registerloading = false;
-                            $rootScope.registererrors = getData.data.message;
+                            $rootScope.registererrors.usernameerror = getData.data.message.username[0];
+                            $rootScope.registererrors.emailerror = getData.data.message.email[0];
+                            console.log($rootScope.registererrors)
                         }
                     });
 

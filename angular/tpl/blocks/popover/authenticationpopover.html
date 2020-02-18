@@ -5,16 +5,16 @@
         <form name="loginForm" novalidate ng-submit="login(loginForm)">
             <div class="form-group">
                 <label class="control-label">E-mail address</label>
-                <input type="email" name="email" class="form-control" placeholder="email@address.com" ng-model="userData.email" required>
-                <span ng-if="loginerrors.message" class="error error-text">{{loginerrors.message[0]}}</span>
+                <input type="email" name="email" class="form-control" placeholder="email@address.com" ng-model="userData.email" required ng-change="authtextChanged()">
+                <span ng-if="(loginForm.$valid)&&(loginerrors.errormsg)" class="error error-text">{{loginerrors.errormsg}}</span>
                 <span ng-messages="loginForm.email.$error" role="alert">
-                    <span class="error error-text" ng-message="required">Email Required</span>
-                    <span class="error error-text" ng-message="email">Not valid email.</span>
+                    <span class="error error-text" ng-if="!loginerrors.errormsg && loginForm.email.$error" ng-message="required">Email Required</span>
+                    <span class="error error-text" ng-if="!loginerrors.errormsg && loginForm.email.$error" ng-message="email">Not valid email.</span>
                 </span>
             </div>
             <div class="form-group">
                 <label class="control-label">Password</label>
-                <input type="{{pwtype}}" name="password" class="form-control" placeholder="password" required ng-model="userData.password" minlength="8" />
+                <input type="{{pwtype}}" name="password" class="form-control" placeholder="password" ng-model="userData.password" minlength="8" required ng-change="authtextChanged()">
                 <span class="eye-icon" ng-click="showhidepassword()">
                     <i class="fa" ng-class="pwtype == 'password' ? 'fa-eye':'fa-eye-slash'"></i>
                 </span>
@@ -24,7 +24,7 @@
                 </span>
             </div>
             <div class="form-group flex-center-space mt-15">
-                <input class="magic-checkbox" type="checkbox" id="remember" ng-model="userData.rememberme" name="remember_me" ng-true-value="1" ng-false-value="0" />
+                <input class="magic-checkbox" type="checkbox" id="remember" ng-model="userData.rememberme" name="remember_me" ng-true-value="1" ng-false-value="0">
                 <label class="text" for="remember">Remember Me</label>
                 <a class="forgot-password right" ng-click="changeauthTab('forgotpw')">Forgot Password?</a>
             </div>
@@ -48,24 +48,25 @@
         <form name="registerForm" novalidate ng-submit="register(registerForm)">
             <div class="form-group">
                 <label class="control-label">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="UserName" ng-model="registerModel.username" minlength="4" required/>
+                <input type="text" class="form-control" name="username" placeholder="UserName" ng-model="registerModel.username" minlength="4" required ng-change="authtextChanged()"/>
+                <span ng-if="(registerForm.$valid)&&(registererrors.usernameerror)" class="error error-text">{{registererrors.usernameerror}}</span>
                 <span ng-messages="registerForm.username.$error" role="alert">
-                    <span class="error error-text" ng-message="required">Username Required</span>
-                    <span class="error error-text" ng-message="minlength">Atleast 4 characters long.</span>
+                    <span class="error error-text" ng-message="required" ng-if="!registererrors.usernameerror && registerForm.username.$error">Username Required</span>
+                    <span class="error error-text" ng-message="minlength" ng-if="!registererrors.usernameerror && registerForm.username.$error">Atleast 4 characters long.</span>
                 </span>
             </div>
             <div class="form-group">
                 <label class="control-label">E-mail address</label>
-                <input type="email" class="form-control" placeholder="email@address.com" name="email" ng-model="registerModel.email" required/>
-                <span ng-if="registererrors.email" class="error error-text">{{registererrors.email[0]}}</span>
+                <input type="email" class="form-control" placeholder="email@address.com" name="email" ng-model="registerModel.email" required ng-change="authtextChanged()"/>
+                <span ng-if="(registerForm.$valid)&&(registererrors.emailerror)" class="error error-text">{{registererrors.emailerror}}</span>
                 <span ng-messages="registerForm.email.$error" role="alert">
-                    <span class="error error-text" ng-message="required">Email Required</span>
-                    <span class="error error-text" ng-message="email">Not valid email.</span>
+                    <span class="error error-text" ng-message="required" ng-if="!registererrors.emailerror && registerForm.email.$error">Email Required</span>
+                    <span class="error error-text" ng-message="email" ng-if="!registererrors.emailerror && registerForm.email.$error">Not valid email.</span>
                 </span>
             </div>
             <div class="form-group">
                 <label class="control-label">Password</label>
-                <input type="{{pwtype}}" name="password" class="form-control" placeholder="Password" required ng-model="registerModel.password" minlength="8"/>
+                <input type="{{pwtype}}" name="password" class="form-control" placeholder="Password" required ng-model="registerModel.password" minlength="8" ng-change="authtextChanged()"/>
                 <span class="eye-icon" ng-click="showhidepassword()">
                     <i class="fa" ng-class="pwtype == 'password' ? 'fa-eye':'fa-eye-slash'"></i>
                 </span>
@@ -99,7 +100,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">E-mail address</label>
-                <input type="email" name="email" class="form-control" placeholder="email@address.com" ng-model="forgotModel.email" required/>
+                <input type="email" name="email" class="form-control" placeholder="email@address.com" ng-model="forgotModel.email" required ng-change="authtextChanged()"/>
                 <span ng-messages="forgotForm.email.$error" role="alert">
                     <span class="error error-text" ng-message="required">Email Required</span>
                     <span class="error error-text" ng-message="email">Not valid email.</span> 
