@@ -17,15 +17,17 @@
                 color: $white !important;
             }
         }
-        &:hover a, &.active a{
-            background: $pagination-active;
-            color: $white;
+        &.active a, &.active a:hover, &.active a:focus{
+            background: $pagination-active !important;
             border-color: $pagination-active !important;
+            color: $white !important;
         }
-        &:first-of-type, &:last-of-type{
+        &.next, &.prev{
             a{
-                @extend .silver-gradient;
-                color: $deep-blue;
+                &:focus{
+                    background: transparent !important;
+                    color: $black !important;
+                }
             }
         }
         &:first-of-type{
