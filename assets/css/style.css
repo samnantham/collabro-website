@@ -12298,13 +12298,13 @@ ul.simple-list li:last-of-type {
 .right-no-project {
   width: 100%;
   float: left;
-  min-height: 430px;
+  min-height: calc(100vh - 204px);
   position: relative;
 }
 .right-no-project .empty-msg {
   width: 100%;
   position: absolute;
-  top: 50%;
+  top: calc(50% - 38px);
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -12402,13 +12402,14 @@ ul.simple-list li:last-of-type {
   -moz-border-radius: 50%;
   background: #00C4E8;
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
 }
 .msg-post svg, .msg-post img {
-  width: 40px;
+  width: auto;
+  max-width: 35px;
 }
 
 .post-content {

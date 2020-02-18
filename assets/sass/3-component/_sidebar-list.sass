@@ -180,13 +180,13 @@ ul.simple-list
 .right-no-project
     width: 100%
     float: left
-    // min-height: calc(100vh - 130px)
-    min-height: 430px
+    min-height: calc(100vh - 204px)
+    // min-height: 430px
     position: relative
     .empty-msg
         width: 100%
         position: absolute
-        top: 50%
+        top: calc(50% - 38px)
         left: 50%
         transform: translate(-50%, -50%)
 .msg-top
@@ -263,12 +263,13 @@ ul.simple-list
     @include border-radius(50%)
     background: $default
     position: absolute
-    bottom: 20px
+    bottom: 0px
     left: 50%
     transform: translateX(-50%)
     cursor: pointer
     svg, img
-        width: 40px
+        width: auto
+        max-width: 35px
 
 .post-content
     width: 100%
