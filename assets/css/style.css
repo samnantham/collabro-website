@@ -7661,16 +7661,16 @@ a {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa15c", endColorstr="#ff6d41", GradientType=0);
 }
 
-.silver-gradient, .pagination li:first-of-type a, .pagination li:last-of-type a, .pagination li a, .custom-modal .ui-select-bootstrap .form-control, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
-  background: white;
+.silver-gradient, .pagination li:first-of-type a:hover, .pagination li:first-of-type a:focus, .pagination li:last-of-type a:hover, .pagination li:last-of-type a:focus, .pagination li:first-of-type a, .pagination li:last-of-type a, .pagination li a, .custom-modal .ui-select-bootstrap .form-control, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
+  background: white !important;
   /* Old browsers */
-  background: -moz-linear-gradient(top, white 0%, #dfe4e8 100%);
+  background: -moz-linear-gradient(top, white 0%, #dfe4e8 100%) !important;
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, white 0%, #dfe4e8 100%);
+  background: -webkit-linear-gradient(top, white 0%, #dfe4e8 100%) !important;
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, white 0%, #dfe4e8 100%);
+  background: linear-gradient(to bottom, white 0%, #dfe4e8 100%) !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff", endColorstr="#dfe4e8", GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff", endColorstr="#dfe4e8", GradientType=0) !important;
 }
 
 .upload-gradient, .mobile-footer, .search-tab li a, .upload-container {
@@ -13096,6 +13096,10 @@ ul.simple-list li:last-of-type {
 }
 .pagination li:first-of-type a, .pagination li:last-of-type a {
   color: #5B616A;
+}
+.pagination li:first-of-type a:hover, .pagination li:first-of-type a:focus, .pagination li:last-of-type a:hover, .pagination li:last-of-type a:focus {
+  border-color: #B0B6BC !important;
+  color: #fff !important;
 }
 .pagination li:first-of-type i {
   margin-right: 8px;
