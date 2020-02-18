@@ -12770,6 +12770,46 @@ ul.simple-list li:last-of-type {
   border-top-color: #D60046;
 }
 
+.custom-tooltip {
+  min-width: 150px;
+  height: auto;
+  position: absolute;
+  top: 0px;
+  padding: 10px;
+  font-size: 14px;
+  background: #D60046;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  text-align: center;
+}
+.custom-tooltip .custom-tooltip-inner {
+  width: auto;
+  color: #fff;
+  text-align: center;
+}
+.custom-tooltip .custom-tooltip-inner:before {
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  content: "";
+}
+.custom-tooltip.tooltip-left .custom-tooltip-inner:before {
+  right: -5px;
+  border-top: 5px solid transparent;
+  border-left: 5px solid #D60046;
+  border-bottom: 5px solid transparent;
+}
+.custom-tooltip.tooltip-right .custom-tooltip-inner:before {
+  left: -5px;
+  border-top: 5px solid transparent;
+  border-right: 5px solid #D60046;
+  border-bottom: 5px solid transparent;
+}
+
 .search-container {
   width: 100%;
   float: left;

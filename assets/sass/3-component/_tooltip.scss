@@ -25,3 +25,49 @@
         }
     }    
 }
+
+.custom-tooltip{
+    min-width: 150px;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    padding: 10px;
+    font-size: $font-r;
+    background: $tooltip;
+    @include border-radius(4px);
+    text-align: center;
+    .custom-tooltip-inner{
+        width: auto;
+        color: $white;
+        text-align: center;
+        &:before{
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-block;
+            content: "";            
+        }
+    }
+    &.tooltip-left{
+        .custom-tooltip-inner{
+            &:before{
+                right: -5px;
+                border-top: 5px solid transparent;
+                border-left: 5px solid $tooltip;
+                border-bottom: 5px solid transparent;
+            }
+        }
+    }
+    &.tooltip-right{
+        .custom-tooltip-inner{
+            &:before{
+                left: -5px;
+                border-top: 5px solid transparent;
+                border-right: 5px solid $tooltip;
+                border-bottom: 5px solid transparent;
+            }
+        }
+    }
+}
