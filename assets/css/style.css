@@ -13230,6 +13230,7 @@ ul.simple-list li:last-of-type {
   margin-bottom: 5px;
   text-transform: uppercase;
   text-align: left;
+  padding-top: 0px !important;
 }
 .form-group .label-img {
   padding: 5px;
