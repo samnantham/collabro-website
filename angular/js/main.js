@@ -831,9 +831,8 @@ angular.module('app')
             $rootScope.$on("showsuccessmsg", function(event, msg) {
                 ngNotify.set(msg, {
                     type: 'success',
-                    theme: 'pastel',
                     position: 'bottom',
-                    duration: 3000,
+                    duration: 30000,
                     sticky: false,
                     button: true,
                     html: false
@@ -843,9 +842,8 @@ angular.module('app')
             $rootScope.$on("showerrormsg", function(event, msg) {
                 ngNotify.set(msg, {
                     type: 'error',
-                    theme: 'pastel',
                     position: 'bottom',
-                    duration: 3000,
+                    duration: 30000,
                     sticky: false,
                     button: true,
                     html: false
