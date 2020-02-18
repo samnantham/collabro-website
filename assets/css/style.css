@@ -7650,18 +7650,18 @@ a {
   }
 }
 .orange-gradient, .search-tab li a:hover, .search-tab li a.active, .custom-modal .custom-modal-title.modal-orange, .secondary-btn:hover, .secondary-btn, .alert-orange {
-  background: #ffa15c;
+  background: #ffa15c !important;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #ffa15c 1%, #ff6d41 100%);
+  background: -moz-linear-gradient(top, #ffa15c 1%, #ff6d41 100%) !important;
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #ffa15c 1%, #ff6d41 100%);
+  background: -webkit-linear-gradient(top, #ffa15c 1%, #ff6d41 100%) !important;
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #ffa15c 1%, #ff6d41 100%);
+  background: linear-gradient(to bottom, #ffa15c 1%, #ff6d41 100%) !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa15c", endColorstr="#ff6d41", GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa15c", endColorstr="#ff6d41", GradientType=0) !important;
 }
 
-.silver-gradient, .pagination li:first-of-type a:hover, .pagination li:first-of-type a:focus, .pagination li:last-of-type a:hover, .pagination li:last-of-type a:focus, .pagination li:first-of-type a, .pagination li:last-of-type a, .pagination li a, .custom-modal .ui-select-bootstrap .form-control, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
+.silver-gradient, .pagination li:first-of-type a, .pagination li:last-of-type a, .pagination li a, .custom-modal .ui-select-bootstrap .form-control, .custom-modal .custom-modal-title.modal-gray, .sender .chat-btn, .silver-btn:hover, .silver-btn, .accordion-label {
   background: white !important;
   /* Old browsers */
   background: -moz-linear-gradient(top, white 0%, #dfe4e8 100%) !important;
@@ -10698,7 +10698,7 @@ i.color-btn {
 .footer .footer-top {
   width: 100%;
   float: left;
-  padding: 50px 0;
+  padding: 50px 7px;
   background: #7E8EA4;
 }
 .footer .footer-top img {
@@ -10729,7 +10729,7 @@ i.color-btn {
 .footer .footer-bottom {
   width: 100%;
   float: left;
-  padding: 20px 0;
+  padding: 20px 7px;
   background: #00C4E8;
 }
 .footer .footer-bottom .follow i {
@@ -11569,6 +11569,7 @@ i.color-btn {
 }
 .custom-modal .ui-select-bootstrap .selected-item {
   min-width: 200px;
+  display: block !important;
 }
 .custom-modal .ui-select-bootstrap .selected-item.wd-auto {
   min-width: auto;
@@ -11676,7 +11677,7 @@ i.color-btn {
   padding: 0px !important;
 }
 .ng-confirm-box .ng-confirm-title {
-  font-size: 26px !important;
+  font-size: 22px !important;
   color: #344051 !important;
   font-weight: 700 !important;
 }
@@ -11728,6 +11729,11 @@ i.color-btn {
   padding: 7px 15px !important;
   margin-left: 30px !important;
   text-transform: capitalize !important;
+}
+
+.ng-confirm-bg {
+  background-color: #344051 !important;
+  opacity: 0.5 !important;
 }
 
 /* Share popover */
@@ -13096,10 +13102,6 @@ ul.simple-list li:last-of-type {
 }
 .pagination li:first-of-type a, .pagination li:last-of-type a {
   color: #5B616A;
-}
-.pagination li:first-of-type a:hover, .pagination li:first-of-type a:focus, .pagination li:last-of-type a:hover, .pagination li:last-of-type a:focus {
-  border-color: #B0B6BC !important;
-  color: #fff !important;
 }
 .pagination li:first-of-type i {
   margin-right: 8px;

@@ -85,6 +85,7 @@
         float: right;
         .selected-item{
             min-width: 200px;
+            display: block !important;
             &.wd-auto{
                 min-width: auto;
             }
@@ -201,7 +202,7 @@
 .ng-confirm-box{
     padding: 0px !important;
     .ng-confirm-title{
-        font-size: $font-xlx !important;
+        font-size: $font-xl !important;
         color: $black !important;
         font-weight: $font-bold !important;
     }
@@ -254,6 +255,11 @@
             text-transform: capitalize !important;
         }
     }
+}
+
+.ng-confirm-bg{
+    background-color: $black !important;
+    opacity: 0.5 !important;
 }
 
 /* Share popover */
