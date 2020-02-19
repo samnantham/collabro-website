@@ -3,27 +3,28 @@
     <p>We - and our partners - use cookies to deliver our services and to show you ads based on your interests. By using our website, you agree to the use of cookies as described in our Cookie Policy.</p>
     <i class="fa fa-close" ng-click="closeheaderinfo()"></i>
 </div>
-<header class="home-header" ng-class="{'search-active' : stateurl == 'app.searchitems','iscookie':showheader}" ng-if="stateurl == 'app.home' || stateurl == 'app.searchitems'"> <!-- search-active class for search page -->
+<header class="home-header" ng-class="{'search-active' : stateurl == 'app.searchitems','iscookie':showheader}" ng-if="stateurl == 'app.home' || stateurl == 'app.searchitems'">
+    <!-- search-active class for search page -->
     <nav class="navbar">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <a class="logo" ui-sref="app.home">
-                    <img ng-src="{{IMGURL}}{{settings.headerlogo}}" ng-if="stateurl == 'app.home'"/>
-                    <img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo" ng-if="stateurl == 'app.searchitems'"/>
-                </a>
+                <img ng-src="{{IMGURL}}{{settings.headerlogo}}" ng-if="stateurl == 'app.home'" />
+                <img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo" ng-if="stateurl == 'app.searchitems'" />
+            </a>
             <div class="row flex-center">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="search-top">
                         <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search for Anything" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)" />
-                                <button type="submit" class="btn transparent-btn"><i class="fa fa-search" ></i></button>
+                                <button type="submit" class="btn transparent-btn"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -48,78 +49,112 @@
     </nav>
 </header>
 
-<header class="main-header hidden-print" ng-if="stateurl != 'app.home' && stateurl != 'app.searchitems'"  ng-class="{'iscookie':showheader}">
-        <nav class="navbar">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
+<header class="main-header hidden-print" ng-if="stateurl != 'app.home' && stateurl != 'app.searchitems'" ng-class="{'iscookie':showheader}">
+    <nav class="navbar">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
 
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 flex-center-space">
-                        <a class="logo" ui-sref="app.usermain">
-                            <img ng-src="{{IMGURL}}{{settings.footerlogo}}" />
-                        </a>
-                        <div class="search-top">
-                            <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search for Anything" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)" />
-                                    <button type="submit" class="btn transparent-btn"><i class="fa fa-search" ></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 text-right flex-center-space">
-                        <a class="btn secondary-btn" ng-click="openbroadcastModal()"><i class="fa fa-bolt mr-10"></i> BROADCAST</a>
-                        <a class="btn white-btn" ng-click="openproductModal()">POST <i class="fa fa-plus-circle ml-10"></i></a>                        
-                        <ul class="top-nav">
-                            <li class="dropdown" ui-sref="app.notification">
-                                <a class="dropdown-toggle">
-                                    <i class="fa fa-bell-o"></i>                                                
-                                </a>
-                            </li>
-                            <li class="dropdown" ui-sref="app.chats">
-                                <a class="dropdown-toggle">
-                                    <img src="../assets/img/message.png" />                      
-                                </a>
-                            </li>
-                            <li class="dropdown" ui-sref="app.todos">
-                                <a class="dropdown-toggle">
-                                    <i class="fa fa-calendar-check-o"></i>                                                
-                                </a>
-                            </li>                            
-                        </ul>
-
-                        <ul class="top-nav">
-                            <li class="dropdown m-0">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <div class="avatar avatar-s">
-                                        <img ng-src="{{IMGURL}}{{user.avatar}}" alt="user" />
-                                    </div>
-                                    <span class="username">{{user.username}} <i class="fa fa-caret-down"></i></span>
-                                </a>
-    
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a ng-click="logout();">
-                                            <i class="fa fa-sign-out" ></i><span>Logout</span>
-                                        </a>
-                                    </li>
-                                    
-                                </ul>
-                            </li>
-                        </ul>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 flex-center-space">
+                    <a class="logo" ui-sref="app.usermain">
+                        <img ng-src="{{IMGURL}}{{settings.footerlogo}}" />
+                    </a>
+                    <div class="search-top">
+                        <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search for Anything" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)" />
+                                <button type="submit" class="btn transparent-btn"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 text-right flex-center-space">
+                    <a class="btn secondary-btn" ng-click="openbroadcastModal()"><i class="fa fa-bolt mr-10"></i> BROADCAST</a>
+                    <a class="btn white-btn" ng-click="openproductModal()">POST <i class="fa fa-plus-circle ml-10"></i></a>
+                    <ul class="top-nav">
+                        <li class="dropdown" ui-sref="app.notification">
+                            <a class="dropdown-toggle">
+                                <i class="fa fa-bell-o"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown" ui-sref="app.chats">
+                            <a class="dropdown-toggle">
+                                <img src="../assets/img/message.png" />
+                            </a>
+                        </li>
+                        <li class="dropdown" ui-sref="app.todos">
+                            <a class="dropdown-toggle">
+                                <i class="fa fa-calendar-check-o"></i>
+                            </a>
+                        </li>
+                    </ul>
 
+                    <ul class="top-nav">
+                        <li class="dropdown m-0">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <div class="avatar avatar-s">
+                                    <img ng-src="{{IMGURL}}{{user.avatar}}" alt="user" />
+                                </div>
+                                <span class="username">{{user.username}} <i class="fa fa-caret-down"></i></span>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a ng-click="logout();">
+                                        <i class="fa fa-sign-out"></i><span>Logout</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </nav>
-    </header>
+
+        </div>
+    </nav>
+</header>
 <div class="loader" ng-if="formLoading || authLoading">
     <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-</div> 
+</div>
+<style type="text/css">
+    .custom-modal .ui-select-bootstrap .selected-item .ng-hide,
+    .custom-modal .ui-select-bootstrap .selected-item {
+        display: block!important;
+    }
+    
+    .inner-addon {
+        position: relative;
+    }
+    
+    .inner-addon .fa {
+        position: absolute;
+        padding: 12px 10px;
+        pointer-events: none;
+        color: #98a6ad;
+        z-index: 11;
+        font-size: 15px;
+    }
+    
+    .left-addon input {
+        padding-left: 30px;
+    }
+    
+    .right-addon input {
+        padding-right: 30px;
+    }
+    .custom-modal-title .ui-select-bootstrap {
+        width: 55%!important;
+        float: left!important;
+    }.form-group .control-label {
+        text-transform: capitalize;;
+    }.r-0{
+        right: 0px;
+    }
+</style>

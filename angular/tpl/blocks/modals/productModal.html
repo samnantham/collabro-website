@@ -7,8 +7,8 @@
                 <div class="col-lg-4 col-md-4">
                     <h3>New Post</h3>
                 </div>
-                <div class="col-lg-4 col-md-4 ml-15 flex-center">
-                    <div class="dropdown-label">Category</div>
+                <div class="col-lg-4 col-md-4 ml-15">
+                    <h6 class="mb-5"> Category</h6>
                     <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" name="type">
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
                             <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category'}}</p>
@@ -327,7 +327,7 @@
                             </div>
                         </div>
 
-                        <div class="form-row mt-15" ng-if="formData.type">
+                        <div class="form-row mt-15 mb-30" ng-if="formData.type">
                             <div class="form-column flex-center-space">
                                 <div class="form-group wd-100" ng-if="formData.type == 'Event'">
                                     <label class="control-label">From</label>
@@ -499,7 +499,7 @@
                         </div>
 
 
-                        <div class="form-row mt-15">
+                        <div class="form-row mt-15 mb-30">
                             <div class="form-column flex-center-space">
                                 
                             </div>
@@ -524,7 +524,7 @@
         </div>
 
         <!-- Modal footer -->
-        <div class="custom-modal-footer text-right">
+        <div class="custom-modal-footer text-right mb-30">
             <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
             <button type="submit" class="btn success-btn ml-30" ng-disabled="!formData.type">Publish Item</button>
         </div>
