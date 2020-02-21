@@ -843,11 +843,11 @@ angular.module('app')
             };
 
             $rootScope.$on("showsuccessmsg", function(event, msg) {
-                ngNotify.set(msg, {
+                ngNotify.set('<i class="fa fa-check-circle"></i>' + msg, {
                     type: 'success',
-                    position: 'bottom',
-                    duration: 3000,
-                    sticky: false,
+                    position: 'center',
+                    duration: 60000,
+                    sticky: true,
                     button: true,
                     html: true
                 });
