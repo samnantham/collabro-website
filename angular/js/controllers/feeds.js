@@ -6,7 +6,7 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
     $scope.myfeeds = [];
     $scope.pageno = 1;
     $scope.totalPerPage = 8;
-    $scope.activetab = 'wishedfeed';
+    $scope.activetab = 'myfeed';
     
     if ($rootScope.user) {
         if (!$rootScope.user.username) {
@@ -124,5 +124,5 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
     };
 
 
-    $scope.getwishedfeeds();
+    $scope.getmyfeeds();
 }]);
