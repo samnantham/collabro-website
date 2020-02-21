@@ -52,6 +52,8 @@
             width: 100%;
             float: left;
             margin-top: 5px;
+            @include wordlines();
+            min-height: 40px;
         }
         .word-line{
             min-height: 40px;

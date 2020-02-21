@@ -5,17 +5,29 @@
 }
 
 .modal-open{
-    overflow: auto;
+    height: 100vh;
+    overflow: hidden;
+    padding-right: 15px;
+    .home-header{
+        padding-right: 15px;
+    }
 }
 
 .modal-content{
     @include box-shadow(none);
     border: 0px;
+    width: 100%;
+    float: left;
+    margin: 20px 0;
 }
 
 .form-modal{
     width: 90% !important;
     max-width: 1200px;
+}
+
+.modal-dialog{
+    margin: 0px auto !important;
 }
 
 .custom-modal{
