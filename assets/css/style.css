@@ -10540,7 +10540,7 @@ i.color-btn {
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   padding: 0;
-  min-width: 140px;
+  min-width: 120px;
 }
 
 @keyframes scaleDrop {
@@ -11592,7 +11592,7 @@ i.color-btn {
   float: right;
 }
 .custom-modal .ui-select-bootstrap .selected-item {
-  min-width: 200px;
+  min-width: 150px;
   display: block !important;
 }
 .custom-modal .ui-select-bootstrap .selected-item.wd-auto {
@@ -13295,7 +13295,7 @@ ul.simple-list li:last-of-type {
   font-weight: 500;
   z-index: 10;
   margin-bottom: 5px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-align: left;
   padding-top: 0px !important;
 }
