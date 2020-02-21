@@ -11598,6 +11598,9 @@ i.color-btn {
 .custom-modal .ui-select-bootstrap .selected-item.wd-auto {
   min-width: auto;
 }
+.custom-modal .ui-select-bootstrap .selected-item .ng-hide {
+  display: block !important;
+}
 .custom-modal .ui-select-bootstrap .form-control p {
   margin-bottom: 0px;
 }

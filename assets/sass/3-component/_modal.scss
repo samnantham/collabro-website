@@ -101,6 +101,9 @@
             &.wd-auto{
                 min-width: auto;
             }
+            .ng-hide{
+                display: block !important;
+            }
         }
         .form-control{
             @extend .silver-gradient;
