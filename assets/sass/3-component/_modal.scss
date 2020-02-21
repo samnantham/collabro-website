@@ -6,10 +6,9 @@
 
 .modal-open{
     height: 100vh;
-    overflow: hidden;
-    padding-right: 15px;
-    .home-header{
-        padding-right: 15px;
+    overflow: inherit;
+    .main-header{
+        width: calc(100vw - 17px);
     }
 }
 

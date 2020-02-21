@@ -4,10 +4,10 @@
     <!-- Modal title -->
         <div class="custom-modal-title modal-default">
             <div class="row flex-center">
-                <div class="col-lg-3 col-md-3 ml-15">
+                <div class="col-lg-4 col-md-4">
                     <h3>New Post</h3>
                 </div>
-                <div class="col-lg-2 col-md-2 ml-15">
+                <div class="col-lg-3 col-md-3 ml-15">
                     <h6 class="mb-5"> Category</h6>
                     <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" name="type">
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
@@ -18,7 +18,7 @@
                         </ui-select-choices>
                     </ui-select>
                 </div>
-                <div class="col-lg-7 col-md-7">
+                <div class="col-lg-5 col-md-5">
 
                 </div>
             </div>
@@ -172,7 +172,7 @@
                         </div>
 
                         <div class="form-row mt-20" ng-if="formData.type == 'Shop'">
-                            <div class="form-column flex-top-space">
+                            <div class="form-column flex-basis-50 flex-top-space">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Category</label>
                                     <ui-select name="category" ng-model="formData.category" theme="bootstrap" search-enabled="false" ng-required="formData.type == 'Shop'">
@@ -187,11 +187,7 @@
                                     <span class="error error-text" ng-if="categoryerror">Choose Category</span>
                                 </div>
                             </div>
-                            <div class="form-column flex-top-space">
-                                <div class="form-group wd-100">
-                                </div>
-                            </div>
-
+                        
                             <div class="form-column flex-top-space">
                                 <div class="form-group wd-100">
                                 </div>
@@ -368,7 +364,7 @@
                                     <label class="text" for="allday">All day event</label>
                                 </div>
                             </div>
-                            <div class="form-column-50 flex-top-space ml-15">
+                            <div class="form-column-50 flex-top-space ml-15 mr-0">
                                 <div class="form-group" ng-if="formData.type != 'Service'">
                                     <label class="control-label">Collection and Physical Store Address</label>
                                     <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type">Insert Address?</button>
@@ -510,7 +506,7 @@
                             <div class="form-column flex-top-space ml-15">
                                 
                             </div>
-                            <div class="form-column-50 flex-top-space ml-15">
+                            <div class="form-column-50 flex-top-space ml-15 mr-0">
                                 <div class="form-group" ng-if="formData.type != 'Service'">
                                     <label class="control-label">Collection and Physical Store Address</label>
                                     <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type">Back to Info?</button>

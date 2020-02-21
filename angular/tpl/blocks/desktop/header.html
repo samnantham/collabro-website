@@ -82,16 +82,19 @@
                             <a class="dropdown-toggle">
                                 <i class="fa fa-bell-o"></i>
                             </a>
+                            <span class="alert-count">2</span>
                         </li>
                         <li class="dropdown" ui-sref="app.chats">
                             <a class="dropdown-toggle">
                                 <img src="../assets/img/message.png" />
                             </a>
+                            <span class="alert-count">2</span>
                         </li>
                         <li class="dropdown" ui-sref="app.todos">
                             <a class="dropdown-toggle">
                                 <i class="fa fa-calendar-check-o"></i>
                             </a>
+                            <span class="alert-count">3</span>
                         </li>
                     </ul>
 
@@ -123,13 +126,4 @@
 <div class="loader" ng-if="formLoading || authLoading">
     <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
 </div>
-<style type="text/css">
-   .form-group .control-label {
-        text-transform: capitalize;;
-    }.modal-open {
-  padding-right: 0 !important;
-}
-html {
-  overflow-y: scroll !important;
-}
-</style>
+

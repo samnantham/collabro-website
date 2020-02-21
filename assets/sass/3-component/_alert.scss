@@ -3,6 +3,10 @@
     font-size: $font-m;
     margin-bottom: 15px;
     @include box-shadow($box-shadow-default);
+    text-align: left;
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
     .close{
         color: $black;
         opacity: 1;
@@ -32,6 +36,21 @@
         .alert{
             border: 0px !important;
         }
+    }
+}
+
+.ngn-dismiss{
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    @include box-shadow(none);
+    background-color: transparent;
+    color: $white;
+    opacity: 1;
+    text-shadow: none;
+    &:hover{
+        background: transparent;
     }
 }
 

@@ -31,7 +31,7 @@
                         </ui-select-choices>
                     </ui-select>
 
-                    <div class="custom-tooltip tooltip-right mt-30 r-0" ng-show="showCatError">
+                    <div class="custom-tooltip tooltip-left tooltip-center" ng-show="showCatError">
                         <div class="custom-tooltip-inner">
                             Select Category
                         </div>                    
@@ -52,14 +52,14 @@
                             <div class="form-group mt-30 mb-0">
                                 <input class="magic-checkbox" type="checkbox" name="isaccept" id="note" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" required ng-disabled="!formData.request_type" />
                                 <label class="text font-s" for="note" tooltip="{{categoryText}}" tooltip-is-open="ishover && !formData.isaccept && formData.request_category" tooltip-placement="right">Read and agreed to the TSA Protection Scheme</label>
+                                <div class="custom-tooltip tooltip-right tooltip-center">
+                                    <div class="custom-tooltip-inner">
+                                        Select Category
+                                    </div>                    
+                                </div>
                             </div>
-
                         </div>
-                        <div class="custom-tooltip tooltip-right mt-30 r-0">
-                                <div class="custom-tooltip-inner">
-                                    Select Category
-                                </div>                    
-                            </div>
+                        
 
                         <div class="form-group mt-30 mb-0">
                             <label class="control-label">Add Images</label>

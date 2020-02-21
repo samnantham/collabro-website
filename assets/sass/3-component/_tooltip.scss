@@ -36,6 +36,7 @@
     background: $tooltip;
     @include border-radius(4px);
     text-align: center;
+    z-index: 9999;
     .custom-tooltip-inner{
         width: auto;
         color: $white;
@@ -51,6 +52,7 @@
         }
     }
     &.tooltip-left{
+        right: 100%;
         .custom-tooltip-inner{
             &:before{
                 right: -5px;
@@ -61,6 +63,7 @@
         }
     }
     &.tooltip-right{
+        left: 100%;
         .custom-tooltip-inner{
             &:before{
                 left: -5px;
@@ -69,5 +72,9 @@
                 border-bottom: 5px solid transparent;
             }
         }
+    }
+    &.tooltip-center{
+        top: 50%;
+        transform: translateY(-50%);
     }
 }

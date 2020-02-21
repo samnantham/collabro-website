@@ -21,6 +21,19 @@
 		text-transform: capitalize
 		text-align: left
 		padding-top: 0px !important
+	.input-icon
+		width: 30px
+		background: $gray
+		color: $black
+		position: absolute
+		bottom: 1px
+		left: 1px
+		height: 36px
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		@include border-radius(4px 0 0 4px)
+
 	.label-img
 		padding: 5px
 		border: 1px solid $border
@@ -71,6 +84,8 @@
 	font-size: $font-r
 	transition: box-shadow 150ms ease-out
 	@include border-radius(4px)
+	&.input-with-icon
+		padding-left: 40px
 	&:focus
 		@include border-radius(2px)
 		// box-shadow: 0 2px 0 0 $default
