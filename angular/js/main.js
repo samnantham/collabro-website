@@ -276,8 +276,7 @@ angular.module('app')
             }
 
             $rootScope.fbshare = function() {
-                console.log('hahahahaa')
-                if ($rootScope.sharetype == 'product') {
+                /*if ($rootScope.sharetype == 'product') {
                     if ($rootScope.shareData.images[0].filetype == 1) {
                         var IMGURL = $rootScope.IMGURL + $rootScope.shareData.images[0].thumbnail;
                     } else {
@@ -402,6 +401,15 @@ angular.module('app')
                         }
                     });
                 }
+*/
+                var newwindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + $rootScope.shareData.shareurl + $rootScope.shareData.id, 'FB Share', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                if (window.focus) {
+                    newwindow.focus()
+                }
+                $timeout(function() {
+                    $rootScope.updateforsocialshare(2);
+                    //$rootScope.closepopoverItem();
+                }, 10000);
 
             }
 
@@ -838,10 +846,10 @@ angular.module('app')
                 ngNotify.set(msg, {
                     type: 'success',
                     position: 'bottom',
-                    duration: 30000,
+                    duration: 3000,
                     sticky: false,
                     button: true,
-                    html: false
+                    html: true
                 });
             });
 
@@ -849,10 +857,10 @@ angular.module('app')
                 ngNotify.set(msg, {
                     type: 'error',
                     position: 'bottom',
-                    duration: 30000,
+                    duration: 3000,
                     sticky: false,
                     button: true,
-                    html: false
+                    html: true
                 });
             });
 
