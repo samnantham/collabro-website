@@ -846,15 +846,15 @@ angular.module('app')
                 ngNotify.set('<i class="fa fa-check-circle"></i>' + msg, {
                     type: 'success',
                     position: 'center',
-                    duration: 60000,
-                    sticky: true,
+                    duration: 3000,
+                    sticky: false,
                     button: true,
                     html: true
                 });
             });
 
             $rootScope.$on("showerrormsg", function(event, msg) {
-                ngNotify.set(msg, {
+                ngNotify.set('<i class="fa fa-info-circle"></i>' + msg, {
                     type: 'error',
                     position: 'bottom',
                     duration: 3000,

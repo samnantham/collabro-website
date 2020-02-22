@@ -20,7 +20,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="topbar result">
                     <div class="topbar-left">
-                        <span class="lefttext">Showing <b>{{ activetab == 'myfeed' ? myfeeds.from : wishedfeeds.from }} </b> to <b>{{ activetab == 'myfeed' ? myfeeds.to : wishedfeeds.to }}</b> of <b>{{ activetab == 'myfeed' ? myfeeds.total : wishedfeeds.total }}</b> Results.</span>
+                        <span class="lefttext" ng-if="(activetab == 'wishedfeed' && wishedfeeds.total > 0) || (activetab == 'myfeed' && myfeeds.total > 0)">Showing <b>{{ activetab == 'myfeed' ? myfeeds.from : wishedfeeds.from }} </b> to <b>{{ activetab == 'myfeed' ? myfeeds.to : wishedfeeds.to }}</b> of <b>{{ activetab == 'myfeed' ? myfeeds.total : wishedfeeds.total }}</b> Results.</span>
                     </div>
                     <div class="topbar-right">
                         <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by <i class="fa fa-angle-down ml-10"></i></span>
@@ -32,6 +32,8 @@
                 </div>
             </div>
         </div>
+
+        
         <div class="row mt-15" ng-if="activetab == 'myfeed'">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in myfeeds.data | itemsPerPage: totalPerPage" total-items="myfeeds.total" pagination-id="myfeed-pagination" current-page="myfeedpagination.current">
                 <div class="table-card">
@@ -64,6 +66,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12" ng-if="activetab == 'myfeed' && myfeeds.last_page > 1 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl" pagination-id="myfeed-pagination"></dir-pagination-controls>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="myfeeds.total  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>No records Found</h4>
+                </div>
+            </div>
         </div>
         <div class="row mt-15" ng-if="activetab == 'wishedfeed'">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in wishedfeeds.data | itemsPerPage: totalPerPage" total-items="wishedfeeds.total" current-page="wishedfeedpagination.current" pagination-id="wishedfeed-pagination">
@@ -87,11 +94,9 @@
                     <div class="full-col mt-10">{{data.description | cut:true:120:'..'}}</div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                <div class="topbar">
-                    <div class="topbar-left">
-                        <h2>Follow more members to see great content on your activity stream</h2>
-                    </div>
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="wishedfeeds.total  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>No records Found</h4>
                 </div>
             </div>
         </div>

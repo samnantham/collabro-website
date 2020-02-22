@@ -23,7 +23,7 @@
                 <div class="col-lg-2 col-md-2 ml-15">
                     <h6 class="text-white mb-5">Category</h6>
 
-                    <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" tooltip-placement="left" tooltip-html="formData.categoryText" tooltip-append-to-body="true" tooltip-trigger="ishover">
+                    <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" tooltip-placement="left" tooltip-html="formData.categoryText" tooltip-append-to-body="true" tooltip-trigger="ishover" ng-required="!formData.request_category">
                         <ui-select-match allow-clear="true" class="selected-item">
                             <p><i class="fa fa-circle-o"></i> {{formData.request_category ? formData.request_category : 'Select Category'}}</p>
                         </ui-select-match>
@@ -165,7 +165,7 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Budget</label>
-                                        <input type="text" class="form-control  input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.request_type" />
+                                        <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.request_type" />
                                         <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>

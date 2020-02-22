@@ -28,6 +28,16 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
         $rootScope.hideerrors();
     }
 
+    $rootScope.showTooltip = function(){
+        if(!$rootScope.formData.type){
+            $rootScope.showCatError = true;
+        }
+    }
+
+    $rootScope.hideTooltip = function(){
+        $rootScope.showCatError = false;
+    }
+
     $rootScope.complete = function(string) {
         $rootScope.friends = [];
         if (string.length > 0) {

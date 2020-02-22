@@ -110,6 +110,12 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                 }
                 $rootScope.$emit("showsuccessmsg", getData.data.message);
                 $scope.getfriends();
+            }else if(getData.status == 401){
+                if($scope.friends.data.length == 1){
+                    $scope.friendspageno --;
+                }
+                $rootScope.$emit("showerrormsg", getData.data.message);
+                $scope.getfriends();
             }
         });
     }
@@ -137,6 +143,15 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
                 } else {
                     $scope.otherpeoples.data[key].isfollow = 0;
                 }
+                $scope.getotherpeoples();
+                if(getData.data.isfollow > 0){
+                    $scope.getfriends();
+                }
+            }else if(getData.status == 401){
+                if($scope.friends.data.length == 1){
+                    $scope.friendspageno --;
+                }
+                $rootScope.$emit("showerrormsg", getData.data.message);
                 $scope.getotherpeoples();
                 if(getData.data.isfollow > 0){
                     $scope.getfriends();

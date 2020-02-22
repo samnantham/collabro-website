@@ -91,7 +91,8 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.productid = product.productid;
         obj.wishstatus = 1;
         obj.iscompared = 1;
-        $scope.updatewish('compare', obj);
+        var msg = 'You have added a item to compare';
+        $scope.updatewish('compare', obj, msg, 1);
     }
 
     $scope.removefromwish = function(product) {
@@ -113,7 +114,8 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                     text: 'Yes',
                     btnClass: 'success-btn',
                     action: function() {
-                        $scope.updatewish('remove', obj);
+                        var msg = 'You have removed a wished item';
+                        $scope.updatewish('remove', obj, msg, 0);
                     }
                 },cancel: {
                     text: 'No',
@@ -142,8 +144,9 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                     text: 'Yes',
                     btnClass: 'success-btn',
                     action: function() {
+                        var msg = 'You have removed a compared item';
                         $scope.wishedproducts.data[key].iscompared = 0;
-                        $scope.updatewish('compare', obj);
+                        $scope.updatewish('compare', obj, msg, 0);
                     }
                 },cancel: {
                     text: 'No',
@@ -172,7 +175,8 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                     text: 'Yes',
                     btnClass: 'success-btn',
                     action: function() {
-                        $scope.updatewish('remove', obj);
+                        var msg = 'You have removed a compared item';
+                        $scope.updatewish('remove', obj ,msg, 0);
                     }
                 },cancel: {
                     text: 'No',
@@ -183,10 +187,15 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         });
     }
 
-    $scope.updatewish = function(type, data) {
+    $scope.updatewish = function(type, data, msg, status) {
         webServices.put('updatewish', data).then(function(getData) {
             if (getData.status == 200) {
                 $scope.iscompared = false;
+                if(status){
+                    $rootScope.$emit("showsuccessmsg", msg);
+                }else{
+                    $rootScope.$emit("showerrormsg", msg);
+                }
                 if (type == 'compare') {
                     $scope.getWishedproducts();
                 } else {
