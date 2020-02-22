@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-2 col-md-2 ml-15">
                     <h6 class="text-white mb-5"> Type Of Service</h6>
-                    <ui-select ng-model="formData.request_type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
+                    <ui-select ng-model="formData.request_type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" ng-disabled="true" ng-readonly="!$select.searchEnabled" class="only-service">
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
                             <p><i class="fa fa-circle-o"></i> {{formData.request_type ? formData.request_type : 'Service Type'}}</p>
                         </ui-select-match>
