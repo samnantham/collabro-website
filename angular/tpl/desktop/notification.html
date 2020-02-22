@@ -40,8 +40,11 @@
                     </accordion>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pull-right pagination-ctrl" pagination-id="friends"></dir-pagination-controls>
+
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="notifications.length  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>No records Found</h4>
+                </div>
             </div>
         </div>
     </div>

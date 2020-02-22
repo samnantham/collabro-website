@@ -1,13 +1,13 @@
 <script src="js/modal-js/productmodal.js"></script>
 <div class="custom-modal" ng-controller="ProductModalCtrl">
     <form class="form-horizontal" name="addForm" novalidate ng-submit="addData(addForm);">
-    <!-- Modal title -->
+        <!-- Modal title -->
         <div class="custom-modal-title modal-default">
             <div class="row flex-center">
                 <div class="col-lg-4 col-md-4">
                     <h3>New Post</h3>
                 </div>
-                <div class="col-lg-3 col-md-3 ml-15">
+                <div class="col-lg-2 col-md-2 ml-15">
                     <h6 class="mb-5"> Category</h6>
                     <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" name="type">
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
@@ -18,7 +18,7 @@
                         </ui-select-choices>
                     </ui-select>
                 </div>
-                <div class="col-lg-5 col-md-5">
+                <div class="col-lg-6 col-md-6">
 
                 </div>
             </div>
@@ -36,8 +36,7 @@
                             <span class="error error-text" ng-if="imageerror">{{imageerrormsg}}</span>
                         </div>
                         <input name="images" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0" class="broad-images">
-                        <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                            ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type" ng-class="{'upload-btn-disabled': !formData.type}" ng-if="!viewingThumb.file">
+                        <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type" ng-class="{'upload-btn-disabled': !formData.type}" ng-if="!viewingThumb.file">
                             <div class="upload-inner">
                                 <div class="icon-container">
                                     <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
@@ -77,14 +76,12 @@
                         </div>
 
                         <div class="thumb-wrapper mt-30">
-                            <div class="thumbs" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/popover/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)"
-                                tooltip-class="preview-tooltip">
+                            <div class="thumbs" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/popover/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
                                 <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" ngf-background="data.file" ng-if="data.filetype == 1 && data.isfile"></div>
                                 <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == formData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
                                 <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
                             </div>
-                            <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                                ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type">
+                            <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type">
                                 <div class="add-thumb">+</div>
                             </div>
                         </div>
@@ -104,8 +101,7 @@
 
                         <div class="form-group mt-30 mb-0">
                             <label class="control-label">Post Description</label>
-                            <textarea class="form-control" name="description" rows="10" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." ng-model="formData.description" required ng-disabled="!formData.type"
-                                maxlength="1000"></textarea>
+                            <textarea class="form-control" name="description" rows="10" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000"></textarea>
                             <span class="error error-text" ng-if="descriptionerror">Enter post Description</span>
                         </div>
 
@@ -144,13 +140,10 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Price</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
-
-                                    </div>
                                     <span class="error error-text" ng-if="priceerror">Enter Price</span>
                                 </div>
                             </div>
@@ -163,7 +156,7 @@
                                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
                                             </p>
                                         </ui-select-match>
-                                        <ui-select-choices  class="default-select-items" repeat="periodtype in periodtypes">
+                                        <ui-select-choices class="default-select-items" repeat="periodtype in periodtypes">
                                             <span ng-bind-html="periodtype | highlight: $select.search"></span>
                                         </ui-select-choices>
                                     </ui-select>
@@ -187,7 +180,7 @@
                                     <span class="error error-text" ng-if="categoryerror">Choose Category</span>
                                 </div>
                             </div>
-                        
+
                             <div class="form-column flex-top-space">
                                 <div class="form-group wd-100">
                                 </div>
@@ -196,13 +189,10 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Price</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
-
-                                    </div>
                                     <span class="error error-text" ng-if="priceerror">Enter Price</span>
                                 </div>
                             </div>
@@ -231,12 +221,10 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Price</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-lg fa-dollar"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
-                                    </div>
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <span class="input-icon">
+                                        <i class="fa fa-lg fa-dollar"></i>
+                                    </span>
                                     <span class="error error-text" ng-if="priceerror">Enter Price</span>
                                 </div>
                             </div>
@@ -261,14 +249,12 @@
                                 <div class="form-group">
                                     <label class="control-label">Start date</label>
                                     <datepicker date-format="yyyy-MM-dd" selector="form-control">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-lg fa-calendar"></i>
-                                            </span>
-                                            <input type="text" class="form-control" ng-model="formData.productstartdate" placeholder="Start Date" name="startdate" ng-required="!formData.hasstartdate" />
-                                        </div>
+                                            <input type="text" class="form-control input-with-icon" ng-model="formData.productstartdate" placeholder="Start Date" name="startdate" ng-required="!formData.hasstartdate" />
+                                            <span class="input-icon">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                        </span>
                                     </datepicker>
-                                    <span class="error error-text" ng-if="startdateerror">Select</span>
+                                    <span class="error error-text" ng-if="startdateerror">Required</span>
                                 </div>
                                 <div class="form-group ml-15 pl-5">
                                     <label class="control-label">NA</label>
@@ -280,15 +266,12 @@
                                 <div class="form-group">
                                     <label class="control-label">End date</label>
                                     <datepicker date-format="yyyy-MM-dd" selector="form-control">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-lg fa-calendar"></i>
-                                            </span>
-                                            <input type="text" class="form-control" ng-model="formData.productenddate" placeholder="End Date" name="enddate" ng-required="!formData.hasenddate" required />
-
-                                        </div>
+                                            <input type="text" class="form-control input-with-icon" ng-model="formData.productenddate" placeholder="End Date" name="enddate" ng-required="!formData.hasenddate" required />
+                                            <span class="input-icon">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                        </span>
                                     </datepicker>
-                                    <span class="error error-text" ng-if="enddateerror">Select</span>
+                                    <span class="error error-text" ng-if="enddateerror">Required</span>
                                 </div>
                                 <div class="form-group ml-15 pl-5">
                                     <label class="control-label">NA</label>
@@ -299,13 +282,11 @@
                             <div class="form-column flex-center-space ml-30">
                                 <div class="form-group">
                                     <label class="control-label">Price</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
-                                    </div>
-                                     <span class="error error-text" ng-if="priceerror">Enter Price</span>
+                                    <span class="error error-text" ng-if="priceerror">Enter Price</span>
                                 </div>
                             </div>
                             <div class="form-column flex-center-space ml-30">
@@ -329,12 +310,12 @@
                                     <label class="control-label">From</label>
                                     <ui-select name="starttime" ng-model="formData.starttime" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
                                         <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
-                                           <p>{{formData.starttime ? formData.starttime : 'Select StartTime'}}</p>
+                                            <p>{{formData.starttime ? formData.starttime : 'Select StartTime'}}</p>
                                         </ui-select-match>
                                         <ui-select-choices class="default-select-items" repeat="starttime in times">
-                                           <span ng-bind-html="starttime | highlight: $select.search"></span>
+                                            <span ng-bind-html="starttime | highlight: $select.search"></span>
                                         </ui-select-choices>
-                                     </ui-select>
+                                    </ui-select>
                                 </div>
 
                                 <div class="form-group wd-100" ng-if="formData.type == 'Service'">
@@ -348,13 +329,13 @@
                                     <label class="control-label">To</label>
                                     <ui-select name="endtime" ng-model="formData.endtime" theme="bootstrap" search-enabled="false">
                                         <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
-                                           <p>{{formData.endtime ? formData.endtime : 'Select EndTime'}}
-                                           </p>
+                                            <p>{{formData.endtime ? formData.endtime : 'Select EndTime'}}
+                                            </p>
                                         </ui-select-match>
                                         <ui-select-choices class="default-select-items" repeat="endtime in times">
-                                           <span ng-bind-html="endtime | highlight: $select.search"></span>
+                                            <span ng-bind-html="endtime | highlight: $select.search"></span>
                                         </ui-select-choices>
-                                     </ui-select>
+                                    </ui-select>
                                 </div>
                             </div>
                             <div class="form-column flex-top-space ml-15">
@@ -397,23 +378,13 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
-                                            <input class="magic-checkbox"
-                                                type="radio"
-                                                name="layout"
-                                                id="private"
-                                                name="isprivate" value="1" ng-model="formData.isprivate"
-                                            />
+                                            <input class="magic-checkbox" type="radio" id="private" name="isprivate" value="1" ng-model="formData.isprivate" />
                                             <label class="text" for="allday">Private</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
-                                            <input class="magic-checkbox"
-                                                type="radio"
-                                                name="layout"
-                                                id="public"
-                                                name="isprivate" value="0" ng-model="formData.isprivate"
-                                            />
+                                            <input class="magic-checkbox" type="radio" id="public" name="isprivate" value="0" ng-model="formData.isprivate" />
                                             <label class="text" for="allday">Public</label>
                                         </div>
                                     </div>
@@ -423,23 +394,19 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6">  
+                            <div class="col-lg-6 col-md-6">
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8">
                                         <div class="form-group">
                                             <label class="control-label">Postal code</label>
-                                            <input type="text" class="form-control" placeholder="postal code" name="postalcode" ng-model="formData.postalcode" required numbers-only required/>
+                                            <input type="text" class="form-control" placeholder="postal code" name="postalcode" ng-model="formData.postalcode" required numbers-only/>
                                             <span class="error error-text" ng-if="postalcodeerror">Enter Postal Code</span>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">&nbsp;</label>
-                                            <input class="magic-checkbox"
-                                                type="checkbox"
-                                                name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap"
-                                                id="map"
-                                            />
+                                            <input class="magic-checkbox" type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap" id="map" />
                                             <label class="text" for="allday">Show map</label>
                                         </div>
                                     </div>
@@ -451,14 +418,14 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Organisation</label>
-                                    <input type="text" class="form-control"  type="text" name="organisation" placeholder="Name of company or organiser" ng-model="formData.organisation" required/>
+                                    <input type="text" class="form-control" name="organisation" placeholder="Name of company or organiser" ng-model="formData.organisation" required/>
                                     <span class="error error-text" ng-if="organisationerror">Enter your Organization Name</span>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Company UEN No.</label>
-                                    <input type="text" class="form-control"  name="company_uen" placeholder="Company registrtion No." ng-model="formData.company_uen" required />
+                                    <input type="text" class="form-control" name="company_uen" placeholder="Company registrtion No." ng-model="formData.company_uen" required />
                                     <span class="error error-text" ng-if="companyuenerror">Enter your Company UEN</span>
                                 </div>
                             </div>
@@ -469,7 +436,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Order Link (Optional)</label>
-                                    <input type="text" class="form-control"  name="orderlink" placeholder="Product order or booking link" ng-model="formData.orderlink" ng-required="formData.orderlink" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" />
+                                    <input type="text" class="form-control" name="orderlink" placeholder="Product order or booking link" ng-model="formData.orderlink" ng-required="formData.orderlink" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" />
                                 </div>
                             </div>
                         </div>
@@ -480,31 +447,29 @@
                                     <div class="col-lg-4 col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">Contact No.</label>
-                                            <input type="text" class="form-control" placeholder="+65" ng-model="formData.countrycode"  />
+                                            <input type="text" class="form-control" placeholder="+65" ng-model="formData.countrycode" />
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-8">
                                         <div class="form-group">
                                             <label class="control-label">&nbsp;</label>
-                                            <input type="text" class="form-control" name="phoneno" placeholder="2358 8070" ng-model="formData.phoneno"
-                                            required numbers-only />
+                                            <input type="text" class="form-control" name="phoneno" placeholder="2358 8070" ng-model="formData.phoneno" required numbers-only />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
                         <div class="form-row mt-15 mb-30">
                             <div class="form-column flex-center-space">
-                                
+
                             </div>
 
                             <div class="form-column flex-center-space ml-30">
-                                
+
                             </div>
                             <div class="form-column flex-top-space ml-15">
-                                
+
                             </div>
                             <div class="form-column-50 flex-top-space ml-15 mr-0">
                                 <div class="form-group" ng-if="formData.type != 'Service'">
@@ -520,7 +485,7 @@
         </div>
 
         <!-- Modal footer -->
-        <div class="custom-modal-footer text-right mb-30">
+        <div class="custom-modal-footer text-right mb-10">
             <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
             <button type="submit" class="btn success-btn ml-30" ng-disabled="!formData.type">Publish Item</button>
         </div>
