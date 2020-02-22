@@ -7420,6 +7420,10 @@ a {
   opacity: 0;
 }
 
+.white-bg {
+  background: #fff;
+}
+
 .primary-bg, .bg-primary {
   background: #00C4E8;
 }
