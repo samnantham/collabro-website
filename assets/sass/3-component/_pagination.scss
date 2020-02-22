@@ -9,17 +9,17 @@
             @include border-radius(5px);
             @extend .silver-gradient;
             border: 1px solid $pagination-border;
-            padding: 5px 10px;
+            padding: 10px 20px;
             @include box-shadow($pagination-shadow);
             &:hover, &:focus{
                 background: $pagination-active !important;
-                border-color: $pagination-active !important;
+                border: 1px solid $pagination-border !important;
                 color: $white !important;
             }
         }
         &.active a, &.active a:hover, &.active a:focus{
             background: $pagination-active !important;
-            border-color: $pagination-active !important;
+            border: 1px solid $pagination-active !important;
             color: $white !important;
         }
         &.next, &.prev{
@@ -27,7 +27,7 @@
                 &:focus{
                     @extend .silver-gradient;
                     color: $deep-blue !important;
-                    border-color: $pagination-active !important;
+                    border: 1px solid $pagination-border !important;
                 }
             }
         }
