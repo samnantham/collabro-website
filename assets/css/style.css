@@ -8625,6 +8625,7 @@ p {
   color: #fff;
   opacity: 1;
   text-shadow: none;
+  display: block;
 }
 .ngn-dismiss:hover {
   background: transparent;
@@ -13210,6 +13211,12 @@ ul.simple-list li:last-of-type {
 }
 .pagination li {
   margin: 0 4px;
+}
+.pagination li.hidePageNav a {
+  cursor: default;
+  opacity: 0;
+  background: #CFD1D3;
+  color: #fff;
 }
 .pagination li a {
   color: #5B616A;

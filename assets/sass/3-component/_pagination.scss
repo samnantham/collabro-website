@@ -4,6 +4,12 @@
     justify-content: center;
     li{
         margin: 0 4px;
+        &.hidePageNav a{
+            cursor: default;
+            opacity: 0;
+            background: $pagination-bg;
+            color: $white;
+        }
         a{
             color: $deep-blue;
             @include border-radius(5px);
