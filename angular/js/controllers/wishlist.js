@@ -91,7 +91,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.productid = product.productid;
         obj.wishstatus = 1;
         obj.iscompared = 1;
-        var msg = 'You have added a item to compare';
+        var msg = 'You have added an item to compare';
         $scope.updatewish('compare', obj, msg, 1);
     }
 
