@@ -7,7 +7,7 @@
                 <div class="col-lg-4 col-md-4">
                     <h3>REQUEST FOR SERVICES</h3>
                 </div>
-                <div class="col-lg-4 col-md-4 ml-15">
+                <div class="col-lg-2 col-md-2 ml-15">
                     <h6 class="text-white mb-5"> Type Of Service</h6>
                     <ui-select ng-model="formData.request_type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
@@ -19,7 +19,8 @@
                     </ui-select>
 
                 </div>
-                <div class="col-lg-4 col-md-4 ml-15">
+                <div class="col-lg-2 col-md-2"></div>
+                <div class="col-lg-2 col-md-2 ml-15">
                     <h6 class="text-white mb-5">Category</h6>
 
                     <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" tooltip-placement="left" tooltip-html="formData.categoryText" tooltip-append-to-body="true" tooltip-trigger="ishover">
@@ -31,18 +32,20 @@
                         </ui-select-choices>
                     </ui-select>
 
-                    <div class="custom-tooltip tooltip-left tooltip-center" ng-show="showCatError">
+                    <div class="custom-tooltip tooltip-left tooltip-center mt-15" ng-show="showCatError">
                         <div class="custom-tooltip-inner">
                             Select Category
                         </div>                    
                     </div>
                 </div>
 
+                <div class="col-lg-2 col-md-2"></div>
+
             </div>
         </div>
 
         <!-- Modal body -->
-        <div class="custom-modal-body" ng-mouseover="showTooltip();" ng-mouseleave="hideTooltip();" >
+        <div class="custom-modal-body" ng-mouseover="showTooltip();" ng-mouseleave="hideTooltip();">
             <div class="row">
 
                 <div class="col-lg-4 col-md-4 br-1">
@@ -52,9 +55,9 @@
                             <div class="form-group mt-30 mb-0">
                                 <input class="magic-checkbox" type="checkbox" name="isaccept" id="note" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" required ng-disabled="!formData.request_type" />
                                 <label class="text font-s" for="note" tooltip="{{categoryText}}" tooltip-is-open="ishover && !formData.isaccept && formData.request_category" tooltip-placement="right">Read and agreed to the TSA Protection Scheme</label>
-                                <div class="custom-tooltip tooltip-right tooltip-center">
+                                <div class="custom-tooltip tooltip-right tooltip-center" ng-if="checkError">
                                     <div class="custom-tooltip-inner">
-                                        Select Category
+                                        You Need to agree TSA Protection rules!
                                     </div>                    
                                 </div>
                             </div>
@@ -146,12 +149,10 @@
                                 <div class="form-group wd-100">
                                     <label class="control-label">Deadline</label>
                                     <datepicker date-format="yyyy-MM-dd" selector="form-control">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-lg fa-calendar"></i>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Deadline" name="deadline" required readonly ng-model='formData.requestdeadline' ng-disabled="!formData.request_type" />
-                                        </div>
+                                        <input type="text" class="form-control input-with-icon" placeholder="Deadline" name="deadline" required readonly ng-model='formData.requestdeadline' ng-disabled="!formData.request_type" />
+                                        <span class="input-icon">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                        </span>
                                     </datepicker>
                                     <span class="error error-text" ng-if="deadlineerror">Deadline Required</span>
                                 </div>
@@ -164,13 +165,10 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Budget</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
+                                        <input type="text" class="form-control  input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.request_type" />
+                                        <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.request_type" />
-
-                                    </div>
                                     <span class="error error-text" ng-if="priceerror">Enter Budget</span>
                                 </div>
                             </div>
@@ -213,9 +211,9 @@
         </div>
 
         <!-- Modal footer -->
-        <div class="custom-modal-footer text-right mb-30">
+        <div class="custom-modal-footer text-right mb-10">
             <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
-            <button type="submit" class="btn success-btn ml-30" ng-disabled="!formData.isaccept && formData.request_type">Publish Item</button>
+            <button type="submit" class="btn success-btn ml-30" ng-disabled="!formData.request_type" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">Publish Item</button>
         </div>
     </form>
 </div>

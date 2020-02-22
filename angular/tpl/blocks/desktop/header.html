@@ -82,19 +82,20 @@
                             <a class="dropdown-toggle">
                                 <i class="fa fa-bell-o"></i>
                             </a>
-                            <span class="alert-count">2</span>
+                            <span class="alert-count" ng-if="user.notifications > 0">{{user.notifications}}</span>
                         </li>
                         <li class="dropdown" ui-sref="app.chats">
                             <a class="dropdown-toggle">
                                 <img src="../assets/img/message.png" />
                             </a>
-                            <span class="alert-count">2</span>
+                            <span class="alert-count" ng-if="user.chatmessages > 0">{{user.chatmessages}}</span>
+
                         </li>
                         <li class="dropdown" ui-sref="app.todos">
                             <a class="dropdown-toggle">
                                 <i class="fa fa-calendar-check-o"></i>
                             </a>
-                            <span class="alert-count">3</span>
+                            <!-- <span class="alert-count">3</span> -->
                         </li>
                     </ul>
 

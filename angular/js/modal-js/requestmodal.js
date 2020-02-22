@@ -4,6 +4,7 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
 
     $rootScope.resetRequestData = function() {
         $rootScope.showCatError = false;
+        $rootScope.checkError = false;
         $rootScope.viewingThumb = {};
         $rootScope.formData.request_type = "Service";
         $rootScope.formData.categoryText = 'Please select Category';
@@ -35,12 +36,20 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         if(!$rootScope.formData.request_category){
             $rootScope.showCatError = true;
         }
-        console.log($rootScope.showCatError)
     }
 
     $rootScope.hideTooltip = function(){
         $rootScope.showCatError = false;
-        console.log($rootScope.showCatError)
+    }
+
+    $rootScope.showcheckTooltip = function(){
+        if(!$rootScope.formData.isaccept){
+            $rootScope.checkError = true;
+        }
+    }
+
+    $rootScope.hidecheckTooltip = function(){
+        $rootScope.checkError = false;
     }
 
     $rootScope.validvideo = function(url) {
