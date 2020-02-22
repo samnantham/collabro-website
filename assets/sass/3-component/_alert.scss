@@ -4,9 +4,12 @@
     margin-bottom: 15px;
     @include box-shadow($box-shadow-default);
     text-align: left;
-    width: 60%;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;    
+    &.ngn{
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
     .close{
         color: $black;
         opacity: 1;
