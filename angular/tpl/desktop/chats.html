@@ -47,7 +47,8 @@
                             </a>
                             <a class="option-img" background-image="{{data.product.files[0].filetype == 1 ? IMGURL : ''}}{{data.product.files[0].thumbnail}}"  ng-if="data.chattype == 2">
                             </a>
-                               
+                            <a class="empty" ng-if="data.chattype == 4">
+                            </a>                               
                             <a ng-click="removechat(key,data)"><i class="fa fa-minus-circle"></i></a>
                         </div>
                     </div>
