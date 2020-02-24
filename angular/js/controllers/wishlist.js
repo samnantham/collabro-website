@@ -1,5 +1,5 @@
 'use strict';
-app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', 'anchorSmoothScroll', '$ngConfirm', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, $stateParams, anchorSmoothScroll, $ngConfirm) {
+app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', 'anchorSmoothScroll', '$modal', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, $stateParams, anchorSmoothScroll, $modal, $modalInstance) {
 
     $scope.firstloadingcompleted = false;
     $scope.pagedata = [];
@@ -95,8 +95,22 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         $scope.updatewish('compare', obj, msg, 1);
     }
 
+    $scope.openConfirm = function(){
+        var dialogInst = $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    backdrop: 'static',
+                    keyboard: false,
+                    templateUrl: 'tpl/blocks/popover/confirmPopup.html',
+                    size: 'sm',
+                    windowClass: 'confirmmodal',
+                });
+    }
+
     $scope.removefromwish = function(product) {
-        $scope.isunwished = true;
+        $scope.openConfirm();
+
+        /*$scope.isunwished = true;
         var obj = {};
         obj.productid = product.productid;
         obj.wishstatus = 0;
@@ -124,11 +138,12 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                 }
 
             }
-        });
+        });*/
     }
 
     $scope.removewishcompare = function(key, item) {
-        var obj = {};
+        $scope.openConfirm();
+        /*var obj = {};
         obj.productid = item.productid;
         obj.wishstatus = 1;
         obj.iscompared = 0;
@@ -155,11 +170,12 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                 }
 
             }
-        });
+        });*/
     }
 
     $scope.removecompared = function(product) {
-        var obj = {};
+        $scope.openConfirm();
+        /*var obj = {};
         obj.productid = product.productid;
         obj.wishstatus = 1;
         obj.iscompared = 0;
@@ -184,7 +200,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                     action: function() {}
                 }
             }
-        });
+        });*/
     }
 
     $scope.updatewish = function(type, data, msg, status) {
