@@ -15,15 +15,15 @@
             @include border-radius(5px);
             @extend .silver-gradient;
             border: 1px solid $pagination-border;
-            padding: 10px 20px;
+            padding: 5px 15px;
             @include box-shadow($pagination-shadow);
-            &:hover, &:focus{
+            &:hover{
                 background: $pagination-active !important;
                 border: 1px solid $pagination-border !important;
                 color: $white !important;
             }
         }
-        &.active a, &.active a:hover, &.active a:focus{
+        &.active a, &.active a:hover{
             background: $pagination-active !important;
             border: 1px solid $pagination-active !important;
             color: $white !important;
@@ -31,9 +31,11 @@
         &.next, &.prev{
             a{
                 &:focus{
-                    @extend .silver-gradient;
                     color: $deep-blue !important;
                     border: 1px solid $pagination-border !important;
+                }
+                &:hover{
+                    color: $white !important;
                 }
             }
         }

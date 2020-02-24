@@ -7,7 +7,7 @@
                 <div class="col-lg-4 col-md-4">
                     <h3>REQUEST FOR SERVICES</h3>
                 </div>
-                <div class="col-lg-2 col-md-2 ml-15">
+                <div class="col-lg-4 col-md-4 ml-15">
                     <h6 class="text-white mb-5"> Type Of Service</h6>
                     <ui-select ng-model="formData.request_type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" ng-disabled="true" ng-readonly="!$select.searchEnabled" class="only-service">
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
@@ -19,8 +19,7 @@
                     </ui-select>
 
                 </div>
-                <div class="col-lg-2 col-md-2"></div>
-                <div class="col-lg-2 col-md-2 ml-15">
+                <div class="col-lg-4 col-md-4 ml-15">
                     <h6 class="text-white mb-5">Category</h6>
 
                     <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" tooltip-placement="left" tooltip-html="formData.categoryText" tooltip-append-to-body="true" tooltip-trigger="ishover" ng-required="!formData.request_category">
@@ -39,7 +38,6 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2"></div>
 
             </div>
         </div>

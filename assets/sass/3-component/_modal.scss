@@ -7,7 +7,7 @@
 .modal-open{
     height: 100vh;
     overflow: inherit;
-    .main-header{
+    .main-header, .home-header{
         width: calc(100vw - 17px);
     }
 }
@@ -115,7 +115,8 @@
             }
         }
         .ui-select-choices{
-            background: $white;
+            background: transparent;
+            border: 0px;
             &.default-select-items{
                 .ui-select-choices-row{
                     .ui-select-choices-row-inner{
@@ -265,7 +266,7 @@
             font-size: $font-m !important;
             font-weight: $font-regular !important;
             padding: 7px 15px !important;
-            margin-left: 30px !important;
+            margin-left: 20px !important;
             text-transform: capitalize !important;
         }
     }

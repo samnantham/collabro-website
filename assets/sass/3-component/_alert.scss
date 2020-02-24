@@ -11,8 +11,9 @@
         transform: translateX(-50%);
     }
     .close{
-        color: $black;
+        color: $white;
         opacity: 1;
+        text-shadow: none;
     }
     i{
         margin-right: 10px;
