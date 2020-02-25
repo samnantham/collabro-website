@@ -9823,6 +9823,9 @@ i.color-btn {
   justify-content: space-between;
   align-items: flex-start;
 }
+.table-card .table-option.no-option {
+  justify-content: flex-end;
+}
 .table-card .table-option a {
   color: #7E8EA4;
   font-size: 20px;

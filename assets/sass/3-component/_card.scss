@@ -471,6 +471,9 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        &.no-option{
+            justify-content: flex-end;
+        }
         a{
             color: $secondary-text;
             font-size: $font-l;
