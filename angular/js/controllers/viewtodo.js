@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ViewTodoCtrl', ['$scope', '$ngConfirm', '$http', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$timeout', '$filter', '$firebaseArray', function($scope, $ngConfirm, $http, $state, $stateParams, webServices, utility, $rootScope, $timeout, $filter, $firebaseArray) {
+app.controller('ViewTodoCtrl', ['$scope', '$http', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$timeout', '$filter', '$firebaseArray', function($scope, $http, $state, $stateParams, webServices, utility, $rootScope, $timeout, $filter, $firebaseArray) {
     $rootScope.formLoading = true;
     $rootScope.todoData = {};
 
@@ -25,27 +25,21 @@ app.controller('ViewTodoCtrl', ['$scope', '$ngConfirm', '$http', '$state', '$sta
     }
 
     $scope.deletetodo = function(todo) {
-        $ngConfirm({
-            title: 'Are you sure want to delete?',
-            content: 'Not possible to recover once you delete',
-            type: 'red',
-            typeAnimated: true,
-            buttons: {
-                tryAgain: {
-                    text: 'Delete',
-                    btnClass: 'btn-red',
-                    action: function() {
-                        webServices.delete('todo/' + todo.id).then(function(getData) {
+        $rootScope.itemkey = key;
+        $rootScope.confirmData = {};
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmData.title = 'Remove todo item?';
+        $rootScope.confirmData.message = 'You are about to remove this todo item. Are you sure you want to remove it?';
+        $rootScope.confirmpopupData.id = todo.id;
+        $rootScope.openConfirm();
+    }
+
+    $rootScope.removetodo = function(){
+        webServices.delete('todo/' + $rootScope.confirmpopupData.id).then(function(getData) {
                             if (getData.status == 200) {
-                                $state.go('app.todos');
+                                 $rootScope.closeModal();
                             }
                         });
-                    }
-                },
-                close: function() {}
-            }
-        });
-
     }
 
     $scope.getTodo();

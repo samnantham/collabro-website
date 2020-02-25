@@ -1,5 +1,5 @@
 'use strict';
-app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices', 'utility', '$rootScope', '$ngConfirm', function($scope, $modal, $state, webServices, utility, $rootScope, $ngConfirm) {
+app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices', 'utility', '$rootScope', function($scope, $modal, $state, webServices, utility, $rootScope) {
     $scope.firstloadingcompleted = false;
     $scope.notifications = [];
     $scope.productData = {};
@@ -108,34 +108,32 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
     }
 
     $scope.deletenotification = function(key, notification, type, innerkey) {
-        $ngConfirm({
-            title: 'Are you sure want to delete?',
-            content: 'Not possible to recover once you delete',
-            type: 'red',
-            typeAnimated: true,
-            buttons: {
-                tryAgain: {
-                    text: 'Delete',
-                    btnClass: 'btn-red',
-                    action: function() {
-                        webServices.delete('deletenotification/' + notification.id).then(function(getData) {
+        $rootScope.itemkey = key;
+        $rootScope.iteminnerkey = innerkey;
+        $rootScope.confirmData = {};
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmData.title = 'Remove notification item?';
+        $rootScope.confirmData.message = 'You are about to remove this notification item. Are you sure you want to remove it?';
+        $rootScope.confirmpopupData.id = notification.id;
+        $rootScope.confirmpopupData.status = notification.status;
+        $rootScope.confirmpopupData.type = type;
+        $rootScope.openConfirm();
+    }
+
+    $rootScope.removeNotification = function(){
+        webServices.delete('deletenotification/' + $rootScope.confirmpopupData.id).then(function(getData) {
                             if (getData.status == 200) {
-                                if(type == 'single'){
-                                    $scope.notifications.splice(key, 1); 
-                                }else if(type == 'accordion'){
-                                    $scope.notifications[key].messages.splice(innerkey, 1);
+                                if($rootScope.confirmpopupData.type == 'single'){
+                                    $scope.notifications.splice($rootScope.itemkey , 1); 
+                                }else if($rootScope.confirmpopupData.type == 'accordion'){
+                                    $scope.notifications[$rootScope.itemkey].messages.splice($rootScope.iteminnerkey, 1);
                                 }
-                                if (!notification.status) {
+                                if (!$rootScope.confirmpopupData.status) {
                                     $rootScope.user.notifications--;
                                 }
+                                $rootScope.closeModal();
                             }
                         });
-                    }
-                },
-                close: function() {}
-            }
-        });
-
     }
 
     $scope.getmyNotifications();

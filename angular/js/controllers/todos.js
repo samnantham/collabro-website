@@ -1,10 +1,10 @@
 'use strict';
-app.controller('TodoListCtrl', ['$scope', '$ngConfirm', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $ngConfirm, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
+app.controller('TodoListCtrl', ['$scope', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
     
     $scope.todos = [];
     $scope.todospagedata = [];
     $scope.pageno = 1;
-    $scope.totalPerPage = 6;
+    $scope.totalPerPage = 10;
     $scope.url = 'mytodos/' + $scope.totalPerPage;
 
     $scope.getmytodos = function() {
@@ -65,27 +65,22 @@ app.controller('TodoListCtrl', ['$scope', '$ngConfirm', '$state', '$timeout', 'w
     };
 
     $scope.deletetodo = function(key, todo) {
-        $ngConfirm({
-            title: 'Are you sure want to delete?',
-            content: 'Not possible to recover once you delete',
-            type: 'red',
-            typeAnimated: true,
-            buttons: {
-                tryAgain: {
-                    text: 'Delete',
-                    btnClass: 'btn-red',
-                    action: function() {
-                        webServices.delete('todo/' + todo.id).then(function(getData) {
+        $rootScope.itemkey = key;
+        $rootScope.confirmData = {};
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmData.title = 'Remove todo item?';
+        $rootScope.confirmData.message = 'You are about to remove this todo item. Are you sure you want to remove it?';
+        $rootScope.confirmpopupData.id = todo.id;
+        $rootScope.openConfirm();
+    }
+
+    $rootScope.removetodo = function(){
+        webServices.delete('todo/' + $rootScope.confirmpopupData.id).then(function(getData) {
                             if (getData.status == 200) {
-                                $scope.todos.data.splice(key, 1); 
+                                 $rootScope.closeModal();
+                                $scope.todos.data.splice($rootScope.itemkey, 1); 
                             }
                         });
-                    }
-                },
-                close: function() {}
-            }
-        });
-
     }
 
     $scope.getmyprojects();

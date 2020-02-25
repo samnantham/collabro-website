@@ -721,6 +721,19 @@ angular.module('app')
                 });
             };
 
+            $rootScope.openConfirm = function(){
+                var dialogInst = $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    backdrop: 'static',
+                    keyboard: false,
+                    templateUrl: 'tpl/blocks/popover/confirmPopup.html',
+                    size: 'sm',
+                    windowClass: 'confirmmodal',
+                });
+            }
+
+
             $rootScope.goafterLogin = function() {
 
                 $rootScope.getUserInfo();

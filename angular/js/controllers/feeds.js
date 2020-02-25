@@ -1,5 +1,5 @@
 'use strict';
-app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessionStorage', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', '$ngConfirm', '$modal', function($scope, $http, $state, authServices, $sessionStorage, webServices, utility, $rootScope, Facebook, GoogleSignin, $ngConfirm, $modal) {
+app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessionStorage', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', '$modal', function($scope, $http, $state, authServices, $sessionStorage, webServices, utility, $rootScope, Facebook, GoogleSignin, $modal) {
     $scope.wishedfeeddata = [];
     $scope.myfeeddata = [];
     $scope.wishedfeeds = [];
@@ -61,34 +61,21 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
     }
 
     $scope.removefeed = function(key,feedid) {
-        $ngConfirm({
-            title: 'Are you sure want to delete?',
-            content: 'Not possible to recover once you delete',
-            type: 'red',
-            typeAnimated: true,
-            closeIcon: true,
-            closeIconClass: 'fa fa-close',
-            buttons: {
-                tryAgain: {
-                    text: 'Yes',
-                    btnClass: 'success-btn',
-                    action: function() {
-                        webServices.delete('feed/' + feedid).then(function(getData) {
+        $rootScope.confirmData = {};
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmData.title = 'Remove feed item?';
+        $rootScope.confirmData.message = 'You are about to remove this chat item. Are you sure you want to remove it?';
+        $rootScope.confirmpopupData.id = feedid;
+        $rootScope.openConfirm();        
+    }
+
+    $rootScope.deleteFeed = function(){
+        webServices.delete('feed/' + $rootScope.confirmpopupData.id).then(function(getData) {
                             if (getData.status == 200) {
+                                $rootScope.closeModal();
                                 $scope.getmyfeeds();
                             }
                         });
-                    }
-                },
-                cancel: {
-                    text: 'No',
-                    btnClass: 'danger-btn',
-                    action: function () {
-                    }
-                }            
-            }
-        });
-        
     }
 
     $scope.getwishedfeeds = function() {

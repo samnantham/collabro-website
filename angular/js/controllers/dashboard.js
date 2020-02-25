@@ -1,5 +1,5 @@
 'use strict';
-app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', 'authServices', '$ngConfirm','$modal', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, authServices, $ngConfirm, $modal) {
+app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', 'authServices','$modal', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, authServices, $modal) {
     
     $scope.userData = {};
     $scope.activetab = 'profile';
@@ -83,27 +83,22 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
     }
 
     $scope.removeproduct = function(product) {
-        $ngConfirm({
-            title: 'Are you sure want to delete?',
-            content: 'Not possible to recover once you delete',
-            type: 'red',
-            typeAnimated: true,
-            buttons: {
-                tryAgain: {
-                    text: 'Delete',
-                    btnClass: 'btn-red',
-                    action: function() {
-                        webServices.delete('product/' + product.id).then(function(getData) {
+        $rootScope.confirmData = {};
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmData.title = 'Remove chat item?';
+        $rootScope.confirmData.message = 'You are about to remove this chat item. Are you sure you want to remove it?';
+        $rootScope.confirmpopupData.id = product.id;
+        $rootScope.openConfirm();
+
+    }
+
+    $rootScope.deleteProduct = function(){
+        webServices.delete('product/' + $rootScope.confirmpopupData.id).then(function(getData) {
                             if (getData.status == 200) {
+                                $rootScope.closeModal();
                                 $scope.getMyProducts();
                             }
                         });
-                    }
-                },
-                close: function() {}
-            }
-        });
-
     }
 
     $scope.pageChanged = function(newPage) {

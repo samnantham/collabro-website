@@ -2,7 +2,7 @@
     <div class="custom-modal-title">
         <div class="row flex-center">
             <div class="col-lg-10 col-md-10">
-                <h3>Remove Item</h3>
+                <h3>{{confirmData.title}}</h3>
             </div>
             <div class="col-lg-2 col-md-2 text-right">
                 <a ng-click="closeModal()"><img src="../assets/img/close.png" /></a>
@@ -11,11 +11,16 @@
     </div>
     <div class="custom-modal-body bt-1">
         <p class="secondary">
-            You are about to remove this wishlist item. Are you sure you want to remove it?
+            {{confirmData.message}}
         </p>
     </div>
     <div class="custom-modal-footer text-right bt-1">
         <button type="button" class="btn danger-btn" ng-click="closeModal()">No</button>
-        <button type="submit" class="btn success-btn ml-20">Yes</button>
+        <button type="button" class="btn success-btn ml-20" ng-if="stateurl=='app.wishlist'" ng-click="removeItem()">Yes</button>
+        <button type="button" class="btn success-btn ml-20" ng-if="stateurl=='app.chats'" ng-click="deleteChat()">Yes</button>
+        <button type="button" class="btn success-btn ml-20" ng-if="stateurl=='app.mydashboard'" ng-click="deleteProduct()">Yes</button>
+        <button type="button" class="btn success-btn ml-20" ng-if="stateurl=='app.feeds'" ng-click="deleteFeed()">Yes</button>
+        <button type="button" class="btn success-btn ml-20" ng-if="stateurl=='app.notification'" ng-click="removeNotification()">Yes</button>
+        <button type="button" class="btn success-btn ml-20" ng-if="stateurl=='app.todos'" ng-click="removetodo()">Yes</button>
     </div>
 </div>

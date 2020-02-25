@@ -87,136 +87,82 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
     }
 
     $scope.addtocompare = function(product) {
-        var obj = {};
-        obj.productid = product.productid;
-        obj.wishstatus = 1;
-        obj.iscompared = 1;
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmpopupData.productid = product.productid;
+        $rootScope.confirmpopupData.wishstatus = 1;
+        $rootScope.confirmpopupData.iscompared = 1;
         var msg = 'You have added an item to compare';
-        $scope.updatewish('compare', obj, msg, 1);
-    }
-
-    $scope.openConfirm = function(){
-        var dialogInst = $modal.open({
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    backdrop: 'static',
-                    keyboard: false,
-                    templateUrl: 'tpl/blocks/popover/confirmPopup.html',
-                    size: 'sm',
-                    windowClass: 'confirmmodal',
-                });
+        $scope.updatewish('compare', msg, 1);
     }
 
     $scope.removefromwish = function(product) {
-        $scope.openConfirm();
-
-        /*$scope.isunwished = true;
-        var obj = {};
-        obj.productid = product.productid;
-        obj.wishstatus = 0;
-        obj.iscompared = 0;
-        var message = 'Remove wishlist item?';
-        $ngConfirm({
-            title: message,
-            content: 'You are about to remove this wishlist item. Are you sure you want to remove it?',
-            type: 'red',
-            typeAnimated: true,
-            closeIcon: true,
-            closeIconClass: 'modal-close',
-            buttons: {
-                tryAgain: {
-                    text: 'Yes',
-                    btnClass: 'success-btn',
-                    action: function() {
-                        var msg = 'You have removed a wished item';
-                        $scope.updatewish('remove', obj, msg, 0);
-                    }
-                },cancel: {
-                    text: 'No',
-                    btnClass: 'danger-btn',
-                    action: function() {}
-                }
-
-            }
-        });*/
+        $rootScope.confirmData = {};
+        $rootScope.confirmData.removewish = true;
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmpopupData.productid = product.productid;
+        $rootScope.confirmpopupData.wishstatus = 0;
+        $rootScope.confirmpopupData.iscompared = 0;
+        $rootScope.confirmData.title = 'Remove wishlist item?';
+        $rootScope.confirmData.message = 'You are about to remove this wishlist item. Are you sure you want to remove it?';
+        $rootScope.openConfirm();
     }
 
     $scope.removewishcompare = function(key, item) {
-        $scope.openConfirm();
-        /*var obj = {};
-        obj.productid = item.productid;
-        obj.wishstatus = 1;
-        obj.iscompared = 0;
-        $ngConfirm({
-            title: 'Remove compared item?',
-            content: 'You are about to remove this compared item. Are you sure you want to remove it?',
-            type: 'red',
-            typeAnimated: true,
-            closeIcon: true,
-            closeIconClass: 'modal-close',
-            buttons: {
-                tryAgain: {
-                    text: 'Yes',
-                    btnClass: 'success-btn',
-                    action: function() {
-                        var msg = 'You have removed a compared item';
-                        $scope.wishedproducts.data[key].iscompared = 0;
-                        $scope.updatewish('compare', obj, msg, 0);
-                    }
-                },cancel: {
-                    text: 'No',
-                    btnClass: 'danger-btn',
-                    action: function() {}
-                }
-
-            }
-        });*/
+        $rootScope.itemkey = key;
+        $rootScope.confirmData = {};
+        $rootScope.confirmData.removewishcompare = true;
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmpopupData.productid = item.productid;
+        $rootScope.confirmpopupData.wishstatus = 1;
+        $rootScope.confirmpopupData.iscompared = 0;
+        $rootScope.confirmData.title = 'Remove compared item?';
+        $rootScope.confirmData.message = 'You are about to remove this compared item. Are you sure you want to remove it?';
+        $rootScope.openConfirm();
     }
 
     $scope.removecompared = function(product) {
-        $scope.openConfirm();
-        /*var obj = {};
-        obj.productid = product.productid;
-        obj.wishstatus = 1;
-        obj.iscompared = 0;
-        $ngConfirm({
-            title: 'Remove compared item?',
-            content: 'You are about to remove this compared item. Are you sure you want to remove it?',
-            type: 'red',
-            typeAnimated: true,
-            closeIcon: true,
-            closeIconClass: 'modal-close',
-            buttons: {
-                tryAgain: {
-                    text: 'Yes',
-                    btnClass: 'success-btn',
-                    action: function() {
-                        var msg = 'You have removed a compared item';
-                        $scope.updatewish('remove', obj ,msg, 0);
-                    }
-                },cancel: {
-                    text: 'No',
-                    btnClass: 'danger-btn',
-                    action: function() {}
-                }
-            }
-        });*/
+        $rootScope.confirmData = {};
+        $rootScope.confirmData.removecompare = true;
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmData.title = 'Remove compared item?';
+        $rootScope.confirmData.message = 'You are about to remove this compared item. Are you sure you want to remove it?';
+        $rootScope.confirmpopupData.productid = product.productid;
+        $rootScope.confirmpopupData.wishstatus = 1;
+        $rootScope.confirmpopupData.iscompared = 0;
+        $rootScope.openConfirm();
     }
 
-    $scope.updatewish = function(type, data, msg, status) {
-        webServices.put('updatewish', data).then(function(getData) {
+    $rootScope.removeItem = function(){
+        if($rootScope.confirmData.removecompare){
+            var msg = 'You have removed a compared item';
+            $scope.updatewish('remove', msg, 0);
+        }if($rootScope.confirmData.removewishcompare){
+            var msg = 'You have removed a compared item';
+            $scope.wishedproducts.data[$rootScope.itemkey].iscompared = 0;
+            $scope.updatewish('remove', msg, 0);
+        }if($rootScope.confirmData.removewish){
+            var msg = 'You have removed a wished item';
+            $scope.updatewish('remove', msg, 0);
+        }
+    }
+
+    $scope.updatewish = function(type, msg, status) {
+        webServices.put('updatewish', $rootScope.confirmpopupData).then(function(getData) {
             if (getData.status == 200) {
                 $scope.iscompared = false;
-                if(status){
-                    $rootScope.$emit("showsuccessmsg", msg);
-                }else{
-                    $rootScope.$emit("showerrormsg", msg);
-                }
-                if (type == 'compare') {
-                    $scope.getWishedproducts();
-                } else {
-                    $scope.getWishedproducts();
-                }
+                $timeout(function() {
+                    if(status){
+                        $rootScope.$emit("showsuccessmsg", msg);
+                    }else{
+                        $rootScope.$emit("showerrormsg", msg);
+                    }
+                    $rootScope.closeModal();
+                    if (type == 'compare') {
+                        $scope.getWishedproducts();
+                    } else {
+                        $scope.getWishedproducts();
+                    }
+                }, 200);
             }
         });
     }

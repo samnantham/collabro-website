@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', '$ngConfirm', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', function($scope, $http, $state, authServices, $ngConfirm, webServices, utility, $rootScope, Facebook, GoogleSignin) {
+app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', function($scope, $http, $state, authServices, webServices, utility, $rootScope, Facebook, GoogleSignin) {
 
     $scope.pageno = 1;
     $scope.totalData = 0;
@@ -42,30 +42,26 @@ app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', '$
     }
 
     $scope.removechat = function(key, chat) {
-        $ngConfirm({
-            title: 'Are you sure want to delete?',
-            content: 'Not possible to recover once you delete',
-            type: 'red',
-            typeAnimated: true,
-            buttons: {
-                tryAgain: {
-                    text: 'Delete',
-                    btnClass: 'btn-red',
-                    action: function() {
-                        webServices.delete('deleteuserchat/' + chat.id).then(function(getData) {
-                            if (getData.status == 200) {
-                                if (!chat.status) {
-                                    $rootScope.user.chatmessages--;
-                                }
-                                $scope.chatusers.splice(key, 1);
-                            }
-                        });
-                    }
-                },
-                close: function() {}
+        $rootScope.itemkey = key;
+        $rootScope.confirmData = {};
+        $rootScope.confirmpopupData = {};
+        $rootScope.confirmData.title = 'Remove chat item?';
+        $rootScope.confirmData.message = 'You are about to remove this chat item. Are you sure you want to remove it?';
+        $rootScope.confirmpopupData.id = chat.id;
+        $rootScope.confirmpopupData.status = chat.status;
+        $rootScope.openConfirm();
+    }
+
+    $rootScope.deleteChat = function(){
+        webServices.delete('deleteuserchat/' + $rootScope.confirmpopupData.id).then(function(getData) {
+            if (getData.status == 200) {
+                if (!$rootScope.confirmpopupData.status) {
+                    $rootScope.user.chatmessages--;
+                }
+                $scope.chatusers.splice($rootScope.itemkey, 1);
+                $rootScope.closeModal();
             }
         });
-
     }
 
     $scope.gotochatpage = function(key, data) {

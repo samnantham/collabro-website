@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ViewFeedCtrl', ['$scope', '$ngConfirm', '$http', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$timeout', '$filter', '$firebaseArray', function($scope, $ngConfirm, $http, $state, $stateParams, webServices, utility, $rootScope, $timeout, $filter, $firebaseArray) {
+app.controller('ViewFeedCtrl', ['$scope', '$http', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$timeout', '$filter', '$firebaseArray', function($scope, $http, $state, $stateParams, webServices, utility, $rootScope, $timeout, $filter, $firebaseArray) {
     $rootScope.formLoading = true;
     $rootScope.feedData = {};
 
