@@ -1,6 +1,21 @@
-<div class="row">
-     <div class="custom-modal-footer text-right mb-30">
-                <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
-                <button type="submit" class="btn success-btn ml-30">Publish Item</button>
+<div class="custom-modal">
+    <div class="custom-modal-title">
+        <div class="row flex-center">
+            <div class="col-lg-10 col-md-10">
+                <h3>Remove Item</h3>
             </div>
+            <div class="col-lg-2 col-md-2 text-right">
+                <a ng-click="closeModal()"><img src="../assets/img/close.png" /></a>
+            </div>
+        </div>
+    </div>
+    <div class="custom-modal-body bt-1">
+        <p class="secondary">
+            You are about to remove this wishlist item. Are you sure you want to remove it?
+        </p>
+    </div>
+    <div class="custom-modal-footer text-right bt-1">
+        <button type="button" class="btn danger-btn" ng-click="closeModal()">No</button>
+        <button type="submit" class="btn success-btn ml-20">Yes</button>
+    </div>
 </div>

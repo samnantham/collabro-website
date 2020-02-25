@@ -1,4 +1,4 @@
-.tooltip{    
+.tooltip{ 
     .tooltip-inner{
         padding: 10px;
         font-size: $font-r;
@@ -6,24 +6,57 @@
     }
     &.left{
         .tooltip-arrow{
-            border-left-color: $tooltip;
+            border-left-color: $light-tooltip;
         }
     }
     &.right{
         .tooltip-arrow{
-            border-right-color: $tooltip;
+            border-right-color: $light-tooltip;
         }
     } 
     &.bottom{
         .tooltip-arrow{
-            border-bottom-color: $tooltip;
+            border-bottom-color: $light-tooltip;
         }
     }  
     &.top{
         .tooltip-arrow{
-            border-top-color: $tooltip;
+            bottom: 2px !important;
+            border-top-color: $light-tooltip;
         }
     }    
+}
+
+.preview-tooltip{
+    .tooltip-inner{
+        min-width: 75px;
+        padding: 10px 15px;
+        @extend .silver-gradient;
+        border: 1px solid $right-border;
+        color: $secondary-text;
+        font-size: $font-r;
+        .icoholder{
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    .tooltip-arrow{
+        border-top-color: $light-tooltip;
+        &:before{
+            content: "";
+            position: absolute;
+            bottom: -1.5px;
+            display: inline-block;
+            border-width: 7px 7px 0;
+            border-color: transparent;
+            border-top-color: $right-border;
+            border-style: solid;
+            left: -7px;
+            z-index: -1;
+        }
+    }
 }
 
 .custom-tooltip{

@@ -29,6 +29,27 @@
     margin: 0px auto !important;
 }
 
+.modal-sm{
+    width: 450px !important;
+    .custom-modal{
+        padding: 0px;
+        .custom-modal-title{
+            padding: 20px 25px;
+            margin-bottom: 0px;
+            h3{
+                color: $black;
+            }
+        }
+        .custom-modal-body{
+            padding: 20px 25px;
+        }
+        .custom-modal-footer{
+            padding: 20px 25px;
+            margin-top: 0px;
+        }
+    }
+}
+
 .custom-modal{
     width: 100%;
     float: left;
@@ -88,7 +109,7 @@
         float: left;
         margin-top: 30px;
         .btn{
-            min-width: 155px;
+            min-width: 75px;
         }
     }
     .ui-select-bootstrap{

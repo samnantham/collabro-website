@@ -191,3 +191,10 @@
     }
 
 }
+
+._720kb-datepicker-calendar-header{
+    background: $default !important;
+    &:nth-child(odd){
+        background: $default !important;
+    }
+}
