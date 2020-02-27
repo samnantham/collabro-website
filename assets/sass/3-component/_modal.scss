@@ -118,9 +118,6 @@
         .selected-item{
             min-width: 150px;
             display: block !important;
-            .caret{
-                display: none;
-            }
             &.wd-auto{
                 min-width: auto;
             }

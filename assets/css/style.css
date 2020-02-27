@@ -11699,9 +11699,6 @@ i.color-btn {
   min-width: 150px;
   display: block !important;
 }
-.custom-modal .ui-select-bootstrap .selected-item .caret {
-  display: none;
-}
 .custom-modal .ui-select-bootstrap .selected-item.wd-auto {
   min-width: auto;
 }
