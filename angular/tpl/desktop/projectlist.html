@@ -37,8 +37,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in projects.data | itemsPerPage: totalPerPage" total-items="projects.total" current-page="pagination.current" ui-sref="app.projectdetails({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                 <div class="table-card">
                     <div class="flex-top-space">
-                        <div class="table-img" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}">
-                           
+                        <div class="table-img option-img" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}">
                         </div>
                         <div class="table-content">
                             <div class="table-col">
