@@ -116,17 +116,19 @@
 
                         <div class="form-row mt-30 mb-0">
                             <div class="form-column">
-                                <label class="control-label left">Location</label>
-                                <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type">
-                                    <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                        <p>
-                                            <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
-                                        </p>
-                                    </ui-select-match>
-                                    <ui-select-choices repeat="location in locations">
-                                        <span ng-bind-html="location | highlight: $select.search"></span>
-                                    </ui-select-choices>
-                                </ui-select>
+                                <div class="form-group mb-0">
+                                    <label class="control-label left">Location</label>
+                                    <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type">
+                                        <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                            <p>
+                                                <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
+                                            </p>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="location in locations">
+                                            <span ng-bind-html="location | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
                             </div>
 
                             <div class="form-column"></div>
@@ -134,15 +136,14 @@
 
                             <div class="form-column">
                                 <div class="form-group">
-                                <label class="control-label left">Deadline</label>
-                                <datepicker date-format="yyyy-MM-dd" selector="form-control">
-                                    
+                                    <label class="control-label left">Deadline</label>
+                                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
                                         <input type="text" class="form-control input-with-icon" placeholder="Deadline" ng-model='formData.projectdeadline' ng-disabled="!formData.type" name="deadline" required />
                                         <span class="input-icon">
                                             <i class="fa fa-lg fa-calendar"></i>
                                         </span>
-                                        <span class="error error-text" ng-if="deadlineerror">Choose Deadline</span>
-                                </datepicker>
+                                    </datepicker>
+                                    <span class="error error-text" ng-if="deadlineerror">Choose Deadline</span>
                                 </div>
                             </div>
                         </div>

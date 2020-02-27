@@ -85,7 +85,7 @@
         }       
         h3{
             font-size: $font-l;
-            text-transform: uppercase;
+            text-transform: capitalize;
         }
         .dropdown-label{
             width: 100%;
@@ -118,6 +118,9 @@
         .selected-item{
             min-width: 150px;
             display: block !important;
+            .caret{
+                display: none;
+            }
             &.wd-auto{
                 min-width: auto;
             }
@@ -238,9 +241,9 @@
 .ng-confirm-box{
     padding: 0px !important;
     .ng-confirm-title{
-        font-size: $font-xl !important;
+        font-size: $font-ml !important;
         color: $black !important;
-        font-weight: $font-bold !important;
+        font-weight: $font-medium !important;
     }
     .ng-confirm-closeIcon{
         position: absolute;

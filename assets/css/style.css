@@ -9715,6 +9715,12 @@ i.color-btn {
 .table-card .table-img {
   width: 80px;
   float: left;
+  height: 50px;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
 }
 .table-card .table-img img {
   max-width: 100%;
@@ -9897,6 +9903,12 @@ i.color-btn {
   font-size: 12px;
   font-weight: 500;
   padding-left: 115px;
+}
+.table-card.unread-message {
+  background: #34AA44;
+}
+.table-card.unread-message h5, .table-card.unread-message span, .table-card.unread-message .full-col, .table-card.unread-message .table-option a {
+  color: #fff !important;
 }
 
 .saved-card {
@@ -10824,6 +10836,7 @@ i.color-btn {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  position: relative;
 }
 .notes p {
   margin-bottom: 0px;
@@ -11653,7 +11666,7 @@ i.color-btn {
 }
 .custom-modal .custom-modal-title h3 {
   font-size: 20px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .custom-modal .custom-modal-title .dropdown-label {
   width: 100%;
@@ -11685,6 +11698,9 @@ i.color-btn {
 .custom-modal .ui-select-bootstrap .selected-item {
   min-width: 150px;
   display: block !important;
+}
+.custom-modal .ui-select-bootstrap .selected-item .caret {
+  display: none;
 }
 .custom-modal .ui-select-bootstrap .selected-item.wd-auto {
   min-width: auto;
@@ -11796,9 +11812,9 @@ i.color-btn {
   padding: 0px !important;
 }
 .ng-confirm-box .ng-confirm-title {
-  font-size: 22px !important;
+  font-size: 18px !important;
   color: #333 !important;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
 }
 .ng-confirm-box .ng-confirm-closeIcon {
   position: absolute;
@@ -12964,6 +12980,20 @@ ul.simple-list li:last-of-type {
   border-top: 5px solid transparent;
   border-right: 5px solid #D60046;
   border-bottom: 5px solid transparent;
+}
+.custom-tooltip.tooltip-top {
+  top: -17px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.custom-tooltip.tooltip-top .custom-tooltip-inner:before {
+  top: auto;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #D60046;
 }
 .custom-tooltip.tooltip-center {
   top: 50%;

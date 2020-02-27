@@ -374,6 +374,12 @@
     .table-img{
         width: 80px;
         float: left;
+        height: 50px;
+        background-repeat: no-repeat;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-position: center center;
         img{
             max-width: 100%;
             width: 100px;
@@ -546,6 +552,12 @@
         font-size: $font-s;
         font-weight: $font-medium;
         padding-left: 115px;
+    }
+    &.unread-message{
+        background: $success;
+        h5, span, .full-col, .table-option a{
+            color: $white !important;
+        }
     }
 }
 
