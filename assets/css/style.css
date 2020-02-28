@@ -8019,6 +8019,49 @@ a {
   align-items: center;
 }
 
+/* category label */
+.category-label {
+  min-width: 150px;
+  width: auto;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border: 2px solid #fff;
+  padding: 0 10px;
+}
+.category-label i {
+  font-size: 18px;
+  margin-right: 10px;
+}
+.category-label.default-category {
+  background: #00C4E8;
+}
+.category-label.success-category {
+  background: #34AA44;
+}
+.category-label.danger-category {
+  background: #FF1561;
+}
+.category-label.silver-category {
+  background: #dfe4e8;
+  color: #333;
+}
+.category-label.silver-category i {
+  color: #00C4E8;
+}
+.category-label.warning-category {
+  background: #FFB100;
+}
+.category-label.theme-gray-category {
+  background: #CED1DA;
+}
+
 /* Layouts */
 .content-wrapper {
   width: 100%;
@@ -9711,6 +9754,37 @@ i.color-btn {
   padding: 12px;
   background: #fff;
   margin-bottom: 15px;
+}
+.table-card.chat-list-table .table-img {
+  width: 50px;
+}
+.table-card.chat-list-table .table-content {
+  width: calc(100% - 190px);
+}
+.table-card.chat-list-table .table-option {
+  width: 120px;
+}
+.table-card.chat-list-table .full-col {
+  width: calc(100% - 130px);
+  padding-left: 75px;
+}
+.table-card.feed-list-table .table-content {
+  width: calc(100% - 160px);
+}
+.table-card.feed-list-table .table-content .table-col:first-of-type {
+  width: 50%;
+}
+.table-card.feed-list-table .table-option {
+  width: 60px;
+}
+.table-card.project-list-table .table-option {
+  width: 40px;
+}
+.table-card.project-list-table .table-content {
+  width: calc(100% - 170px);
+}
+.table-card.project-list-table .table-content .table-col:first-of-type {
+  width: 50%;
 }
 .table-card .table-img {
   width: 80px;
@@ -11606,6 +11680,12 @@ i.color-btn {
 
 .modal-dialog {
   margin: 0px auto !important;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-sm {

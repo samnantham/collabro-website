@@ -371,6 +371,47 @@
     padding: 12px;
     background: $white;
     margin-bottom: 15px;
+    &.chat-list-table{
+        .table-img{
+            width: 50px;
+        }
+        .table-content{
+            width: calc(100% - 190px);
+        }
+        .table-option{
+            width: 120px;
+        }
+        .full-col{
+            width: calc(100% - 130px);
+            padding-left: 75px;
+        }
+    }
+    &.feed-list-table{
+        .table-content{
+            width: calc(100% - 160px);
+            .table-col{
+                &:first-of-type{
+                    width: 50%;
+                }
+            }
+        }
+        .table-option{
+            width: 60px;
+        }
+    }
+    &.project-list-table{
+        .table-option{
+            width: 40px;
+        }
+        .table-content{
+            width: calc(100% - 170px);
+            .table-col{
+                &:first-of-type{
+                    width: 50%;
+                }
+            }
+        }
+    }
     .table-img{
         width: 80px;
         float: left;

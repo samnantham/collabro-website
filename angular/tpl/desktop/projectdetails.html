@@ -70,45 +70,48 @@
             </div>
         </div>
 
-        <div class="row  mt-15">
-            <div class="col-lg-12 col-md-12">
-                <div class="chat-wrap">
-                    <div class="message-head">
-                        <h2>Project Discussions</h2>
-                        <div class="option">
-                            <img ng-src="{{IMGURL}}{{projectData.owner.avatar}}" popover-trigger="mouseenter" popover={{projectData.owner.username}}  />
-                            <img ng-src="{{IMGURL}}{{member.user.avatar}}" ng-repeat="(no,member) in projectData.members" popover-trigger="mouseenter" popover={{member.user.username}}>
+        <div class="wd-100 mt-15">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="chat-wrap">
+                        <div class="message-head">
+                            <h2>Project Discussions</h2>
+                            <div class="option">
+                                <img ng-src="{{IMGURL}}{{projectData.owner.avatar}}" popover-trigger="mouseenter" popover={{projectData.owner.username}}  />
+                                <img ng-src="{{IMGURL}}{{member.user.avatar}}" ng-repeat="(no,member) in projectData.members" popover-trigger="mouseenter" popover={{member.user.username}}>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="messenger private-chat" scroll-to-bottom="chatData">
+                        <div class="messenger private-chat" scroll-to-bottom="chatData">
 
-                        <div class="message-wrap" ng-repeat="message in chatData">
-                            <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
-                                <div class="other-img" ng-if="message.user_id != user.id">
-                                    <img ng-src="{{IMGURL}}{{message.avatar}}">
-                                </div>
-                                <div class="info">{{message.message}}
-                                    <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message.fileurl);" alt="Chat" ng-if="message.isfile">
-                                    <div class="time-left">
-                                        <span am-time-ago="message.created_at" ng-if="checkDate(message.created_at) == true"></span>
-                                        <time ng-if="checkDate(message.created_at) == false">{{ message.created_at | amDateFormat: 'DD-MMM-YY hh:mm a' }}</time>
+                            <div class="message-wrap" ng-repeat="message in chatData">
+                                <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
+                                    <div class="other-img" ng-if="message.user_id != user.id">
+                                        <img ng-src="{{IMGURL}}{{message.avatar}}">
+                                    </div>
+                                    <div class="info">{{message.message}}
+                                        <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message.fileurl);" alt="Chat" ng-if="message.isfile">
+                                        <div class="time-left">
+                                            <span am-time-ago="message.created_at" ng-if="checkDate(message.created_at) == true"></span>
+                                            <time ng-if="checkDate(message.created_at) == false">{{ message.created_at | amDateFormat: 'DD-MMM-YY hh:mm a' }}</time>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sender">
-                        <div class="msg-text">
-                            <a class="small-btn"><i class="fa fa-smile-o"></i></a>
-                            <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendReplymessage()">
-                            <a class="small-btn" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="sendattachment($files);"><i class="fa fa-paperclip"></i></a>
+                        <div class="sender">
+                            <div class="msg-text">
+                                <a class="small-btn"><i class="fa fa-smile-o"></i></a>
+                                <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendReplymessage()">
+                                <a class="small-btn" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="sendattachment($files);"><i class="fa fa-paperclip"></i></a>
+                            </div>
+                            <div class="chat-btn" ng-click="sendReplymessage()"><i class="fa fa-send"></i></div>
                         </div>
-                        <div class="chat-btn" ng-click="sendReplymessage()"><i class="fa fa-send"></i></div>
                     </div>
                 </div>
             </div>
         </div>
+        
    </div>
    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>

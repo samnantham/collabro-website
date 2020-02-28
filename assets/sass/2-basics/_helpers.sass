@@ -597,3 +597,36 @@ $mh-50:               0px 50px
     padding: 0 10px
     display: flex
     align-items: center
+
+
+/* category label */
+.category-label
+  min-width: 150px
+  width: auto
+  height: 38px
+  display: inline-flex
+  align-items: center
+  justify-content: flex-start
+  font-size: $font-r
+  color: $white
+  @include border-radius(4px)
+  border: 2px solid $white
+  padding: 0 10px
+  i
+    font-size: $font-ml
+    margin-right: 10px
+  &.default-category
+    background: $default
+  &.success-category
+    background: $success
+  &.danger-category
+    background: $danger
+  &.silver-category
+    background: $silver
+    color: $black
+    i
+      color: $default
+  &.warning-category
+    background: $warning
+  &.theme-gray-category
+    background: $theme-gray
