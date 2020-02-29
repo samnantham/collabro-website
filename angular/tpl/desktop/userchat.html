@@ -72,8 +72,10 @@
                         <h2 ng-if="chatInfo.firstuser == user.id">{{chatInfo.seconduserinfo.username}}</h2>
                         <h2 ng-if="chatInfo.seconduser == user.id">{{chatInfo.firstuserinfo.username}}</h2>
                         <div class="option">
-                            <img ng-if="chatInfo.firstuser == user.id" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}"/>
-                            <img ng-if="chatInfo.seconduser == user.id" ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}"/>
+                            
+                            <img ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}" tooltip-html="chatInfo.firstuserinfo.username" tooltip-append-to-body="true" tooltip-placement="top" tooltip-class="preview-tooltip"/>
+                            <img ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}" tooltip-html="chatInfo.seconduserinfo.username" tooltip-append-to-body="true" tooltip-placement="top" tooltip-class="preview-tooltip"/><!-- <img ng-if="chatInfo.firstuser == user.id" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}"/>
+                            <img ng-if="chatInfo.seconduser == user.id" ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}"/> -->
                         </div>
                     </div>
 
@@ -81,6 +83,9 @@
 
                         <div class="message-wrap" ng-repeat="message in chatData">
                             <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
+                                <div class="other-img" ng-if="message.user_id != user.id">
+                                    <img ng-src="{{IMGURL}}{{message.avatar}}">
+                                </div>
                                 <div class="info">{{message.message}}
                                     <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message.fileurl);" alt="Chat" ng-if="message.isfile">
                                     <div class="time-left">

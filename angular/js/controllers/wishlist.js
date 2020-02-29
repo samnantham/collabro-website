@@ -22,9 +22,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                 if (!$scope.iscompared) {
                     $scope.getComparedproducts();
                 }else{
-                    if(!$scope.isunwished){
-                        $scope.movetoTop();
-                    }
+                    $scope.movetoTop(2000);
                 }
             } else {
                 $rootScope.logout();
@@ -38,6 +36,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             if (getData.status == 200) {
                 $rootScope.formLoading = false;
                 $scope.comparedproducts = getData.data;
+                $scope.movetoTop(2000);
             } else {
                 $rootScope.logout();
             }
@@ -54,7 +53,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             $scope.wishedproducts = $scope.pagedata[$scope.pageno];
             $rootScope.formLoading = false;
         }
-        $scope.movetoTop();
+        $scope.movetoTop(500);
     };
 
     $scope.sortwishlist = function(key, order) {
@@ -167,10 +166,10 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         });
     }
 
-    $scope.movetoTop = function() {
+    $scope.movetoTop = function(time) {
         $timeout(function() {
             $rootScope.scrollToPoint(100);
-        }, 200);
+        }, time);
     }
 
 

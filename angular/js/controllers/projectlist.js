@@ -4,18 +4,19 @@ app.controller('ProjectListCtrl', ['$scope', '$http', '$state', '$timeout', 'web
     $scope.projects = [];
     $scope.projectspagedata = [];
     $scope.pageno = 1;
-    $scope.totalPerPage = 6;
+    $scope.totalPerPage = 10;
     $scope.url = 'myprojects/' + $scope.totalPerPage;
 
     $scope.getmyprojects = function() {
         webServices.get($scope.url + '?page=' + $scope.pageno).then(function(getData) {
+            $rootScope.formLoading = false;
             if (getData.status == 200) {
                 $scope.pagination = {
                     current: $scope.pageno
                 };
                 $scope.projectspagedata[$scope.pageno] = getData.data;
                 $scope.projects = getData.data;
-                $rootScope.formLoading = false;
+                $scope.movetoTop();
             } else {
                 $rootScope.logout();
             }
@@ -37,8 +38,17 @@ app.controller('ProjectListCtrl', ['$scope', '$http', '$state', '$timeout', 'web
             $scope.getmyprojects();
         } else {
             $scope.projects = $scope.projectspagedata[$scope.pageno];
+            $scope.movetoTop();
         }
     };
+
+    $scope.movetoTop = function() {
+        $timeout(function() {
+            $rootScope.scrollToPoint(100);
+        }, 200);
+    }
+
+
 
     $scope.getmyprojects();
 

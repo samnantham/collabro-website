@@ -43,11 +43,11 @@
                         <div class="table-content">
                             <div class="table-col">
                                 <h5 ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title}}</h5>
-                                <span>{{data.owner.username}}  |  Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                                <span>{{ activetab == 'wishedfeed' ?  data.owner.username : ''}}  {{activetab == 'wishedfeed' ?  '|' : ''}}  Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                             </div>
                             <div class="table-col">
-                                <h5>{{data.totalcost | currency}} SGD</h5>
-                                <span>Budget / Salary</span>
+                                <h5></h5>
+                                <span></span>
                             </div>
                             <div class="table-col">
                                 <h5>Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</h5>

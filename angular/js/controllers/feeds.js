@@ -1,11 +1,11 @@
 'use strict';
-app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessionStorage', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', '$modal', function($scope, $http, $state, authServices, $sessionStorage, webServices, utility, $rootScope, Facebook, GoogleSignin, $modal) {
+app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webServices', 'utility', '$rootScope', '$modal', function($scope, $timeout, $http, $state, webServices, utility, $rootScope, $modal) {
     $scope.wishedfeeddata = [];
     $scope.myfeeddata = [];
     $scope.wishedfeeds = [];
     $scope.myfeeds = [];
     $scope.pageno = 1;
-    $scope.totalPerPage = 8;
+    $scope.totalPerPage = 10;
     $scope.activetab = 'myfeed';
     
     if ($rootScope.user) {
@@ -23,6 +23,7 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
                 $scope.myfeedpagination = {
                     current: $scope.pageno
                 };
+                $scope.movetoTop();
             } else {
                 $rootScope.logout();
             }
@@ -72,6 +73,7 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
     $rootScope.deleteFeed = function(){
         webServices.delete('feed/' + $rootScope.confirmpopupData.id).then(function(getData) {
                             if (getData.status == 200) {
+                                $rootScope.$emit("showerrormsg", getData.data.message);
                                 $rootScope.closeModal();
                                 $scope.getmyfeeds();
                             }
@@ -87,6 +89,7 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
                 $scope.wishedfeedpagination = {
                     current: $scope.pageno
                 };
+                $scope.movetoTop();
             } else {
                 $rootScope.logout();
             }
@@ -109,6 +112,13 @@ app.controller('FeedCtrl', ['$scope', '$http', '$state', 'authServices', '$sessi
             }
         }
     };
+
+
+    $scope.movetoTop = function() {
+        $timeout(function() {
+            $rootScope.scrollToPoint(100);
+        }, 200);
+    }
 
 
     $scope.getmyfeeds();

@@ -166,21 +166,22 @@ angular.module('app')
                     buttons: {
                         white: {
                             text: 'Maximize',
-                            btnClass: 'btn-green',
+                            btnClass: 'success-btn',
                             action: function (scope, button) {
                                 this.setColumnClass('large');
                                 button.setDisabled(true);
                                 return false;
                             }
-                        },
-                        close: function () {
+                        }, close: {
+                            text: 'Close',
+                            btnClass: 'danger-btn',
+                            action: function() {}
                         },
                     },
                 });
             }
 
             $rootScope.closeItem = function() {
-                console.log('haaahaa')
                 $rootScope.viewingThumb = {};
                 $rootScope.selectedKey = null;
                 $rootScope.editkey = null;
@@ -1030,13 +1031,13 @@ angular.module('app')
             });
 
             $rootScope.scrollTop = function() {
-                $document.scrollTopAnimated(0, 500).then(function() {
+                $document.scrollTopAnimated(0, 800).then(function() {
                     console && console.log('You just scrolled to the top!');
                 });
             }
 
             $rootScope.scrollToPoint = function(point) {
-                $document.scrollTopAnimated(point, 500).then(function() {
+                $document.scrollTopAnimated(point, 800).then(function() {
                     console && console.log('You just scrolled to the top!');
                 });
             }
@@ -1044,7 +1045,7 @@ angular.module('app')
             $rootScope.scrollToID = function(id) {
                 var offset = 30;  
                 var someElement = angular.element(document.getElementById(id));
-                $document.scrollToElement(someElement, offset, 500);
+                $document.scrollToElement(someElement, offset, 800);
             }
 
             $rootScope.checkDate = function(date) {
