@@ -7537,6 +7537,10 @@ a {
   pointer-events: none;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .black {
   color: #333;
 }
@@ -9785,6 +9789,18 @@ i.color-btn {
 .table-card.feed-list-table .table-option {
   width: 80px;
 }
+.table-card.todo-card .table-content {
+  width: calc(100% - 220px);
+}
+.table-card.todo-card .table-content .table-col:first-of-type, .table-card.todo-card .table-content .table-col:last-of-type {
+  width: 30%;
+}
+.table-card.todo-card .table-content .table-col:nth-child(2) {
+  width: 40%;
+}
+.table-card.todo-card .table-option {
+  width: 120px;
+}
 .table-card.project-list-table .table-option {
   width: 40px;
 }
@@ -11368,7 +11384,7 @@ i.color-btn {
 }
 .top-nav > li > a img {
   width: auto;
-  height: 20px;
+  height: 25px;
 }
 .top-nav > li > a i {
   vertical-align: middle;
