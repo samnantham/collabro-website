@@ -251,13 +251,23 @@
             position: relative;
         }
     }
+    @media (min-width: 1601px){
+        .card-info{
+            height: 235px !important;
+            .card-left{
+                img{
+                    max-height: 190px;
+                }
+            }
+        }
+    }
     .card-info{
         width: 100%;
         float: left;
         padding: 20px !important;
         display: flex;
         align-items: flex-start;
-        min-height: 195px; //245
+        min-height: 195px; //245        
         .card-left{
             width: 50%;
             float: left;
@@ -388,7 +398,7 @@
     }
     &.feed-list-table{
         .table-content{
-            width: calc(100% - 160px);
+            width: calc(100% - 180px);
             .table-col{
                 &:first-of-type{
                     width: 50%;
@@ -396,7 +406,7 @@
             }
         }
         .table-option{
-            width: 60px;
+            width: 80px;
         }
     }
     &.project-list-table{
@@ -587,7 +597,7 @@
         }
     }
     .full-col{
-        width: calc(100% - 170px);
+        width: calc(100% - 190px);
         display: block;
         color: $default;
         font-size: $font-s;

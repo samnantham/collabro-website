@@ -9626,6 +9626,14 @@ i.color-btn {
 .friend-card .card-content .content-right {
   position: relative;
 }
+@media (min-width: 1601px) {
+  .friend-card .card-info {
+    height: 235px !important;
+  }
+  .friend-card .card-info .card-left img {
+    max-height: 190px;
+  }
+}
 .friend-card .card-info {
   width: 100%;
   float: left;
@@ -9769,13 +9777,13 @@ i.color-btn {
   padding-left: 75px;
 }
 .table-card.feed-list-table .table-content {
-  width: calc(100% - 160px);
+  width: calc(100% - 180px);
 }
 .table-card.feed-list-table .table-content .table-col:first-of-type {
   width: 50%;
 }
 .table-card.feed-list-table .table-option {
-  width: 60px;
+  width: 80px;
 }
 .table-card.project-list-table .table-option {
   width: 40px;
@@ -9971,7 +9979,7 @@ i.color-btn {
   color: #fff !important;
 }
 .table-card .full-col {
-  width: calc(100% - 170px);
+  width: calc(100% - 190px);
   display: block;
   color: #00C4E8;
   font-size: 12px;
