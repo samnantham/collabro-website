@@ -107,7 +107,7 @@
 					bottom: 10px
 					content: ""
 					border-right: 10px solid $silver
-					border-bottom: 10px solid transparent
+					border-top: 10px solid transparent
 				a
 					color: $blue			
 				&.content
@@ -200,7 +200,6 @@
 						left: auto
 						content: ""
 						border-left: 10px solid $default
-						border-bottom: 10px solid transparent
 						border-right: 0
 					a
 						color: $white
@@ -266,6 +265,9 @@
 			text-align: left
 			padding: 5px 0 0 0 
 			font-size: $font-xs
+			display: inline-flex
+			align-items: center
+			justify-content: space-between
 		.time-right
 			width: 100%
 			float: right
@@ -288,7 +290,7 @@
 		max-height: 51px
 		position: relative
 		float: left
-		font-size: 12px
+		font-size: $font-m
 		margin-bottom: $m-0
 		-moz-appearance: none
 		-webkit-appearance: none
@@ -327,11 +329,12 @@
 		height: 53px
 		padding: 0 15px
 		.small-btn
-			width: 20px
+			width: 24px
+			height: 24px
 			float: left
-			height: 20px
 			i
-				font-size: $font-l
+				color: $secondary-text
+				font-size: $font-xxl
 	.msg-btn
 		width: 10%
 		height: 100%

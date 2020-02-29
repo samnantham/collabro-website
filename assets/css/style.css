@@ -8150,7 +8150,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Lato";
   font-weight: 500;
   margin: 10px 0;
-  line-height: normal;
+  line-height: inherit;
   color: #7E8EA4;
 }
 
@@ -10160,7 +10160,7 @@ i.color-btn {
   bottom: 10px;
   content: "";
   border-right: 10px solid #dfe4e8;
-  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
 }
 .messenger .message-wrap .message .info a {
   color: #00C4E8;
@@ -10271,7 +10271,6 @@ i.color-btn {
   left: auto;
   content: "";
   border-left: 10px solid #00C4E8;
-  border-bottom: 10px solid transparent;
   border-right: 0;
 }
 .messenger .message-wrap .message.me .info a {
@@ -10356,6 +10355,9 @@ i.color-btn {
   text-align: left;
   padding: 5px 0 0 0;
   font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .messenger .message-wrap .time-right {
   width: 100%;
@@ -10381,7 +10383,7 @@ i.color-btn {
   max-height: 51px;
   position: relative;
   float: left;
-  font-size: 12px;
+  font-size: 16px;
   margin-bottom: 0px;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -10430,12 +10432,13 @@ i.color-btn {
   padding: 0 15px;
 }
 .sender .msg-text .small-btn {
-  width: 20px;
+  width: 24px;
+  height: 24px;
   float: left;
-  height: 20px;
 }
 .sender .msg-text .small-btn i {
-  font-size: 20px;
+  color: #7E8EA4;
+  font-size: 24px;
 }
 .sender .msg-btn {
   width: 10%;
