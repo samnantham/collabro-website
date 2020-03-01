@@ -48,8 +48,12 @@
         }
     }
     .topbar-right{
-        width: auto;
-        float: right;  
+        float: right;
+        display: inline-flex;
+        align-items: center;  
+        h5{
+            color: $black;
+        }
         .dropdown-toggle{
             cursor: pointer;
         }  
@@ -61,6 +65,25 @@
         }   
     }
 }
+
+.calendar-span{
+    display: inline-flex;
+    align-items: center;
+    min-width: 130px;
+    height: 30px;
+    background: $secondary-color;
+    padding: 0 16px;
+    @include border-radius(4px);
+    font-size: $font-r;
+    i{
+        margin-right: 8px;
+        color: $white;
+    }
+    span{
+        color: $white !important;
+    }
+}
+
 .topbar-list{
     width: auto;
     float: left;
