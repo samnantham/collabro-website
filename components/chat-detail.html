@@ -132,12 +132,17 @@
             <div class="topbar">
                 <div class="topbar-left">
                     <ul class="topbar-list">
-                        <li>Active feeds</li>
-                        <li>5 feeds </li>
+                        <li>Group Project</li>
+                        <li>3 Project Members </li>
                     </ul>
                 </div>
                 <div class="topbar-right">
-                    <i class="fa fa-window-close-o secondary"></i>
+                    <h5>Project Deadline</h5>
+                    <div class="calendar-span ml-15 mr-15">
+                        <i class="fa fa-calendar"></i>
+                        <span>27-12-2020</span>
+                    </div>
+                    <span class="close-icon secondary">X</span>
                 </div>
             </div>
             <!-- app top -->
@@ -147,26 +152,46 @@
                     <div class="slider-wrapper">
 
                     </div>
-                    <div class="more-info">
+                    <div class="more-info mt-10">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 text-center">
-                                <h5>Collection Items</h5>
-                                <div class="count">20</div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 text-center br-v">
-                                <h5>Completed Projects</h5>
-                                <div class="count">50</div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 text-center">
-                                <h5>Rank Apprentice</h5>
-                                <img class="rank-icon" src="../assets/img/rank.png" />
+                            <div class="col-lg-12 col-md-12">
+
+                                <div class="progress-wrapper">
+                                    <h3>Progress Status</h3>
+                                    <div class="progress-con">
+                                        <div class="progress-track"></div>
+                
+                                        <div id="step1" class="progress-step is-complete">
+                                            <div class="progress-icon"></div>
+                                            Step One
+                                        </div>
+                                        <div id="step2" class="progress-step is-complete">
+                                            <div class="progress-icon"></div>
+                                            Step Two
+                                        </div>
+                                        <div id="step3" class="progress-step is-complete">
+                                            <div class="progress-icon"></div>
+                                            Step Three
+                                        </div>
+                                        <div id="step4" class="progress-step is-complete">
+                                            <div class="progress-icon"></div>
+                                            Step Five
+                                        </div>
+                                        <div id="step5" class="progress-step is-complete">
+                                            <div class="progress-icon"></div>
+                                            Complete
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- content right -->
-                <div class="content-detail-right">
+                <div class="content-detail-right feeds-no-options">
                     <div class="feeds-wrapper">
                         <div class="feed-head">
                             <div class="feed-head-left">
@@ -183,7 +208,7 @@
                             <h4>For agencies and companies</h4> 
                             <p>For agencies and companies, we're hosting workshops to make sure you get the best out of this Design System.make sure you get the best out of this Design System.make sure you get the best out of this Design System.</p>
                         </div>
-                        <div class="feed-footer top-feed-footer">
+                        <!-- <div class="feed-footer top-feed-footer">
                             <div class="feed-footer-left">
                                 <input type="button" class="btn silver-btn" value="View More" />
                             </div>
@@ -192,16 +217,15 @@
                                 <a href="#"><i class="fa fa-plus"></i></a>
                                 <a href="#"><i class="fa fa-share"></i></a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="feed-footer">
                             <div class="feed-footer-left">
                                 <span class="price">$30</span>
                                 <span class="price-sub">per hour</span>
                             </div>
                             <div class="feed-footer-right">
-                                <!-- <a href="#"><i class="fa fa-plus"></i></a>
-                                <a href="#"><i class="fa fa-share"></i></a> -->
-                                <a href="#" class="btn success-btn right">Commission</a>
+                                <a href="#"><i class="fa fa-plus"></i></a>
+                                <a href="#"><i class="fa fa-share"></i></a>
                             </div>
                         </div>
                     </div>
@@ -282,7 +306,108 @@
                     </div>
                     <div class="chat-btn"><i class="fa fa-send"></i></div>
                 </div>
-            </div>            
+            </div>
+
+            <!-- comments preview -->
+            <div class="chat-comments-wrapper mt-15">
+                <div class="chat-comments-head">
+                    <h4>Comments & Project review</h4>
+                </div>
+                <div class="chat-comments-content">
+                    <h4 class="black">My Comments</h4>
+                    <div class="row mt-10">
+                        
+                        <div class="col-lg-8 col-md-8">
+                            <div class="row mb-10">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="comment-box">
+                                        <p>I am impressed what the service rendered and his professionalism in handling this project. superb communication and very knowledgeable. i will definitely recommend and would like to work with Melvin in future project. keep up the good work!</p>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            
+                            <div class="row flex-center-left">
+                                <div class="col-lg-6 col-md-6">
+                                    <h5>Level of Proficiency</h5>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="font-rating">
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row flex-center-left">
+                                <div class="col-lg-6 col-md-6">
+                                    <h5>Service Owner Reliability</h5>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="font-rating">
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row flex-center-left">
+                                <div class="col-lg-6 col-md-6">
+                                    <h5>Easy to communicate</h5>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="font-rating">
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row flex-center-left">
+                                <div class="col-lg-6 col-md-6">
+                                    <h5>Project Punctuality</h5>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="font-rating">
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-4">
+                            <div class="appreciation-wrapper">
+                                <h3>Appreciation</h3>
+                                <div class="font-rating">
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="appreciation-box mt-30">
+                                    <div class="red-box">50</div>
+                                    <span>XP</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
 
         </div>
 

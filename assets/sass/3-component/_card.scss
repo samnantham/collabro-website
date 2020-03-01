@@ -409,6 +409,22 @@
             width: 80px;
         }
     }
+    &.todo-card{
+        .table-content{
+            width: calc(100% - 220px);
+            .table-col{
+                &:first-of-type, &:last-of-type{
+                    width: 30%;
+                }
+                &:nth-child(2){
+                    width: 40%;
+                }
+            }
+        }
+        .table-option{
+            width: 120px;
+        }
+    }
     &.project-list-table{
         .table-option{
             width: 40px;

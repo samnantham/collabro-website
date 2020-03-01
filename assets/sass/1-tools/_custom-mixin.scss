@@ -104,6 +104,7 @@
 
 //Avatars
 @mixin avatar($size) {
+	min-width: $size !important;
 	width: $size !important;
 	height: $size !important;
 	font-weight: $font-medium;

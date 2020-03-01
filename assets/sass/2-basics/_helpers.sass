@@ -108,6 +108,9 @@ a
 .disabled
   pointer-events: none  
 
+.pointer
+  cursor: pointer
+
 .black
   color: $black
 .wd-100
@@ -191,6 +194,11 @@ a
   display: flex
   align-items: center
   justify-content: flex-end
+
+.flex-center-left
+  display: flex
+  align-items: center
+  justify-content: flex-start
   
 .flex-basis-50
   flex-basis: 50% !important
@@ -630,3 +638,15 @@ $mh-50:               0px 50px
     background: $warning
   &.theme-gray-category
     background: $theme-gray
+
+
+/* close icon */
+.close-icon
+  width: 16px
+  height: 16px
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  font-size: $font-m
+  font-family: $font-special
+  cursor: pointer

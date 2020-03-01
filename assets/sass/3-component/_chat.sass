@@ -107,7 +107,7 @@
 					bottom: 10px
 					content: ""
 					border-right: 10px solid $silver
-					border-bottom: 10px solid transparent
+					border-top: 10px solid transparent
 				a
 					color: $blue			
 				&.content
@@ -200,7 +200,6 @@
 						left: auto
 						content: ""
 						border-left: 10px solid $default
-						border-bottom: 10px solid transparent
 						border-right: 0
 					a
 						color: $white
@@ -266,6 +265,9 @@
 			text-align: left
 			padding: 5px 0 0 0 
 			font-size: $font-xs
+			display: inline-flex
+			align-items: center
+			justify-content: space-between
 		.time-right
 			width: 100%
 			float: right
@@ -288,7 +290,7 @@
 		max-height: 51px
 		position: relative
 		float: left
-		font-size: 12px
+		font-size: $font-m
 		margin-bottom: $m-0
 		-moz-appearance: none
 		-webkit-appearance: none
@@ -327,11 +329,12 @@
 		height: 53px
 		padding: 0 15px
 		.small-btn
-			width: 20px
+			width: 24px
+			height: 24px
 			float: left
-			height: 20px
 			i
-				font-size: $font-l
+				color: $secondary-text
+				font-size: $font-xxl
 	.msg-btn
 		width: 10%
 		height: 100%
@@ -347,3 +350,78 @@
 			display: table-cell
 			vertical-align: middle
 			cursor: pointer
+
+// chat comments 
+.chat-comments-wrapper
+	width: 100%
+	float: left
+	.chat-comments-head
+		width: 100%
+		float: left
+		background: $secondary-text
+		height: 40px
+		display: flex
+		align-items: center
+		padding: 0 30px
+		justify-content: space-between	
+		h4
+			font-size: $font-m
+			margin: 0px
+			color: $white
+		.option
+			width: auto
+			float: right
+			height: 30px
+			img
+				width: 30px
+				float: right
+				margin-left: 15px
+				@include border-radius(50%)
+	.chat-comments-content
+		width: 100%
+		float: left
+		padding: 30px
+		background: $white
+		.comment-box
+			width: 100%
+			float: left
+			@include border-radius(4px)
+			border: 1px solid $border
+			padding: 10px
+
+
+.appreciation-wrapper
+	width: auto
+	max-width: 150px
+	float: right
+	text-align: center
+	h3
+		margin-top: 0px
+	.appreciation-box
+		width: 120px
+		height: 120px
+		display: inline-block
+		position: relative
+		background: url(../img/appreciation.png) no-repeat center center
+		background-size: contain
+		font-size: $font-s
+		font-weight: $font-bold
+		.red-box
+			width: 30px
+			height: 30px
+			display: inline-flex
+			align-items: center
+			justify-content: center
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			@include border-radius(50%)
+			background: $danger
+			color: $white
+		span
+			position: absolute
+			top: calc(50% + 17px)
+			color: $white
+			left: 50%
+			transform: translateX(-50%)
