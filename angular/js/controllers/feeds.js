@@ -7,12 +7,7 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
     $scope.pageno = 1;
     $scope.totalPerPage = 10;
     $scope.activetab = 'myfeed';
-    
-    if ($rootScope.user) {
-        if (!$rootScope.user.username) {
-            $rootScope.logout();
-        }
-    }
+    $scope.changepage = false;
 
     $scope.getmyfeeds = function() {
         webServices.get('myfeeds/' + $scope.totalPerPage + '?page=' + $scope.pageno).then(function(getData) {
@@ -23,7 +18,9 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
                 $scope.myfeedpagination = {
                     current: $scope.pageno
                 };
-                $scope.movetoTop();
+                if($scope.changepage){
+                    $scope.movetoTop(100);
+                }
             } else {
                 $rootScope.logout();
             }
@@ -31,6 +28,7 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
     }
 
     $scope.setactivetab = function(tab) {
+        $scope.changepage = false;
         if (tab != $scope.activetab) {
             $scope.activetab = tab;
             $rootScope.formLoading = true;
@@ -61,23 +59,23 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
         });
     }
 
-    $scope.removefeed = function(key,feedid) {
+    $scope.removefeed = function(key, feedid) {
         $rootScope.confirmData = {};
         $rootScope.confirmpopupData = {};
         $rootScope.confirmData.title = 'Remove feed item?';
         $rootScope.confirmData.message = 'You are about to remove this chat item. Are you sure you want to remove it?';
         $rootScope.confirmpopupData.id = feedid;
-        $rootScope.openConfirm();        
+        $rootScope.openConfirm();
     }
 
-    $rootScope.deleteFeed = function(){
+    $rootScope.deleteFeed = function() {
         webServices.delete('feed/' + $rootScope.confirmpopupData.id).then(function(getData) {
-                            if (getData.status == 200) {
-                                $rootScope.$emit("showerrormsg", getData.data.message);
-                                $rootScope.closeModal();
-                                $scope.getmyfeeds();
-                            }
-                        });
+            if (getData.status == 200) {
+                $rootScope.$emit("showerrormsg", getData.data.message);
+                $rootScope.closeModal();
+                $scope.getmyfeeds();
+            }
+        });
     }
 
     $scope.getwishedfeeds = function() {
@@ -89,7 +87,9 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
                 $scope.wishedfeedpagination = {
                     current: $scope.pageno
                 };
-                $scope.movetoTop();
+                if($scope.changepage){
+                    $scope.movetoTop(100);
+                }
             } else {
                 $rootScope.logout();
             }
@@ -98,28 +98,31 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
 
     $scope.pageChanged = function(newPage) {
         $scope.pageno = newPage;
+        $scope.changepage = true;
         if ($scope.activetab == 'myfeed') {
             if (!$scope.myfeeddata[$scope.pageno]) {
                 $scope.getmyfeeds();
             } else {
                 $scope.myfeeds = $scope.myfeeddata[$scope.pageno];
+                $scope.movetoTop(100);
             }
         } else if ($scope.activetab == 'wishedfeed') {
             if (!$scope.wishedfeeddata[$scope.pageno]) {
                 $scope.getwishedfeeds();
             } else {
                 $scope.wishedfeeds = $scope.wishedfeeddata[$scope.pageno];
+                $scope.movetoTop(100);
             }
         }
     };
 
 
-    $scope.movetoTop = function() {
+    $scope.movetoTop = function(pos) {
         $timeout(function() {
-            $rootScope.scrollToPoint(100);
+            $rootScope.scrollToPoint(pos);
         }, 200);
     }
 
 
-    $scope.getmyfeeds();
+    $scope.getmyfeeds(0);
 }]);

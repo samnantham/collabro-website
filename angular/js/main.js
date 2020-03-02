@@ -987,7 +987,7 @@ angular.module('app')
 
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
                 $rootScope.formLoading = true;
-                console.log('state changed')
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
                 if (!isMobile.phone) {
                     if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1151)) {
                         $rootScope.scrollslides = 3;
@@ -1043,7 +1043,7 @@ angular.module('app')
             }
 
             $rootScope.scrollToID = function(id) {
-                var offset = 30;  
+                var offset = 70;  
                 var someElement = angular.element(document.getElementById(id));
                 $document.scrollToElement(someElement, offset, 800);
             }
