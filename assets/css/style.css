@@ -8136,6 +8136,27 @@ a {
   padding-top: 70px;
 }
 
+/* Custom col */
+@media (min-width: 1200px) {
+  .custom-col {
+    width: calc(100% / 3);
+  }
+}
+@media (min-width: 1600px) {
+  .custom-col {
+    width: calc(100% / 4);
+  }
+}
+@media (min-width: 1900px) {
+  .custom-col {
+    width: calc(100% / 5);
+  }
+}
+@media (min-width: 2560px) {
+  .custom-col {
+    width: calc(100% / 6);
+  }
+}
 /* links */
 a {
   text-decoration: none !important;
@@ -12647,6 +12668,7 @@ ul.simple-list li:last-of-type {
   text-align: right;
 }
 .member-list li a .list-right .icon-holder img {
+  min-width: auto !important;
   width: auto !important;
   height: auto !important;
   max-width: 38px;
@@ -14889,7 +14911,7 @@ input:checked + .slider:before {
 .feeds-wrapper {
   width: 100%;
   float: left;
-  padding: 12px;
+  padding: 16px;
   background: #fff;
   height: 570px;
 }
