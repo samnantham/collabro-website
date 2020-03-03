@@ -12680,7 +12680,7 @@ ul.simple-list li:last-of-type {
 .right-no-project {
   width: 100%;
   float: left;
-  min-height: calc(100vh - 204px);
+  min-height: 60vh;
   position: relative;
 }
 .right-no-project .empty-msg {

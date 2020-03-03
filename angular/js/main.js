@@ -989,18 +989,21 @@ angular.module('app')
                 $rootScope.formLoading = true;
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
                 if (!isMobile.phone) {
-                    if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1151)) {
+                    if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1368)) {
                         $rootScope.scrollslides = 3;
                         $rootScope.slidecount = 3;
-                    } else if (($rootScope.screenWidth > 1151) && ($rootScope.screenWidth < 1320)) {
-                        $rootScope.scrollslides = 3;
-                        $rootScope.slidecount = 3;
-                    } else if (($rootScope.screenWidth >= 1320) && ($rootScope.screenWidth < 1500)) {
-                        $rootScope.scrollslides = 3;
-                        $rootScope.slidecount = 3;
-                    } else {
+                    } else if (($rootScope.screenWidth >= 1370) && ($rootScope.screenWidth < 1602)) {
                         $rootScope.scrollslides = 4;
                         $rootScope.slidecount = 4;
+                    } else if (($rootScope.screenWidth >= 1603) && ($rootScope.screenWidth < 1924)) {
+                        $rootScope.scrollslides = 5;
+                        $rootScope.slidecount = 5;
+                    } else if (($rootScope.screenWidth >= 1925) && ($rootScope.screenWidth < 3000)) {
+                        $rootScope.scrollslides = 6;
+                        $rootScope.slidecount = 6;
+                    } else {
+                        $rootScope.scrollslides = 3;
+                        $rootScope.slidecount = 3;
                     }
                 } else {
                     $rootScope.slidecount = 2;
