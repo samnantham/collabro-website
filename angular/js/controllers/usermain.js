@@ -106,6 +106,29 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                 slidesToScroll: 1,
                 dots: false,
                 method: {},
+                // responsive: [
+                //     {
+                //       breakpoint: 1900,
+                //       settings: {
+                //         slidesToShow: 5,
+                //         slidesToScroll: 5
+                //       }
+                //     },
+                //     {
+                //       breakpoint: 1600,
+                //       settings: {
+                //         slidesToShow: 4,
+                //         slidesToScroll: 4
+                //       }
+                //     },
+                //     {
+                //       breakpoint: 1200,
+                //       settings: {
+                //         slidesToShow: 3,
+                //         slidesToScroll: 3
+                //       }
+                //     }
+                //   ],
                 event: {
                     afterChange: function(event, slick, currentSlide, nextSlide) {
                         $scope.currentIndex = currentSlide;
