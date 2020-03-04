@@ -727,7 +727,7 @@ angular.module('app')
                 var dialogInst = $modal.open({
                     ariaLabelledBy: 'modal-title',
                     ariaDescribedBy: 'modal-body',
-                    backdrop: 'static',
+                    /*backdrop: 'static',*/
                     keyboard: false,
                     templateUrl: 'tpl/blocks/popover/confirmPopup.html',
                     size: 'sm',
@@ -986,12 +986,9 @@ angular.module('app')
             }
 
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-                if($rootScope.redirectroutes.includes($rootScope.previousstate)){
-                    console.log('openlogin')
-                }
+                
                 $rootScope.formLoading = true;
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
-                console.log($rootScope.screenWidth)
                 if (!isMobile.phone) {
                     if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1368)) {
                         $rootScope.scrollslides = 3;
@@ -1015,6 +1012,16 @@ angular.module('app')
                 }
                 $rootScope.stateurl = toState.name;
                 $rootScope.previousstate = fromState.name;
+                if($rootScope.redirectroutes.includes($rootScope.previousstate)){
+                    if(localStorage.redirectData){
+                        var redirectData = JSON.parse(localStorage.redirectData);
+                        if(redirectData.isredirect){
+                            $rootScope.openAuthModal('login');
+                        }
+                    }
+                }else{
+                    $rootScope.closeModal();
+                }
                 if (!$rootScope.settings) {
                     $rootScope.getSettings();
                 }
