@@ -30,6 +30,7 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
     $scope.setactivetab = function(tab) {
         $scope.changepage = false;
         if (tab != $scope.activetab) {
+            $scope.pageno = 1;
             $scope.activetab = tab;
             $rootScope.formLoading = true;
             if (tab == 'myfeed') {
