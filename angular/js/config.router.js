@@ -63,12 +63,12 @@ angular.module('app')
                         resolve: load(['js/controllers/searchitem.js'])
                     })
 
-                    /*.state('app.viewproduct', {
+                    .state('app.viewproduct', {
                         url: '/viewproduct/:id',
                         cache: false,
-                        templateUrl: 'tpl/'+folderpath+'/viewproduct.html',
+                        templateUrl: 'tpl/desktop/noauth/viewproduct.html',
                         resolve: load(['js/controllers/viewproduct.js'])
-                    })*/
+                    })
                 }
                 /*Only Desktop Routes*/
 
@@ -284,14 +284,7 @@ angular.module('app')
                     templateUrl: 'tpl/' + folderpath + '/cms/rewardsandbenefits.html',
                     resolve: load(['js/controllers/rewardsandbenefits.js'])
                 })
-
-                .state('app.viewproduct', {
-                    url: '/viewproduct/:id',
-                    cache: false,
-                    templateUrl: 'tpl/' + folderpath + '/viewproduct.html',
-                    resolve: load(['js/controllers/viewproduct.js'])
-                })
-
+                
                 /*Common Routes*/
 
                 function load(srcs, callback) {
