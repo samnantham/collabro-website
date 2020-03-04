@@ -77,7 +77,7 @@ app.controller('ViewProductCtrl', ['$scope', '$modal', '$document', '$state', '$
                 animation: true,
                 templateUrl: 'tpl/blocks/popover/productpopover.html',
                 size: 'lg',
-                windowClass: 'popovermodal',
+                windowClass: 'search-preview-modal',
             });
 
         }, 1000);
