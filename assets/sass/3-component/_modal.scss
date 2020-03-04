@@ -178,6 +178,11 @@
 
 .authmodal .modal-dialog{
     width: 100%;
+    min-height: auto;
+}
+
+.search-preview-modal .modal-dialog{
+    max-width: 1200px;
 }
 
 @media (max-width: 768px){
