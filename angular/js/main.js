@@ -753,8 +753,7 @@ angular.module('app')
                     $state.go('app.viewitem', {
                         'id': $rootScope.redirectproduct.id
                     });
-                }
-                if($rootScope.redirectroutes.includes($rootScope.previousstate)){
+                }else if($rootScope.redirectroutes.includes($rootScope.previousstate)){
                     if(localStorage.redirectData){
                         var redirectData = JSON.parse(localStorage.redirectData);
                         $state.go(redirectData.redirectto, {
@@ -1030,9 +1029,10 @@ angular.module('app')
                 }*/
                 if ($rootScope.notauthroutes.includes($rootScope.stateurl)) {
                     if (authServices.isLoggedIn()) {
-                        $rootScope.getUserInfo();
                         $timeout(function() {
-                            $state.go('app.usermain');
+                            if($rootScope.previousstate != 'app.viewproduct'){
+                                $state.go('app.usermain');
+                            }
                         }, 1000);
                     }
                 } else {

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('HomeCtrl', ['$scope', '$state', '$rootScope', '$timeout', 'webServices', 'anchorSmoothScroll', function($scope, $state, $rootScope, $timeout, webServices, anchorSmoothScroll) {
+app.controller('HomeCtrl', ['$scope', '$state', '$rootScope', '$timeout', 'webServices', function($scope, $state, $rootScope, $timeout, webServices) {
 
     $rootScope.formLoading = true;
 
