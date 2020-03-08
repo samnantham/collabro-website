@@ -79,28 +79,34 @@
     .thumbslider{
         width: 100%;
         float: left;
-        background: $white;
-        padding: 0px;
-        margin-top: 10px;
+        background: $silver;
+        padding: 15px 10px;
         .slick-arrow{
             z-index: 999;
         }
         .slick-slider{
             width: 100%;
             float: left;
-            margin-bottom: 10px;
+            // margin-bottom: 10px;
+        }
+        .slick-list{
+            height: 75px;
         }
         .thumbholder{
-            padding: 0 5px 0 0;
+            // padding: 0 5px 0 5px;
             .slidee{
                 height: 75px;
+                margin: 0 5px;
                 @include border-radius(5px);
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center center;
             }
-            &:first-of-type, &:last-of-type{
+            &:first-of-type{
                 padding-left: 0px;
+            }
+            &:last-of-type{
+                padding-right: 0px;
             }
         }
     }

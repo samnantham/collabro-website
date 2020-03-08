@@ -182,7 +182,7 @@
 }
 
 .search-preview-modal .modal-dialog{
-    max-width: 1200px;
+    max-width: 800px;
 }
 
 @media (max-width: 768px){
@@ -203,6 +203,7 @@
 .search-list-modal{
     width: 100%;
     float: left;
+    margin-top: 25px;
     .description{
         color: $deep-blue;
         margin: 20px 0;
@@ -211,7 +212,7 @@
         width: auto;
         float: left;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         .per-price{
             width: 80px;
             float: left;
@@ -239,8 +240,13 @@
     .contentr{
         font-size: $font-home-subtitle;
         color: $default;
+        width: 100%;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         img{
-            height: 36px;
+            height: 30px;
         }
     }
 }
