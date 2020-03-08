@@ -83,7 +83,7 @@ app.controller('ViewProductCtrl', ['$scope', '$modal', 'authServices', '$state',
                 animation: true,
                 templateUrl: 'tpl/blocks/popover/productpopover.html',
                 size: 'lg',
-                windowClass: 'search-preview-modal',
+                windowClass: 'search-preview-modal search-popup-modal',
             });
 
         }, 1000);
