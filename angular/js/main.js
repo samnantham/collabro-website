@@ -1015,7 +1015,9 @@ angular.module('app')
                     if(localStorage.redirectData){
                         var redirectData = JSON.parse(localStorage.redirectData);
                         if(redirectData.isredirect){
-                            $rootScope.openAuthModal('login');
+                            if (!authServices.isLoggedIn()) {
+                                $rootScope.openAuthModal('login');
+                            }
                         }
                     }
                 }else{

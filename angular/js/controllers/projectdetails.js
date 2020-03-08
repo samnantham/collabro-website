@@ -10,7 +10,7 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
         webServices.get('project/' + $stateParams.id).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.projectData = getData.data;
-                console.log($rootScope.projectData)
+                $rootScope.projectData.showchat = false;
                 $rootScope.ispresentmember = false;
                 if($rootScope.user.id == $rootScope.projectData.ownerid){
                     $rootScope.ispresentmember = true;
@@ -26,9 +26,6 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
                     $state.go('app.usermain');
                 }else{
                     $rootScope.getChatContent();
-                    // $timeout(function() {
-                    //     $scope.scrollTo();  
-                    // }, 4000);
                 }
                 $rootScope.formLoading = false;
             } else {
@@ -45,6 +42,9 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
         }
     }
 
+    $rootScope.showhideChat = function(){
+        $rootScope.projectData.showchat = !$rootScope.projectData.showchat;
+    }
 
     $rootScope.getChatContent = function() {
         firebase.auth().onAuthStateChanged(function(user) {

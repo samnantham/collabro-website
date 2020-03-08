@@ -6,12 +6,12 @@
                 <div class="topbar">
                     <div class="topbar-left">
                         <ul class="topbar-list">
-                            <li>Active feeds</li>
-                            <li>5 feeds </li>
+                            <li>Active Projects</li>
+                            <li>5 Projects </li>
                         </ul>
                     </div>
                     <div class="topbar-right">
-                        <i class="fa fa-window-close-o secondary"></i>
+                        <i class="fa fa-window-close-o secondary" ng-click="goback()"></i>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div class="wd-100 mt-15">
+        <div class="wd-100 mt-15" ng-if="projectData.showchat">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="chat-wrap">
