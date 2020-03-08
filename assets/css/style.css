@@ -14679,8 +14679,6 @@ input:checked + .slider:before {
   padding-bottom: 12px;
 }
 .slider-wrapper .thumbslider {
-  background: transparent !important;
-  padding: 0px !important;
   cursor: pointer;
 }
 .slider-wrapper .thumbslider .slick-slider {
