@@ -32,6 +32,7 @@
                 .slick-track{
                     color: $deep-blue;
                     .slick-slide{
+                        width: 100%;
                         .imgcontainer{
                             width: 100%;
                             height: 365px;
@@ -42,16 +43,19 @@
                             background-size: cover;
                             background-position: center center;
                         }
+                        .player{
+                            max-width: 100%;
+                        }
                     }
                 }
             }
             .slick-arrow{
                 z-index: 999;
                 &.slick-prev{
-                    left: 0px !important;
+                    left: 10px !important;
                 }
                 &.slick-next{
-                    right: 0px !important;
+                    right: 10px !important;
                 }
             }
         }

@@ -16,7 +16,7 @@
                     <div ng-if="data.messages.length == 1" class="alert alert-dismissible show" ng-class="{'alert-primary': (!data.status && data.notificationclass == 1) , 'alert-success': (!data.status && data.notificationclass == 2), 'alert-orange' : (!data.status && data.notificationclass == 3), 'alert-danger' : (!data.status && data.notificationclass == 4) , 'alert-warning' : (!data.status && data.notificationclass == 5)}">
                         <i class="fa fa-info-circle" ng-class="{'primary': (data.status && data.notificationclass == 1) , 'success': (data.status && data.notificationclass == 2), 'orange' : (data.status && data.notificationclass == 3), 'danger' : (data.status && data.notificationclass == 4) , 'warning' : (data.status && data.notificationclass == 5)}"></i> <span ng-click="readmessage(data.messages[0],data.notificationtype,'single',key,'0')">{{data.messages[0].message}}</span>
                         <button type="button" class="close" ng-class="{'text-black': data.status}"  aria-label="Close" ng-click="deletenotification(key,data.messages[0],'single', '0')">
-                            <span aria-hidden="true">&times;</span>
+                            <!-- <span aria-hidden="true">&times;</span> --><i class="fa fa-trash-o"></i>
                         </button>
                     </div>
 
@@ -33,7 +33,7 @@
 
                                 <i class="fa fa-info-circle" ng-class="{'primary': (data.status && data.notificationclass == 1) , 'success': (data.status && data.notificationclass == 2), 'orange' : (data.status && data.notificationclass == 3), 'danger' : (data.status && data.notificationclass == 4) , 'warning' : (data.status && data.notificationclass == 5)}"></i> <span ng-click="readmessage(notification,data.notificationtype,'accordion',key,no)">{{notification.message}}</span>
                                 <button type="button" class="close" ng-class="{'text-black': data.status}" aria-label="Close" ng-click="deletenotification(key,notification,'accordion',no)">
-                                    <span aria-hidden="true">&times;</span>
+                                    <!-- <span aria-hidden="true">&times;</span> --><i class="fa fa-trash-o"></i>
                                 </button>
                             </div>
                         </accordion-group>
