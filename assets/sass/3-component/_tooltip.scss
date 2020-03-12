@@ -6,23 +6,22 @@
     }
     &.left{
         .tooltip-arrow{
-            border-left-color: $light-tooltip;
+            border-left-color: $tooltip;
         }
     }
     &.right{
         .tooltip-arrow{
-            border-right-color: $light-tooltip;
+            border-right-color: $tooltip;
         }
     } 
     &.bottom{
         .tooltip-arrow{
-            border-bottom-color: $light-tooltip;
+            border-bottom-color: $tooltip;
         }
     }  
     &.top{
         .tooltip-arrow{
-            bottom: 2px !important;
-            border-top-color: $light-tooltip;
+            border-top-color: $tooltip;
         }
     }    
 }

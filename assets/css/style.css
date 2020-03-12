@@ -13169,17 +13169,16 @@ ul.simple-list li:last-of-type {
   background: #D60046;
 }
 .tooltip.left .tooltip-arrow {
-  border-left-color: #E1E6E9;
+  border-left-color: #D60046;
 }
 .tooltip.right .tooltip-arrow {
-  border-right-color: #E1E6E9;
+  border-right-color: #D60046;
 }
 .tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #E1E6E9;
+  border-bottom-color: #D60046;
 }
 .tooltip.top .tooltip-arrow {
-  bottom: 2px !important;
-  border-top-color: #E1E6E9;
+  border-top-color: #D60046;
 }
 
 .preview-tooltip .tooltip-inner {
