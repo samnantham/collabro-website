@@ -44,7 +44,7 @@ app.controller('FeedCtrl', ['$scope', '$timeout', '$http', '$state', 'webService
     $scope.updatefeedwish = function(feed, key) {
         webServices.put('feedstatus/' + feed.id + '/' + 0).then(function(getData) {
             if (getData.status == 200) {
-                $rootScope.$emit("showsuccessmsg", getData.data.message);
+                $rootScope.$emit("showerrormsg", getData.data.message);
                 $scope.getwishedfeeds();
             }
         });

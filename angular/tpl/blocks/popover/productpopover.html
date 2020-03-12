@@ -41,7 +41,7 @@
          <div class="col-lg-7 col-md-7">
             <div class="price-box">
                <span class="price"><span ng-if="popOverData.price > 0">$</span>{{popOverData.price ? popOverData.price: 'Free'}}</span>
-               <span class="price-sub" ng-if="popOverData.price > 0 && popOverData.type !='Shop'">Per {{popOverData.periodtype}}</span>
+               <span class="price-sub" ng-if="popOverData.price > 0 && popOverData.type !='Shop' && popOverData.periodtype">Per {{popOverData.periodtype}}</span>
             </div>
          </div>
          <div class="col-md-4 col-sm-4 col-lg-4 col-lg-offset-1 col-md-offset-1">

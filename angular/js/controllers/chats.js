@@ -1,24 +1,26 @@
 'use strict';
-app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', function($scope, $http, $state, authServices, webServices, utility, $rootScope, Facebook, GoogleSignin) {
+app.controller('UserChatsCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, Facebook, GoogleSignin) {
 
     $scope.pageno = 1;
     $scope.totalData = 0;
     $scope.totalPerPage = 10;
-    $scope.chatusers = [];
-    
-    if ($rootScope.user) {
-        if (!$rootScope.user.username) {
-            $state.go('app.usermain');
-        }
-    }
+    $scope.chatusers = {};
+    $scope.chatuserspagedata = [];
     $scope.url = 'mychatusers/';
+    $scope.changepage = false;
 
     $scope.getmyChatUsers = function() {
         webServices.get($scope.url + $scope.totalPerPage + '?page=' + $scope.pageno).then(function(getData) {
+            $rootScope.formLoading = false;
             if (getData.status == 200) {
-                $scope.totalData = getData.data.total;
-                $scope.chatusers = $scope.chatusers.concat(getData.data.data);
-                $rootScope.formLoading = false;
+                $scope.pagination = {
+                    current: $scope.pageno
+                };
+                $scope.chatusers = getData.data;
+                $scope.chatuserspagedata[$scope.pageno] = getData.data;
+                if($scope.changepage){
+                    $scope.movetoTop(100);
+                }
             } else {
                 $rootScope.logout();
             }
@@ -33,14 +35,6 @@ app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', 'w
         $scope.getmyChatUsers();
     }
 
-    $scope.loadMoreRecords = function() {
-        if ($scope.chatusers.length < $scope.totalData) {
-            //$rootScope.formLoading = true;
-            $scope.pageno++;
-            $scope.getmyChatUsers();
-        }
-    }
-
     $scope.removechat = function(key, chat) {
         $rootScope.itemkey = key;
         $rootScope.confirmData = {};
@@ -51,6 +45,17 @@ app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', 'w
         $rootScope.confirmpopupData.status = chat.status;
         $rootScope.openConfirm();
     }
+
+    $scope.pageChanged = function(newPage) {
+        $scope.changepage = true;
+        $scope.pageno = newPage;
+        if (!$scope.chatuserspagedata[$scope.pageno]) {
+            $scope.getmyChatUsers();
+        } else {
+            $scope.chatusers = $scope.chatuserspagedata[$scope.pageno];
+            $scope.movetoTop(100);
+        }
+    };
 
     $rootScope.deleteChat = function(){
         webServices.delete('deleteuserchat/' + $rootScope.confirmpopupData.id).then(function(getData) {
@@ -108,8 +113,16 @@ app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', 'w
                 });
             }
         }
-
     }
+
+    $scope.movetoTop = function(pos) {
+        $timeout(function() {
+            $scope.changepage = false;
+            $rootScope.scrollToPoint(pos);
+        }, 200);
+    }
+
+
     $scope.getfriendsfollowers = function() {
         webServices.get('myrecentfriendsandfollowers').then(function(getData) {
             if (getData.status == 200) {

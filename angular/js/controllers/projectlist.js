@@ -37,6 +37,7 @@ app.controller('ProjectListCtrl', ['$scope', '$http', '$state', '$timeout', 'web
     }
 
     $scope.pageChanged = function(newPage) {
+        $scope.changepage = true;
         $scope.pageno = newPage;
         if (!$scope.projectspagedata[$scope.pageno]) {
             $scope.getmyprojects();
@@ -48,11 +49,10 @@ app.controller('ProjectListCtrl', ['$scope', '$http', '$state', '$timeout', 'web
 
     $scope.movetoTop = function(pos) {
         $timeout(function() {
+            $scope.changepage = false;
             $rootScope.scrollToPoint(pos);
         }, 200);
     }
-
-
 
     $scope.getmyprojects();
 
