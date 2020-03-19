@@ -8,7 +8,7 @@ angular.module('app')
         {
           name: 'ngMap',
           files: [
-              'https://maps.googleapis.com/maps/api/js?key=AIzaSyBi_x8q2LOzxxhHsOb0_OCSCjAo3FcYEMg&sensor=false',
+              'https://maps.googleapis.com/maps/api/js?callback=map&key=AIzaSyClK5WNPCHNH316bn-fudiLgL96Fyo5DTU&libraries=places',
               'libs/map/ng-map.min.js'
           ]
         },

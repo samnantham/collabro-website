@@ -38,5 +38,6 @@ angular.module('app', [
     'angular-web-notification',
     'chart.js',
     'cp.ngConfirm',
-    '720kb.datepicker'
+    '720kb.datepicker',
+    'ngMap'
 ]);

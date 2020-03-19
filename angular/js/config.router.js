@@ -198,7 +198,7 @@ angular.module('app')
                     cache: false,
                     cache: false,
                     templateUrl: 'tpl/' + folderpath + '/viewitem.html',
-                    resolve: load(['ngMap', 'js/controllers/viewitem.js'])
+                    resolve: load(['js/controllers/viewitem.js'])
                 })
 
                 .state('app.viewtodo', {

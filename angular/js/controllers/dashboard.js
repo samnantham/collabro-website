@@ -48,7 +48,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
                 $scope.otpData = {};
                 $scope.otpData.otp = '';
                 $scope.otperrors = {};
-                $rootScope.openModalPopup('otpmodal','OTPModalCtrl');
+                $rootScope.openModalPopup('otpModal');
             }
         });
     }
