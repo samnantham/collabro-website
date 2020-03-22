@@ -15120,7 +15120,7 @@ input:checked + .slider:before {
   width: 100%;
   float: left;
   background: #fff;
-  padding: 15px;
+  padding: 20px;
 }
 
 .dashboard-left {
