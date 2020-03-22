@@ -13894,6 +13894,16 @@ ul.simple-list li:last-of-type {
   text-align: center;
 }
 
+.website-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.website-label label {
+  margin-right: 5px;
+  color: #333;
+}
+
 .select-label {
   color: #363A3F;
   background-color: transparent;
