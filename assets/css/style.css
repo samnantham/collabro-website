@@ -13882,6 +13882,18 @@ ul.simple-list li:last-of-type {
   border-color: #FF1561;
 }
 
+.multi-input-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.multi-input-wrapper .form-control {
+  width: 30px;
+  margin: 0 10px;
+  text-align: center;
+}
+
 .select-label {
   color: #363A3F;
   background-color: transparent;
