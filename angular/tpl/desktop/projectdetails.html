@@ -6,12 +6,19 @@
                 <div class="topbar">
                     <div class="topbar-left">
                         <ul class="topbar-list">
-                            <li>Active Projects</li>
-                            <li>5 Projects </li>
+                            <li>{{projectData.title}}</li>
+                            <li>{{projectData.members.length + ' Project Members'}}</li>
+                            <!-- <li>Active Projects</li>
+                            <li>5 Projects </li> -->
                         </ul>
                     </div>
                     <div class="topbar-right">
-                        <i class="fa fa-window-close-o secondary" ng-click="goback()"></i>
+                        <h5>Project Deadline</h5>
+                        <div class="calendar-span ml-15 mr-15">
+                            <i class="fa fa-calendar"></i>
+                            <span>{{projectData.deadline | dateToISO | date:'dd-MM-yyyy'}}</span>
+                        </div>
+                        <span class="close-icon secondary" ng-click="goback()">X</span>
                     </div>
                 </div>
             </div>

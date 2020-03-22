@@ -31,10 +31,11 @@
                         </ul>
                     </div>
                     <div class="topbar-right">
-                        <ul class="topbar-list">
+                        <ul class="topbar-list ml-15 mr-15">
                             <li ng-if="chatInfo.seconduser == user.id"><i class="fa fa-circle success"></i> <span>{{chatInfo.firstuserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span></li>
                             <li ng-if="chatInfo.firstuser == user.id"><i class="fa fa-circle success"></i> <span>{{chatInfo.seconduserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span></li>
                         </ul>
+                        <span class="close-icon secondary" ng-click="goback()">X</span>
                     </div>
                 </div>
             </div>
@@ -69,8 +70,9 @@
             <div class="col-lg-12 col-md-12">
                 <div class="chat-wrap">
                     <div class="message-head">
-                        <h2 ng-if="chatInfo.firstuser == user.id">{{chatInfo.seconduserinfo.username}}</h2>
-                        <h2 ng-if="chatInfo.seconduser == user.id">{{chatInfo.firstuserinfo.username}}</h2>
+                        <h2>Private Discussion</h2>
+                        <!-- <h2 ng-if="chatInfo.firstuser == user.id">{{chatInfo.seconduserinfo.username}}</h2>
+                        <h2 ng-if="chatInfo.seconduser == user.id">{{chatInfo.firstuserinfo.username}}</h2> -->
                         <div class="option">
                             
                             <img ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}" tooltip-html="chatInfo.firstuserinfo.username" tooltip-append-to-body="true" tooltip-placement="top" tooltip-class="preview-tooltip"/>
