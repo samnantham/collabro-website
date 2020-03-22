@@ -14,12 +14,12 @@
   <div class="custom-modal-body bt-1">
 
      <div class="multi-input-wrapper">
-         <input type="text" class="form-control" id="user-otp" ng-model="otpData.otp" name="otp" numbers-only placeholder="Enter recevived OTP in your Mobile" required minlength="6" maxlength="6">
-         <input type="text" class="form-control" value="" placeholder="0" />
-         <input type="text" class="form-control" value="" placeholder="0" />
-         <input type="text" class="form-control" value="" placeholder="0" />
-         <input type="text" class="form-control" value="" placeholder="0" />
-         <input type="text" class="form-control" value="" placeholder="0" />
+         <input type="text" class="form-control" ng-model="otpData.otp[0]" name="otp1" numbers-only required minlength="1" maxlength="1" placeholder="0" move-next-on-maxlength>
+         <input type="text" class="form-control" placeholder="0" ng-model="otpData.otp[1]" name="otp2" numbers-only required minlength="1" maxlength="1" move-next-on-maxlength>
+         <input type="text" class="form-control" placeholder="0" ng-model="otpData.otp[2]" name="otp3" numbers-only required minlength="1" maxlength="1" move-next-on-maxlength>
+         <input type="text" class="form-control" placeholder="0" ng-model="otpData.otp[3]" name="otp4" numbers-only required minlength="1" maxlength="1" move-next-on-maxlength>
+         <input type="text" class="form-control" placeholder="0" ng-model="otpData.otp[4]" name="otp5" numbers-only required minlength="1" maxlength="1" move-next-on-maxlength>
+         <input type="text" class="form-control" placeholder="0" ng-model="otpData.otp[5]" name="otp6" numbers-only required minlength="1" maxlength="1">
       </div>
      <span ng-messages="otpform.otp.$error" role="alert" class="otp-errormsg"><span class="text-danger" ng-message="required">OTP Required</span><span class="text-danger"ng-message="minlength">Atleast 6 characters long.</span></span>
    </div>
