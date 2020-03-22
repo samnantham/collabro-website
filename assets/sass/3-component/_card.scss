@@ -4,7 +4,7 @@
     @include box-shadow($box-shadow-card);
     @include border-radius(4px);
     background: $white;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     position: relative;
     .card-img{
         width: 100%;
@@ -378,9 +378,9 @@
     border: 1px solid $border;
     @include border-radius(4px);
     @include box-shadow($box-shadow-default);
-    padding: 12px;
+    padding: 20px;
     background: $white;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     &.chat-list-table{
         .table-img{
             width: 50px;
