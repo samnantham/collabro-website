@@ -8,7 +8,7 @@
                         <h2><i class="fa fa-tasks" aria-hidden="true"></i> &nbsp;Todo List</h2>
 
                     </div>  
-                     <button type="button" class="btn default-btn pull-right" ng-click="opentodoModal();"><i class="fa fa-plus-circle mr-5"></i> Todo</button>                                            
+                     <button type="button" class="btn default-btn pull-right" ng-click="openTodo();"><i class="fa fa-plus-circle mr-5"></i> Todo</button>                                            
                 </div>
             </div>
    </div>
@@ -34,8 +34,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in todos.data | itemsPerPage: totalPerPage" total-items="todos.total" current-page="pagination.current">
                <div class="table-card todo-card">
                     <div class="flex-top-space">
-                        <div class="table-img">
-                            <img ng-src="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.projectdetails({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
+                        <div class="table-img option-img" ui-sref="app.projectdetails({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                         </div>
                         <div class="table-content">
                             <div class="table-col">
