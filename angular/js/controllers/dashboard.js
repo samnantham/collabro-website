@@ -44,7 +44,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
         webServices.get('getmyotp').then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.otpData = {};
-                //$rootScope.otpData.otp = getData.data.otp.toString().split('');
+                $rootScope.otpData.otpArray = getData.data.otp.toString().split('');
                 $rootScope.otperrors = {};
                 $rootScope.ModalPopup('otp');
             }

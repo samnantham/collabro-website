@@ -3,6 +3,7 @@ app.controller('OTPModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 
      $scope.verifyotp = function(form) {
         if (form.$valid) {
             $rootScope.otpLoading = true;
+            $rootScope.otpData.otp = $rootScope.otpData.otpArray.join("");
             webServices.put('verifyotp', $rootScope.otpData).then(function(getData) {
                 $rootScope.otpLoading = false;
                 if (getData.status == 200) {
