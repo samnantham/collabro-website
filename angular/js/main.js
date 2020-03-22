@@ -270,8 +270,7 @@ angular.module('app')
                     backdrop: 'static',
                     keyboard: false,
                     templateUrl: 'tpl/blocks/modals/' + modalfile + 'Modal.html',
-                    size: 'lg',
-                    windowClass: modalfile+'Modal',
+                    size: 'lg '+ modalfile +'Modal'
                 });
             }
 
