@@ -74,7 +74,7 @@
                                             <div class="col-lg-4 col-md-4 col-sm-4">
                                                 <h3>{{user.countrycode ? user.countrycode : '' }} {{userData.phonenumber}}</h3>
                                                 <div class="wd-100">
-                                                    <input type="button" class="btn silver-btn block-btn ucase right mt-10 mb-15" value="Verify Mobile" ng-if="!user.otpverified" ng-click="openOTPModal()" />
+                                                    <input type="button" class="btn silver-btn block-btn right mt-10 mb-15" value="Verify Mobile" ng-if="!user.otpverified" ng-click="openOTPModal()" />
                                                 </div>
                                                 <h5 class="ucase"><i class="fa fa-map-marker"></i> {{userData.country}}</h5>
                                             </div>
@@ -141,7 +141,9 @@
                                                     <label class="info-label">Location</label>
                                                 </div>
                                                 <div class="col-lg-9 col-md-9">
-                                                    <input type="text" class="form-control" placeholder="Location" ng-model="editData.country" name="country" required/>
+                                                    <select class="form-control" name="country" ng-model="editData.country" required>
+                                                        <option value="{{location}}" ng-repeat="(key,location) in locations">{{location}}</option>
+                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row mt-10 flex-center">
@@ -614,14 +616,14 @@
                 <div class="dashboard-bottom mt-30">
                     <div class="tabset-wrapper">
                         <div class="tabset grid3">
-                            <input type="radio" name="tabset1" id="tab4" aria-controls="tabset-four" checked/>
-                            <label for="tab4" class="tabs-label">Followers</label>
-                            <input type="radio" name="tabset1" id="tab5" aria-controls="tabset-five" />
-                            <label for="tab5" class="tabs-label">Interest Area</label>
+                            <input type="radio" name="tabset1" id="tab5" aria-controls="tabset-five" checked/>
+                            <label for="tab5" class="tabs-label">Followers</label>
                             <input type="radio" name="tabset1" id="tab6" aria-controls="tabset-six" />
-                            <label for="tab6" class="tabs-label">My Listings</label>
+                            <label for="tab6" class="tabs-label">Interest Area</label>
+                            <input type="radio" name="tabset1" id="tab7" aria-controls="tabset-seven" />
+                            <label for="tab7" class="tabs-label">My Listings</label>
                             <div class="tab-panels">
-                                <section id="tabset-four" class="tab-panel">
+                                <section id="tabset-five" class="tab-panel">
                                     <div class="followers-area">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4">
@@ -643,7 +645,7 @@
                                         </div>
                                     </div>
                                 </section>
-                                <section id="tabset-five" class="tab-panel">
+                                <section id="tabset-six" class="tab-panel">
                                     <div class="interest-area">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-3 interest-space" ng-repeat="(key,data) in userData.interestarea">
@@ -653,8 +655,8 @@
                                         </div>
                                     </div>
                                 </section>
-                                <section id="tabset-six" class="tab-panel">
-                                    <div class="table-listing">
+                                <section id="tabset-seven" class="tab-panel">
+                                    <div class="table-listing" id="MyProducts">
                                         <div class="table-card dashboard-list-table" dir-paginate="(key,data) in myProducts.data | itemsPerPage: totalPerPage" total-items="myProducts.total" current-page="pagination.current">
                                             <div class="flex-top-space">
                                                 <div class="table-img option-img" ui-sref="app.viewitem({'id':data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" background-image="{{data.images[0].filetype == 1 ? IMGURL:''}}{{data.images[0].thumbnail}}">

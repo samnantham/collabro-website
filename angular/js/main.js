@@ -44,6 +44,7 @@ angular.module('app')
             $rootScope.eventtypes = angular.copy(app.eventtypes);
             $rootScope.maxUploadsize = angular.copy(app.maxUploadsize);
             $rootScope.redirectroutes = angular.copy(app.redirectroutes);
+            $rootScope.locations = angular.copy(app.locations);
             $rootScope.categories = [];
             $rootScope.registerModel.iscompany = '0';
             $rootScope.thisyear = new Date().getFullYear();
@@ -222,6 +223,12 @@ angular.module('app')
                 if (!$rootScope.ismodalopen) {
                     $rootScope.openModalPopup('collaborateModal');
                 }
+            }
+
+            $rootScope.openTodo = function(){
+                $rootScope.isedittodo = false;
+                $rootScope.edittodoid = '';
+                $rootScope.opentodoModal();
             }
 
             $rootScope.opentodoModal = function() {
@@ -469,6 +476,14 @@ angular.module('app')
             $rootScope.changeauthTab = function(tab) {
                 $rootScope.currentauth = tab;
                 $rootScope.pwtype = 'password';
+            }
+
+            $rootScope.sharetodo = function(data){
+                $rootScope.shareData = {};
+                $rootScope.shareData = data;
+                $rootScope.shareData.shareurl = app.todoshareurl;
+                $rootScope.sharetype = 'todo';
+                $rootScope.opensharepopover();
             }
 
             $rootScope.login = function(form) {

@@ -206,7 +206,12 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         $rootScope.hidetodoerrors();
         if (form.$valid) {
             $rootScope.formLoading = true;
-            $rootScope.todoData.deadline = $filter('date')($rootScope.todoData.tododeadline, 'yyyy-MM-dd');
+            if($rootScope.todoData.tododeadline.includes('/')){
+                var date = $rootScope.todoData.tododeadline.split("/")
+                $rootScope.todoData.deadline = $filter('date')(new Date(date[2], date[1] - 1, date[0]), 'yyyy-MM-dd');
+            }else{
+                $rootScope.todoData.deadline = $filter('date')($rootScope.todoData.tododeadline, 'yyyy-MM-dd');
+            }
             webServices.upload('todo', $rootScope.todoData).then(function(getData) {
                 $rootScope.formLoading = false;
                 if (getData.status == 200) {
@@ -214,11 +219,15 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $rootScope.todoData = {};
                     $rootScope.viewingThumb = {};
-                    if($rootScope.isedittodo){
+                    $state.go('app.viewtodo',{'id':getData.data.data.id});
+                    
+                    /*if($rootScope.isedittodo){
                         $state.go('app.viewtodo',{'id':$rootScope.edittodoid});
                     }else{
+                        $rootScope.isedittodo = false;
+                        $rootScope.edittodoid = '';
                         $state.reload();
-                    }
+                    }*/
                 } else if (getData.status == 401) {
                     $scope.errors = utility.getError(getData.data.message);
                     $rootScope.$emit("showerrors", $scope.errors);
