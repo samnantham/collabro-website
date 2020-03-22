@@ -35,6 +35,23 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    .noti_newbtn{
+        position: relative;
+        .noticount{
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            @include border-radius(50%);
+            background: $danger;
+            color: $white;
+            font-size: $font-xs;
+        }
+    }
     i{
         font-size: $font-l;
         color: $white;
@@ -51,6 +68,9 @@
         width: 100%;
         float: left;
         padding-top: 56px;
+    }
+    .corpcontmenu{
+        width: 100%;
     }
 }
 
@@ -78,9 +98,24 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             .mob-home{
                 @include border-radius(50%);
                 border: 1px solid $white;
+            }
+            .noticount{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 15px;
+                height: 15px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                @include border-radius(50%);
+                background: $danger;
+                color: $white;
+                font-size: $font-xs;
             }
         }
     }

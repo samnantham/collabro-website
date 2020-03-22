@@ -25,9 +25,15 @@
     display: flex;
     align-items: center;
     padding: 0 20px;
+    background: $white;
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
     i{
         margin-right: 10px;
-        color: $secondary-text;
+        color: $default;
+    }
+    h3{
+        color: $default;
     }
 }
 
@@ -79,7 +85,7 @@
         padding-bottom: 20px;
         label{
             width: 100%;
-            font-size: $font-m;
+            font-size: $font-r;
             text-transform: uppercase;
             min-height: 70px;
         }
