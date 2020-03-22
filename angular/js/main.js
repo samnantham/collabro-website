@@ -44,6 +44,7 @@ angular.module('app')
             $rootScope.eventtypes = angular.copy(app.eventtypes);
             $rootScope.maxUploadsize = angular.copy(app.maxUploadsize);
             $rootScope.redirectroutes = angular.copy(app.redirectroutes);
+            $rootScope.locations = angular.copy(app.locations);
             $rootScope.categories = [];
             $rootScope.registerModel.iscompany = '0';
             $rootScope.thisyear = new Date().getFullYear();

@@ -1,6 +1,6 @@
 'use strict';
-app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', 'authServices','$modal', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, authServices, $modal) {
-    
+app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', 'authServices', '$modal', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, authServices, $modal) {
+
     $scope.userData = {};
     $scope.activetab = 'profile';
     $scope.bottomactivetab = 'followers';
@@ -23,10 +23,9 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
         }
     }
 
-    $scope.updateInterestarea = function(item){
-        webServices.put('myinterestarea',item).then(function(getData) {
-            if (getData.status == 200) {
-            } else if (getData.status == 401) {
+    $scope.updateInterestarea = function(item) {
+        webServices.put('myinterestarea', item).then(function(getData) {
+            if (getData.status == 200) {} else if (getData.status == 401) {
                 $scope.errors = utility.getError(getData.data.message);
                 $rootScope.$emit("showerrors", $scope.errors);
             }
@@ -43,11 +42,10 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
 
     $scope.openOTPModal = function() {
         webServices.get('getmyotp').then(function(getData) {
-            console.log(getData)
             if (getData.status == 200) {
-                $scope.otpData = {};
-                $scope.otpData.otp = '';
-                $scope.otperrors = {};
+                $rootScope.otpData = {};
+                $rootScope.otpData.otp = getData.data.otp;
+                $rootScope.otperrors = {};
                 $rootScope.ModalPopup('otp');
             }
         });
@@ -57,7 +55,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
         if (chats.length > 0) {
             $scope.chats = [];
             $scope.chats = chats;
-            $rootScope.openModalPopup('chatusersmodal','ChatUserModalCtrl');
+            $rootScope.openModalPopup('chatusersmodal', 'ChatUserModalCtrl');
         }
     }
 
@@ -71,9 +69,8 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
                     $scope.setMyData();
                 } else {
                     $rootScope.formLoading = false;
-                    if($scope.ispagechanged){
+                    if ($scope.ispagechanged) {
                         $scope.ispagechanged = false;
-                        //$scope.scrollTo();
                     }
                 }
             } else {
@@ -92,13 +89,13 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
 
     }
 
-    $rootScope.deleteProduct = function(){
+    $rootScope.deleteProduct = function() {
         webServices.delete('product/' + $rootScope.confirmpopupData.id).then(function(getData) {
-                            if (getData.status == 200) {
-                                $rootScope.closeModal();
-                                $scope.getMyProducts();
-                            }
-                        });
+            if (getData.status == 200) {
+                $rootScope.closeModal();
+                $scope.getMyProducts();
+            }
+        });
     }
 
     $scope.pageChanged = function(newPage) {
@@ -108,8 +105,12 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
             $scope.getMyProducts();
         } else {
             $scope.myProducts = $scope.pagedata[$scope.pageno];
-            //$scope.scrollTo();
         }
+        $timeout(function() {
+            $rootScope.scrollToID('MyProducts');
+            var myDiv = document.getElementById('MyProducts');
+            myDiv.scrollTop = 0;
+        }, 500);
     };
 
     $scope.getfriendsfollowers = function() {
@@ -200,7 +201,6 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
                     $scope.profileedit = false;
                 } else if (getData.status == 401) {
                     $scope.errors = utility.getError(getData.data.message);
-                    console.log($scope.errors);
                     $rootScope.$emit("showerrors", $scope.errors);
                 }
 
@@ -259,7 +259,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
         }
     }
 
-     $scope.changePassword = function(form) {
+    $scope.changePassword = function(form) {
         $scope.errors = [];
         if (form.$valid) {
             $rootScope.formLoading = true;
@@ -277,15 +277,17 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
 
             });
         } else {
-            
+
             if (!form.confirmpassword.$valid) {
                 $scope.errors.push('Please confirm your new password');
-            }if (!form.newpassword.$valid) {
+            }
+            if (!form.newpassword.$valid) {
                 $scope.errors.push('Please enter your new password and minimum 8 charecters needed');
-            }if (!form.currentpassword.$valid) {
+            }
+            if (!form.currentpassword.$valid) {
                 $scope.errors.push('Please enter your Current Password');
             }
-    
+
             $rootScope.$emit("showerrors", $scope.errors);
         }
     }

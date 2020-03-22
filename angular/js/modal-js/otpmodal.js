@@ -3,10 +3,10 @@ app.controller('OTPModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 
      $scope.verifyotp = function(form) {
         if (form.$valid) {
             $rootScope.otpLoading = true;
-            webServices.put('verifyotp', $scope.otpData).then(function(getData) {
+            webServices.put('verifyotp', $rootScope.otpData).then(function(getData) {
                 $rootScope.otpLoading = false;
                 if (getData.status == 200) {
-                    $rootScope.closepopoverItem();
+                    $rootScope.closeModal();
                     $rootScope.getUserInfo();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $scope.profileedit = false;
