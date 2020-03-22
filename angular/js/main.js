@@ -51,6 +51,8 @@ angular.module('app')
             $rootScope.keywords = []; /*['Make-Up Artist', 'Car Rental', 'Photography', 'Wardrobe', 'Interior Design', 'Trending Group', 'Decor and Lights', 'Wedding Gifts', 'Sparkling Shoes', 'Videography'];*/
             $rootScope.searchData = {};
 
+            $rootScope.minDate = new Date().toDateString();
+
             $rootScope.labels = ["Profit Earned", "Rental Earned", "Experience Points", "Advertisement Spent"];
             $rootScope.Colors = ["#ffc500", "#ff1561", "#59c74a", "#00d8ff"];
             $rootScope.ChartOptions = {
@@ -257,6 +259,19 @@ angular.module('app')
                     templateUrl: 'tpl/blocks/modals/' + modalfile + '.html',
                     size: 'lg form-modal',
                     windowClass: modalfile+'modal',
+                });
+            }
+
+            $rootScope.ModalPopup = function(modalfile) {
+                $rootScope.ismodalopen = true;
+                var dialogInst = $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    backdrop: 'static',
+                    keyboard: false,
+                    templateUrl: 'tpl/blocks/modals/' + modalfile + 'Modal.html',
+                    size: 'lg',
+                    windowClass: modalfile+'Modal',
                 });
             }
 
