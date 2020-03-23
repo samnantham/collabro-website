@@ -34,11 +34,11 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in todos.data | itemsPerPage: totalPerPage" total-items="todos.total" current-page="pagination.current">
                <div class="table-card todo-card">
                     <div class="flex-top-space">
-                        <div class="table-img option-img" ui-sref="app.projectdetails({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                        <div class="table-img option-img cursor" ui-sref="app.viewtodo({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
                         </div>
                         <div class="table-content">
                             <div class="table-col">
-                                <h5 ui-sref="app.projectdetails({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title | cut:true:25:'..'}}</h5>
+                                <h5 ui-sref="app.viewtodo({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" class="cursor">{{data.title | cut:true:25:'..'}}</h5>
                                 <span>{{data.type}} todo | {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                             </div>
                             <div class="table-col">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="table-col">
                                 <h5>Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</h5>
-                                <span class="danger">{{data.remainingdays}} Days Remaining</span>
+                                <span ng-class="{ 'danger' : data.remainingdays > 0  }">{{data.remainingdays > 0 ? data.remainingdays + ' Days Remaining' : (data.remainingdays * -1 ) + ' Day Expired'}} </span>
                             </div>
                         </div>
                         <div class="table-option">

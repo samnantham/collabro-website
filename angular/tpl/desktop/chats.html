@@ -39,7 +39,7 @@
                         <div class="table-content">
                             <div class="table-col">
                                 <h5 ng-click="gotochatpage(key,data)">{{ (data.chattype == '1' ? data.product.title : data.chattype == '2' ? '(Group Chat)' : (data.chattype == '3' ? '(Feed Chat)' : data.chattype == '4' ? '(Private Chat)' : data.chattype)) }}</h5>
-                                <span>{{data.fromid == user.id ? 'Me' : data.fromuser.username}}| {{ convertDate(data.created_at) | dateToISO | date:'dd-MMM-yy hh:mm a' }}</span>
+                                <span>{{data.fromid == user.id ? 'Me' : data.fromuser.username}} | {{ convertDate(data.created_at) | dateToISO | date:'dd-MMM-yy hh:mm a' }}</span>
                             </div>
                         </div>
                         <div class="table-option">
