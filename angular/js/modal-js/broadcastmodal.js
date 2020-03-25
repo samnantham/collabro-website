@@ -84,9 +84,17 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
                 status = true;   
             }
         } else if (url.includes('vimeo')) {
-            status = true;
+            if(url.split("vimeo.com")[1].length > 1){
+                status = true;   
+            }else{
+                status = false;   
+            }
         } else if (url.includes('soundcloud')) {
-            status = true;
+            if(url.split("soundcloud.com")[1].length > 1){
+                status = true;   
+            }else{
+                status = false;   
+            }
         }
         return status;
     }

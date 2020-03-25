@@ -52,14 +52,30 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.checkError = false;
     }
 
-    $rootScope.validvideo = function(url) {
+    $rootScope.validvideo = function(url){
         var status = false;
         if (url.includes('youtu')) {
-            status = true;
+            if(url.includes('youtube')){
+                if(url.split("youtube.com")[1].length > 1){
+                    status = true;   
+                }else{
+                    status = false;   
+                }
+            }else{
+                status = true;   
+            }
         } else if (url.includes('vimeo')) {
-            status = true;
+            if(url.split("vimeo.com")[1].length > 1){
+                status = true;   
+            }else{
+                status = false;   
+            }
         } else if (url.includes('soundcloud')) {
-            status = true;
+            if(url.split("soundcloud.com")[1].length > 1){
+                status = true;   
+            }else{
+                status = false;   
+            }
         }
         return status;
     }
