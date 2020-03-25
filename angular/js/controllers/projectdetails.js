@@ -44,6 +44,13 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
 
     $rootScope.showhideChat = function(){
         $rootScope.projectData.showchat = !$rootScope.projectData.showchat;
+        $timeout(function() {
+            if($rootScope.projectData.showchat){
+                $rootScope.scrollToID('chat-area');
+            }else{
+                $rootScope.scrollToID('content-area');
+            }
+        }, 1000);
     }
 
     $rootScope.getChatContent = function() {
@@ -118,7 +125,7 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
     $rootScope.editProject = function() {
         $rootScope.iseditproject = true;
         $rootScope.editprojectid = $rootScope.projectData.id;
-        $rootScope.opencollaboratemodal();
+        $rootScope.openCollaborateModal();
     }
     
     $scope.getItem();

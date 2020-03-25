@@ -177,8 +177,8 @@
     <div class="right-wrapper">
         <div class="right-title">
             <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl != 'app.projectdetails'">Post Request</button>
-            <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl == 'projectdetails' && projectData.owner.id != user.id">Post Request</button>
-            <button type="button" class="btn success-btn block-btn" ng-click="editProject();" ng-if="stateurl == 'projectdetails' && projectData.owner.id == user.id">Edit Project</button>
+            <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id != user.id">Post Request</button>
+            <button type="button" class="btn success-btn block-btn" ng-click="editProject();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id == user.id">Edit Project</button>
         </div>
     </div>
 
@@ -317,9 +317,7 @@
 <div class="right-sidebar" ng-if="stateurl == 'app.viewitem' || stateurl == 'app.productchat'">
             
             <div class="right-wrapper">
-                <div class="right-title">
-                    <!-- <button type="button" class="btn unfollow-btn block-btn" ng-click="changefollowstatus();" ng-if="(viewData.owner.id != user.id) && (!viewData.commisionData)"><i class="fa" ng-class="viewData.isfollow ? 'fa-user-times':'fa-user-plus'" title="Follow"></i> {{ viewData.isfollow ? 'UnFollow':'Follow'}}</button> -->
-
+                <div class="right-title" ng-if="stateurl == 'app.viewitem'">
                     <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(viewData.owner.id == user.id)&&(viewData.is_request)"> Edit Request</button>
 
                     <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id == user.id)&&(!viewData.is_request)"> Edit {{(viewData.type == 'Service' ? 'Service' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : viewData.type == 'Event' ? 'Event': viewData.type))}}</button>
@@ -328,20 +326,39 @@
 
                     <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(viewData.commisionData)"> View  {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Order' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type))  }}</button>
                 </div>
+
+                <div class="right-title" ng-if=" stateurl == 'app.productchat'">
+    
+                    <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(ProductViewData.owner.id == user.id)&&(ProductViewData.is_request)"> Edit Request</button>
+
+                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(ProductViewData.owner.id == user.id)&&(!ProductViewData.is_request)"> Edit {{(ProductViewData.type == 'Service' ? 'Service' : (ProductViewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : ProductViewData.type == 'Event' ? 'Event': ProductViewData.type))}}</button>
+
+                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(ProductViewData.owner.id != user.id)&&(!ProductViewData.commisionData)"> {{ (ProductViewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : ProductViewData.type == 'Rental' ? 'Book Now' : ProductViewData.type == 'Event' ? 'Register Now': ProductViewData.type))  }}</button>
+
+                    <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(ProductViewData.owner.id != user.id)&&(ProductViewData.commisionData)"> View  {{ (ProductViewData.type == 'Service' ? 'Commisioned' : (ProductViewData.type == 'Shop' ? 'Order' : ProductViewData.type == 'Rental' ? 'Booked' : ProductViewData.type == 'Event' ? 'Registered': ProductViewData.type))  }}</button>
+                </div>
             </div>
 
             <div class="right-wrapper">
                 <div class="right-no-project">   
-                    <div class="msg-top" ng-if="viewData.ownerproducts.length > 0">
+                    <div class="msg-top" ng-if="viewData.owner.id != user.id && viewData.ownerproducts.length > 0 && stateurl == 'app.viewitem'">
                         <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
                         <ul>
-                            <li ng-repeat="(key,data) in viewData.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                            <li ng-repeat="(key,data) in viewData.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
+                            </li>
+                        </ul>
+                    </div>
+
+                     <div class="msg-top" ng-if="ProductViewData.owner.id != user.id && ProductViewData.ownerproducts.length > 0 && stateurl == 'app.productchat'">
+                        <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
+                        <ul>
+                            <li ng-repeat="(key,data) in ProductViewData.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
                             </li>
                         </ul>
                     </div>
 
                     <div class="post-content">
-                        <ul class="member-list">
+                        <ul class="member-list" ng-if="stateurl == 'app.viewitem'">
                             <li>
                                 <a>
                                     <div class="list-left">
@@ -409,9 +426,78 @@
                                 </a>
                             </li>
                         </ul>
+
+                        <ul class="member-list" ng-if="stateurl == 'app.productchat'">
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>Singapore</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{convertDate(ProductViewData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Date</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{ProductViewData.owner.followers}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Followers</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Appreciation</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{ProductViewData.noofviews}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{convertDate(ProductViewData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Joined</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="msg-post" ng-click="goprochat();">
+                    <div class="msg-post" ng-click="showhideChat();">
                         <img src="../assets/img/chat-icon.png" alt="message" />                 
                     </div>
 

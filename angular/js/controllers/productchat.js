@@ -11,6 +11,8 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
         webServices.get('productchat/' + $stateParams.id).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.ProductViewData = getData.data.product;
+                $rootScope.ProductViewData.showchat = false;
+                console.log($rootScope.ProductViewData)
                 $scope.ChatUserData = getData.data;
                 if(($scope.ChatUserData.userid == $rootScope.user.id)||($rootScope.ProductViewData.ownerid == $rootScope.user.id)){
                     $rootScope.getChatContent();
@@ -22,6 +24,17 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
             }
         });
     };
+
+    $rootScope.showhideChat = function(){
+        $rootScope.ProductViewData.showchat = !$rootScope.ProductViewData.showchat;
+        $timeout(function() {
+            if($rootScope.ProductViewData.showchat){
+                $rootScope.scrollToID('chat-area');
+            }else{
+                $rootScope.scrollToID('content-area');
+            }
+        }, 1000);
+    }
 
     $scope.changefollowstatus = function(followstatus,user) {
         if (followstatus) {
@@ -72,9 +85,9 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
                         $rootScope.ProductViewData.cart = getData.data.data;
                         $rootScope.$emit("showsuccessmsg", getData.data.message);
                     } else {
+                        $rootScope.ProductViewData.cart = {};
                         $rootScope.errors = [];
-                        $rootScope.errors.push(getData.data.message);
-                        $rootScope.$emit("showerrors", $rootScope.errors);
+                        $rootScope.$emit("showerrormsg", getData.data.message);
                     }
                 });
             }

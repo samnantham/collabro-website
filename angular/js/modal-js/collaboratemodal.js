@@ -214,12 +214,16 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
         if (form.$valid) {
             $rootScope.formLoading = true;
             $rootScope.formData.thumbkey = $rootScope.formData.thumbimage;
-            $rootScope.formData.deadline = $filter('date')($rootScope.formData.projectdeadline, 'yyyy-MM-dd');
+            if($rootScope.formData.projectdeadline.includes('/')){
+                var date = $rootScope.formData.projectdeadline.split("/")
+                $rootScope.formData.deadline = $filter('date')(new Date(date[2], date[1] - 1, date[0]), 'yyyy-MM-dd');
+            }else{
+                $rootScope.formData.deadline = $filter('date')($rootScope.todoData.projectdeadline, 'yyyy-MM-dd');
+            }
 
             webServices.upload('project', $rootScope.formData).then(function(getData) {
                 $rootScope.fromfriendspage = false;
                 $rootScope.formLoading = false;
-                console.log(getData)
                 if (getData.status == 200) {
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $rootScope.formData = {};
@@ -229,7 +233,7 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
                     $rootScope.getUserInfo();
                 } else if (getData.status == 401) {
                     $scope.errors = utility.getError(getData.data.message);
-                    $scope.showerrors();
+                    $rootScope.$emit("showerrors", $rootScope.errors);
                 } else {
                     $rootScope.$emit("showerror", getData);
                 }
@@ -351,7 +355,7 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
         webServices.get('project/' + $rootScope.editprojectid).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.formData = getData.data;
-                $rootScope.formData.projectdeadline = $filter('date')(new Date($rootScope.formData.deadline), 'MM/dd/yyyy');
+                $rootScope.formData.projectdeadline = $filter('date')(new Date($rootScope.formData.deadline), 'dd/MM/yyyy');
                 $rootScope.formData.thumbimage = 0;
                 $rootScope.formData.projectmembers = [];
                 $rootScope.formData.images = $rootScope.formData.files;
@@ -366,7 +370,6 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
                         }
                     });
                 });
-                console.log($rootScope.formData)
             } else {
                 $rootScope.logout();
             }
