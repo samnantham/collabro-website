@@ -50,7 +50,7 @@
                             </div>
                             <div class="table-col">
                                 <h5>Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</h5>
-                                <span class="danger">{{data.remainingdays}} Days Remaining</span>
+                                <span ng-class="{ 'danger' : data.remainingdays > 0  }">{{data.remainingdays > 0 ? data.remainingdays + ' Days Remaining' : (data.remainingdays * -1 ) + ' Day Expired'}} </span>
                             </div>
                         </div>
                         <div class="table-option no-option">

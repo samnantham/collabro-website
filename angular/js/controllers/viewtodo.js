@@ -11,7 +11,9 @@ app.controller('ViewTodoCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
                     $rootScope.todoData.images = $rootScope.todoData.projectinfo.files;
                 }
                 localStorage.redirectData = '';
-                $rootScope.formLoading = false;
+                $timeout(function() {
+                    $rootScope.$emit("reloadSlider", {});
+                }, 1000);
             } else {
                 $rootScope.logout();
             }

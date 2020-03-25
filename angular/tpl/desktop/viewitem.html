@@ -30,7 +30,7 @@
             <div class="content-detail-left">
                 <div class="slider-wrapper"  id="slick-slider">
                     <div class="custom-slider">
-                        <slick id="prodSlider" data="viewData.images" infinite="false" init-onload="false" settings="productslick" ng-if="!formLoading" class="slider-for">
+                        <slick data="viewData.images" infinite="false" init-onload="false" settings="productslick" class="slider-for">
                             <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
                                 <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
                                     <span ng-if="image.filetype == 2">
@@ -41,7 +41,7 @@
                             </div>
                         </slick>
                         <div class="thumbslider">
-                            <slick data="viewData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
+                            <slick data="viewData.images" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
                                 <div class="thumbholder" ng-repeat="(key,image) in viewData.images">
                                     <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
                                 </div>

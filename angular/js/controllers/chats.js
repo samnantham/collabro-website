@@ -70,9 +70,10 @@ app.controller('UserChatsCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
     }
 
     $scope.gotochatpage = function(key, data) {
+        console.log(data)
         if (!data.status) {
             webServices.put('readuserchat/' + data.id).then(function(getData) {
-                $scope.chatusers[key].status = 1;
+                $scope.chatusers.data[key].status = 1;
                 if ($rootScope.user.chatmessages > 0) {
                     $rootScope.user.chatmessages--;
                 }

@@ -12,6 +12,8 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
                 $rootScope.projectData = getData.data;
                 $rootScope.projectData.showchat = false;
                 $rootScope.ispresentmember = false;
+                console.log($rootScope.projectData)
+
                 if($rootScope.user.id == $rootScope.projectData.ownerid){
                     $rootScope.ispresentmember = true;
                 }
@@ -27,20 +29,15 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
                 }else{
                     $rootScope.getChatContent();
                 }
-                $rootScope.formLoading = false;
+                $timeout(function() {
+                    $rootScope.$emit("reloadSlider", {});
+                }, 1000);
             } else {
                 $rootScope.logout();
             }
         });
     };
 
-    $scope.scrollTo = function() {
-        if($rootScope.currentdevice == 'mobile'){
-            console.log($(window).height());
-            $scope.windowheight = ($(window).height()) - 274;
-            $('#chatbody').css('min-height', $scope.windowheight + 'px');
-        }
-    }
 
     $rootScope.showhideChat = function(){
         $rootScope.projectData.showchat = !$rootScope.projectData.showchat;
@@ -124,6 +121,7 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
 
     $rootScope.editProject = function() {
         $rootScope.iseditproject = true;
+        $rootScope.formData = {};
         $rootScope.editprojectid = $rootScope.projectData.id;
         $rootScope.openCollaborateModal();
     }

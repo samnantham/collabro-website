@@ -74,7 +74,15 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
     $rootScope.validvideo = function(url){
         var status = false;
         if (url.includes('youtu')) {
-            status = true;   
+            if(url.includes('youtube')){
+                if(url.split("youtube.com")[1].length > 1){
+                    status = true;   
+                }else{
+                    status = false;   
+                }
+            }else{
+                status = true;   
+            }
         } else if (url.includes('vimeo')) {
             status = true;
         } else if (url.includes('soundcloud')) {

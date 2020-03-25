@@ -172,15 +172,7 @@
     </div>
 </div>
 
-<div class="right-sidebar" ng-if="stateurl == 'app.notification' || stateurl == 'app.chats' || stateurl == 'app.wishlist' || stateurl == 'app.projectlist' || stateurl == 'app.projectdetails' || stateurl == 'app.feeds' || stateurl == 'app.todos' || stateurl == 'app.viewtodo' || stateurl == 'app.viewfeed' || stateurl == 'app.howitworks' || stateurl == 'app.rewardsandbenefits'">
-
-    <div class="right-wrapper">
-        <div class="right-title">
-            <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl != 'app.projectdetails'">Post Request</button>
-            <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id != user.id">Post Request</button>
-            <button type="button" class="btn success-btn block-btn" ng-click="editProject();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id == user.id">Edit Project</button>
-        </div>
-    </div>
+<div class="right-sidebar" ng-if="stateurl == 'app.notification' || stateurl == 'app.chats' || stateurl == 'app.wishlist' || stateurl == 'app.projectlist' || stateurl == 'app.feeds' || stateurl == 'app.todos' || stateurl == 'app.viewtodo' || stateurl == 'app.viewfeed' || stateurl == 'app.howitworks' || stateurl == 'app.rewardsandbenefits'">
 
     <div class="right-wrapper">
         <div class="right-no-project">
@@ -314,7 +306,7 @@
     </div>
 </div>
 
-<div class="right-sidebar" ng-if="stateurl == 'app.viewitem' || stateurl == 'app.productchat'">
+<div class="right-sidebar" ng-if="stateurl == 'app.viewitem' || stateurl == 'app.productchat' || stateurl == 'app.projectdetails'">
             
             <div class="right-wrapper">
                 <div class="right-title" ng-if="stateurl == 'app.viewitem'">
@@ -325,6 +317,12 @@
                     <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)"> {{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type))  }}</button>
 
                     <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(viewData.commisionData)"> View  {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Order' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type))  }}</button>
+                </div>
+
+                <div class="right-title" ng-if=" stateurl == 'app.projectdetails' ">
+                    <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl != 'app.projectdetails'">Post Request</button>
+                    <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id != user.id">Post Request</button>
+                    <button type="button" class="btn success-btn block-btn" ng-click="editProject();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id == user.id">Edit Project</button>
                 </div>
 
                 <div class="right-title" ng-if=" stateurl == 'app.productchat'">
@@ -488,6 +486,75 @@
                                 <a>
                                     <div class="list-left">
                                         <h5>{{convertDate(ProductViewData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Joined</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="member-list" ng-if="stateurl == 'app.projectdetails'">
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>Singapore</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{convertDate(projectData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Date</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{projectData.owner.followers}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Followers</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <p>Appreciation</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{projectData.noofviews ? projectData.noofviews : 10}}</h5>
+                                    </div>
+                                    <div class="list-right">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="list-left">
+                                        <h5>{{convertDate(projectData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
                                     </div>
                                     <div class="list-right">
                                         <p>Joined</p>

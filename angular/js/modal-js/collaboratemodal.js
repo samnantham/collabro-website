@@ -1,7 +1,7 @@
 app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
     $rootScope.activediv = 'info';
     var friends =  angular.copy($rootScope.user.myfriends);
-    $rootScope.myfriends = friends;
+    $rootScope.myfriends = angular.copy($rootScope.user.myfriends);
 
     $rootScope.resetProductItems = function() {
         $rootScope.loading = false;
@@ -18,9 +18,9 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
         
         if ($rootScope.fromfriendspage) {
             if($rootScope.formData.projectmembers.length > 0){
-                angular.forEach(friends, function(friend,no) {
+                angular.forEach($rootScope.myfriends, function(friend,no) {
                     if (friend.username == $rootScope.formData.projectmembers[0].username) {
-                        friends.splice(no, 1);
+                        $rootScope.myfriends.splice(no, 1);
                     }
                 });
             }
@@ -80,7 +80,8 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
 
     $rootScope.removeprojectfriend = function(key, friend) {
         $rootScope.formData.projectmembers.splice(key, 1);
-        friends.push(friend);
+        friend.price = 0;
+        $rootScope.myfriends.push(friend);
     }
 
     $rootScope.uploadvideo = function() {
@@ -223,14 +224,17 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
 
             webServices.upload('project', $rootScope.formData).then(function(getData) {
                 $rootScope.fromfriendspage = false;
-                $rootScope.formLoading = false;
                 if (getData.status == 200) {
+                    $rootScope.closeModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $rootScope.formData = {};
-                    $rootScope.viewingThumb = {};
-                    $rootScope.closeModal();
-                    $state.go('app.projectlist');
-                    $rootScope.getUserInfo();
+                    if ($rootScope.iseditproject) {
+                        $timeout(function() {
+                            $state.reload();
+                        }, 500);
+                    }else{
+                        $state.go('app.projectdetails',{'id':getData.data.data.id});
+                    }
                 } else if (getData.status == 401) {
                     $scope.errors = utility.getError(getData.data.message);
                     $rootScope.$emit("showerrors", $rootScope.errors);
@@ -352,6 +356,7 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
 
 
     if ($rootScope.iseditproject) {
+        $rootScope.selected = {};
         webServices.get('project/' + $rootScope.editprojectid).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.formData = getData.data;
@@ -360,16 +365,18 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
                 $rootScope.formData.projectmembers = [];
                 $rootScope.formData.images = $rootScope.formData.files;
                 $rootScope.viewingThumb = $rootScope.formData.images[0];
-                angular.forEach(friends, function(member,index) {
-                    angular.forEach($rootScope.formData.members, function(promember) {
+                
+                 angular.forEach($rootScope.formData.members, function(promember) {
+                    angular.forEach($rootScope.myfriends, function(member,index) {
                         if (member.id == promember.userid) {
                             var newmember = member;
                             newmember.price = promember.price;
                             $rootScope.formData.projectmembers.push(newmember);
-                            friends.splice(index, 1);
+                            $rootScope.myfriends.splice(index, 1);
                         }
                     });
                 });
+                 console.log($rootScope.formData)
             } else {
                 $rootScope.logout();
             }

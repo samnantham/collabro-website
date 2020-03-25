@@ -11,7 +11,9 @@ app.controller('ViewFeedCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
                     $scope.gotofeedchat();
                 }
                 localStorage.redirectData = '';
-                $rootScope.formLoading = false;
+                $timeout(function() {
+                    $rootScope.$emit("reloadSlider", {});
+                }, 1000);
             } else {
                 $rootScope.logout();
             }

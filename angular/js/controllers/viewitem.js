@@ -6,10 +6,6 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
 
     $rootScope.getItem = function() {
         webServices.get('product/' + $stateParams.id).then(function(getData) {
-           $timeout(function() {
-                    $rootScope.formLoading = false;
-                }, 1000);
-
            if (getData.status == 200) {
                 $rootScope.viewData = getData.data;
                 if (!$rootScope.viewData.userview) {
@@ -27,10 +23,9 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                     }
                 }
 
-                /*var template = document.getElementsByClassName('slick-slide');
-                $timeout(function () {
-                    $rootScope.productslick.method.slickAdd(template);
-                }, 2000);*/
+                $timeout(function() {
+                    $rootScope.$emit("reloadSlider", {});
+                }, 1000);
             } else {
                 $rootScope.logout();
             }

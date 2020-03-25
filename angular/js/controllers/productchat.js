@@ -12,8 +12,10 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
             if (getData.status == 200) {
                 $rootScope.ProductViewData = getData.data.product;
                 $rootScope.ProductViewData.showchat = false;
-                console.log($rootScope.ProductViewData)
                 $scope.ChatUserData = getData.data;
+                $timeout(function() {
+                    $rootScope.$emit("reloadSlider", {});
+                }, 1000);
                 if(($scope.ChatUserData.userid == $rootScope.user.id)||($rootScope.ProductViewData.ownerid == $rootScope.user.id)){
                     $rootScope.getChatContent();
                 }else{

@@ -71,7 +71,6 @@ app.controller('SearchCtrl', ['$scope', '$http', '$state', '$timeout', 'webServi
             if (getData.status == 200) {
                 $scope.alsolikeproducts = getData.data;
                 $rootScope.formLoading = false;
-                $rootScope.$emit("scrolltop", {});
                 $rootScope.$emit("callStickyMenu", {});
             } else{
                 $rootScope.logout();
@@ -86,8 +85,9 @@ app.controller('SearchCtrl', ['$scope', '$http', '$state', '$timeout', 'webServi
         $rootScope.selectedkey = key;
         $timeout(function() {         
             $rootScope.viewData = data;
-            $rootScope.formLoading = false;
-            $rootScope.$emit("scrolltop", {});
+            $timeout(function() {
+                $rootScope.$emit("reloadSlider", {});
+            }, 1000);
         }, 2000);
     };
 

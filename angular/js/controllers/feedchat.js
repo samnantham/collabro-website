@@ -8,13 +8,15 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
 
     $scope.getFeedChat = function() {
         webServices.get('feedchat/' + $scope.chatid).then(function(getData) {
-            $rootScope.formLoading = false;
             if (getData.status == 200) {
                 $scope.feedchat = getData.data;
                 $scope.feedData = getData.data.feed;
                 if (($rootScope.user.id == $scope.feedchat.userid) || ($rootScope.user.id == $scope.feedchat.feed.owner.id)) {
                     $scope.chattype = 'feedchat';
                     $scope.firebaseurl = '/feed-' + $scope.feedchat.id + '/';
+                    $timeout(function() {
+                        $rootScope.$emit("reloadSlider", {});
+                    }, 1000);
                     $rootScope.getChatContent();
                 } else {
                     $state.go('app.usermain');

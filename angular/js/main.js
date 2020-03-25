@@ -964,6 +964,12 @@ angular.module('app')
                 });
             }
 
+            $rootScope.$on("reloadSlider", function(event) {
+                $rootScope.formLoading = false;
+                $('.slider-for').slick('refresh');
+                $('.slider-nav').slick('refresh');
+            });
+
             $rootScope.$on("showerrors", function(event, errors) {
                 angular.forEach(errors, function(errormsg, no) {
                     ngNotify.set(errormsg, {
