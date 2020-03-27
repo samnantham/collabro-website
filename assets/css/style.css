@@ -13091,7 +13091,7 @@ ul.simple-list li:last-of-type {
 .topbar {
   width: 100%;
   float: left;
-  padding: 25px;
+  padding: 20px;
   height: 80px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
@@ -14780,7 +14780,7 @@ input:checked + .slider:before {
 }
 
 .content-detail-left {
-  width: calc(66.6666666667% - 15px);
+  width: calc(66.6666666667% - 16px);
   float: left;
 }
 
@@ -14788,7 +14788,7 @@ input:checked + .slider:before {
   width: 100%;
   float: left;
   min-height: 438px;
-  padding-bottom: 12px;
+  padding-bottom: 16px;
 }
 .slider-wrapper .thumbslider {
   cursor: pointer;

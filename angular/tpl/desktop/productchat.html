@@ -2,82 +2,84 @@
     <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
     <div class="center-content">
         <div class="row" id="content-area">
-            <div class="container-top mb-15" ng-if="ProductViewData.title">
-                <div class="content-detail-left">
-                    <div class="slider-wrapper">
-                        <div class="custom-slider">
-                            <slick data="ProductViewData.images" infinite="false" init-onload="true" settings="productslick" class="slider-for">
-                                <div class="width100 sliderframer" ng-repeat="(key,image) in ProductViewData.images">
-                                    <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
-                                        <span ng-if="image.filetype == 2">
-                                            <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
-                                            <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
-                                        </span>
-                                    </div>
-                                </div>
-                            </slick>
-                            <div class="thumbslider">
-                                <slick data="ProductViewData.images" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
-                                    <div class="thumbholder" ng-repeat="(key,image) in ProductViewData.images">
-                                        <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+            <div class="col-lg-12 col-md-12">
+                <div class="container-top mb-15" ng-if="ProductViewData.title">
+                    <div class="content-detail-left">
+                        <div class="slider-wrapper">
+                            <div class="custom-slider">
+                                <slick data="ProductViewData.images" infinite="false" init-onload="true" settings="productslick" class="slider-for">
+                                    <div class="width100 sliderframer" ng-repeat="(key,image) in ProductViewData.images">
+                                        <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                                            <span ng-if="image.filetype == 2">
+                                                <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                                                <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                                            </span>
+                                        </div>
                                     </div>
                                 </slick>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="more-info">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 text-center">
-                                <h5>Collection Items</h5>
-                                <div class="count">20</div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 text-center br-v">
-                                <h5>Completed Projects</h5>
-                                <div class="count">50</div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 text-center">
-                                <h5>{{ProductViewData.owner.xprank.rankname}}</h5>
-                                <img class="rank-icon" ng-src="{{IMGURL}}{{ProductViewData.owner.xprank.icon}}" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-detail-right">
-                    <div class="feeds-wrapper">
-                        <div class="feed-head">
-                            <div class="feed-head-left">
-                                <div class="avatar avatar-xs">
-                                    <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" ui-sref="app.viewuser({'id':ProductViewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" />
+                                <div class="thumbslider">
+                                    <slick data="ProductViewData.images" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
+                                        <div class="thumbholder" ng-repeat="(key,image) in ProductViewData.images">
+                                            <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                                        </div>
+                                    </slick>
                                 </div>
-                                <h3>{{ProductViewData.owner.username | cut:true:20:''}}</h3>
-                            </div>
-                            <div class="feed-head-right">
-                                <i class="fa fa-circle" ng-class="ProductViewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{ProductViewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
                             </div>
                         </div>
-                        <div class="feed-body">
-                            <h4>{{ProductViewData.title}}</h4>
-                            <p>{{ProductViewData.description | cut:true:385:''}}</p>
+                        <div class="more-info">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 text-center">
+                                    <h5>Collection Items</h5>
+                                    <div class="count">20</div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 text-center br-v">
+                                    <h5>Completed Projects</h5>
+                                    <div class="count">50</div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 text-center">
+                                    <h5>{{ProductViewData.owner.xprank.rankname}}</h5>
+                                    <img class="rank-icon" ng-src="{{IMGURL}}{{ProductViewData.owner.xprank.icon}}" />
+                                </div>
+                            </div>
                         </div>
-<!--                         <div class="feed-footer top-feed-footer" ng-if="ProductViewData.owner.id != user.id">
-                            <div class="feed-footer-left">
-                                <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:ProductViewData.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">View More</button>
+                    </div>
+                    <div class="content-detail-right">
+                        <div class="feeds-wrapper">
+                            <div class="feed-head">
+                                <div class="feed-head-left">
+                                    <div class="avatar avatar-xs">
+                                        <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" ui-sref="app.viewuser({'id':ProductViewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" />
+                                    </div>
+                                    <h3>{{ProductViewData.owner.username | cut:true:20:''}}</h3>
+                                </div>
+                                <div class="feed-head-right">
+                                    <i class="fa fa-circle" ng-class="ProductViewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{ProductViewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                                </div>
                             </div>
-                            <div class="feed-footer-right">
-                                <a title="Add to Wishlist" ng-click="updatewishstatus()"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
-                                <a ng-click="addTocart(ProductViewData)"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
-                                <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
+                            <div class="feed-body">
+                                <h4>{{ProductViewData.title}}</h4>
+                                <p>{{ProductViewData.description | cut:true:385:''}}</p>
                             </div>
-                        </div> -->
-                        <div class="feed-footer">
-                            <div class="feed-footer-left">
-                                <span class="price">{{ProductViewData.price ? '$' + ProductViewData.price: 'Free'}}</span>
-                                <span class="price-sub" ng-if="ProductViewData.price > 0 && ProductViewData.type!='Shop' && !ProductViewData.is_request ">per {{ProductViewData.periodtype}}</span>
-                            </div>
-                            <div class="feed-footer-right">
-                                <a title="Add to Wishlist" ng-click="updatewishstatus()" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
-                                <a ng-click="addTocart(ProductViewData)" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
-                                <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
+    <!--                         <div class="feed-footer top-feed-footer" ng-if="ProductViewData.owner.id != user.id">
+                                <div class="feed-footer-left">
+                                    <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:ProductViewData.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">View More</button>
+                                </div>
+                                <div class="feed-footer-right">
+                                    <a title="Add to Wishlist" ng-click="updatewishstatus()"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
+                                    <a ng-click="addTocart(ProductViewData)"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
+                                    <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
+                                </div>
+                            </div> -->
+                            <div class="feed-footer">
+                                <div class="feed-footer-left">
+                                    <span class="price">{{ProductViewData.price ? '$' + ProductViewData.price: 'Free'}}</span>
+                                    <span class="price-sub" ng-if="ProductViewData.price > 0 && ProductViewData.type!='Shop' && !ProductViewData.is_request ">per {{ProductViewData.periodtype}}</span>
+                                </div>
+                                <div class="feed-footer-right">
+                                    <a title="Add to Wishlist" ng-click="updatewishstatus()" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
+                                    <a ng-click="addTocart(ProductViewData)" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
+                                    <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
