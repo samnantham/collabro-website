@@ -8097,6 +8097,13 @@ a {
   font-family: "Roboto", sans-serif;
   cursor: pointer;
 }
+.close-icon::before {
+  width: 10px;
+  height: 10px;
+  display: inline-flex;
+  content: "";
+  background: url(../img/close.png) no-repeat center center;
+}
 
 /* Layouts */
 .content-wrapper {
@@ -13185,7 +13192,7 @@ ul.simple-list li:last-of-type {
 .topbar-list li {
   float: left;
   font-size: 14px;
-  margin-left: 15px;
+  margin-left: 20px;
   color: #7E8EA4;
   position: relative;
 }
@@ -15036,7 +15043,7 @@ input:checked + .slider:before {
   float: left;
   padding: 16px;
   background: #fff;
-  height: 570px;
+  height: 470px;
 }
 .feeds-wrapper .feed-head {
   width: 100%;
