@@ -38,8 +38,8 @@
             <div class="content-detail-left">
                 <div class="slider-wrapper">
                     <div class="custom-slider">
-                        <slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" class="slider-for">
-                            <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
+                        <slick data="carouselItems" infinite="false" init-onload="true" settings="productslick" class="slider-for">
+                            <div class="width100 sliderframer" ng-repeat="(key,image) in carouselItems">
                                 <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
                                     <span ng-if="image.filetype == 2">
                                         <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
@@ -49,8 +49,8 @@
                             </div>
                         </slick>
                         <div class="thumbslider">
-                            <slick data="viewData.images" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
-                                <div class="thumbholder" ng-repeat="(key,image) in viewData.images">
+                            <slick data="carouselItems" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
+                                <div class="thumbholder" ng-repeat="(key,image) in carouselItems">
                                     <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
                                 </div>
                             </slick>

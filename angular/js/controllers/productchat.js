@@ -12,6 +12,7 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
             if (getData.status == 200) {
                 $rootScope.ProductViewData = getData.data.product;
                 $rootScope.ProductViewData.showchat = false;
+                $rootScope.carouselItems = $rootScope.ProductViewData.images;
                 $scope.ChatUserData = getData.data;
                 $timeout(function() {
                     $rootScope.$emit("reloadSlider", {});

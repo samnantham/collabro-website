@@ -21,17 +21,6 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.hideerrors();
     }
 
-    $rootScope.validURL = function(url) {
-        var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-
-        return !!pattern.test(url);
-    }
-
     $rootScope.showTooltip = function(){
         if(!$rootScope.formData.request_category){
             $rootScope.showCatError = true;
@@ -50,34 +39,6 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
 
     $rootScope.hidecheckTooltip = function(){
         $rootScope.checkError = false;
-    }
-
-    $rootScope.validvideo = function(url){
-        var status = false;
-        if (url.includes('youtu')) {
-            if(url.includes('youtube')){
-                if(url.split("youtube.com")[1].length > 1){
-                    status = true;   
-                }else{
-                    status = false;   
-                }
-            }else{
-                status = true;   
-            }
-        } else if (url.includes('vimeo')) {
-            if(url.split("vimeo.com")[1].length > 1){
-                status = true;   
-            }else{
-                status = false;   
-            }
-        } else if (url.includes('soundcloud')) {
-            if(url.split("soundcloud.com")[1].length > 1){
-                status = true;   
-            }else{
-                status = false;   
-            }
-        }
-        return status;
     }
 
     $rootScope.changeVideo = function(key) {

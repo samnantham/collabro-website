@@ -56,7 +56,6 @@ app.controller('TodoListCtrl', ['$scope', '$state', '$timeout', 'webServices', '
         webServices.get('allmyprojects').then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.myprojects = getData.data;
-                console.log($rootScope.myprojects)
                 $scope.getmytodos();
             } else {
                 $rootScope.logout();

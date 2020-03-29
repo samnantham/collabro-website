@@ -38,6 +38,7 @@ app.controller('SearchCtrl', ['$scope', '$http', '$state', '$timeout', 'webServi
                 $scope.products = getData.data;
                 if($rootScope.selectedkey != ''){
                     $rootScope.viewData = $scope.products.data[$rootScope.selectedkey];
+                    $rootScope.carouselItems = $rootScope.viewData.images;
                 }
                 if($scope.alsolikeproducts.length == 0){
                     $scope.alsolikeproducts();

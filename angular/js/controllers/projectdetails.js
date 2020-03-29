@@ -12,8 +12,7 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
                 $rootScope.projectData = getData.data;
                 $rootScope.projectData.showchat = false;
                 $rootScope.ispresentmember = false;
-                console.log($rootScope.projectData)
-
+                $rootScope.carouselItems = $rootScope.projectData.files;
                 if($rootScope.user.id == $rootScope.projectData.ownerid){
                     $rootScope.ispresentmember = true;
                 }

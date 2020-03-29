@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm',
+    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm', '$http',
         function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalInstance) {
             $rootScope.isMobile = isMobile.phone;
             $rootScope.screenWidth = window.screen.width * window.devicePixelRatio;
@@ -104,7 +104,27 @@ angular.module('app')
                 method: {},
                 event: {
                     afterChange: function(event, slick, currentSlide, nextSlide) {
-                        $scope.slickCurrentIndex2 = currentSlide;
+                        $rootScope.productslick.method.slickGoTo(currentSlide);
+                        if(currentSlide > 0){
+                            var previous = currentSlide - 1;
+                        }else{
+                            var previous = $rootScope.carouselItems.length - 1;
+                        } 
+                        if($rootScope.carouselItems[previous].filetype == 2){
+                            if($rootScope.carouselItems[previous].file.includes('vimeo')){  
+                                $('#vimeo'+previous+' .videoClass').each(function(index) {
+                                    $(this).attr('src', $(this).attr('src'));
+                                });
+                        }else if($rootScope.carouselItems[previous].file.includes('youtu')){    
+                            $('#youtube'+previous+' .videoClass').each(function(index) {
+                                $(this).attr('src', $(this).attr('src'));
+                            });
+                       }else{
+                                $('#soundcloud'+previous+' iframe').each(function(index) {
+                                    $(this).attr('src', $(this).attr('src'));
+                                });
+                            }
+                        }
                     },
                     init: function(event, slick) {
                         slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
@@ -295,6 +315,41 @@ angular.module('app')
                 $rootScope.shareData.shareurl = app.productshareurl;
                 $rootScope.sharetype = 'product';
                 $rootScope.opensharepopover();
+            }
+
+            $rootScope.validURL = function(url) {
+                var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+                    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+                    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+                    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+
+                return !!pattern.test(url);
+            }
+
+            $rootScope.validvideo = function(url){
+                $rootScope.validstatus = false;
+                if (url.includes('youtu')) {
+                    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+                    var match = url.match(regExp);
+                    if (match && match[2].length == 11) {
+                        return true;  
+                    } else {
+                        return false;  
+                    }
+                } else if (url.includes('vimeo')) {
+                    var regExp = /https:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+                    var match = url.match(regExp);
+                    if (match){
+                        return true;  
+                    } else {
+                        return false;  
+                    }
+                } else if (url.includes('soundcloud')) {
+                    var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
+                    return url.match(regexp) && url.match(regexp)[2]
+                }
             }
 
             $rootScope.fbshare = function() {

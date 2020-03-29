@@ -7,8 +7,9 @@ app.controller('ViewTodoCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
         webServices.get('todo/' + $stateParams.id).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.todoData = getData.data;
+                $rootScope.carouselItems = $rootScope.todoData.images;
                 if($rootScope.todoData.type == 'Project'){
-                    $rootScope.todoData.images = $rootScope.todoData.projectinfo.files;
+                    $rootScope.carouselItems = $rootScope.todoData.projectinfo.files;
                 }
                 localStorage.redirectData = '';
                 $timeout(function() {

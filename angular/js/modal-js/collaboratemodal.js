@@ -124,45 +124,6 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
         }
     }
 
-    $rootScope.validURL = function(url) {
-        var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-
-        return !!pattern.test(url);
-    }
-
-    $rootScope.validvideo = function(url){
-        var status = false;
-        if (url.includes('youtu')) {
-            if(url.includes('youtube')){
-                if(url.split("youtube.com")[1].length > 1){
-                    status = true;   
-                }else{
-                    status = false;   
-                }
-            }else{
-                status = true;   
-            }
-        } else if (url.includes('vimeo')) {
-            if(url.split("vimeo.com")[1].length > 1){
-                status = true;   
-            }else{
-                status = false;   
-            }
-        } else if (url.includes('soundcloud')) {
-            if(url.split("soundcloud.com")[1].length > 1){
-                status = true;   
-            }else{
-                status = false;   
-            }
-        }
-        return status;
-    }
-
     $rootScope.changeVideo = function(key) {
         $rootScope.editkey = key;
         $rootScope.formData.embedvideo = $rootScope.formData.images[$rootScope.selectedKey].file;

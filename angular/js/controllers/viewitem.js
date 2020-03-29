@@ -8,6 +8,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         webServices.get('product/' + $stateParams.id).then(function(getData) {
            if (getData.status == 200) {
                 $rootScope.viewData = getData.data;
+                $rootScope.carouselItems = $rootScope.viewData.images;
                 if (!$rootScope.viewData.userview) {
                     $scope.viewproduct();
                 }
