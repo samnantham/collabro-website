@@ -10,7 +10,7 @@
                 <div class="col-lg-4 col-md-4 ml-15">
                     <h6 class="mb-5"> Category</h6>
                     <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" name="type">
-                        <ui-select-match allow-clear="true" class="selected-item float-lt">
+                        <ui-select-match allow-clear="true" class="selected-item float-lt success-btn">
                             <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category'}}</p>
                         </ui-select-match>
                         <ui-select-choices repeat="type in servicetypes | filter: $select.search">

@@ -16,13 +16,19 @@
                             <span ng-bind-html="type | highlight: $select.search"></span>
                         </ui-select-choices>
                     </ui-select>
+
+                    <div class="custom-tooltip tooltip-right tooltip-center mt-15" ng-show="showCatError">
+                        <div class="custom-tooltip-inner">
+                            Select Category
+                        </div>                    
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-4"></div>
             </div>
         </div>
 
         <!-- Modal body -->
-        <div class="custom-modal-body">
+        <div class="custom-modal-body" ng-mouseover="showTooltip();" ng-mouseleave="hideTooltip();">
             <div class="row">
 
                 <div class="col-lg-4 col-md-4 br-1">

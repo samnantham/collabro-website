@@ -20,6 +20,15 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
         $rootScope.broadcastdescriptionerror = false;
     }
 
+    $rootScope.showTooltip = function(){
+        if(!$rootScope.broadcastData.category){
+            $rootScope.showCatError = true;
+        }
+    }
+    $rootScope.hideTooltip = function(){
+        $rootScope.showCatError = false;
+    }
+
     $rootScope.uploadvideo = function() {
         if (($rootScope.validURL($rootScope.broadcastData.embedvideo))&&($rootScope.validvideo($rootScope.broadcastData.embedvideo))) {
             $rootScope.viewingThumb = {};
