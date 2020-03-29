@@ -72,7 +72,7 @@
 .table-listing{
     width: 100%;
     float: left;
-    max-height: 460px;
+    max-height: 640px;
     overflow: hidden auto;
 }
 
@@ -130,7 +130,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            text-transform: uppercase;
+            text-transform: capitalize;
             span{
                 color: $black;
                 font-size: $font-m;

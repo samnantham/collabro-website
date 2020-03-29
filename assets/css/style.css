@@ -9964,7 +9964,7 @@ i.color-btn {
   max-height: 40px;
 }
 .table-card .table-content .table-col span {
-  font-size: 12px;
+  font-size: 14px;
   color: #7E8EA4;
 }
 .table-card .table-content .table-col ul {
@@ -10138,10 +10138,10 @@ i.color-btn {
   width: 100%;
   float: left;
   background: #7E8EA4;
-  height: 40px;
+  height: auto;
   display: flex;
   align-items: center;
-  padding: 0 30px;
+  padding: 20px;
   justify-content: space-between;
 }
 .message-head h2 {
@@ -10164,7 +10164,7 @@ i.color-btn {
 }
 
 .messenger {
-  padding: 20px 30px !important;
+  padding: 20px !important;
   width: 100%;
   float: left;
   background: #fff;
@@ -10467,7 +10467,7 @@ i.color-btn {
   background: #fff;
   z-index: 99999;
   overflow: hidden;
-  padding: 15px 30px;
+  padding: 20px;
 }
 .sender input[type=text], .sender input[type=password], .sender textarea {
   background: #fff;
@@ -10511,7 +10511,7 @@ i.color-btn {
   font-size: 20px;
 }
 .sender .msg-text {
-  width: calc(100% - 68px);
+  width: calc(100% - 69px);
   float: left;
   height: 100%;
   position: relative;
@@ -13979,7 +13979,10 @@ ul.simple-list li:last-of-type {
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   background: transparent;
   border: transparent;
-  padding: inherit;
+  padding: 0;
+  height: auto;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-holder {
@@ -15215,7 +15218,7 @@ input:checked + .slider:before {
 .table-listing {
   width: 100%;
   float: left;
-  max-height: 460px;
+  max-height: 640px;
   overflow: hidden auto;
 }
 
@@ -15277,7 +15280,7 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .followers-area .followers-list li span {
   color: #333;
