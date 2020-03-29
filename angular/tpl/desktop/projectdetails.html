@@ -38,7 +38,7 @@
                             </div>
                         </slick>
                         <div class="thumbslider">
-                            <slick data="projectData.images" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
+                            <slick data="carouselItems" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
                                 <div class="thumbholder" ng-repeat="(key,image) in carouselItems">
                                     <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
                                 </div>

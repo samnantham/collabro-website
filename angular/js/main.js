@@ -105,29 +105,27 @@ angular.module('app')
                 event: {
                     afterChange: function(event, slick, currentSlide, nextSlide) {
                         $rootScope.productslick.method.slickGoTo(currentSlide);
-                        if(currentSlide > 0){
-                            var previous = currentSlide - 1;
-                        }else{
-                            var previous = $rootScope.carouselItems.length - 1;
-                        } 
-                        if($rootScope.carouselItems[previous].filetype == 2){
-                            if($rootScope.carouselItems[previous].file.includes('vimeo')){  
-                                $('#vimeo'+previous+' .videoClass').each(function(index) {
+                        if($rootScope.carouselItems[$scope.previous].filetype == 2){
+                            if($rootScope.carouselItems[$scope.previous].file.includes('vimeo')){  
+                                $('#vimeo'+$scope.previous+' .videoClass').each(function(index) {
                                     $(this).attr('src', $(this).attr('src'));
                                 });
-                        }else if($rootScope.carouselItems[previous].file.includes('youtu')){    
-                            $('#youtube'+previous+' .videoClass').each(function(index) {
+                        }else if($rootScope.carouselItems[$scope.previous].file.includes('youtu')){    
+                            $('#youtube'+$scope.previous+' .videoClass').each(function(index) {
                                 $(this).attr('src', $(this).attr('src'));
                             });
                        }else{
-                                $('#soundcloud'+previous+' iframe').each(function(index) {
+                                $('#soundcloud'+$scope.previous+' iframe').each(function(index) {
                                     $(this).attr('src', $(this).attr('src'));
                                 });
                             }
                         }
                     },
+                    beforeChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.previous = currentSlide;
+                    },
                     init: function(event, slick) {
-                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
+                        slick.slickGoTo(0); // slide to correct index when init
                     }
                 }
             };
