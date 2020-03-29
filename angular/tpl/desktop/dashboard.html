@@ -193,7 +193,7 @@
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label">Address</label>
-                                                            <textarea name="address" class="form-control" rows="4" placeholder="Street name Unit no City State" ng-model="userData.address" required ng-disabled="!addressedit"></textarea>
+                                                            <textarea name="address" class="form-control" rows="4" placeholder="Street name Unit no City State" ng-model="userData.address" required ng-class="{'disabled':!addressedit}"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -201,13 +201,13 @@
                                                     <div class="col-lg-5 col-md-5">
                                                         <div class="form-group">
                                                             <label class="control-label">Postal Code</label>
-                                                            <input type="text" class="form-control" placeholder="postal code" name="postalcode" ng-model="userData.postalcode" required numbers-only ng-disabled="!addressedit" />
+                                                            <input type="text" class="form-control" placeholder="postal code" name="postalcode" ng-model="userData.postalcode" required numbers-only ng-class="{'disabled':!addressedit}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-5 col-md-5 col-lg-offet-2 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">&nbsp;</label>
-                                                            <input class="magic-checkbox" type="checkbox" name="layout" id="show-map" value="option" ng-true-value="1" ng-false-value="0" ng-model="userData.showmap" ng-disabled="!addressedit">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout" id="show-map" value="option" ng-true-value="1" ng-false-value="0" ng-model="userData.showmap" ng-class="{'disabled':!addressedit}">
                                                             <label class="text" for="show-map">Show Map</label>
                                                         </div>
                                                     </div>
@@ -216,7 +216,7 @@
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label">Organisation</label>
-                                                            <input type="text" class="form-control" placeholder="Name of company or organiser" name="organisation" ng-model="userData.organisation" ng-disabled="!addressedit" />
+                                                            <input type="text" class="form-control" placeholder="Name of company or organiser" name="organisation" ng-model="userData.organisation" ng-class="{'disabled':!addressedit}" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -226,7 +226,7 @@
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label">Business Email</label>
-                                                            <input type="email" name="email" ng-model="userData.email" required ng-disabled="!addressedit" class="form-control" placeholder="Email" />
+                                                            <input type="email" name="email" ng-model="userData.email" required ng-class="{'disabled':!addressedit}" class="form-control" placeholder="Email" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -234,14 +234,14 @@
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-2">&nbsp;</label>
-                                                            <input class="magic-checkbox" type="radio" name="private" id="private" value="1" ng-checked="userData.isprivate" ng-disabled="!addressedit" />
+                                                            <input class="magic-checkbox" type="radio" name="private" id="private" value="1" ng-checked="userData.isprivate" ng-class="{'disabled':!addressedit}" />
                                                             <label class="text" for="private">Private</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-2">&nbsp;</label>
-                                                            <input class="magic-checkbox" type="radio" name="private" id="public" value="0" ng-checked="!userData.isprivate" ng-disabled="!addressedit" />
+                                                            <input class="magic-checkbox" type="radio" name="private" id="public" value="0" ng-checked="!userData.isprivate" ng-class="{'disabled':!addressedit}" />
                                                             <label class="text" for="public">Public</label>
                                                         </div>
                                                     </div>
@@ -255,12 +255,12 @@
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" ng-model="userData.countrycode" name="countrycode" required ng-disabled="!addressedit" placeholder="+65" />
+                                                            <input type="text" class="form-control" ng-model="userData.countrycode" name="countrycode" required ng-class="{'disabled':!addressedit}" placeholder="+65" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-9 col-md-9">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="998 999 999" required ng-model="userData.phonenumber" name="phonenumber" ng-disabled="!addressedit" numbers-only/>
+                                                            <input type="text" class="form-control" placeholder="998 999 999" required ng-model="userData.phonenumber" name="phonenumber" ng-class="{'disabled':!addressedit}" numbers-only/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -269,7 +269,7 @@
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label">Company UEN No.</label>
-                                                            <input type="text" class="form-control" placeholder="Company UEN No." ng-model="userData.company_uen" name="company_uen" ng-disabled="!addressedit" />
+                                                            <input type="text" class="form-control" placeholder="Company UEN No." ng-model="userData.company_uen" name="company_uen" ng-class="{'disabled':!addressedit}" />
                                                         </div>
                                                     </div>
                                                 </div>

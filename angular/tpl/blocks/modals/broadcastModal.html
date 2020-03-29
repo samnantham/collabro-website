@@ -34,7 +34,7 @@
                         </div>
                         <input name="images" type="hidden" ng-model="broadcastData.productfile" ng-required="broadcastData.images.length == 0" class="broad-images">
                         <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                            ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!broadcastData.category" ng-class="{'upload-btn-disabled': !broadcastData.category}" ng-if="!viewingThumb.file">
+                            ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-class="{'disabled':!broadcastData.category}" ng-class="{'upload-btn-disabled': !broadcastData.category}" ng-if="!viewingThumb.file">
                             <div class="upload-inner">
                                 <div class="icon-container">
                                     <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
@@ -82,7 +82,7 @@
                                 <div class="thumb" ng-class="{'active' : key == broadcastData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
                             </div>
                             <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                                ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="broadcastData.images.length < 6" ng-disabled="!broadcastData.category">
+                                ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="broadcastData.images.length < 6" ng-class="{'disabled':!broadcastData.category}">
                                 <div class="add-thumb">+</div>
                             </div>
                         </div>
@@ -96,13 +96,13 @@
 
                         <div class="form-group mb-0">
                             <label class="control-label">Title</label>
-                            <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="broadcastData.title" required ng-disabled="!broadcastData.category" maxlength="100">
+                            <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="broadcastData.title" required ng-class="{'disabled':!broadcastData.category}" maxlength="100">
                             <span class="error error-text" ng-if="broadcasttitleerror">Enter Feed Title</span>
                         </div>
 
                         <div class="form-group mt-30 mb-0">
                             <label class="control-label">Description</label>
-                            <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="broadcastData.description" required ng-disabled="!broadcastData.category" maxlength="1000"></textarea>
+                            <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="broadcastData.description" required ng-class="{'disabled':!broadcastData.category}" maxlength="1000"></textarea>
                             <span class="error error-text" ng-if="broadcastdescriptionerror">Enter Feed Description</span>
                         </div>
 

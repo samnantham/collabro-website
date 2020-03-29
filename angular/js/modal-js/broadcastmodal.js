@@ -1,7 +1,7 @@
 app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
 	$rootScope.broadcastData = {};
     $rootScope.broadcastData.images = [];
-    $rootScope.broadcastData.category = 'Service';
+    //$rootScope.broadcastData.category = 'Service';
     $rootScope.broadcastData.productfile = '';
     $rootScope.imageerrormsg = "Please Add some images or Videos";
 

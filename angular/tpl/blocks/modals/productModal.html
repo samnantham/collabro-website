@@ -36,7 +36,7 @@
                             <span class="error error-text" ng-if="imageerror">{{imageerrormsg}}</span>
                         </div>
                         <input name="images" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0" class="broad-images">
-                        <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type" ng-class="{'upload-btn-disabled': !formData.type}" ng-if="!viewingThumb.file">
+                        <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-class="{'disabled':!formData.type}" ng-class="{'upload-btn-disabled': !formData.type}" ng-if="!viewingThumb.file">
                             <div class="upload-inner">
                                 <div class="icon-container">
                                     <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
@@ -81,7 +81,7 @@
                                 <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == formData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
                                 <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
                             </div>
-                            <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type">
+                            <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-class="{'disabled':!formData.type}">
                                 <div class="add-thumb">+</div>
                             </div>
                         </div>
@@ -95,13 +95,13 @@
 
                         <div class="form-group mb-0">
                             <label class="control-label">Post Title</label>
-                            <input type="text" class="form-control" name="title" placeholder="e.g. Title of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100" />
+                            <input type="text" class="form-control" name="title" placeholder="e.g. Title of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-class="{'disabled':!formData.type}" maxlength="100" />
                             <span class="error error-text" ng-if="titleerror">Enter post Title</span>
                         </div>
 
                         <div class="form-group mt-30 mb-0">
                             <label class="control-label">Post Description</label>
-                            <textarea class="form-control" name="description" rows="10" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000"></textarea>
+                            <textarea class="form-control" name="description" rows="10" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." ng-model="formData.description" required ng-class="{'disabled':!formData.type}" maxlength="1000"></textarea>
                             <span class="error error-text" ng-if="descriptionerror">Enter post Description</span>
                         </div>
 
@@ -109,7 +109,7 @@
                             <div class="form-column flex-top-space">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Location</label>
-                                    <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-class="{'disabled':!formData.type}" onkeypress="return false;" onfocus="blur();">
                                         <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
                                             <p>
                                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
@@ -124,7 +124,7 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Skills</label>
-                                    <ui-select name="profession" ng-model="formData.profession" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" ng-required="formData.type=='Service'" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select name="profession" ng-model="formData.profession" theme="bootstrap" search-enabled="false" ng-class="{'disabled':!formData.type}" ng-required="formData.type=='Service'" onkeypress="return false;" onfocus="blur();">
                                         <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
                                             <p>
                                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.profession ? formData.profession : 'Select Skill'}}
@@ -140,7 +140,7 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Price</label>
-                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-class="{'disabled':!formData.type}" />
                                     <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>
@@ -150,7 +150,7 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">&nbsp;</label>
-                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false" ng-class="{'disabled':!formData.type}" onkeypress="return false;" onfocus="blur();">
                                         <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
                                             <p>
                                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
@@ -189,7 +189,7 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Price</label>
-                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-class="{'disabled':!formData.type}" />
                                     <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>
@@ -202,7 +202,7 @@
                             <div class="form-column flex-top-space">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Location</label>
-                                    <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-class="{'disabled':!formData.type}" onkeypress="return false;" onfocus="blur();">
                                         <ui-select-match allow-clear="true" class="selected-item float-lt">
                                             <p>{{formData.location ? formData.location : 'Select Location'}}</p>
                                         </ui-select-match>
@@ -221,7 +221,7 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Price</label>
-                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-class="{'disabled':!formData.type}" />
                                     <span class="input-icon">
                                         <i class="fa fa-lg fa-dollar"></i>
                                     </span>
@@ -232,7 +232,7 @@
                             <div class="form-column flex-top-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">&nbsp;</label>
-                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false" ng-class="{'disabled':!formData.type}" onkeypress="return false;" onfocus="blur();">
                                         <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
                                             <p>{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}</p>
                                         </ui-select-match>
@@ -282,7 +282,7 @@
                             <div class="form-column flex-center-space ml-30">
                                 <div class="form-group">
                                     <label class="control-label">Price</label>
-                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type" />
+                                    <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="formData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-class="{'disabled':!formData.type}" />
                                     <span class="input-icon">
                                             <i class="fa fa-lg fa-dollar"></i>
                                         </span>
@@ -292,7 +292,7 @@
                             <div class="form-column flex-center-space ml-30">
                                 <div class="form-group wd-100">
                                     <label class="control-label">&nbsp;</label>
-                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false" ng-class="{'disabled':!formData.type}" onkeypress="return false;" onfocus="blur();">
                                         <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
                                             <p>{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}</p>
                                         </ui-select-match>
@@ -319,7 +319,7 @@
                                 </div>
 
                                 <div class="form-group wd-100" ng-if="formData.type == 'Service'">
-                                    <input class="magic-checkbox" type="checkbox" name="layout" id="save" ng-disabled="!formData.type" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
+                                    <input class="magic-checkbox" type="checkbox" name="layout" id="save" ng-class="{'disabled':!formData.type}" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
                                     <label class="text" for="save">Negotiable</label>
                                 </div>
                             </div>
@@ -348,7 +348,7 @@
                             <div class="form-column-50 flex-top-space ml-15 mr-0">
                                 <div class="form-group" ng-if="formData.type != 'Service'">
                                     <label class="control-label">Collection and Physical Store Address</label>
-                                    <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type">Insert Address?</button>
+                                    <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('address');" ng-class="{'disabled':!formData.type}">Insert Address?</button>
                                 </div>
                             </div>
                         </div>
@@ -474,7 +474,7 @@
                             <div class="form-column-50 flex-top-space ml-15 mr-0">
                                 <div class="form-group" ng-if="formData.type != 'Service'">
                                     <label class="control-label">Collection and Physical Store Address</label>
-                                    <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type">Back to Info?</button>
+                                    <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('info');" ng-class="{'disabled':!formData.type}">Back to Info?</button>
                                 </div>
                             </div>
                         </div>
@@ -487,7 +487,7 @@
         <!-- Modal footer -->
         <div class="custom-modal-footer text-right mb-10">
             <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
-            <button type="submit" class="btn success-btn ml-30" ng-disabled="!formData.type">Publish Item</button>
+            <button type="submit" class="btn success-btn ml-30" ng-class="{'disabled':!formData.type}">Publish Item</button>
         </div>
     </form>
 

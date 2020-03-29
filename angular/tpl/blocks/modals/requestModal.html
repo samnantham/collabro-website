@@ -127,7 +127,7 @@
 
                         <div class="form-group mb-0">
                             <label class="control-label">Service Title</label>
-                            <input type="text" class="form-control" name="title" placeholder="e.g. Title of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.request_type" maxlength="100" />
+                            <input type="text" class="form-control" name="title" placeholder="e.g. Title of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-class="{'disabled':!formData.type}" maxlength="100" />
                             <span class="error error-text" ng-if="titleerror">Enter post Title</span>
                         </div>
 

@@ -42,7 +42,7 @@
                         </div>
                         <input name="images" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0" class="broad-images">
                         <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                            ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type" ng-class="{'upload-btn-disabled': !formData.type}" ng-if="!viewingThumb.file">
+                            ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-class="{'disabled':!formData.type}" ng-class="{'upload-btn-disabled': !formData.type}" ng-if="!viewingThumb.file">
                             <div class="upload-inner">
                                 <div class="icon-container">
                                     <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
@@ -90,7 +90,7 @@
                                 <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
                             </div>
                             <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                                ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type">
+                                ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-class="{'disabled':!formData.type}">
                                 <div class="add-thumb">+</div>
                             </div>
                         </div>
@@ -104,13 +104,13 @@
 
                         <div class="form-group mb-0">
                             <label class="control-label">Title</label>
-                            <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100">
+                            <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-class="{'disabled':!formData.type}" maxlength="100">
                             <span class="error error-text" ng-if="titleerror">Enter Project Title</span>
                         </div>
 
                         <div class="form-group mt-30 mb-0">
                             <label class="control-label">Project Description</label>
-                            <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000"></textarea>
+                            <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="formData.description" required ng-class="{'disabled':!formData.type}" maxlength="1000"></textarea>
                             <span class="error error-text" ng-if="descriptionerror">Enter Feed Description</span>
                         </div>
 
@@ -118,7 +118,7 @@
                             <div class="form-column">
                                 <div class="form-group mb-0">
                                     <label class="control-label left">Location</label>
-                                    <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type">
+                                    <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-class="{'disabled':!formData.type}">
                                         <ui-select-match allow-clear="true" class="selected-item float-lt">
                                             <p>
                                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
@@ -138,7 +138,7 @@
                                 <div class="form-group">
                                     <label class="control-label left">Deadline</label>
                                     <datepicker date-format="dd/MM/yyyy" selector="form-control">
-                                        <input type="text" class="form-control input-with-icon" placeholder="Deadline" ng-model='formData.projectdeadline' ng-disabled="!formData.type" name="deadline" required />
+                                        <input type="text" class="form-control input-with-icon" placeholder="Deadline" ng-model='formData.projectdeadline' ng-class="{'disabled':!formData.type}" name="deadline" required />
                                         <span class="input-icon">
                                             <i class="fa fa-lg fa-calendar"></i>
                                         </span>
@@ -151,7 +151,7 @@
                         <div class="form-group mt-30 mb-30">
                             <div class="col-lg-4 col-md-4 pull-right">
 
-                                <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">Add Members</button>
+                                <button type="button" class="btn silver-btn block-btn" ng-click="changeactiveDiv('members');" ng-class="{'disabled':!formData.type}">Add Members</button>
                             </div>
                         </div>
                     </div>

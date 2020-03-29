@@ -35,8 +35,7 @@
                             <span class="error error-text" ng-if="imageerror">{{imageerrormsg}}</span>
                         </div>
 
-                        <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                            ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!todoData.type" ng-class="{'upload-btn-disabled': !todoData.type}" ng-if="!viewingThumb.file">
+                        <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-class="{'disabled':!todoData.type}" ng-class="{'upload-btn-disabled': !todoData.type}" ng-if="!viewingThumb.file">
                             <div class="upload-inner">
                                 <div class="icon-container">
                                     <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
@@ -84,7 +83,7 @@
                                 <div class="thumb" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
                             </div>
                             <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                                ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="todoData.images.length < 6" ng-disabled="!todoData.type">
+                                ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="todoData.images.length < 6" ng-class="{'disabled':!todoData.type}">
                                 <div class="add-thumb">+</div>
                             </div>
                         </div>
@@ -119,13 +118,13 @@
 
                         <div class="form-group mb-0">
                             <label class="control-label">Title</label>
-                            <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="todoData.title" required ng-disabled="!todoData.type" maxlength="100">
+                            <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="todoData.title" required ng-class="{'disabled':!todoData.type}" maxlength="100">
                             <span class="error error-text" ng-if="todotitleerror">Enter Feed Title</span>
                         </div>
 
                         <div class="form-group mt-30 mb-0">
                             <label class="control-label">Description</label>
-                            <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="todoData.description" required ng-disabled="!todoData.type" maxlength="1000"></textarea>
+                            <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="todoData.description" required ng-class="{'disabled':!todoData.type}" maxlength="1000"></textarea>
                             <span class="error error-text" ng-if="tododescriptionerror">Enter Feed Description</span>
                         </div>
 
@@ -136,7 +135,7 @@
                                     <span class="input-group-addon" style="cursor: pointer">
                                         <i class="fa fa-lg fa-calendar"></i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Deadline" ng-model='todoData.tododeadline' ng-disabled="!todoData.type" name="deadline" required />
+                                    <input type="text" class="form-control" placeholder="Deadline" ng-model='todoData.tododeadline' ng-class="{'disabled':!todoData.type}" name="deadline" required />
 
                                 </div>
                             </datepicker>
