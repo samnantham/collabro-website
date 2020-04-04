@@ -13976,13 +13976,18 @@ ul.simple-list li:last-of-type {
   border: 1px solid #FF1561;
 }
 
-.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control, .form-control.disabled {
   background: transparent;
   border: transparent;
   padding: 0;
   height: auto;
   -webkit-appearance: none;
-  appearance: none;
+  resize: none;
+  min-height: 25px;
+}
+
+.magic-checkbox.disabled ~ label {
+  pointer-events: none;
 }
 
 .form-holder {
