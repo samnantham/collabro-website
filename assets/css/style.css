@@ -12742,7 +12742,7 @@ ul.simple-list li:last-of-type {
 .right-no-project {
   width: 100%;
   float: left;
-  min-height: 400px;
+  min-height: 500px;
   position: relative;
 }
 .right-no-project .empty-msg {
