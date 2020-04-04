@@ -15066,7 +15066,7 @@ input:checked + .slider:before {
   align-items: center;
   flex-direction: row;
 }
-.feeds-wrapper .feed-head .feed-head-left h6 {
+.feeds-wrapper .feed-head .feed-head-left h5 {
   margin-left: 5px;
   width: 90%;
   text-overflow: ellipsis;
@@ -15092,6 +15092,7 @@ input:checked + .slider:before {
 .feeds-wrapper .feed-body p {
   color: #7E8EA4;
   white-space: pre-wrap;
+  font-size: 12px;
 }
 .feeds-wrapper .feed-footer {
   width: 100%;

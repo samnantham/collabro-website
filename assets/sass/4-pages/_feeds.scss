@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             flex-direction: row;
-            h6{
+            h5{
                 margin-left: 5px;
                 @include word(90%);
             }
@@ -38,6 +38,7 @@
         p{
             color: $secondary-text;
             white-space: pre-wrap;
+            font-size: $font-s;
         }
     }
     .feed-footer{

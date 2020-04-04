@@ -47,14 +47,14 @@
                             <div class="avatar avatar-xs">
                                 <img ng-src="{{IMGURL}}{{todoData.owner.avatar}}" ui-sref="app.viewuser({'id':todoData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
                             </div>
-                            <h6>{{todoData.owner.username | cut:true:20:''}} </h6>
+                            <h5>{{todoData.owner.username | cut:true:20:''}} </h5>
                         </div>
                         <div class="feed-head-right">
                             <i class="fa fa-circle" ng-class="todoData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{todoData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
                         </div>
                     </div>
                     <div class="feed-body">
-                        <h6>{{todoData.title}} ({{todoData.type}})</h6>
+                        <h4>{{todoData.title}} ({{todoData.type}})</h4>
                         <p>{{todoData.description | cut:true:385:''}}</p>
                     </div>
                     <div class="feed-footer">
