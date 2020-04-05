@@ -108,7 +108,7 @@
 
 .price{
     float: left;
-    color: $black;
+    color: $black !important;
     font-family: $font-special;
     font-size: $font-price;
     font-weight: $font-regular;

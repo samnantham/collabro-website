@@ -86,6 +86,9 @@
       .feed-body{
           height: calc(100% - 93px) !important;
       }
+      &.left-side-bar-enabled{
+          height: calc(470px + 122px) !important; 
+      }
   }  
 }
 
