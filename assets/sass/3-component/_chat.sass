@@ -34,13 +34,25 @@
 
 .messenger
 	padding: 20px !important
+	padding-bottom: 0px !important
 	width: 100%
 	float: left
 	background: $white
+	min-height: 400px
 	max-height: calc(100vh - 310px) !important
 	overflow-x: hidden
 	overflow-y: auto
 	-moz-appearance: none !important
+	display: flex
+	flex-direction: column
+	justify-content: flex-end
+	.no-chat
+		width: 100%
+		height: 400px
+		float: left
+		display: flex
+		align-items:  center
+		justify-content: center
 	&::-webkit-scrollbar
 		width: 4px		
 	&::-webkit-scrollbar-track
@@ -53,7 +65,9 @@
 		margin: 0
 		padding: 0px
 		font-size: $font-r
-		margin-bottom: 10px
+		margin-bottom: 16px
+		&:last-of-type
+			margin-bottom: 0px
 		.message
 			position: relative
 			width: auto
@@ -62,7 +76,6 @@
 			font-size: $font-r
 			display: flex
 			align-items: flex-end
-			margin-bottom: 5px
 			.chat-load img
 				width: auto
 				height: 25px
