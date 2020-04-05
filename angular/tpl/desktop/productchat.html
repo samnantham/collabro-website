@@ -14,13 +14,11 @@
                   </ul>
                </div>
                <div class="topbar-right">
-                  <ul class="topbar-list">
+                  <ul class="topbar-list mr-15">
                      <li><i class="fa fa-binoculars"></i> Followers {{ProductViewData.owner.followers}} </li>
                      <li><i class="fa fa-user"></i> Following {{ProductViewData.owner.following}} </li>
                      <li><i class="fa fa-eye"></i> Deals {{ProductViewData.owner.noofdeals}} </li>
                   </ul>
-               </div>
-               <div class="topbar-right">
                   <span class="close-icon secondary" ng-click="goback()"></span>
                </div>
             </div>
@@ -35,7 +33,7 @@
                         <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
                            <span ng-if="image.filetype == 2">
                               <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
-                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                              <sound-cloud-player url="{{image.file}}" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
                            </span>
                         </div>
                      </div>
