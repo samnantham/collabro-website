@@ -1,130 +1,144 @@
 <div ng-controller="ProductChatCtrl" class="content-wrapper">
-    <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
-    <div class="center-content">
-        <div class="row" id="content-area">
+   <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+   <div class="center-content">
+      <div class="row" id="content-area">
+         <div class="col-lg-12 col-md-12">
+            <div class="topbar">
+               <div class="topbar-left">
+                  <div class="avatar avatar-xs">
+                     <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" />
+                  </div>
+                  <ul class="topbar-list">
+                     <li>{{ProductViewData.owner.username | cut:true:15:''}} </li>
+                     <li><img ng-src="{{IMGURL}}{{ProductViewData.owner.xprank.icon}}" class="rank-icon" /> {{ProductViewData.owner.xprank.rankname}} </li>
+                  </ul>
+               </div>
+               <div class="topbar-right">
+                  <ul class="topbar-list">
+                     <li><i class="fa fa-binoculars"></i> Followers {{ProductViewData.owner.followers}} </li>
+                     <li><i class="fa fa-user"></i> Following {{ProductViewData.owner.following}} </li>
+                     <li><i class="fa fa-eye"></i> Deals {{ProductViewData.owner.noofdeals}} </li>
+                  </ul>
+               </div>
+               <div class="topbar-right">
+                  <ul class="topbar-list">
+                     <li><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus ? 'success':'error'"></i> <span>{{ProductViewData.owner.onlinestatus? 'Online':'Offline'}}</span></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="container-top mt-15" ng-if="ProductViewData.title">
+         <div class="content-detail-left">
+            <div class="slider-wrapper">
+               <div class="custom-slider">
+                  <slick data="carouselItems" infinite="false" init-onload="true" settings="productslick" class="slider-for">
+                     <div class="width100 sliderframer" ng-repeat="(key,image) in carouselItems">
+                        <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                           <span ng-if="image.filetype == 2">
+                              <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                           </span>
+                        </div>
+                     </div>
+                  </slick>
+                  <div class="thumbslider">
+                     <slick data="carouselItems" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
+                        <div class="thumbholder" ng-repeat="(key,image) in carouselItems">
+                           <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                        </div>
+                     </slick>
+                  </div>
+               </div>
+            </div>
+            <div class="more-info">
+               <div class="row">
+                  <div class="col-lg-4 col-md-4 text-center">
+                     <h5>Collection Items</h5>
+                     <div class="count">20</div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 text-center br-v">
+                     <h5>Completed Projects</h5>
+                     <div class="count">50</div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 text-center">
+                     <h5>{{ProductViewData.owner.xprank.rankname}}</h5>
+                     <img class="rank-icon" ng-src="{{IMGURL}}{{ProductViewData.owner.xprank.icon}}" />
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="content-detail-right feeds-no-options">
+            <div class="feeds-wrapper">
+               <div class="feed-head">
+                  <div class="feed-head-left">
+                     <div class="avatar avatar-xs">
+                        <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" ui-sref="app.viewuser({'id':ProductViewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" />
+                     </div>
+                     <h5>{{ProductViewData.owner.username | cut:true:20:''}}</h5>
+                  </div>
+                  <div class="feed-head-right">
+                     <i class="fa fa-circle" ng-class="ProductViewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{ProductViewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                  </div>
+               </div>
+               <div class="feed-body">
+                  <h4>{{ProductViewData.title}}</h4>
+                  <p>{{ProductViewData.description | cut:true:385:''}}</p>
+               </div>
+               <div class="feed-footer">
+                  <div class="feed-footer-left">
+                     <span class="price">{{ProductViewData.price ? '$' + ProductViewData.price: 'Free'}}</span>
+                     <span class="price-sub" ng-if="ProductViewData.price > 0 && ProductViewData.type!='Shop' && !ProductViewData.is_request ">per {{ProductViewData.periodtype}}</span>
+                  </div>
+                  <div class="feed-footer-right">
+                     <a title="Add to Wishlist" ng-click="updatewishstatus()" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
+                     <a ng-click="addTocart(ProductViewData)" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
+                     <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="wd-100 mt-15" ng-if="ProductViewData.showchat">
+         <div class="row" id="chat-area">
             <div class="col-lg-12 col-md-12">
-                <div class="container-top mb-15" ng-if="ProductViewData.title">
-                    <div class="content-detail-left">
-                        <div class="slider-wrapper">
-                            <div class="custom-slider">
-                                <slick data="carouselItems" infinite="false" init-onload="true" settings="productslick" class="slider-for">
-                                    <div class="width100 sliderframer" ng-repeat="(key,image) in carouselItems">
-                                        <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
-                                            <span ng-if="image.filetype == 2">
-                                                <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
-                                                <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </slick>
-                                <div class="thumbslider">
-                                    <slick data="carouselItems" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
-                                        <div class="thumbholder" ng-repeat="(key,image) in carouselItems">
-                                            <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
-                                        </div>
-                                    </slick>
-                                </div>
-                            </div>
+               <div class="chat-wrap">
+                  <div class="message-head">
+                     <h2>Product Discussions</h2>
+                     <div class="option">
+                        <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" tooltip-html="ProductViewData.owner.username" tooltip-append-to-body="true" tooltip-placement="top" />
+                        <img ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}" tooltip-html="ProductViewData.buyer.username" tooltip-append-to-body="true" tooltip-placement="top">
+                     </div>
+                  </div>
+                  <div class="messenger private-chat" scroll-to-bottom="chatData">
+                     <div class="message-wrap" ng-repeat="message in chatData">
+                        <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
+                           <div class="other-img" ng-if="message.user_id != user.id">
+                              <img ng-src="{{IMGURL}}{{message.avatar}}">
+                           </div>
+                           <div class="info">
+                              {{message.message}}
+                              <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message.fileurl);" alt="Chat" ng-if="message.isfile">
+                              <div class="time-left">
+                                 <span am-time-ago="message.created_at" ng-if="checkDate(message.created_at) == true"></span>
+                                 <time ng-if="checkDate(message.created_at) == false">{{ message.created_at | amDateFormat: 'DD-MMM-YY hh:mm a' }}</time>
+                              </div>
+                           </div>
                         </div>
-                        <div class="more-info">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 text-center">
-                                    <h5>Collection Items</h5>
-                                    <div class="count">20</div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 text-center br-v">
-                                    <h5>Completed Projects</h5>
-                                    <div class="count">50</div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 text-center">
-                                    <h5>{{ProductViewData.owner.xprank.rankname}}</h5>
-                                    <img class="rank-icon" ng-src="{{IMGURL}}{{ProductViewData.owner.xprank.icon}}" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-detail-right">
-                        <div class="feeds-wrapper">
-                            <div class="feed-head">
-                                <div class="feed-head-left">
-                                    <div class="avatar avatar-xs">
-                                        <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" ui-sref="app.viewuser({'id':ProductViewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" />
-                                    </div>
-                                    <h5>{{ProductViewData.owner.username | cut:true:20:''}}</h5>
-                                </div>
-                                <div class="feed-head-right">
-                                    <i class="fa fa-circle" ng-class="ProductViewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{ProductViewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
-                                </div>
-                            </div>
-                            <div class="feed-body">
-                                <h4>{{ProductViewData.title}}</h4>
-                                <p>{{ProductViewData.description | cut:true:385:''}}</p>
-                            </div>
-    <!--                         <div class="feed-footer top-feed-footer" ng-if="ProductViewData.owner.id != user.id">
-                                <div class="feed-footer-left">
-                                    <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:ProductViewData.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">View More</button>
-                                </div>
-                                <div class="feed-footer-right">
-                                    <a title="Add to Wishlist" ng-click="updatewishstatus()"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
-                                    <a ng-click="addTocart(ProductViewData)"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
-                                    <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
-                                </div>
-                            </div> -->
-                            <div class="feed-footer">
-                                <div class="feed-footer-left">
-                                    <span class="price">{{ProductViewData.price ? '$' + ProductViewData.price: 'Free'}}</span>
-                                    <span class="price-sub" ng-if="ProductViewData.price > 0 && ProductViewData.type!='Shop' && !ProductViewData.is_request ">per {{ProductViewData.periodtype}}</span>
-                                </div>
-                                <div class="feed-footer-right">
-                                    <a title="Add to Wishlist" ng-click="updatewishstatus()" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>
-                                    <a ng-click="addTocart(ProductViewData)" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-plus" ng-class="{'primary': ProductViewData.cart && ProductViewData.cart.status}"></i></a>
-                                    <a title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+                  <div class="sender">
+                     <div class="msg-text">
+                        <a class="small-btn"><i class="fa fa-smile-o"></i></a>
+                        <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendReplymessage()">
+                        <a class="small-btn" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="sendchatattachment($files);"><i class="fa fa-paperclip"></i></a>
+                     </div>
+                     <div class="chat-btn" ng-click="sendReplymessage()"><i class="fa fa-send"></i></div>
+                  </div>
+               </div>
             </div>
-        </div>
-        <div class="row  mt-15" id="chat-area">
-            <div class="col-lg-12 col-md-12" ng-if="ProductViewData.showchat">
-                <div class="chat-wrap">
-                    <div class="message-head">
-                        <h2>Product Discussions</h2>
-                        <div class="option">
-                            <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" tooltip-html="ProductViewData.owner.username" tooltip-append-to-body="true" tooltip-placement="top" />
-                            <img ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}" tooltip-html="ProductViewData.buyer.username" tooltip-append-to-body="true" tooltip-placement="top">
-                        </div>
-                    </div>
-
-                    <div class="messenger private-chat" scroll-to-bottom="chatData">
-
-                        <div class="message-wrap" ng-repeat="message in chatData">
-                            <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
-                                <div class="other-img" ng-if="message.user_id != user.id">
-                                    <img ng-src="{{IMGURL}}{{message.avatar}}">
-                                </div>
-                                <div class="info">{{message.message}}
-                                    <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message.fileurl);" alt="Chat" ng-if="message.isfile">
-                                    <div class="time-left">
-                                        <span am-time-ago="message.created_at" ng-if="checkDate(message.created_at) == true"></span>
-                                        <time ng-if="checkDate(message.created_at) == false">{{ message.created_at | amDateFormat: 'DD-MMM-YY hh:mm a' }}</time>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sender">
-                        <div class="msg-text">
-                            <a class="small-btn"><i class="fa fa-smile-o"></i></a>
-                            <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendReplymessage()">
-                            <a class="small-btn" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="sendchatattachment($files);"><i class="fa fa-paperclip"></i></a>
-                        </div>
-                        <div class="chat-btn" ng-click="sendReplymessage()"><i class="fa fa-send"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+   <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
