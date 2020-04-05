@@ -1,9 +1,17 @@
 app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
 	$rootScope.todoData = {};
-    $rootScope.todoData.type = 'Personal';
     $rootScope.todoData.images = [];
     $rootScope.selectedproject = {};
     $rootScope.imageerrormsg = "Please Upload todo images";
+
+    $rootScope.showTooltip = function(){
+        if(!$rootScope.todoData.type){
+            $rootScope.showCatError = true;
+        }
+    }
+    $rootScope.hideTooltip = function(){
+        $rootScope.showCatError = false;
+    }
 
 	$rootScope.resetTodoItems = function() {
         $rootScope.hidetodoerrors();

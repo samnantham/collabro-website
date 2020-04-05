@@ -1,157 +1,146 @@
 <script src="js/modal-js/todomodal.js"></script>
 <div class="custom-modal" ng-controller="TodoModalCtrl">
-    <form class="form-horizontal" name="todoForm" novalidate ng-submit="addtodo(todoForm);">
-        <input name="todofiles" type="hidden" ng-model="todoData.productfile" ng-required="todoData.images.length == 0 && todoData.type == 'Personal'">
-        <input name="project" type="hidden" ng-model="todoData.project" ng-required="todoData.type == 'Project'">
-        <div class="custom-modal-title modal-orange">
-            <div class="row flex-center">
-                <div class="col-lg-4 col-md-4">
-                    <h3>Todo</h3>
-                </div>
-                <div class="col-lg-4 col-md-4 ml-15">
-                    <h6 class="text-white mb-5">Type</h6>
-                    <ui-select ng-model="todoData.type" theme="bootstrap" ng-change="resetTodoItems()" search-enabled="false">
+   <form class="form-horizontal" name="todoForm" novalidate ng-submit="addtodo(todoForm);">
+      <input name="todofiles" type="hidden" ng-model="todoData.productfile" ng-required="todoData.images.length == 0 && todoData.type == 'Personal'">
+      <input name="project" type="hidden" ng-model="todoData.project" ng-required="todoData.type == 'Project'">
+      <div class="custom-modal-title modal-orange">
+         <div class="row flex-center">
+            <div class="col-lg-4 col-md-4">
+               <h3>Todo</h3>
+            </div>
+            <div class="col-lg-4 col-md-4 ml-15">
+               <h6 class="text-white mb-5">Type</h6>
+               <ui-select ng-model="todoData.type" theme="bootstrap" ng-change="resetTodoItems()" search-enabled="false">
+                  <ui-select-match allow-clear="true" class="selected-item float-lt">
+                     <p><i class="fa fa-circle-o"></i> {{todoData.type ? todoData.type : 'Select type'}}</p>
+                  </ui-select-match>
+                  <ui-select-choices repeat="type in todotypes| filter: $select.search  track by $index ">
+                     <span ng-bind-html="type | highlight: $select.search"></span>
+                  </ui-select-choices>
+               </ui-select>
+               <div class="custom-tooltip tooltip-right tooltip-center mt-15" ng-show="showCatError">
+                  <div class="custom-tooltip-inner">
+                     Select Type
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-md-4"></div>
+         </div>
+      </div>
+      <!-- Modal body -->
+      <div class="custom-modal-body">
+        <div class="modal-inner-overlay" ng-if="!todoData.type" ng-mouseover="showTooltip();" ng-mouseleave="hideTooltip();"></div>
+         <div class="row">
+            <div class="col-lg-4 col-md-4 br-1">
+               <div class="modal-left" ng-if="todoData.type == 'Personal' || !todoData.type">
+                  <div class="form-group mb-0">
+                     <label class="control-label">Add Images</label>
+                     <span class="error error-text" ng-if="imageerror">{{imageerrormsg}}</span>
+                  </div>
+                  <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
+                     ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="!viewingThumb.file">
+                     <div class="upload-inner">
+                        <div class="icon-container">
+                           <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
+                           <div class="img-holder"><img src="./../assets/img/video.png" title="upload"></div>
+                           <div class="img-holder"><img src="./../assets/img/camera.png" title="upload"></div>
+                        </div>
+                        <div class="upload-content">
+                           Add images, video from the web or take photos to upload to your page
+                        </div>
+                     </div>
+                     <div class="preview-img">
+                        <div class="img-holder" ng-if="viewingThumb.filetype == 1 && viewingThumb.isfile" ngf-background="viewingThumb.file"></div>
+                        <div class="img-holder" ng-if="viewingThumb.filetype == 1 && !viewingThumb.isfile" background-image="{{IMGURL}}{{viewingThumb.file}}"></div>
+                        <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
+                        </anguvideo>
+                        <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
+                        </sound-cloud-player>
+                     </div>
+                  </div>
+                  <div class="upload-container upload-wrapper" ng-if="viewingThumb.file && viewingThumb.isfile  && viewingThumb.filetype == 1" ngf-background="viewingThumb.file"></div>
+                  <div class="upload-container upload-wrapper" ng-if="viewingThumb.file && !viewingThumb.isfile  && viewingThumb.filetype == 1" background-image="{{IMGURL}}{{viewingThumb.file}}"></div>
+                  <div class="upload-container upload-wrapper" ng-if="viewingThumb.filetype == 2">
+                     <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
+                     </anguvideo>
+                     <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
+                     </sound-cloud-player>
+                  </div>
+                  <div class="upload-info"><i class="fa fa-info-circle"></i> Up to 6 representative Image and video</div>
+                  <div class="form-group mt-30 mb-0">
+                     <label class="control-label">Embeded Media</label>
+                  </div>
+                  <div class="form-group flex-center-space mb-0">
+                     <input type="text" class="form-control" placeholder="Youtube / Vimeo / Soundcloud" name="videourl" ng-model="todoData.embedvideo" ng-required="todoData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/"
+                        ng-disabled="(todoData.images.length == 6 && editkey == null)">
+                     <button type="button" class="btn silver-btn ml-20" ng-click="uploadvideo();" ng-disabled="(todoData.images.length == 6 && editkey == null)">Add</button>
+                  </div>
+                  <div class="thumb-wrapper mt-30">
+                     <div class="thumbs" ng-repeat="(key,data) in todoData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/popover/thumbnailpopover.html'" tooltip-trigger="click" ng-if="todoData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)"
+                        tooltip-class="preview-tooltip">
+                        <div class="thumb" ng-class="{'active' : key == todoData.thumbimage}" ngf-background="data.file" ng-if="data.filetype == 1 && data.isfile"></div>
+                        <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
+                        <div class="thumb" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
+                     </div>
+                     <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
+                        ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="todoData.images.length < 6">
+                        <div class="add-thumb">+</div>
+                     </div>
+                  </div>
+                  <div class="upload-info mt-0"><i class="fa fa-info-circle"></i> Up to 6 representative Image and video</div>
+               </div>
+               <div class="modal-left" ng-if="todoData.type == 'Project'">
+                  <div class="form-group mb-0">
+                     <label class="control-label">Project </label><span class="error error-text" ng-if="projecterror"> Select any one project</span>
+                     <ui-select ng-model="selectedproject" theme="bootstrap" ng-change="applyproject(selectedproject);" search-enabled="false">
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
-                            <p><i class="fa fa-circle-o"></i> {{todoData.type ? todoData.type : 'Select type'}}</p>
+                           <p><i class="fa fa-circle-o"></i> {{selectedproject.title ? selectedproject.title : 'Select Project'}}</p>
                         </ui-select-match>
-                        <ui-select-choices repeat="type in todotypes| filter: $select.search  track by $index ">
-                            <span ng-bind-html="type | highlight: $select.search"></span>
+                        <ui-select-choices repeat="selectedproject in myprojects | filter: $select.search  track by $index ">
+                           <span ng-bind-html=" selectedproject.title |  highlight: $select.search"></span>
                         </ui-select-choices>
-                    </ui-select>
-                </div>
-                <div class="col-lg-4 col-md-4"></div>
+                     </ui-select>
+                  </div>
+                  <div class="thumb-wrapper mt-30">
+                     <div class="thumbs" ng-repeat="(key,data) in todoData.selectedproject.files">
+                        <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
+                        <div class="thumb" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-
-        <!-- Modal body -->
-        <div class="custom-modal-body">
-            <div class="row">
-
-                <div class="col-lg-4 col-md-4 br-1">
-                    <div class="modal-left" ng-if="!todoData.type || todoData.type == 'Personal'">
-
-                        <div class="form-group mb-0">
-                            <label class="control-label">Add Images</label>
-                            <span class="error error-text" ng-if="imageerror">{{imageerrormsg}}</span>
+            <div class="col-lg-8 col-md-8">
+               <div class="modal-right">
+                  <div class="form-group mb-0">
+                     <label class="control-label">Title</label>
+                     <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="todoData.title" required maxlength="100">
+                     <span class="error error-text" ng-if="todotitleerror">Enter Feed Title</span>
+                  </div>
+                  <div class="form-group mt-30 mb-0">
+                     <label class="control-label">Description</label>
+                     <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="todoData.description" required maxlength="1000"></textarea>
+                     <span class="error error-text" ng-if="tododescriptionerror">Enter Feed Description</span>
+                  </div>
+                  <div class="form-group mt-30 mb-0">
+                     <label class="control-label">Deadline</label>
+                     <datepicker date-format="dd/MM/yyyy" date-min-limit="{{minDate}}" selector="form-control">
+                        <div class="input-group">
+                           <span class="input-group-addon" style="cursor: pointer">
+                           <i class="fa fa-lg fa-calendar"></i>
+                           </span>
+                           <input type="text" class="form-control" placeholder="Deadline" ng-model='todoData.tododeadline' name="deadline" required />
                         </div>
-
-                        <div class="upload-container" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-class="{'disabled':!todoData.type}" ng-class="{'upload-btn-disabled': !todoData.type}" ng-if="!viewingThumb.file">
-                            <div class="upload-inner">
-                                <div class="icon-container">
-                                    <div class="img-holder"><img src="./../assets/img/upload.png" title="upload"></div>
-                                    <div class="img-holder"><img src="./../assets/img/video.png" title="upload"></div>
-                                    <div class="img-holder"><img src="./../assets/img/camera.png" title="upload"></div>
-                                </div>
-                                <div class="upload-content">
-                                    Add images, video from the web or take photos to upload to your page
-                                </div>
-                            </div>
-                            <div class="preview-img">
-                                <div class="img-holder" ng-if="viewingThumb.filetype == 1 && viewingThumb.isfile" ngf-background="viewingThumb.file"></div>
-                                <div class="img-holder" ng-if="viewingThumb.filetype == 1 && !viewingThumb.isfile" background-image="{{IMGURL}}{{viewingThumb.file}}"></div>
-                                <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
-                                </anguvideo>
-                                <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
-                                </sound-cloud-player>
-                            </div>
-                        </div>
-                        <div class="upload-container upload-wrapper" ng-if="viewingThumb.file && viewingThumb.isfile  && viewingThumb.filetype == 1" ngf-background="viewingThumb.file"></div>
-                        <div class="upload-container upload-wrapper" ng-if="viewingThumb.file && !viewingThumb.isfile  && viewingThumb.filetype == 1" background-image="{{IMGURL}}{{viewingThumb.file}}"></div>
-                        <div class="upload-container upload-wrapper" ng-if="viewingThumb.filetype == 2">
-                            <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
-                            </anguvideo>
-                            <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
-                            </sound-cloud-player>
-                        </div>
-                        <div class="upload-info"><i class="fa fa-info-circle"></i> Up to 6 representative Image and video</div>
-
-                        <div class="form-group mt-30 mb-0">
-                            <label class="control-label">Embeded Media</label>
-                        </div>
-
-                        <div class="form-group flex-center-space mb-0">
-                            <input type="text" class="form-control" placeholder="Youtube / Vimeo / Soundcloud" name="videourl" ng-model="todoData.embedvideo" ng-required="todoData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/"
-                                ng-disabled="!todoData.type || (todoData.images.length == 6 && editkey == null)">
-                            <button type="button" class="btn silver-btn ml-20" ng-click="uploadvideo();" ng-disabled="!todoData.type || (todoData.images.length == 6 && editkey == null)">Add</button>
-                        </div>
-
-                        <div class="thumb-wrapper mt-30">
-                            <div class="thumbs" ng-repeat="(key,data) in todoData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/popover/thumbnailpopover.html'" tooltip-trigger="click" ng-if="todoData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)"
-                                tooltip-class="preview-tooltip">
-                                <div class="thumb" ng-class="{'active' : key == todoData.thumbimage}" ngf-background="data.file" ng-if="data.filetype == 1 && data.isfile"></div>
-                                <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
-                                <div class="thumb" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
-                            </div>
-                            <div class="thumbs" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
-                                ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="todoData.images.length < 6" ng-class="{'disabled':!todoData.type}">
-                                <div class="add-thumb">+</div>
-                            </div>
-                        </div>
-                        <div class="upload-info mt-0"><i class="fa fa-info-circle"></i> Up to 6 representative Image and video</div>
-                    </div>
-                    <div class="modal-left" ng-if="!todoData.type || todoData.type == 'Project'">
-                        <div class="form-group mb-0">
-                            <label class="control-label">Project </label><span class="error error-text" ng-if="projecterror"> Select any one project</span>
-                            <ui-select ng-model="selectedproject" theme="bootstrap" ng-change="applyproject(selectedproject);" search-enabled="false">
-                                <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                    <p><i class="fa fa-circle-o"></i> {{selectedproject.title ? selectedproject.title : 'Select Project'}}</p>
-                                </ui-select-match>
-                                <ui-select-choices repeat="selectedproject in myprojects | filter: $select.search  track by $index ">
-                                    <span ng-bind-html=" selectedproject.title |  highlight: $select.search"></span>
-                                </ui-select-choices>
-                            </ui-select>
-
-                        </div>
-                        <div class="thumb-wrapper mt-30">
-                            <div class="thumbs" ng-repeat="(key,data) in todoData.selectedproject.files">
-
-                                <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
-                                <div class="thumb" ng-class="{'active' : key == todoData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-8 col-md-8">
-                    <div class="modal-right">
-
-                        <div class="form-group mb-0">
-                            <label class="control-label">Title</label>
-                            <input type="text" class="form-control broad-title" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="todoData.title" required ng-class="{'disabled':!todoData.type}" maxlength="100">
-                            <span class="error error-text" ng-if="todotitleerror">Enter Feed Title</span>
-                        </div>
-
-                        <div class="form-group mt-30 mb-0">
-                            <label class="control-label">Description</label>
-                            <textarea class="form-control broad-description" rows="10" name="description" placeholder="This is where you can put a description of your feed." ng-model="todoData.description" required ng-class="{'disabled':!todoData.type}" maxlength="1000"></textarea>
-                            <span class="error error-text" ng-if="tododescriptionerror">Enter Feed Description</span>
-                        </div>
-
-                        <div class="form-group mt-30 mb-0">
-                            <label class="control-label">Deadline</label>
-                            <datepicker date-format="dd/MM/yyyy" date-min-limit="{{minDate}}" selector="form-control">
-                                <div class="input-group">
-                                    <span class="input-group-addon" style="cursor: pointer">
-                                        <i class="fa fa-lg fa-calendar"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Deadline" ng-model='todoData.tododeadline' ng-class="{'disabled':!todoData.type}" name="deadline" required />
-
-                                </div>
-                            </datepicker>
-                            <span class="error error-text" ng-if="tododeadlineerror">Please select Deadline</span>
-                        </div>
-                    </div>
-
-                </div>
-
+                     </datepicker>
+                     <span class="error error-text" ng-if="tododeadlineerror">Please select Deadline</span>
+                  </div>
+               </div>
             </div>
-
-            <!-- Modal footer -->
-            <div class="custom-modal-footer text-right mb-30">
-                <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
-                <button type="submit" class="btn success-btn ml-30">Publish Item</button>
-            </div>
-        </div>
-    </form>
+         </div>
+      </div>
+      <!-- Modal footer -->
+      <div class="custom-modal-footer text-right mb-30">
+         <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
+         <button type="submit" class="btn success-btn ml-30" ng-disabled="!todoData.type">Publish Item</button>
+      </div>
+   </form>
 </div>

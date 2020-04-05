@@ -58,6 +58,15 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.hideerrors();
     }
 
+    $rootScope.showTooltip = function(){
+        if(!$rootScope.formData.type){
+            $rootScope.showCatError = true;
+        }
+    }
+    $rootScope.hideTooltip = function(){
+        $rootScope.showCatError = false;
+    }
+
     $rootScope.seteventFeatures = function() {
         if ($rootScope.formData.type == 'Service') {
             $rootScope.formData.features = angular.copy(app.Servicefeatures);
