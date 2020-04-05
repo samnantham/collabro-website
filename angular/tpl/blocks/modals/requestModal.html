@@ -38,10 +38,9 @@
         </div>
 
         <!-- Modal body -->
-        <div class="custom-modal-body" ng-mouseover="showTooltip();" ng-mouseleave="hideTooltip();">
-            <div class="modal-inner-overlay"></div>
+        <div class="custom-modal-body">
+            <div class="modal-inner-overlay" ng-if="!formData.request_category" ng-mouseover="showTooltip();" ng-mouseleave="hideTooltip();"></div>
             <div class="row">
-
                 <div class="col-lg-4 col-md-4 br-1">
                     <div class="modal-left">
                         <div class="notes">
@@ -200,7 +199,7 @@
         <!-- Modal footer -->
         <div class="custom-modal-footer text-right mb-10">
             <button type="button" class="btn danger-btn" ng-click="closeModal()">Cancel</button>
-            <button type="submit" class="btn success-btn ml-30" ng-disabled="!formData.request_type" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">Publish Item</button>
+            <button type="submit" class="btn success-btn ml-30" ng-disabled="!formData.request_category" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">Publish Item</button>
         </div>
     </form>
 </div>
