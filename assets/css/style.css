@@ -7793,6 +7793,10 @@ a {
   padding-left: 5px !important;
 }
 
+.pl-40 {
+  padding-left: 40px !important;
+}
+
 .m-0 {
   margin: 0px !important;
 }
@@ -13984,6 +13988,11 @@ ul.simple-list li:last-of-type {
   -webkit-appearance: none;
   resize: none;
   min-height: 25px;
+  pointer-events: none;
+}
+
+datepicker {
+  padding-left: 40px;
 }
 
 .magic-checkbox.disabled ~ label {
@@ -14020,8 +14029,9 @@ input[type=password] {
 
 /* Search top */
 .search-top {
-  width: calc(100% - 220px);
+  width: calc(100% - 230px);
   float: right;
+  margin-right: 10px;
 }
 .search-top .form-group {
   margin-bottom: 0px;

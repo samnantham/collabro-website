@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 ml-15">
                     <h6 class="text-white mb-5"> Type Of Service</h6>
-                    <div class="category-label silver-category">
+                    <div class="category-label green-category">
                             <i class="fa fa-circle-o"></i>
                             <span>Services</span>
                         </div>
@@ -143,14 +143,14 @@
                             <div class="form-column flex-top-space">
                                 <div class="form-group wd-100">
                                     <label class="control-label">Deadline</label>
-                                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                                    <datepicker class="form-control pl-40" date-format="dd/MM/yyyy" selector="form-control">
                                         <input type="text" class="form-control input-with-icon" placeholder="Deadline" name="deadline" required readonly ng-model='formData.requestdeadline' ng-disabled="!formData.request_type" />
                                         <span class="input-icon">
                                             <i class="fa fa-lg fa-calendar"></i>
                                         </span>
                                     </datepicker>
                                     <span class="error error-text" ng-if="deadlineerror">Deadline Required</span>
-                                </div>
+                                </div> 
                             </div>
                             <div class="form-column flex-top-space">
                                 <div class="form-group wd-100">
