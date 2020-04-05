@@ -11974,6 +11974,18 @@ i.color-btn {
 .custom-modal .custom-modal-body {
   width: 100%;
   float: left;
+  position: relative;
+}
+.custom-modal .custom-modal-body .modal-inner-overlay {
+  width: 100%;
+  float: left;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  background: #fff;
+  opacity: 0.5;
 }
 .custom-modal .custom-modal-body .modal-left {
   width: 100%;
@@ -13991,10 +14003,6 @@ ul.simple-list li:last-of-type {
   pointer-events: none;
 }
 
-datepicker {
-  padding-left: 40px;
-}
-
 .magic-checkbox.disabled ~ label {
   pointer-events: none;
 }
@@ -14029,9 +14037,9 @@ input[type=password] {
 
 /* Search top */
 .search-top {
-  width: calc(100% - 230px);
+  width: calc(100% - 240px);
   float: right;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .search-top .form-group {
   margin-bottom: 0px;

@@ -104,6 +104,18 @@
     .custom-modal-body{
         width: 100%;
         float: left;
+        position: relative;
+        .modal-inner-overlay{
+            width: 100%;
+            float: left;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 999;
+            background: $white;
+            opacity: 0.5;
+        }
         .modal-left{
             width: 100%;
             float: left;
