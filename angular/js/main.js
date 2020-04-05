@@ -599,7 +599,6 @@ angular.module('app')
                         }
                         if (localStorage.userData && !isMobile.phone) {
                             var userData = JSON.parse(localStorage.userData);
-                            console.log(userData)
                             if (userData.rememberme == 1) {
                                 $rootScope.userData = JSON.parse(localStorage.userData);
                             }
@@ -629,7 +628,6 @@ angular.module('app')
 
             $(window).resize(function() {
                 $rootScope.screenWidth = window.screen.width * window.devicePixelRatio;
-                console.log($rootScope.screenWidth)
                 $rootScope.setSliderConfig();
                 if ($rootScope.screenWidth < 800) {
                     $rootScope.currentdevice = 'mobile';
@@ -653,6 +651,7 @@ angular.module('app')
                 $rootScope.errors = [];
                 webServices.get('getauthenticateduser').then(function(getData) {
                     if (getData.status == 200) {
+                        console.log(getData.data)
                         $sessionStorage.user = getData.data;
                         localStorage.user = JSON.stringify($sessionStorage.user);
                         $rootScope.user = $sessionStorage.user;

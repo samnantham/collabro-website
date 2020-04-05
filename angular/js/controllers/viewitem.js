@@ -23,6 +23,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                         $scope.getLatandLong($rootScope.viewData.address);
                     }
                 }
+                console.log($rootScope.viewData)
 
                 $timeout(function() {
                     $rootScope.$emit("reloadSlider", {});
@@ -33,12 +34,18 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         });
     };
 
-    $rootScope.goprochat = function(){
-
-        if($rootScope.viewData.owner.id == $rootScope.user.id){
-            $state.go('app.chats');
+    $rootScope.showhideChat = function(){
+        if ($rootScope.viewData.chatData) {
+            if (Object.keys($rootScope.viewData.chatData).length > 0) {
+                $state.go('app.productchat', { 'id': $rootScope.viewData.chatData.id });
+            }
+        }else{
+            webServices.put('productchat/' + $rootScope.viewData.id).then(function(getData) {
+                if (getData.status == 200) {
+                    $state.go('app.productchat', { 'id': getData.data.id }); 
+                }
+            });
         }
-
     }
 
     $rootScope.setcommisionData = function() {

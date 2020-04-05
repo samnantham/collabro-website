@@ -502,20 +502,20 @@
                         <div class="progress-wrapper">
                             <div class="progress-label">
                                 <h6><i class="fa fa-circle success"></i> Service Earned</h6>
-                                <span class="secondary-price">${{user.experiencepoints}}</span>
+                                <span class="secondary-price">${{user.service_earned}}</span>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.experiencepoints*100)/user.allowedXP) + '%'}" tooltip="{{user.experiencepoints}}" tooltip-trigger="mouseenter">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.service_earned*100)/user.total_earned) + '%'}" tooltip="{{user.service_earned}}" tooltip-trigger="mouseenter">
                                 </div>                            
                             </div>
                         </div>    
                         <div class="progress-wrapper">
                             <div class="progress-label">
                                 <h6><i class="fa fa-circle warning"></i> Product Earned</h6>
-                                <span class="secondary-price">$0</span>
+                                <span class="secondary-price">${{user.product_earned}}</span>
                             </div>                    
                             <div class="progress">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                <div class="progress-bar progress-bar-warning" role="progressbar"  aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.product_earned*100)/user.total_earned) + '%'}"  tooltip="{{user.product_earned}}" tooltip-trigger="mouseenter">
                                 </div>
                             </div>
                         </div>
@@ -532,10 +532,10 @@
                         <div class="progress-wrapper">
                             <div class="progress-label">
                                 <h6><i class="fa fa-circle danger"></i> Rental Earned</h6>
-                                <span class="secondary-price">$0</span>
+                                <span class="secondary-price">${{user.rental_earned}}</span>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.rental_earned*100)/user.total_earned) + '%'}"  tooltip="{{user.rental_earned}}" tooltip-trigger="mouseenter">
                                 </div>
                             </div>
                         </div>

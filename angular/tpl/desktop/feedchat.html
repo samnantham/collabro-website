@@ -1,7 +1,7 @@
 <div ng-controller="FeedChatCtrl" class="content-wrapper">
     <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
     <div class="center-content">
-        <div class="row">
+        <div class="row" id="content-area">
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
@@ -74,41 +74,44 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div class="chat-wrap">
-                    <div class="message-head">
-                        <h2>Feed Discussions</h2>
-                        <div class="option">
-                            <img ng-src="{{IMGURL}}{{feedchat.user.avatar}}" tooltip-html="feedchat.user.username" tooltip-append-to-body="true" tooltip-placement="top">
-                            <img ng-src="{{IMGURL}}{{feedData.owner.avatar}}" tooltip-html="feedData.owner.username" tooltip-append-to-body="true" tooltip-placement="top">
+
+        <div class="wd-100 mt-15" ng-if="feedData.showchat">
+            <div class="row" id="chat-area">
+                <div class="col-lg-12 col-md-12">
+                    <div class="chat-wrap">
+                        <div class="message-head">
+                            <h2>Feed Discussions</h2>
+                            <div class="option">
+                                <img ng-src="{{IMGURL}}{{feedchat.user.avatar}}" tooltip-html="feedchat.user.username" tooltip-append-to-body="true" tooltip-placement="top">
+                                <img ng-src="{{IMGURL}}{{feedData.owner.avatar}}" tooltip-html="feedData.owner.username" tooltip-append-to-body="true" tooltip-placement="top">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="messenger private-chat" scroll-to-bottom="chatData">
+                        <div class="messenger private-chat" scroll-to-bottom="chatData">
 
-                        <div class="message-wrap" ng-repeat="message in chatData">
-                            <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
-                                <div class="other-img" ng-if="message.user_id != user.id">
-                                    <img ng-src="{{IMGURL}}{{message.avatar}}">
-                                </div>
-                                <div class="info">{{message.message}}
-                                    <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message.fileurl);" alt="Chat" ng-if="message.isfile">
-                                    <div class="time-left">
-                                        <span am-time-ago="message.created_at" ng-if="checkDate(message.created_at) == true"></span>
-                                        <time ng-if="checkDate(message.created_at) == false">{{ message.created_at | amDateFormat: 'DD-MMM-YY hh:mm a' }}</time>
+                            <div class="message-wrap" ng-repeat="message in chatData">
+                                <div class="message" ng-class="{ 'me' : user.id == message.user_id , 'option-content' : message.isfile }">
+                                    <div class="other-img" ng-if="message.user_id != user.id">
+                                        <img ng-src="{{IMGURL}}{{message.avatar}}">
+                                    </div>
+                                    <div class="info">{{message.message}}
+                                        <img ng-src="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message.fileurl);" alt="Chat" ng-if="message.isfile">
+                                        <div class="time-left">
+                                            <span am-time-ago="message.created_at" ng-if="checkDate(message.created_at) == true"></span>
+                                            <time ng-if="checkDate(message.created_at) == false">{{ message.created_at | amDateFormat: 'DD-MMM-YY hh:mm a' }}</time>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sender">
-                        <div class="msg-text">
-                            <a class="small-btn"><i class="fa fa-smile-o"></i></a>
-                            <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendReplymessage()" id="emojionearea">
-                            <a class="small-btn" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="senduserchatattachment($files);"><i class="fa fa-paperclip"></i></a>
+                        <div class="sender">
+                            <div class="msg-text">
+                                <a class="small-btn"><i class="fa fa-smile-o"></i></a>
+                                <input type="text" placeholder="Send something..." ng-model="chatMessage.message" my-enter="sendReplymessage()" id="emojionearea">
+                                <a class="small-btn" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="senduserchatattachment($files);"><i class="fa fa-paperclip"></i></a>
+                            </div>
+                            <div class="chat-btn" ng-click="sendReplymessage()"><i class="fa fa-send"></i></div>
                         </div>
-                        <div class="chat-btn" ng-click="sendReplymessage()"><i class="fa fa-send"></i></div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 'use strict';
 app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$timeout', '$filter', '$firebaseArray', function($scope, $sce, $http, $state, $stateParams, webServices, utility, $rootScope, $timeout, $filter, $firebaseArray) {
     $scope.chatid = $stateParams.chatid;
-    $scope.feed =
     $rootScope.chatMessage = {};
     $rootScope.chatMessage.isfile = 0;
     $rootScope.chatMessage.fileurl  = '-';
@@ -9,12 +8,13 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
     $scope.getFeedChat = function() {
         webServices.get('feedchat/' + $scope.chatid).then(function(getData) {
             if (getData.status == 200) {
-                $scope.feedchat = getData.data;
-                $scope.feedData = getData.data.feed;
-                $rootScope.carouselItems = $scope.feedData.files;
-                if (($rootScope.user.id == $scope.feedchat.userid) || ($rootScope.user.id == $scope.feedchat.feed.owner.id)) {
+                $rootScope.feedchat = getData.data;
+                $rootScope.feedData = getData.data.feed;
+                $rootScope.feedData.showchat = false;
+                $rootScope.carouselItems = $rootScope.feedData.files;
+                if (($rootScope.user.id == $rootScope.feedchat.userid) || ($rootScope.user.id == $rootScope.feedchat.feed.owner.id)) {
                     $scope.chattype = 'feedchat';
-                    $scope.firebaseurl = '/feed-' + $scope.feedchat.id + '/';
+                    $scope.firebaseurl = '/feed-' + $rootScope.feedchat.id + '/';
                     $timeout(function() {
                         $rootScope.$emit("reloadSlider", {});
                     }, 1000);
@@ -29,14 +29,25 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         });
     }
 
+    $rootScope.showhideChat = function(){
+        $rootScope.feedData.showchat = !$rootScope.feedData.showchat;
+        $timeout(function() {
+            if($rootScope.feedData.showchat){
+                $rootScope.scrollToID('chat-area');
+            }else{
+                $rootScope.scrollToID('content-area');
+            }
+        }, 1000);
+    }
+
     $scope.updatefeedwish = function(feed, key) {
         var wishstatus = 1;
-        if ($scope.feedchat.wishstatus == 1) {
+        if ($rootScope.feedchat.wishstatus == 1) {
             wishstatus = 0;
         }
-        webServices.put('feedstatus/' + $scope.feedchat.feed.id + '/' + wishstatus).then(function(getData) {
+        webServices.put('feedstatus/' + $rootScope.feedchat.feed.id + '/' + wishstatus).then(function(getData) {
             if (getData.status == 200) {
-                $scope.feedchat.wishstatus = wishstatus;
+                $rootScope.feedchat.wishstatus = wishstatus;
             }
         });
     }
@@ -91,13 +102,13 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
     $rootScope.sendReplymessage = function() {
         var obj = {};
         obj.productchatid = 0;
-        obj.productid = $scope.feedchat.id;
+        obj.productid = $rootScope.feedchat.id;
         obj.lastmessage = $rootScope.chatMessage.message;
         obj.chattype = 3;
-        if ($rootScope.user.id == $scope.feedchat.feed.owner.id) {
-            obj.userid = $scope.feedchat.userid;
+        if ($rootScope.user.id == $rootScope.feedchat.feed.owner.id) {
+            obj.userid = $rootScope.feedchat.userid;
         } else {
-            obj.userid = $scope.feedchat.feed.owner.id;
+            obj.userid = $rootScope.feedchat.feed.owner.id;
         }
         $rootScope.updateUserMsg(obj);
         if ($rootScope.chatMessage.message) {
@@ -146,10 +157,10 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
             var status = 1;
         }
 
-        if($rootScope.user.id == $scope.feedchat.userid){
-            var userid = $scope.feedchat.feed.owner.id;
+        if($rootScope.user.id == $rootScope.feedchat.userid){
+            var userid = $rootScope.feedchat.feed.owner.id;
         }else{
-            var userid = $scope.feedchat.userid;
+            var userid = $rootScope.feedchat.userid;
         }
 
         webServices.put('followstatus/' + userid + '/' + status).then(function(getData) {
@@ -157,17 +168,17 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                 if(type == 'private'){
                     $scope.chatInfo.isfollow = status;
                 }else if(type == 'feed'){
-                    $scope.feedchat.isfollow = status;
+                    $rootScope.feedchat.isfollow = status;
                 }
             }
         });
     }
 
     $scope.gotouserProducts = function() {
-        if($rootScope.user.id == $scope.feedchat.userid){
-            var userid = $scope.feedchat.feed.owner.id;
+        if($rootScope.user.id == $rootScope.feedchat.userid){
+            var userid = $rootScope.feedchat.feed.owner.id;
         }else{
-            var userid = $scope.feedchat.userid;
+            var userid = $rootScope.feedchat.userid;
         }
         
         $state.go('app.userproducts', {

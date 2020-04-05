@@ -181,6 +181,10 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
                     $rootScope.broadcastData = {};
                     if($rootScope.currentdevice == 'mobile'){
                         $state.go('app.feeds');
+                    }if($rootScope.iseditfeed){
+                        $timeout(function() {
+                            $state.reload();
+                        }, 500);
                     }
                 } else if (getData.status == 401) {
                     $scope.errors = utility.getError(getData.data.message);
@@ -200,5 +204,19 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
         } 
     } 
 
-    $rootScope.resetFeedItems();
+    if ($rootScope.iseditfeed) {
+        webServices.get('feed/' + $rootScope.editfeedid).then(function(getData) {
+            if (getData.status == 200) {
+                $rootScope.broadcastData = getData.data;
+                $rootScope.broadcastData.thumbimage = 0;
+                $rootScope.broadcastData.images = $rootScope.broadcastData.files;
+                $rootScope.viewingThumb = $rootScope.broadcastData.images[0];
+            } else {
+                $rootScope.logout();
+            }
+        });
+    }else{
+        $rootScope.resetFeedItems();
+    }
+
 }]);

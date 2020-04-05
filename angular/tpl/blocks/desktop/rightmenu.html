@@ -1,577 +1,624 @@
 <div class="right-sidebar" ng-if="stateurl=='app.usermain'">
-
-    <div class="right-wrapper">
-        <div class="right-title">
-            <h4 class="text-uppercase text-left">{{user.xprank.rankname}} </h4>
-            <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
-        </div>
-        <div class="right-content">
-            <div class="chart-holder">
-                <div class="stats">STATS</div>
-                <div class="xp">XP</div>
-                <canvas id="doughnut" class="chart chart-doughnut" chart-options="ChartOptions" chart-data="chartdata" chart-colors="Colors" chart-labels="labels" width="100%" height="100%"> </canvas>
-            </div>
-        </div>
-    </div>
-
-    <div class="right-wrapper">
-        <div class="right-title">
-            <h4>Weekly Summary</h4>
-        </div>
-        <div class="right-content">
-            <ul class="member-list">
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>16 / 24</h5>
-                            <p>Completed Projects</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>9 / 12</h5>
-                            <p>Projects Ongoing</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>84 / 216</h5>
-                            <p>Projects Pending</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>2 / 38</h5>
-                            <p>Projects Cancel</p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="right-wrapper">
-        <div class="ads">
-            <img src="../assets/img/ads.png" />
-        </div>
-    </div>
+   <div class="right-wrapper">
+      <div class="right-title">
+         <h4 class="text-uppercase text-left">{{user.xprank.rankname}} </h4>
+         <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
+      </div>
+      <div class="right-content">
+         <div class="chart-holder">
+            <div class="stats">STATS</div>
+            <div class="xp">XP</div>
+            <canvas id="doughnut" class="chart chart-doughnut" chart-options="ChartOptions" chart-data="chartdata" chart-colors="Colors" chart-labels="labels" width="100%" height="100%"> </canvas>
+         </div>
+      </div>
+   </div>
+   <div class="right-wrapper">
+      <div class="right-title">
+         <h4>Weekly Summary</h4>
+      </div>
+      <div class="right-content">
+         <ul class="member-list">
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>16 / 24</h5>
+                     <p>Completed Projects</p>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>9 / 12</h5>
+                     <p>Projects Ongoing</p>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>84 / 216</h5>
+                     <p>Projects Pending</p>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>2 / 38</h5>
+                     <p>Projects Cancel</p>
+                  </div>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="right-wrapper">
+      <div class="ads">
+         <img src="../assets/img/ads.png" />
+      </div>
+   </div>
 </div>
-
-<div class="right-sidebar" ng-if="stateurl=='app.myfriends' || stateurl=='app.userchats' || stateurl=='app.userchat' || stateurl=='app.feedchat'">
-
-    <div class="right-wrapper">
-        <div class="right-title-new">
-            <button type="button" class="btn success-btn block-btn" ng-click="openCollaborateModal();">Create Group</button>
-        </div>
-    </div>
-
-    <div class="right-wrapper" ng-if="friendsandfollowers.followers.length > 0">
-        <div class="right-title">
-            <h4>Followers</h4>
-        </div>
-        <div class="right-content">
-            <ul class="member-list">
-                <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
-                    <a>
-                        <div class="list-left">
-                            <h5>{{user.username | cut:true:10:''}}</h5>
-                            <p>{{user.profession}}</p>
-                        </div>
-                        <div class="list-right">
-                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-        <div class="right-wrapper" ng-if="friendsandfollowers.friends.length > 0">
-        <div class="right-title">
-            <h4>Recent Members</h4>
-        </div>
-        <div class="right-content">
-            <ul class="member-list">
-                <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
-                    <a>
-                        <div class="list-left">
-                            <h5>{{user.username | cut:true:10:''}}</h5>
-                            <p>{{user.profession}}</p>
-                        </div>
-                        <div class="list-right">
-                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<div class="right-sidebar" ng-if="stateurl=='app.myfriends' || stateurl=='app.userchats' || stateurl=='app.userchat'">
+   <div class="right-wrapper">
+      <div class="right-title-new">
+         <button type="button" class="btn success-btn block-btn" ng-click="openCollaborateModal();">Create Group</button>
+      </div>
+   </div>
+   <div class="right-wrapper" ng-if="friendsandfollowers.followers.length > 0">
+      <div class="right-title">
+         <h4>Followers</h4>
+      </div>
+      <div class="right-content">
+         <ul class="member-list">
+            <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
+               <a>
+                  <div class="list-left">
+                     <h5>{{user.username | cut:true:10:''}}</h5>
+                     <p>{{user.profession}}</p>
+                  </div>
+                  <div class="list-right">
+                     <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                  </div>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="right-wrapper" ng-if="friendsandfollowers.friends.length > 0">
+      <div class="right-title">
+         <h4>Recent Members</h4>
+      </div>
+      <div class="right-content">
+         <ul class="member-list">
+            <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
+               <a>
+                  <div class="list-left">
+                     <h5>{{user.username | cut:true:10:''}}</h5>
+                     <p>{{user.profession}}</p>
+                  </div>
+                  <div class="list-right">
+                     <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                  </div>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
 </div>
-
 <div class="right-sidebar" ng-if="stateurl=='app.mydashboard' || stateurl=='app.viewuser'">
-    <div class="right-wrapper">
-        <div class="right-title">
-            <h4 class="text-uppercase text-left">{{user.xprank.rankname}} </h4>
-            <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
-        </div>
-        <div class="right-content">
-            <div class="chart-holder">
-                <div class="stats">STATS</div>
-                <div class="xp">XP</div>
-                <canvas id="doughnut" class="chart chart-doughnut" chart-options="ChartOptions" chart-data="chartdata" chart-colors="Colors" chart-labels="labels" width="100%" height="100%"> </canvas>
-            </div>
-        </div>
-    </div>
-
-    <div class="right-wrapper" ng-if="friendsandfollowers.friends.length > 0">
-        <div class="right-title">
-            <h4>Recent Members</h4>
-        </div>
-        <div class="right-content">
-            <ul class="member-list">
-                <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
-                    <a>
-                        <div class="list-left">
-                            <h5>{{user.username | cut:true:10:''}}</h5>
-                            <p>{{user.profession}}</p>
-                        </div>
-                        <div class="list-right">
-                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="right-wrapper" ng-if="friendsandfollowers.followers.length > 0">
-        <div class="right-title">
-            <h4>Followers</h4>
-        </div>
-        <div class="right-content">
-            <ul class="member-list">
-                <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
-                    <a>
-                        <div class="list-left">
-                            <h5>{{user.username | cut:true:10:''}}</h5>
-                            <p>{{user.profession}}</p>
-                        </div>
-                        <div class="list-right">
-                            <img ng-src="{{IMGURL}}{{user.avatar}}" />
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+   <div class="right-wrapper">
+      <div class="right-title">
+         <h4 class="text-uppercase text-left">{{user.xprank.rankname}} </h4>
+         <img class="rank-icon" ng-src="{{IMGURL}}{{user.xprank.icon}}" height="20px">
+      </div>
+      <div class="right-content">
+         <div class="chart-holder">
+            <div class="stats">STATS</div>
+            <div class="xp">XP</div>
+            <canvas id="doughnut" class="chart chart-doughnut" chart-options="ChartOptions" chart-data="chartdata" chart-colors="Colors" chart-labels="labels" width="100%" height="100%"> </canvas>
+         </div>
+      </div>
+   </div>
+   <div class="right-wrapper" ng-if="friendsandfollowers.friends.length > 0">
+      <div class="right-title">
+         <h4>Recent Members</h4>
+      </div>
+      <div class="right-content">
+         <ul class="member-list">
+            <li ng-repeat="(key,user) in friendsandfollowers.friends" ui-sref="app.viewuser({'id':user.id})">
+               <a>
+                  <div class="list-left">
+                     <h5>{{user.username | cut:true:10:''}}</h5>
+                     <p>{{user.profession}}</p>
+                  </div>
+                  <div class="list-right">
+                     <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                  </div>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="right-wrapper" ng-if="friendsandfollowers.followers.length > 0">
+      <div class="right-title">
+         <h4>Followers</h4>
+      </div>
+      <div class="right-content">
+         <ul class="member-list">
+            <li ng-repeat="(key,user) in friendsandfollowers.followers" ui-sref="app.viewuser({'id':user.id})">
+               <a>
+                  <div class="list-left">
+                     <h5>{{user.username | cut:true:10:''}}</h5>
+                     <p>{{user.profession}}</p>
+                  </div>
+                  <div class="list-right">
+                     <img ng-src="{{IMGURL}}{{user.avatar}}" />
+                  </div>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
 </div>
-
-<div class="right-sidebar" ng-if="stateurl == 'app.notification' || stateurl == 'app.chats' || stateurl == 'app.wishlist' || stateurl == 'app.projectlist' || stateurl == 'app.feeds' || stateurl == 'app.todos' || stateurl == 'app.viewtodo' || stateurl == 'app.viewfeed' || stateurl == 'app.howitworks' || stateurl == 'app.rewardsandbenefits'">
-
-    <div class="right-wrapper">
-         <div class="right-title">
-            <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();">Post Request</button>
-        </div>
-
-        <div class="right-no-project">
-
-            <div class="empty-msg">
-                <div class="msg-top">
-                    <i class="fa fa-info-circle"></i>
-                    <p>Having issues with Project? Visit the Resolution Center</p>
-                </div>
-                <div class="msg-bottom">
-                    <p>Review the completed project to earn extra Xperience Points!</p>
-                </div>
+<div class="right-sidebar" ng-if="stateurl == 'app.notification' || stateurl == 'app.chats' || stateurl == 'app.wishlist' || stateurl == 'app.projectlist' || stateurl == 'app.feeds' || stateurl == 'app.todos' || stateurl == 'app.viewtodo' || stateurl == 'app.howitworks' || stateurl == 'app.rewardsandbenefits'">
+   <div class="right-wrapper">
+      <div class="right-title">
+         <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();">Post Request
+         </button>
+      </div>
+      <div class="right-no-project">
+         <div class="empty-msg">
+            <div class="msg-top">
+               <i class="fa fa-info-circle"></i>
+               <p>Having issues with Project? Visit the Resolution Center</p>
             </div>
-
-            <div class="msg-post" ng-if="stateurl != 'app.chats' && stateurl != 'app.feeds' && stateurl != 'app.todos' && stateurl != 'app.wishlist' && stateurl != 'app.projectlist' && stateurl != 'app.notification'" ng-click="showhideChat();">
-                <img src="../assets/img/chat-icon.png" alt="message">
+            <div class="msg-bottom">
+               <p>Review the completed project to earn extra Xperience Points!</p>
             </div>
-
-        </div>
-    </div>
+         </div>
+         <div class="msg-post" ng-if="stateurl != 'app.chats' && stateurl != 'app.feeds' && stateurl != 'app.todos' && stateurl != 'app.wishlist' && stateurl != 'app.projectlist' && stateurl != 'app.notification'" ng-click="showhideChat();">
+            <img src="../assets/img/chat-icon.png" alt="message">
+         </div>
+      </div>
+   </div>
 </div>
-
 <div class="right-sidebar" ng-if="stateurl == 'app.search'">
-
-    <div class="right-wrapper">
-        <div class="right-title-new">
-            <h2>{{counts.overallcount}} </h2>
-            <h5>Total Listings</h5>
-        </div>
-    </div>
-
-    <div class="right-wrapper">
-        <div class="right-title">
-            <h4>Listings</h4>
-        </div>
-        <div class="right-content">
-            <ul class="member-list">
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>{{counts.servicecount}}</h5>
-                            <p>Service</p>
-                        </div>
-                        <div class="list-right self-top">
-                            <div class="icon-holder">
-                                <img src="../assets/img/right-icon.png" />
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>{{counts.shopcount}}</h5>
-                            <p>Product</p>
-                        </div>
-                        <div class="list-right self-top">
-                            <div class="icon-holder">
-                                <img src="../assets/img/right-icon.png" />
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>{{counts.rentalcount}}</h5>
-                            <p>Rental</p>
-                        </div>
-                        <div class="list-right self-top">
-                            <div class="icon-holder">
-                                <img src="../assets/img/right-icon.png" />
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>{{counts.eventcount}}</h5>
-                            <p>Events</p>
-                        </div>
-                        <div class="list-right self-top">
-                            <div class="icon-holder">
-                                <img src="../assets/img/right-icon.png" />
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>{{counts.usercount}}</h5>
-                            <p>Members</p>
-                        </div>
-                        <div class="list-right self-top">
-                            <div class="icon-holder">
-                                <img src="../assets/img/right-icon.png" />
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>{{counts.dealsmade}}</h5>
-                            <p>Deals Made</p>
-                        </div>
-                        <div class="list-right self-top">
-                            <div class="icon-holder">
-                                <img src="../assets/img/right-icon.png" />
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <div class="list-left">
-                            <h5>{{counts.conversationcount}}</h5>
-                            <p>Conversations</p>
-                        </div>
-                        <div class="list-right self-top">
-                            <div class="icon-holder">
-                                <img src="../assets/img/right-icon.png" />
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+   <div class="right-wrapper">
+      <div class="right-title-new">
+         <h2>{{counts.overallcount}} </h2>
+         <h5>Total Listings</h5>
+      </div>
+   </div>
+   <div class="right-wrapper">
+      <div class="right-title">
+         <h4>Listings</h4>
+      </div>
+      <div class="right-content">
+         <ul class="member-list">
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>{{counts.servicecount}}</h5>
+                     <p>Service</p>
+                  </div>
+                  <div class="list-right self-top">
+                     <div class="icon-holder">
+                        <img src="../assets/img/right-icon.png" />
+                     </div>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>{{counts.shopcount}}</h5>
+                     <p>Product</p>
+                  </div>
+                  <div class="list-right self-top">
+                     <div class="icon-holder">
+                        <img src="../assets/img/right-icon.png" />
+                     </div>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>{{counts.rentalcount}}</h5>
+                     <p>Rental</p>
+                  </div>
+                  <div class="list-right self-top">
+                     <div class="icon-holder">
+                        <img src="../assets/img/right-icon.png" />
+                     </div>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>{{counts.eventcount}}</h5>
+                     <p>Events</p>
+                  </div>
+                  <div class="list-right self-top">
+                     <div class="icon-holder">
+                        <img src="../assets/img/right-icon.png" />
+                     </div>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>{{counts.usercount}}</h5>
+                     <p>Members</p>
+                  </div>
+                  <div class="list-right self-top">
+                     <div class="icon-holder">
+                        <img src="../assets/img/right-icon.png" />
+                     </div>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>{{counts.dealsmade}}</h5>
+                     <p>Deals Made</p>
+                  </div>
+                  <div class="list-right self-top">
+                     <div class="icon-holder">
+                        <img src="../assets/img/right-icon.png" />
+                     </div>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <a>
+                  <div class="list-left">
+                     <h5>{{counts.conversationcount}}</h5>
+                     <p>Conversations</p>
+                  </div>
+                  <div class="list-right self-top">
+                     <div class="icon-holder">
+                        <img src="../assets/img/right-icon.png" />
+                     </div>
+                  </div>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
 </div>
+<div class="right-sidebar" ng-if="stateurl == 'app.viewitem' || stateurl == 'app.productchat' || stateurl == 'app.projectdetails'  || stateurl=='app.feedchat' || stateurl == 'app.viewfeed'">
+   <div class="right-wrapper">
+      <div class="right-title" ng-if="stateurl == 'app.viewitem'">
+         <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(viewData.owner.id == user.id)&&(viewData.is_request)"> Edit Request</button>
+         <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id == user.id)&&(!viewData.is_request)"> Edit {{(viewData.type == 'Service' ? 'Service' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : viewData.type == 'Event' ? 'Event': viewData.type))}}</button>
+         <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)"> {{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type)) }}</button>
+         <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(viewData.commisionData)"> View {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Order' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type)) }}</button>
+      </div>
+      <div class="right-title" ng-if=" stateurl == 'app.projectdetails' ">
+         <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl != 'app.projectdetails'">Post Request</button>
+         <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id != user.id">Post Request</button>
+         <button type="button" class="btn success-btn block-btn" ng-click="editProject();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id == user.id">Edit Project</button>
+      </div>
+      <div class="right-title" ng-if=" stateurl == 'app.productchat'">
+         <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(ProductViewData.owner.id == user.id)&&(ProductViewData.is_request)"> Edit Request</button>
+         <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(ProductViewData.owner.id == user.id)&&(!ProductViewData.is_request)"> Edit {{(ProductViewData.type == 'Service' ? 'Service' : (ProductViewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : ProductViewData.type == 'Event' ? 'Event': ProductViewData.type))}}</button>
+         <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(ProductViewData.owner.id != user.id)&&(!ProductViewData.commisionData)"> {{ (ProductViewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : ProductViewData.type == 'Rental' ? 'Book Now' : ProductViewData.type == 'Event' ? 'Register Now': ProductViewData.type)) }}</button>
+         <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(ProductViewData.owner.id != user.id)&&(ProductViewData.commisionData)"> View {{ (ProductViewData.type == 'Service' ? 'Commisioned' : (ProductViewData.type == 'Shop' ? 'Order' : ProductViewData.type == 'Rental' ? 'Booked' : ProductViewData.type == 'Event' ? 'Registered': ProductViewData.type)) }}</button>
+      </div>
+      <div class="right-title" ng-if=" stateurl == 'app.feedchat' || stateurl == 'app.viewfeed'">
+         <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="feedData.owner.id != user.id">Post Request</button>
+         <button class="btn success-btn block-btn" ng-click="editFeed(feedData);" ng-if="(feedData.owner.id == user.id)"> Edit Feed</button>
+      </div>
+   </div>
+   <div class="right-wrapper">
+      <div class="right-no-project">
+         <div class="msg-top" ng-if="viewData.owner.id != user.id && viewData.ownerproducts.length > 0 && stateurl == 'app.viewitem'">
+            <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
+            <ul>
+               <li ng-repeat="(key,data) in viewData.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
+               </li>
+            </ul>
+         </div>
+         <div class="msg-top" ng-if="ProductViewData.owner.id != user.id && ProductViewData.ownerproducts.length > 0 && stateurl == 'app.productchat'">
+            <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
+            <ul>
+               <li ng-repeat="(key,data) in ProductViewData.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
+               </li>
+            </ul>
+         </div>
+         <div class="msg-top" ng-if="feedData.owner.id != user.id && feedData.owner.ownerproducts.length > 0 && stateurl == 'app.feedchat'">
+            <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
+            <ul>
+               <li ng-repeat="(key,data) in feedData.owner.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
+               </li>
+            </ul>
+         </div>
+         <div class="post-content">
+            <ul class="member-list" ng-if="stateurl == 'app.viewitem'">
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>Singapore</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-map-marker"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(viewData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Date</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{viewData.owner.followers}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Followers</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                        </h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Appreciation</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{viewData.noofviews}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-eye"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(viewData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Joined</p>
+                     </div>
+                  </a>
+               </li>
+            </ul>
+            <ul class="member-list" ng-if="stateurl == 'app.productchat'">
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>Singapore</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-map-marker"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(ProductViewData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Date</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{ProductViewData.owner.followers}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Followers</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                        </h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Appreciation</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{ProductViewData.noofviews}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-eye"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(ProductViewData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Joined</p>
+                     </div>
+                  </a>
+               </li>
+            </ul>
+            <ul class="member-list" ng-if="stateurl == 'app.feedchat' || stateurl == 'app.viewfeed'">
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>Singapore</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-map-marker"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(feedData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Date</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{feedData.owner.followers}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Followers</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                        </h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Appreciation</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{feedData.owner.following}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-eye"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(feedData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Joined</p>
+                     </div>
+                  </a>
+               </li>
+            </ul>
+            <ul class="member-list" ng-if="stateurl == 'app.projectdetails'">
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>Singapore</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-map-marker"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(projectData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Date</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{projectData.owner.followers}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Followers</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                        </h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Appreciation</p>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{projectData.noofviews ? projectData.noofviews : 10}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <i class="fa fa-eye"></i>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a>
+                     <div class="list-left">
+                        <h5>{{convertDate(projectData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
+                     </div>
+                     <div class="list-right">
+                        <p>Joined</p>
+                     </div>
+                  </a>
+               </li>
+            </ul>
+         </div>
+         <div class="msg-post" ng-click="showhideChat();" ng-if="(stateurl != 'app.viewfeed') && (stateurl == 'app.viewitem' && viewData.owner.id != user.id)">
+            <img src="../assets/img/chat-icon.png" alt="message" />
+         </div>
 
-<div class="right-sidebar" ng-if="stateurl == 'app.viewitem' || stateurl == 'app.productchat' || stateurl == 'app.projectdetails'">
-            
-            <div class="right-wrapper">
-                <div class="right-title" ng-if="stateurl == 'app.viewitem'">
-                    <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(viewData.owner.id == user.id)&&(viewData.is_request)"> Edit Request</button>
-
-                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id == user.id)&&(!viewData.is_request)"> Edit {{(viewData.type == 'Service' ? 'Service' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : viewData.type == 'Event' ? 'Event': viewData.type))}}</button>
-
-                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)"> {{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type))  }}</button>
-
-                    <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(viewData.commisionData)"> View  {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Order' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type))  }}</button>
-                </div>
-
-                <div class="right-title" ng-if=" stateurl == 'app.projectdetails' ">
-                    <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl != 'app.projectdetails'">Post Request</button>
-                    <button type="button" class="btn success-btn block-btn" ng-click="openRequestModal();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id != user.id">Post Request</button>
-                    <button type="button" class="btn success-btn block-btn" ng-click="editProject();" ng-if="stateurl == 'app.projectdetails' && projectData.owner.id == user.id">Edit Project</button>
-                </div>
-
-                <div class="right-title" ng-if=" stateurl == 'app.productchat'">
-    
-                    <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(ProductViewData.owner.id == user.id)&&(ProductViewData.is_request)"> Edit Request</button>
-
-                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(ProductViewData.owner.id == user.id)&&(!ProductViewData.is_request)"> Edit {{(ProductViewData.type == 'Service' ? 'Service' : (ProductViewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : ProductViewData.type == 'Event' ? 'Event': ProductViewData.type))}}</button>
-
-                    <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(ProductViewData.owner.id != user.id)&&(!ProductViewData.commisionData)"> {{ (ProductViewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : ProductViewData.type == 'Rental' ? 'Book Now' : ProductViewData.type == 'Event' ? 'Register Now': ProductViewData.type))  }}</button>
-
-                    <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(ProductViewData.owner.id != user.id)&&(ProductViewData.commisionData)"> View  {{ (ProductViewData.type == 'Service' ? 'Commisioned' : (ProductViewData.type == 'Shop' ? 'Order' : ProductViewData.type == 'Rental' ? 'Booked' : ProductViewData.type == 'Event' ? 'Registered': ProductViewData.type))  }}</button>
-                </div>
-            </div>
-
-            <div class="right-wrapper">
-                <div class="right-no-project">   
-                    <div class="msg-top" ng-if="viewData.owner.id != user.id && viewData.ownerproducts.length > 0 && stateurl == 'app.viewitem'">
-                        <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
-                        <ul>
-                            <li ng-repeat="(key,data) in viewData.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
-                            </li>
-                        </ul>
-                    </div>
-
-                     <div class="msg-top" ng-if="ProductViewData.owner.id != user.id && ProductViewData.ownerproducts.length > 0 && stateurl == 'app.productchat'">
-                        <h5 class="msg-title"><img src="../assets/img/other-work.png" /> Other Works</h5>
-                        <ul>
-                            <li ng-repeat="(key,data) in ProductViewData.ownerproducts | limitTo: 2" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})">
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="post-content">
-                        <ul class="member-list" ng-if="stateurl == 'app.viewitem'">
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>Singapore</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <i class="fa fa-map-marker"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{convertDate(viewData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Date</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{viewData.owner.followers}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Followers</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Appreciation</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{viewData.noofviews}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <i class="fa fa-eye"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{convertDate(viewData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Joined</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <ul class="member-list" ng-if="stateurl == 'app.productchat'">
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>Singapore</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <i class="fa fa-map-marker"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{convertDate(ProductViewData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Date</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{ProductViewData.owner.followers}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Followers</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Appreciation</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{ProductViewData.noofviews}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <i class="fa fa-eye"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{convertDate(ProductViewData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Joined</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <ul class="member-list" ng-if="stateurl == 'app.projectdetails'">
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>Singapore</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <i class="fa fa-map-marker"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{convertDate(projectData.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Date</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{projectData.owner.followers}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Followers</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Appreciation</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{projectData.noofviews ? projectData.noofviews : 10}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <i class="fa fa-eye"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <div class="list-left">
-                                        <h5>{{convertDate(projectData.owner.created_at) | dateToISO | date:'dd.MM.yy'}}</h5>
-                                    </div>
-                                    <div class="list-right">
-                                        <p>Joined</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="msg-post" ng-click="showhideChat();">
-                        <img src="../assets/img/chat-icon.png" alt="message" />                 
-                    </div>
-
-                </div>
-            </div>
+         <div class="msg-post" ng-click="showhideChat();" ng-if="(stateurl == 'app.productchat' || stateurl == 'app.projectdetails'  || stateurl=='app.feedchat')">
+            <img src="../assets/img/chat-icon.png" alt="message" />
+         </div>
+      </div>
+   </div>
 </div>

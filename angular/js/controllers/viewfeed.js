@@ -31,6 +31,12 @@ app.controller('ViewFeedCtrl', ['$scope', '$http', '$state', '$stateParams', 'we
         });
     }
 
+    $rootScope.editFeed = function(data) {
+        $rootScope.iseditfeed = true;
+        $rootScope.editfeedid = data.id;
+        $rootScope.openbroadcastModal();
+    }
+
     $rootScope.editTodo = function(data) {
         $rootScope.isedittodo = true;
         $rootScope.edittodoid = data.id;

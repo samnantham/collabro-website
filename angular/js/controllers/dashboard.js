@@ -17,12 +17,6 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
     $scope.pagedata = [];
     $scope.myProducts = [];
 
-    if ($rootScope.user) {
-        if (!$rootScope.user.username) {
-            $rootScope.logout();
-        }
-    }
-
     $scope.updateInterestarea = function(item) {
         webServices.put('myinterestarea', item).then(function(getData) {
             if (getData.status == 200) {} else if (getData.status == 401) {
