@@ -62,7 +62,7 @@
     min-width: 150px;
     height: auto;
     position: absolute;
-    top: 0px;
+    top: auto;
     padding: 10px;
     font-size: $font-r;
     background: $tooltip;
@@ -121,9 +121,5 @@
             }
         }
     }
-    
-    &.tooltip-center{
-        top: 50%;
-        transform: translateY(-50%);
-    }
+
 }

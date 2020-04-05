@@ -11979,6 +11979,9 @@ i.color-btn {
   font-size: 20px;
   text-transform: capitalize;
 }
+.custom-modal .custom-modal-title h6 {
+  margin-top: 0px !important;
+}
 .custom-modal .custom-modal-title .dropdown-label {
   width: 100%;
   float: left;
@@ -13296,7 +13299,7 @@ ul.simple-list li:last-of-type {
   min-width: 150px;
   height: auto;
   position: absolute;
-  top: 0px;
+  top: auto;
   padding: 10px;
   font-size: 14px;
   background: #D60046;
@@ -13351,10 +13354,6 @@ ul.simple-list li:last-of-type {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid #D60046;
-}
-.custom-tooltip.tooltip-center {
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .search-container {
