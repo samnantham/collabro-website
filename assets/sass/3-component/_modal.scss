@@ -124,6 +124,16 @@
             float: left;
             
         }
+        .modal-second-title{
+            width: 100%;
+            float: left;
+            padding-bottom: 30px;
+            border-bottom: 1px solid $border;
+            color: $secondary-text;
+            span{
+                color: $default;
+            }
+        }
     }
     .custom-modal-footer{
         width: 100%;
@@ -131,6 +141,11 @@
         margin-top: 30px;
         .btn{
             min-width: 75px;
+        }
+        .modal-footer-left{
+            float: left;
+            font-size: $font-xs;
+            color: $secondary-text;
         }
     }
     .ui-select-bootstrap{

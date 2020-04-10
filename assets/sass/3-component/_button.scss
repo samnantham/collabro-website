@@ -117,6 +117,42 @@
 	}
 }
 
+.secondary-btn-border, .secondary-btn-border:focus{
+	color: $secondary-color !important;
+	background: transparent;
+	border: 1px solid;
+	border-color: $secondary-color;
+	// @include box-shadow($box-shadow-btn !important);
+	text-transform: none;
+	&:hover{
+		background: $secondary-color !important;
+		color: $white !important;
+		// @include box-shadow($box-shadow-hover !important);
+		i{
+			color: $white;
+		}
+	}
+	i{
+		margin-left: 0px !important;
+		color: $secondary-color;
+	}
+}
+
+.gray-btn{
+	color: $white !important;
+	background: $secondary-color;
+	border: 1px solid;
+	border-color: $secondary-color;
+	// @include box-shadow($box-shadow-btn !important);
+	cursor: default;
+	text-transform: none;
+	text-align: left;
+	i{
+		margin-left: 0px !important;
+		color: $white;
+	}
+}
+
 .btn-border-white, .btn-border-white:focus{
 	color: $white !important;
 	background: transparent;
@@ -243,6 +279,7 @@
 		@extend .orange-gradient;
 	}
 }
+
 
 .silver-btn{
 	@extend .silver-gradient;
