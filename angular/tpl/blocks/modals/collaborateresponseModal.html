@@ -26,40 +26,39 @@
          <div class="row">
             <div class="col-lg-4 col-md-4 br-1">
                <div class="modal-left">
-                <div class="notes" ng-if="!notificationprojectData.member.status">
-                            <div class="custom-tooltip tooltip-right" ng-if="checkError">
-                                <div class="custom-tooltip-inner">
-                                    You Need to agree TSA Protection rules!
-                                </div>
-                            </div>
-                            <p>NOTE: The is a <span class="success bold">Tripartite Standard Agreement</span> form to protect both parties against any issues in the future. Read for more info <span class="success bold">here</span>.</p>
-                            <div class="form-group mt-30 mb-0">
-                                <input class="magic-checkbox" type="checkbox" id="note" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="notificationprojectData.isaccept" required/>
-                                <label class="text font-s" for="note">Read and agreed to the TSA Protection Scheme</label>
-
-                            </div>
+                  <div class="notes" ng-if="!notificationprojectData.member.status">
+                     <div class="custom-tooltip tooltip-right" ng-if="checkError">
+                        <div class="custom-tooltip-inner">
+                           You Need to agree TSA Protection rules!
                         </div>
+                     </div>
+                     <p>NOTE: The is a <span class="success bold">Tripartite Standard Agreement</span> form to protect both parties against any issues in the future. Read for more info <span class="success bold">here</span>.</p>
+                     <div class="form-group mt-30 mb-0">
+                        <input class="magic-checkbox" type="checkbox" id="note" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="notificationprojectData.isaccept" required/>
+                        <label class="text font-s" for="note">Read and agreed to the TSA Protection Scheme</label>
+                     </div>
+                  </div>
                   <div class="slider-wrapper" ng-class="{'mt-30':!notificationprojectData.member.status}">
-                    <div class="custom-slider mob-slider">
+                     <div class="custom-slider mob-slider">
                         <slick data="popupcarouselItems" infinite="false" init-onload="false" settings="popupslick" class="slider-for">
-                            <div class="width100 sliderframer" ng-repeat="(key,image) in popupcarouselItems">
-                                <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
-                                    <span ng-if="image.filetype == 2">
-                                        <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
-                                        <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
-                                    </span>
-                                </div>
-                            </div>
+                           <div class="width100 sliderframer" ng-repeat="(key,image) in popupcarouselItems">
+                              <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                                 <span ng-if="image.filetype == 2">
+                                    <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                                    <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                                 </span>
+                              </div>
+                           </div>
                         </slick>
                         <div class="thumbslider">
-                            <slick data="popupcarouselItems" init-onload="true" settings="popupthumbslick" class="slider-nav">
-                                <div class="thumbholder" ng-repeat="(key,image) in popupcarouselItems">
-                                    <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
-                                </div>
-                            </slick>
+                           <slick data="popupcarouselItems" init-onload="true" settings="popupthumbslick" class="slider-nav">
+                              <div class="thumbholder" ng-repeat="(key,image) in popupcarouselItems">
+                                 <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                              </div>
+                           </slick>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
                </div>
             </div>
             <div class="col-lg-8 col-md-8">
@@ -72,7 +71,7 @@
                         <div class="row">
                            <div class="col-lg-2 col-md-2" ng-repeat="(no,member) in notificationprojectData.members">
                               <div class="avatar avatar-m">
-                                 <img ng-src="{{IMGURL}}{{member.user.avatar}}" tooltip-trigger="mouseenter" tooltip="{{member.user.username}}"  title="{{member.user.username}}">
+                                 <img ng-src="{{IMGURL}}{{member.user.avatar}}" tooltip-trigger="mouseenter" tooltip="{{member.user.username}}">
                               </div>
                            </div>
                         </div>
@@ -84,7 +83,7 @@
                         <div class="row">
                            <div class="col-lg-2 col-md-2">
                               <div class="avatar avatar-m">
-                                 <img ng-src="{{IMGURL}}{{notificationprojectData.owner.avatar}}" tooltip-trigger="mouseenter" tooltip="{{notificationprojectData.owner.username}}"  title="{{notificationprojectData.owner.username}}">
+                                 <img ng-src="{{IMGURL}}{{notificationprojectData.owner.avatar}}" tooltip-trigger="mouseenter" tooltip="{{notificationprojectData.owner.username}}">
                               </div>
                            </div>
                         </div>
@@ -129,7 +128,6 @@
          <button type="button" class="btn danger-btn" ng-click="closeModal()">Close</button>
          <button type="submit" class="btn success-btn ml-30" ng-if="!notificationprojectData.member.status" ng-click="acceptcollaboration()" ng-disabled="!notificationprojectData.isaccept">Accept Deal</button>
          <button type="button" class="btn success-btn ml-30" ng-if="notificationprojectData.member.status" ng-click="gotocollabchat();"><i class="fa fa-envelope-o mr-5"></i> Chat</button>
-         
       </div>
    </form>
 </div>
