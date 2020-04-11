@@ -10221,7 +10221,7 @@ i.color-btn {
   -moz-appearance: none !important;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  flex-flow: column nowrap;
 }
 .messenger .no-chat {
   width: 100%;
