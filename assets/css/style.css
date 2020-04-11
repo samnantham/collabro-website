@@ -13648,6 +13648,24 @@ ul.simple-list li:last-of-type {
   width: 100%;
   float: left;
 }
+.custom-slider.mob-slider .imgcontainer {
+  height: 200px !important;
+}
+.custom-slider.mob-slider .imgcontainer .anguvideo {
+  height: 200px;
+}
+.custom-slider.mob-slider .imgcontainer .anguvideo iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+.custom-slider.mob-slider .imgcontainer .anguvideo iframe .player {
+  max-width: 100% !important;
+  width: 100%;
+  height: 100%;
+}
 .custom-slider .imgcontainer {
   width: 100%;
   float: left;

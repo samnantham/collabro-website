@@ -40,7 +40,7 @@
                             </div>
                         </div>
                   <div class="slider-wrapper" ng-class="{'mt-30':!notificationprojectData.member.status}">
-                    <div class="custom-slider">
+                    <div class="custom-slider mob-slider">
                         <slick data="popupcarouselItems" infinite="false" init-onload="false" settings="popupslick" class="slider-for">
                             <div class="width100 sliderframer" ng-repeat="(key,image) in popupcarouselItems">
                                 <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
@@ -125,7 +125,7 @@
          </div>
       </div>
       <!-- Modal footer -->
-      <div class="custom-modal-footer text-right mb-10" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">
+      <div class="custom-modal-footer text-right bt-1 pt-30" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">
          <button type="button" class="btn danger-btn" ng-click="closeModal()">Close</button>
          <button type="submit" class="btn success-btn ml-30" ng-if="!notificationprojectData.member.status" ng-click="acceptcollaboration()" ng-disabled="!notificationprojectData.isaccept">Accept Deal</button>
          <button type="button" class="btn success-btn ml-30" ng-if="notificationprojectData.member.status" ng-click="gotocollabchat();"><i class="fa fa-envelope-o mr-5"></i> Chat</button>
