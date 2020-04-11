@@ -130,6 +130,60 @@ angular.module('app')
                 }
             };
 
+            $rootScope.popupslick = {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: true,
+                initialSlide: 0,
+                asNavFor: '.slider-nav',
+                method: {},
+                event: {
+                    afterChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.slickCurrentIndex2 = currentSlide;
+                    },
+                    init: function(event, slick) {
+                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
+                    }
+                }
+            };
+
+            $rootScope.popupthumbslick = {
+                focusOnSelect: true,
+                infinite: true,
+                initialSlide: 0,
+                slidesToShow: 3,
+                asNavFor: '.slider-for',
+                slidesToScroll: 1,
+                method: {},
+                event: {
+                    afterChange: function(event, slick, currentSlide, nextSlide) {
+                        $rootScope.popupslick.method.slickGoTo(currentSlide);
+                        if($rootScope.popupcarouselItems[$scope.previous].filetype == 2){
+                            if($rootScope.popupcarouselItems[$scope.previous].file.includes('vimeo')){  
+                                $('#vimeo'+$scope.previous+' .videoClass').each(function(index) {
+                                    $(this).attr('src', $(this).attr('src'));
+                                });
+                        }else if($rootScope.popupcarouselItems[$scope.previous].file.includes('youtu')){    
+                            $('#youtube'+$scope.previous+' .videoClass').each(function(index) {
+                                $(this).attr('src', $(this).attr('src'));
+                            });
+                       }else{
+                                $('#soundcloud'+$scope.previous+' iframe').each(function(index) {
+                                    $(this).attr('src', $(this).attr('src'));
+                                });
+                            }
+                        }
+                    },
+                    beforeChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.previous = currentSlide;
+                    },
+                    init: function(event, slick) {
+                        slick.slickGoTo(0); // slide to correct index when init
+                    }
+                }
+            };
+
             $rootScope.assignDoughnutdata = function() {
                 Chart.pluginService.register({
                     beforeDraw: function(chart, easing) {

@@ -1,0 +1,135 @@
+<script src="js/modal-js/collaborateresponsemodal.js"></script>
+<div class="custom-modal" ng-controller="CollaborateResponseModalCtrl">
+   <form class="form-horizontal">
+      <div class="custom-modal-title modal-orange">
+         <div class="row flex-center">
+            <div class="col-lg-4 col-md-4">
+               <h3>Collaboration Project</h3>
+            </div>
+            <div class="col-lg-4 col-md-4 ml-15">
+               <h6 class="text-white mb-5"> Service Type</h6>
+               <div class="category-label green-category">
+                  <i class="fa fa-circle-o"></i>
+                  <span>{{notificationprojectData.type}}</span>
+               </div>
+            </div>
+            <div class="col-lg-4 col-md-4"></div>
+         </div>
+      </div>
+      <!-- Modal body -->
+      <div class="custom-modal-body">
+         <div class="row mb-30">
+            <div class="col-lg-12 col-md-12">
+               <div class="modal-second-title"><span>{{notificationprojectData.owner.username}}</span> has invited you for a collaboration project with you!</div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-lg-4 col-md-4 br-1">
+               <div class="modal-left">
+                <div class="notes">
+                            <div class="custom-tooltip tooltip-right" ng-if="checkError">
+                                <div class="custom-tooltip-inner">
+                                    You Need to agree TSA Protection rules!
+                                </div>
+                            </div>
+                            <p>NOTE: The is a <span class="success bold">Tripartite Standard Agreement</span> form to protect both parties against any issues in the future. Read for more info <span class="success bold">here</span>.</p>
+                            <div class="form-group mt-30 mb-0">
+                                <input class="magic-checkbox" type="checkbox" id="note" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="notificationprojectData.isaccept" required/>
+                                <label class="text font-s" for="note">Read and agreed to the TSA Protection Scheme</label>
+
+                            </div>
+                        </div>
+                  <div class="slider-wrapper mt-30">
+                    <div class="custom-slider">
+                        <slick data="popupcarouselItems" infinite="false" init-onload="false" settings="popupslick" class="slider-for">
+                            <div class="width100 sliderframer" ng-repeat="(key,image) in popupcarouselItems">
+                                <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                                    <span ng-if="image.filetype == 2">
+                                        <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                                        <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                                    </span>
+                                </div>
+                            </div>
+                        </slick>
+                        <div class="thumbslider">
+                            <slick data="popupcarouselItems" init-onload="true" settings="popupthumbslick" class="slider-nav">
+                                <div class="thumbholder" ng-repeat="(key,image) in popupcarouselItems">
+                                    <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                </div>
+               </div>
+            </div>
+            <div class="col-lg-8 col-md-8">
+               <div class="modal-right">
+                  <div class="row">
+                     <div class="col-lg-8 col-md-8">
+                        <div class="form-group">
+                           <label class="control-label">Project Members</label>
+                        </div>
+                        <div class="row">
+                           <div class="col-lg-2 col-md-2" ng-repeat="(no,member) in notificationprojectData.members">
+                              <div class="avatar avatar-m">
+                                 <img ng-src="{{IMGURL}}{{member.user.avatar}}" tooltip-trigger="mouseenter" tooltip="{{member.user.username}}"  title="{{member.user.username}}">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                           <label class="control-label">Project Manager</label>
+                        </div>
+                        <div class="row">
+                           <div class="col-lg-2 col-md-2">
+                              <div class="avatar avatar-m">
+                                 <img ng-src="{{IMGURL}}{{notificationprojectData.owner.avatar}}" tooltip-trigger="mouseenter" tooltip="{{notificationprojectData.owner.username}}"  title="{{notificationprojectData.owner.username}}">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row mt-30">
+                     <div class="col-lg-12 col-md-12">
+                        <h4>{{notificationprojectData.title}}</h4>
+                        <p class="secondary mt-30">{{notificationprojectData.description}}</p>
+                     </div>
+                  </div>
+                  <div class="row mt-30">
+                     <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                           <label class="control-label">Deadline</label>
+                           <div class="btn block-btn gray-btn"><i class="fa fa-calendar"></i> {{notificationprojectData.deadline | date:"dd-MM-yyyy"}}</div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                           <label class="control-label">Location</label>
+                           <div class="btn block-btn gray-btn"><i class="fa fa-map-marker"></i> {{notificationprojectData.location}}</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row mt-30">
+                     <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                           <label class="control-label">Allocated Amount</label>
+                           <span class="price">
+                           {{notificationprojectData.totalcost | currency}}
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Modal footer -->
+      <div class="custom-modal-footer text-right mb-10" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">
+         <button type="button" class="btn danger-btn" ng-click="closeModal()">Close</button>
+         <button type="submit" class="btn success-btn ml-30" ng-if="!notificationprojectData.member.status" ng-click="acceptcollaboration()" ng-disabled="!notificationprojectData.isaccept">Accept Deal</button>
+         <button type="button" class="btn success-btn ml-30" ng-if="notificationprojectData.member.status" ng-click="gotocollabchat();"><i class="fa fa-envelope-o mr-5"></i> Chat</button>
+         
+      </div>
+   </form>
+</div>

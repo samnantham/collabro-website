@@ -80,8 +80,8 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                         $rootScope.ResponseData.productenddate = new Date($rootScope.ResponseData.enddate);
                     }
                     $rootScope.ResponseData.showdetails = true;
-                    console.log($rootScope.ResponseData.mytotalcounters)
-                    $rootScope.openModalPopup('responsemodal','ResponseModalCtrl');
+                    $rootScope.popupcarouselItems = $rootScope.ResponseData.images;
+                    $rootScope.openModalPopup('responseModal');
                 } else {
                     $rootScope.logout();
                 }
@@ -92,7 +92,8 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                 if (getData.status == 200) {
                     $rootScope.notificationprojectData = getData.data;
                     $rootScope.collabthumb = 0;
-                    $rootScope.openModalPopup('collaborateresponsemodal','CollaborateResponseModalCtrl');
+                    $rootScope.popupcarouselItems = $rootScope.notificationprojectData.files;
+                    $rootScope.openModalPopup('collaborateresponseModal');
                 } else {
                     $rootScope.logout();
                 }

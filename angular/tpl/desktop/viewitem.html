@@ -52,42 +52,100 @@
                 <div class="product-detail-info">
 
                     <h3 class="text-capitalize">{{viewData.title}}</h3>
-                    <span class="sub-title">{{viewData.profession ? viewData.profession : 'Photographer'}}: 
+                    <span class="sub-title">{{viewData.owner.profession}}: 
                         <span class="default"> {{viewData.owner.username}} </span>
                     </span>
                     <p>{{viewData.description}}</p>
 
-                    <div class="product-info-row" ng-if="viewData.type == 'Event'">
-                        <div class="product-info-column">
-                            <span>  Start Date </span>
-                            <h5> <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.alldayevent ? 'Every Day': (viewData.startdate | date:"dd-MM-yyyy")}}</h5>
+                    <div class="row" ng-if="viewData.type == 'Service'">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Location</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-map-marker mr-10"></i> {{viewData.location}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-info-column">
-                            <span>  End Date </span>
-                            <h5> <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.alldayevent ? 'Every Day': (viewData.enddate | date:"dd-MM-yyyy")}}</h5>
-                        </div>
-                        <div class="product-info-column">
-                            <span>  Start Time </span>
-                            <h5> <i class="fa fa-clock-o" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.starttime}}</h5>
-                        </div>
-                        <div class="product-info-column">
-                            <span>  End Time </span>
-                            <h5> <i class="fa fa-clock-o" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.endtime}}</h5>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Skill</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-th"></i> &nbsp; &nbsp; {{viewData.profession}}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="product-info-row" ng-if="viewData.type == 'Rental'">
-                        <div class="product-info-column" ng-if="viewData.startdate">
-                            <span>  Start Date </span>
-                            <h5> <i class="fa fa-calendar"></i> &nbsp; &nbsp; {{viewData.startdate | date:"dd-MM-yyyy"}}</h5>
+                    <div class="row" ng-if="viewData.type == 'Shop'">
+                        <div class="col-lg-5 col-md-5">
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-th-large mr-10"></i> {{viewData.productcategory.categoryname}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-info-column" ng-if="viewData.enddate">
-                            <span>  End Date </span>
-                            <h5> <i class="fa fa-calendar"></i> &nbsp; &nbsp; {{viewData.enddate | date:"dd-MM-yyyy"}}</h5>
+                    </div>
+
+                    <div class="row" ng-if="viewData.type == 'Event'">
+                        <div class="col-lg-3 col-md-3" ng-if="viewData.startdate">
+                            <div class="form-group">
+                                <label class="control-label">Start Date</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.startdate | date:"dd-MM-yyyy")}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-info-column">
-                            <span>  Location </span>
-                            <h5> <i class="fa fa-map-marker"></i> &nbsp; &nbsp; {{viewData.location}}</h5>
+                        <div class="col-lg-3 col-md-3" ng-if="viewData.enddate">
+                            <div class="form-group">
+                                <label class="control-label">End Date</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.alldayevent ? 'Every Day': (viewData.enddate | date:"dd-MM-yyyy")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Start Time</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-clock-o mr-10"></i> {{viewData.starttime}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">End Time</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-clock-o mr-10"></i> {{viewData.endtime}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="viewData.type == 'Rental'">
+                        <div class="col-lg-3 col-md-3" ng-if="viewData.startdate">
+                            <div class="form-group">
+                                <label class="control-label">Start Date</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.startdate | date:"dd-MM-yyyy"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3" ng-if="viewData.enddate">
+                            <div class="form-group">
+                                <label class="control-label">End Date</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.enddate | date:"dd-MM-yyyy"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Location</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-map-marker mr-10"></i> {{viewData.location}}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -103,7 +161,7 @@
                     <hr/>
 
                     <div class="extra-features slide-toggle-js" ng-if="viewData.showExtra">
-                        <div class="product-info-row" ng-if="user.iscompany == 1&&viewData.organisation">
+                        <div class="product-info-row" ng-if="user.iscompany == 1 && viewData.organisation">
                             <div class="product-info-column">
                                 <span>  Organization </span>
                                 <h5>{{viewData.organisation}}</h5>
