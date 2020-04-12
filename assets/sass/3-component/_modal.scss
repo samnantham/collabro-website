@@ -82,6 +82,27 @@
             @extend .silver-gradient;
             color: $black;
         } 
+        &.modal-primary{
+            background: $primary;
+            color: $white;
+            h3{
+                color: $white !important;
+            }
+        }
+        &.modal-danger{
+            background: $danger;
+            color: $white;
+            h3{
+                color: $white !important;
+            }
+        }
+        &.modal-warning{
+            background: $warning;
+            color: $white;
+            h3{
+                color: $white !important;
+            }
+        }
         &.modal-green{
             background: $green;
             color: $white;
