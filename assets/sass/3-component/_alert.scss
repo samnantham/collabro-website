@@ -4,7 +4,10 @@
     margin-bottom: 15px;
     @include box-shadow($box-shadow-default);
     text-align: left;
-    width: 100%;    
+    width: 100%;  
+    .alert-delete{
+        color: $secondary-color !important;
+    }  
     &.ngn{
         width: 60%;
         left: 50%;
@@ -17,6 +20,9 @@
     }
     i{
         margin-right: 10px;
+        &:last-of-type{
+            margin-right: 0px;
+        }
     }
     .panel-group{
         margin-bottom: 0px;

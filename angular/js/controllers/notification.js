@@ -75,7 +75,7 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                     }
                     $rootScope.ResponseData.showdetails = true;
                     $rootScope.popupcarouselItems = $rootScope.ResponseData.commisionitem.productdetails.images;
-                    console.log($rootScope.popupcarouselItems)
+                    console.log($rootScope.ResponseData)
                     $rootScope.openModalPopup('responseModal');
                 } else {
                     $rootScope.logout();

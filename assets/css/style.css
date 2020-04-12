@@ -8706,6 +8706,9 @@ p {
   text-align: left;
   width: 100%;
 }
+.alert .alert-delete {
+  color: #7E8EA4 !important;
+}
 .alert.ngn {
   width: 60%;
   left: 50%;
@@ -8718,6 +8721,9 @@ p {
 }
 .alert i {
   margin-right: 10px;
+}
+.alert i:last-of-type {
+  margin-right: 0px;
 }
 .alert .panel-group {
   margin-bottom: 0px;
@@ -15534,6 +15540,15 @@ input:checked + .slider:before {
   width: 100% !important;
   color: #7E8EA4;
   text-transform: uppercase;
+}
+
+.ui-select-bootstrap .selected-item {
+  opacity: 1 !important;
+  color: #344051;
+}
+
+.only-service .caret {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

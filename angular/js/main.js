@@ -209,28 +209,20 @@ angular.module('app')
                 });
             }
 
-            $rootScope.gotoChat = function(productid) {
+            $rootScope.gotoChat = function(commision) {
                 $rootScope.formLoading = true;
-                webServices.get('product/' + productid).then(function(getData) {
+                webServices.get('product/' + commision).then(function(getData) {
                     $rootScope.formLoading = false;
                     if (getData.status == 200) {
                         $rootScope.ItemData = getData.data;
-                        if (!$rootScope.ItemData.chatData) {
-                            webServices.put('productchat/' + productid).then(function(getData) {
-                                console.log(getData)
-                                if (getData.status == 200) {
-                                    $rootScope.closeModal();
-                                    $state.go('app.productchat', {
-                                        'id': getData.data.id
-                                    });
-                                }
-                            });
-                        } else {
-                            $rootScope.closepopoverItem();
-                            $state.go('app.productchat', {
-                                'id': $rootScope.ItemData.chatData.id
-                            });
-                        }
+                        webServices.put('popup/productchat/' + commision).then(function(getData) {
+                            if (getData.status == 200) {
+                                $rootScope.closeModal();
+                                $state.go('app.productchat', {
+                                    'id': getData.data.id
+                                });
+                            }
+                        });
                     }
                 });
             }
