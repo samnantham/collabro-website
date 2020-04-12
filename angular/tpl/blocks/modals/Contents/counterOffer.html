@@ -1,0 +1,255 @@
+<div class="custom-modal-title modal-primary" ng-class="{'modal-warning': ResponseData.commisionitem.has_bargained }">
+   <div class="row flex-center" ng-if="(user.id == ResponseData.owner.id)">
+      <div class="col-lg-12 col-md-12" ng-if="(user.id != ResponseData.commisionitem.userid)">
+         <h3 ng-if="!ResponseData.commisionitem.has_bargained">{{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'You have been commissioned!' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Order received' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'Someone has registered for your event' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'Someone has made a booking' : ResponseData.commisionitem.productdetails.type) }}</h3>
+         <h3 ng-if="ResponseData.commisionitem.has_bargained">{{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Some one likes to negotiate your service' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Some one likes to negotiate your product' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'Some one likes to negotiate to register your event' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'Some one likes to negotiate to made a booking' : ResponseData.commisionitem.productdetails.type) }}</h3>
+      </div>
+      <div class="col-lg-12 col-md-12" ng-if="(user.id == ResponseData.commisionitem.userid)">
+         <h3>{{ ResponseData.commisionitem.mytotalcounters == 1 ? 'Your respond has been sent successfully' : 'Request has been amended'  }}</h3>
+      </div>
+   </div>
+   <div class="row flex-center" ng-if="(user.id == ResponseData.buyer.id)">
+      <div class="col-lg-12 col-md-12" ng-if="(user.id != ResponseData.commisionitem.userid)">
+         <h3 ng-if="!ResponseData.commisionitem.has_bargained">{{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Your request for service have been sent. Awaiting confirmation ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Your order have been sent. Awaiting confirmation' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'You have registered for an event. Awaiting confirmation' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'You have made booking. Awaiting confirmation' : ResponseData.commisionitem.productdetails.type) }}</h3>
+         <h3 ng-if="ResponseData.commisionitem.has_bargained">{{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Your negotiation request has been sent' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Your negotiation request has been sent' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'Your negotiation request has been sent' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'Your negotiation request has been sent' : ResponseData.commisionitem.productdetails.type) }}</h3>
+      </div>
+      <div class="col-lg-12 col-md-12" ng-if="(user.id == ResponseData.commisionitem.userid)">
+         <h3 ng-if="!ResponseData.commisionitem.has_bargained">{{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Your request for service have been sent. Awaiting confirmation' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Your order have been sent. Awaiting confirmation' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'You have registered for an event. Awaiting confirmation' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'You have made booking. Awaiting confirmation' : ResponseData.commisionitem.productdetails.type) }}</h3>
+         <h3 ng-if="ResponseData.commisionitem.has_bargained">{{ ResponseData.commisionitem.mytotalcounters == 1 ? 'Your negotiation request has been sent' : 'Your amended request has been sent' }}</h3>
+      </div>
+   </div>
+</div>
+<!-- Modal body -->
+<div class="custom-modal-body">
+   <div class="row mb-30">
+      <div class="col-lg-12 col-md-12" ng-if="user.id == ResponseData.owner.id">
+         <div ng-if="user.id != ResponseData.commisionitem.userid">
+            <div class="modal-second-title">
+               <span>{{ResponseData.buyer.username}} </span>
+               <div ng-if="!ResponseData.commisionitem.has_bargained"> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? ' Is waiting for your service confirmation' : ResponseData.commisionitem.productdetails.type == 'Shop' ? ' Is waiting for your confirmation' : ResponseData.commisionitem.productdetails.type == 'Event' ? ' Is waiting for your confirmation' :ResponseData.commisionitem.productdetails.type == 'Rental' ? ' Is waiting for your confirmation' : ResponseData.commisionitem.productdetails.type) }}</div>
+               <div ng-if="ResponseData.commisionitem.has_bargained"> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Would like to negotiate for this Service' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Would like to negotiate for this Product' : ResponseData.commisionitem.productdetails.type == 'Event' ? ' Would like to negotiate for this Event' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'Would like to negotiate for this Booking' : ResponseData.commisionitem.productdetails.type) }}</div>
+            </div>
+         </div>
+         <div ng-if="user.id == ResponseData.commisionitem.userid">
+            <div class="modal-second-title">
+               <div ng-if="ResponseData.commisionitem.has_bargained">{{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Awaiting respond from ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Awaiting respond from ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'Awaiting respond from ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'Awaiting respond from ' : ResponseData.commisionitem.productdetails.type) }} <span>{{ResponseData.buyer.username}} </span> </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-12 col-md-12" ng-if="user.id == ResponseData.buyer.id">
+         <div ng-if="user.id != ResponseData.commisionitem.userid">
+            <div class="modal-second-title">
+               <div ng-if="!ResponseData.commisionitem.has_bargained"><span>{{ResponseData.buyer.username}}</span> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? ' would like to request for this service' : ResponseData.commisionitem.productdetails.type == 'Shop' ? ' would like to purchase this item' : ResponseData.commisionitem.productdetails.type == 'Event' ? ' would like to register this your event' :ResponseData.commisionitem.productdetails.type == 'Rental' ? ' would like to made a booking' : ResponseData.commisionitem.productdetails.type) }}</div>
+               <div ng-if="ResponseData.commisionitem.has_bargained"> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'You would like to negotiate for your service with ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'You would like to negotiate for your product with ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'You would like to negotiate to register your event with ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'You would like to negotiate for a booking with ' : ResponseData.commisionitem.productdetails.type) }} <span>{{ResponseData.buyer.username}} </span></div>
+            </div>
+         </div>
+         <div ng-if="user.id == ResponseData.commisionitem.userid">
+            <div class="modal-second-title">
+               <div ng-if="!ResponseData.commisionitem.has_bargained"> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Awaiting for ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'You would like to purchase the item of ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'You would like to register event of ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'You would like to book rental of ' : ResponseData.commisionitem.productdetails.type) }}<span>{{ResponseData.owner.username}}</span></div>
+               <div ng-if="ResponseData.commisionitem.has_bargained"> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'Awaiting respond from ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Awaiting respond from ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'Awaiting respond from ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'Awaiting respond from ' : ResponseData.commisionitem.productdetails.type) }} <span>{{ResponseData.owner.username}}</span></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col-lg-4 col-md-4 br-1">
+      <div class="modal-left">
+         <div class="notes" ng-if="ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && (user.id != ResponseData.commisionitem.userid)">
+            <div class="custom-tooltip tooltip-right tooltip-bottom" ng-if="checkError">
+               <div class="custom-tooltip-inner">
+                  You Need to agree TSA Protection rules!
+               </div>
+            </div>
+            <p>NOTE: The is a <span class="success bold">Tripartite Standard Agreement</span> form to protect both parties against any issues in the future. Read for more info <span class="success bold">here</span>.</p>
+            <div class="form-group mt-30 mb-0">
+               <input class="magic-checkbox" type="checkbox" name="isaccept" id="note" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" required/>
+               <label class="text font-s" for="note" tooltip="{{categoryText}}" tooltip-is-open="ishover && !formData.isaccept && formData.request_category" tooltip-placement="right">Read and agreed to the TSA Protection Scheme</label>
+            </div>
+         </div>
+         <div class="slider-wrapper" ng-class="{'mt-30' : ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && (user.id != ResponseData.commisionitem.userid)}">
+            <div class="custom-slider mob-slider">
+               <slick data="popupcarouselItems" infinite="false" init-onload="false" settings="popupslick" class="slider-for">
+                  <div class="width100 sliderframer" ng-repeat="(key,image) in popupcarouselItems">
+                     <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                        <span ng-if="image.filetype == 2">
+                           <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                           <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                        </span>
+                     </div>
+                  </div>
+               </slick>
+               <div class="thumbslider">
+                  <slick data="popupcarouselItems" init-onload="true" settings="popupthumbslick" class="slider-nav">
+                     <div class="thumbholder" ng-repeat="(key,image) in popupcarouselItems">
+                        <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                     </div>
+                  </slick>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-8 col-md-8">
+      <div class="modal-right">
+         <div class="row mb-30">
+            <div class="col-lg-12 col-md-12">
+               <h4>{{ResponseData.commisionitem.productdetails.title}}</h4>
+               <p class="secondary mt-30">{{ResponseData.commisionitem.productdetails.description}}</p>
+            </div>
+         </div>
+         <div class="row" ng-if="ResponseData.commisionitem.productdetails.type == 'Service'">
+            <div class="col-lg-4 col-md-4" ng-if="ResponseData.commisionitem.productdetails.location">
+               <div class="form-group">
+                  <label class="control-label">Location</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-map-marker mr-10"></i> {{ResponseData.commisionitem.productdetails.location}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-md-4" ng-if="ResponseData.commisionitem.productdetails.profession && !ResponseData.commisionitem.productdetails.is_request">
+               <div class="form-group">
+                  <label class="control-label">Skill</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-th mr-10"></i> {{ResponseData.commisionitem.productdetails.profession}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-md-4" ng-if="ResponseData.commisionitem.productdetails.is_request">
+               <div class="form-group">
+                  <label class="control-label">Deadline</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-map-marker mr-10"></i> {{ResponseData.commisionitem.productdetails.deadline | date:"dd-MM-yyyy"}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-md-4" ng-if="ResponseData.commisionitem.productdetails.is_request">
+               <div class="form-group">
+                  <label class="control-label">Category</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-th mr-10"></i> {{ResponseData.commisionitem.productdetails.request_category}}
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row" ng-if="ResponseData.commisionitem.productdetails.type == 'Shop'">
+            <div class="col-lg-5 col-md-5">
+               <div class="form-group">
+                  <label class="control-label">Category</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-th-large mr-10"></i> {{ResponseData.commisionitem.productdetails.productcategory.categoryname}}
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row" ng-if="ResponseData.commisionitem.productdetails.type == 'Event'">
+            <div class="col-lg-3 col-md-3" ng-if="ResponseData.commisionitem.productdetails.startdate">
+               <div class="form-group">
+                  <label class="control-label">Start Date</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-calendar mr-10" ng-if="!ResponseData.commisionitem.productdetails.alldayevent"></i> {{ResponseData.commisionitem.productdetails.alldayevent ? 'Every Day': (ResponseData.commisionitem.productdetails.startdate | date:"dd-MM-yyyy")}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-3" ng-if="ResponseData.commisionitem.productdetails.enddate">
+               <div class="form-group">
+                  <label class="control-label">End Date</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-calendar mr-10" ng-if="!ResponseData.commisionitem.productdetails.alldayevent"></i> {{ResponseData.commisionitem.productdetails.alldayevent ? 'Every Day': (ResponseData.commisionitem.productdetails.enddate | date:"dd-MM-yyyy")}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+               <div class="form-group">
+                  <label class="control-label">Start Time</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-clock-o mr-10"></i> {{ResponseData.commisionitem.productdetails.starttime}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+               <div class="form-group">
+                  <label class="control-label">End Time</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-clock-o mr-10"></i> {{ResponseData.commisionitem.productdetails.endtime}}
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row" ng-if="ResponseData.commisionitem.productdetails.type == 'Rental'">
+            <div class="col-lg-3 col-md-3" ng-if="ResponseData.commisionitem.productdetails.startdate">
+               <div class="form-group">
+                  <label class="control-label">Start Date</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-calendar mr-10" ng-if="!ResponseData.commisionitem.productdetails.alldayevent"></i> {{ResponseData.commisionitem.productdetails.startdate | date:"dd-MM-yyyy"}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-3" ng-if="ResponseData.commisionitem.productdetails.enddate">
+               <div class="form-group">
+                  <label class="control-label">End Date</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-calendar mr-10" ng-if="!ResponseData.commisionitem.productdetails.alldayevent"></i> {{ResponseData.commisionitem.productdetails.enddate | date:"dd-MM-yyyy"}}
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+               <div class="form-group">
+                  <label class="control-label">Location</label>
+                  <div class="btn block-btn gray-btn">
+                     <i class="fa fa-map-marker mr-10"></i> {{ResponseData.commisionitem.productdetails.location}}
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row mt-30">
+            <div class="col-lg-12 col-md-12">
+               <div class="price-group">
+                  <span class="price">
+                  {{ResponseData.commisionitem.productdetails.price ? (ResponseData.commisionitem.productdetails.price | currency): 'Free'}}
+                  </span>
+                  <span class="price-sub" ng-if="ResponseData.commisionitem.productdetails.price > 0 && ResponseData.commisionitem.productdetails.type!='Shop'">  Per {{ResponseData.commisionitem.productdetails.periodtype}} </span>
+               </div>
+            </div>
+         </div>
+         <div class="row mt-30" ng-if="ResponseData.status == 2 && ResponseData.comments">
+            <div class="col-lg-12 col-md-12">
+               <p class="secondary mt-30">{{ResponseData.comments}}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+<!-- Modal footer -->
+<div class="custom-modal-footer text-right bt-1 pt-30" ng-if="!ResponseData.status">
+   <button type="button" class="btn danger-btn" ng-click="closeModal()">Close</button>
+   <button type="button" class="btn success-btn ml-30" ng-click="gotoChat(ResponseData.id)">View Details</button>
+</div>
+<div class="custom-modal-footer text-right bt-1 pt-30" ng-if="user.id != ResponseData.commisionitem.userid">
+<div class="btn-group dropdown">
+            <button class="btn btn-danger" ng-click="cancelRequest()" ng-if="ResponseData.status == 0 && (ResponseData.iscounter || ResponseData.isreject || ResponseData.isacceptoffer)">Cancel </button>
+            <button class="btn silver-btn" data-toggle="dropdown" aria-expanded="false" ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer" tooltip="You Need to agree TSA Protection rules!" tooltip-trigger="mouseenter" tooltip-class="agreementerror" tooltip-placement="right" tooltip-enable="!ResponseData.isaccept">Action <i class="fa fa-angle-down marginleft5" aria-hidden="true"></i></button>
+            <!-- <button class="btn btn-default" ><span class="caret"></span></button> -->
+            <ul class="dropdown-menu" ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">
+               <li ng-if="!ResponseData.isreject && !ResponseData.iscounter && !ResponseData.isacceptoffer">
+                  <a>
+                  <button ng-disabled="!ResponseData.isaccept" type="button" class="collabro_btn accept button-width-100" ng-click="ResponseData.isacceptoffer = !ResponseData.isacceptoffer">Accept Offer</button>
+                  </a>
+               </li>
+               <!-- <li ng-if="ResponseData.iscounter"><a ><button type="button" class="collabro_btn accept button-width-100" ng-disabled="!ResponseData.isaccept" ng-click="proceedBargain()">Proceed</button></a></li> -->
+               <li ng-if="user.id == ResponseData.commisionitem.productdetails.ownerid">
+                  <a>
+                  <button type="button" class="collabro_btn reject button-width-100" ng-click="rejectOffer();" ng-disabled="!ResponseData.isaccept">Reject Offer</button>
+                  </a>
+               </li>
+               <li ng-if="!ResponseData.isreject && !ResponseData.commisionitem.productdetails.hasbargain&&!ResponseData.iscounter">
+                  <a>
+                  <button type="button" class="collabro_btn counter button-width-100" ng-click="ResponseData.iscounter = !ResponseData.iscounter" ng-disabled="!ResponseData.isaccept">Counter Offer</button>
+                  </a>
+               </li>
+            </ul>
+            <!-- <button class="accept collabro_btn button-width-100" ng-if="ResponseData.iscounter" ng-click="proceedBargain()">Proceed </button> -->
+            <button class="accept collabro_btn button-width-100" ng-if="ResponseData.status != 0 || !ResponseData.status && ResponseData.isreplied " ng-click="closepopoverItem();">Close </button>
+         </div>
+</div>
