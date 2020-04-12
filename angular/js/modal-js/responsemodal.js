@@ -5,6 +5,7 @@ app.controller('ResponseModalCtrl', ['$scope', '$timeout', '$state', '$statePara
     var newproData = angular.copy(proData);
     
     $rootScope.rejectOffer = function() {
+        $rootScope.formLoading = true;
         if (!$rootScope.ResponseData.isreject) {
             $rootScope.ResponseData.isreject = 1;
             if ($rootScope.ResponseData.ownerid == $rootScope.user.id) {
@@ -21,7 +22,17 @@ app.controller('ResponseModalCtrl', ['$scope', '$timeout', '$state', '$statePara
                 $rootScope.sendresponseData();
             }
         }
+        $timeout(function() {
+            $rootScope.formLoading = false;
+        }, 1000);
+    }
 
+    $rootScope.acceptOffer = function() {
+        $rootScope.ResponseData.isacceptoffer = !$rootScope.ResponseData.isacceptoffer;
+        $rootScope.formLoading = true;
+        $timeout(function() {
+            $rootScope.formLoading = false;
+        }, 1000);
     }
 
     $rootScope.proceedBargain = function() {
@@ -44,14 +55,15 @@ app.controller('ResponseModalCtrl', ['$scope', '$timeout', '$state', '$statePara
     }
 
     $rootScope.cancelRequest = function(){
-        $rootScope.ResponseData = {};
+        $rootScope.formLoading = true;
+        $rootScope.ResponseData.isreject = 0;
+        $rootScope.ResponseData.iscounter = 0;
+        $rootScope.ResponseData.isacceptoffer = 0;
+        $rootScope.ResponseData.agreeterms = 1;
         $timeout(function() {
-            $rootScope.ResponseData = angular.copy(newproData);
-            $rootScope.ResponseData.isreject = 0;
-            $rootScope.ResponseData.iscounter = 0;
-            $rootScope.ResponseData.isacceptoffer = 0;
-            $rootScope.ResponseData.isaccept = 1;
-        }, 100);
+            $rootScope.formLoading = false;
+        }, 1000);
+        
     }
 
     $rootScope.sendresponseData = function() {
@@ -68,7 +80,7 @@ app.controller('ResponseModalCtrl', ['$scope', '$timeout', '$state', '$statePara
             if (getData.status == 200) {
                 $scope.productData = {};
                 $rootScope.ResponseData = {};
-                $rootScope.closepopoverItem();
+                $rootScope.closeModal();
             } else if (getData.status == 401) {
                 $scope.errors = utility.getError(getData.data.message);
                 $scope.showerrors();
@@ -87,6 +99,16 @@ app.controller('ResponseModalCtrl', ['$scope', '$timeout', '$state', '$statePara
             $scope.productData.buyercommisionstatus = 1;
         }
         $rootScope.sendresponseData();
+    }
+
+    $rootScope.showcheckTooltip = function(){
+        if(!$rootScope.ResponseData.agreeterms){
+            $rootScope.checkError = true;
+        }
+    }
+
+    $rootScope.hidecheckTooltip = function(){
+        $rootScope.checkError = false;
     }
 
     

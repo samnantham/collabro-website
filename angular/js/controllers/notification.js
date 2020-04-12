@@ -13,6 +13,7 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
             if (getData.status == 200) {
                 $scope.totalData = getData.data.total;
                 $scope.notifications = $scope.notifications.concat(getData.data.data);
+                console.log($scope.notifications)
                 if (!$scope.firstloadingcompleted) {
                     $scope.firstloadingcompleted = true;
                 }

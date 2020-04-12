@@ -63,7 +63,7 @@
             </div>
             <p>NOTE: The is a <span class="success bold">Tripartite Standard Agreement</span> form to protect both parties against any issues in the future. Read for more info <span class="success bold">here</span>.</p>
             <div class="form-group mt-30 mb-0">
-               <input class="magic-checkbox" type="checkbox" name="isaccept" id="note" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" required/>
+               <input class="magic-checkbox" type="checkbox" name="isaccept" id="note" ng-true-value="1" ng-false-value="0" ng-model="ResponseData.agreeterms" required/>
                <label class="text font-s" for="note" tooltip="{{categoryText}}" tooltip-is-open="ishover && !formData.isaccept && formData.request_category" tooltip-placement="right">Read and agreed to the TSA Protection Scheme</label>
             </div>
          </div>
@@ -224,32 +224,15 @@
 <!-- Modal footer -->
 <div class="custom-modal-footer text-right bt-1 pt-30" ng-if="!ResponseData.status">
    <button type="button" class="btn danger-btn" ng-click="closeModal()">Close</button>
-   <button type="button" class="btn success-btn ml-30" ng-click="gotoChat(ResponseData.id)">View Details</button>
-</div>
-<div class="custom-modal-footer text-right bt-1 pt-30" ng-if="user.id != ResponseData.commisionitem.userid">
-<div class="btn-group dropdown">
-            <button class="btn btn-danger" ng-click="cancelRequest()" ng-if="ResponseData.status == 0 && (ResponseData.iscounter || ResponseData.isreject || ResponseData.isacceptoffer)">Cancel </button>
-            <button class="btn silver-btn" data-toggle="dropdown" aria-expanded="false" ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer" tooltip="You Need to agree TSA Protection rules!" tooltip-trigger="mouseenter" tooltip-class="agreementerror" tooltip-placement="right" tooltip-enable="!ResponseData.isaccept">Action <i class="fa fa-angle-down marginleft5" aria-hidden="true"></i></button>
-            <!-- <button class="btn btn-default" ><span class="caret"></span></button> -->
-            <ul class="dropdown-menu" ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">
-               <li ng-if="!ResponseData.isreject && !ResponseData.iscounter && !ResponseData.isacceptoffer">
-                  <a>
-                  <button ng-disabled="!ResponseData.isaccept" type="button" class="collabro_btn accept button-width-100" ng-click="ResponseData.isacceptoffer = !ResponseData.isacceptoffer">Accept Offer</button>
-                  </a>
-               </li>
-               <!-- <li ng-if="ResponseData.iscounter"><a ><button type="button" class="collabro_btn accept button-width-100" ng-disabled="!ResponseData.isaccept" ng-click="proceedBargain()">Proceed</button></a></li> -->
-               <li ng-if="user.id == ResponseData.commisionitem.productdetails.ownerid">
-                  <a>
-                  <button type="button" class="collabro_btn reject button-width-100" ng-click="rejectOffer();" ng-disabled="!ResponseData.isaccept">Reject Offer</button>
-                  </a>
-               </li>
-               <li ng-if="!ResponseData.isreject && !ResponseData.commisionitem.productdetails.hasbargain&&!ResponseData.iscounter">
-                  <a>
-                  <button type="button" class="collabro_btn counter button-width-100" ng-click="ResponseData.iscounter = !ResponseData.iscounter" ng-disabled="!ResponseData.isaccept">Counter Offer</button>
-                  </a>
-               </li>
-            </ul>
-            <!-- <button class="accept collabro_btn button-width-100" ng-if="ResponseData.iscounter" ng-click="proceedBargain()">Proceed </button> -->
-            <button class="accept collabro_btn button-width-100" ng-if="ResponseData.status != 0 || !ResponseData.status && ResponseData.isreplied " ng-click="closepopoverItem();">Close </button>
-         </div>
+   <button class="btn danger-btn" ng-click="cancelRequest()" ng-if="ResponseData.status == 0 && (ResponseData.iscounter || ResponseData.isreject || ResponseData.isacceptoffer)">Cancel </button>
+   <button type="button" class="btn success-btn ml-30" ng-click="proceedRequest()" ng-disabled="!ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer" ng-if="ResponseData.status == 0 && (ResponseData.iscounter || ResponseData.isreject || ResponseData.isacceptoffer)">Proceed</button>
+   <span class="action-btn ml-30"  ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">
+      <button type="button" class="btn silver-btn block-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">Action <i class="fa fa-angle-down"></i></button>
+      <ul class="dropdown-menu" ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">
+         <li><button type="button" class="btn success-btn block-btn" ng-click="acceptOffer()" ng-disabled="!ResponseData.agreeterms">Accept Offer</button></li>
+         <li ng-if="user.id == ResponseData.commisionitem.productdetails.ownerid"><button type="button" class="btn danger-btn block-btn" ng-click="rejectOffer();" ng-disabled="!ResponseData.agreeterms">Reject Offer</button></li>
+         <li  ng-if="!ResponseData.isreject && !ResponseData.commisionitem.productdetails.hasbargain&&!ResponseData.iscounter"><button type="button" class="btn default-btn block-btn" ng-click="ResponseData.iscounter = !ResponseData.iscounter" ng-disabled="!ResponseData.agreeterms">Counter Offer</button></li>
+      </ul>
+   </span>
+   <button type="button" class="btn silver-btn ml-30" ng-click="gotoChat(ResponseData.id)" ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">View Details</button>
 </div>

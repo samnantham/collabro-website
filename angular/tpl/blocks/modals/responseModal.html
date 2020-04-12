@@ -3,5 +3,5 @@
    <div ng-include="'tpl/blocks/modals/Contents/rejectOffer.html'" ng-if="ResponseData.isreject"></div>
    <div ng-include="'tpl/blocks/modals/Contents/productSuccess.html'" ng-if="ResponseData.status == 1"></div>
    <div ng-include="'tpl/blocks/modals/Contents/productReject.html'" ng-if="ResponseData.status == 2"></div>
-   <div data-ng-include="'tpl/blocks/modals/Contents/counterOffer.html'" ng-if="ResponseData.status == 0 && !ResponseData.isreject"></div>
+   <div data-ng-include="'tpl/blocks/modals/Contents/responseInfo.html'" ng-if="ResponseData.status == 0 && !ResponseData.isreject"></div>
 </div>
