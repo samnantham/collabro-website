@@ -64,25 +64,25 @@
             <div class="col-lg-8 col-md-8">
                <div class="modal-right">
                   <div class="row">
-                     <div class="col-lg-8 col-md-8">
+                     <div class="col-lg-7 col-md-7">
                         <div class="form-group">
                            <label class="control-label">Project Members</label>
                         </div>
                         <div class="row">
                            <div class="col-lg-2 col-md-2" ng-repeat="(no,member) in notificationprojectData.members">
-                              <div class="avatar avatar-m">
+                              <div class="avatar avatar-r mb-10">
                                  <img ng-src="{{IMGURL}}{{member.user.avatar}}" tooltip-trigger="mouseenter" tooltip="{{member.user.username}}">
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-4 col-md-4">
+                     <div class="col-lg-4 col-md-4 col-lg-offset-1 col-md-offset-1">
                         <div class="form-group">
                            <label class="control-label">Project Manager</label>
                         </div>
                         <div class="row">
                            <div class="col-lg-2 col-md-2">
-                              <div class="avatar avatar-m">
+                              <div class="avatar avatar-r mb-10">
                                  <img ng-src="{{IMGURL}}{{notificationprojectData.owner.avatar}}" tooltip-trigger="mouseenter" tooltip="{{notificationprojectData.owner.username}}">
                               </div>
                            </div>
