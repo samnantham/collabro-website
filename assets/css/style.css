@@ -9204,6 +9204,17 @@ p {
   width: 100%;
 }
 
+.action-btn {
+  display: inline-block;
+  position: relative;
+}
+.action-btn .dropdown-menu {
+  top: auto;
+  bottom: calc(100% + 1px);
+  background-color: transparent;
+  border: 0px solid !important;
+}
+
 .danger-btn, .danger-btn:focus {
   color: #fff !important;
   background: #FF1561;
