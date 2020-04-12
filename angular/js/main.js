@@ -211,17 +211,11 @@ angular.module('app')
 
             $rootScope.gotoChat = function(commision) {
                 $rootScope.formLoading = true;
-                webServices.get('product/' + commision).then(function(getData) {
-                    $rootScope.formLoading = false;
+                webServices.put('popup/productchat/' + commision).then(function(getData) {
                     if (getData.status == 200) {
-                        $rootScope.ItemData = getData.data;
-                        webServices.put('popup/productchat/' + commision).then(function(getData) {
-                            if (getData.status == 200) {
-                                $rootScope.closeModal();
-                                $state.go('app.productchat', {
-                                    'id': getData.data.id
-                                });
-                            }
+                        $rootScope.closeModal();
+                        $state.go('app.productchat', {
+                            'id': getData.data.id
                         });
                     }
                 });
