@@ -9165,6 +9165,7 @@ p {
   border-color: #7E8EA4;
   cursor: default;
   text-transform: none;
+  font-size: 14px;
   text-align: left;
 }
 .gray-btn i {
@@ -14974,6 +14975,9 @@ input:checked + .slider:before {
 .product-info-row .product-info-column {
   width: 50%;
   float: left;
+}
+.product-info-row .product-info-column:first-of-type {
+  padding-right: 30px;
 }
 .product-info-row .product-info-column span {
   color: #7E8EA4;

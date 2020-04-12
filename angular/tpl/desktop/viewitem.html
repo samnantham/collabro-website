@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <label class="control-label">Skill</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-th"></i> &nbsp; &nbsp; {{viewData.profession}}
+                                    <i class="fa fa-th"></i> {{viewData.profession}}
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label class="control-label">Start Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.startdate | date:"dd-MM-yyyy")}}
+                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.startdate | date:"dd-MM-yyyy")}}
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                             <div class="form-group">
                                 <label class="control-label">End Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.alldayevent ? 'Every Day': (viewData.enddate | date:"dd-MM-yyyy")}}
+                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.enddate | date:"dd-MM-yyyy")}}
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             <div class="form-group">
                                 <label class="control-label">Start Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.startdate | date:"dd-MM-yyyy"}}
+                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.startdate | date:"dd-MM-yyyy"}}
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             <div class="form-group">
                                 <label class="control-label">End Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> &nbsp; &nbsp; {{viewData.enddate | date:"dd-MM-yyyy"}}
+                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.enddate | date:"dd-MM-yyyy"}}
                                 </div>
                             </div>
                         </div>

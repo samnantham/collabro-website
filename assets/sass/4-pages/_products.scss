@@ -70,6 +70,9 @@
     .product-info-column{
         width: 50%;
         float: left;
+        &:first-of-type{
+            padding-right: 30px;
+        }
         span{
             color: $secondary-text;
         }
