@@ -21,26 +21,6 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
         $rootScope.hideerrors();
     }
 
-    $rootScope.showTooltip = function(){
-        if(!$rootScope.formData.request_category){
-            $rootScope.showCatError = true;
-        }
-    }
-
-    $rootScope.hideTooltip = function(){
-        $rootScope.showCatError = false;
-    }
-
-    $rootScope.showcheckTooltip = function(){
-        if(!$rootScope.formData.isaccept){
-            $rootScope.checkError = true;
-        }
-    }
-
-    $rootScope.hidecheckTooltip = function(){
-        $rootScope.checkError = false;
-    }
-
     $rootScope.changeVideo = function(key) {
         $rootScope.editkey = key;
         $rootScope.formData.embedvideo = $rootScope.formData.images[$rootScope.selectedKey].file;
@@ -163,19 +143,9 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 if (getData.status == 200) {
                     $rootScope.closeModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
-                    // if (oldData.id) {
-                    //     if ($rootScope.currentdevice == 'desktop') {
-                    //         $state.reload();
-                    //     } else {
-                    //         $state.go('app.viewitem', {
-                    //             'id': oldData.id
-                    //         });
-                    //     }
-                    // } else {
-                    //     $state.go('app.viewitem', {
-                    //         'id': getData.data.lastid
-                    //     });
-                    // }
+                    if ($rootScope.iseditproduct) {
+                        $state.reload();
+                    }
                 } else if (getData.status == 401) {
                     $rootScope.$emit("showerror", getData);
                 } else {
@@ -259,6 +229,8 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 $rootScope.formData.price = parseFloat($rootScope.formData.price);
                 $rootScope.formData.thumbimage = 0;
                 $rootScope.viewingThumb = $rootScope.formData.images[0];
+
+                console.log($rootScope.formData)
             } else {
                 $rootScope.logout();
             }
@@ -266,6 +238,26 @@ app.controller('RequestModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
     } else {
         $rootScope.formData = {};
         $rootScope.resetRequestData();
+    }
+
+    $rootScope.showTooltip = function(){
+        if(!$rootScope.formData.request_category){
+            $rootScope.showCatError = true;
+        }
+    }
+
+    $rootScope.hideTooltip = function(){
+        $rootScope.showCatError = false;
+    }
+
+    $rootScope.showcheckTooltip = function(){
+        if(!$rootScope.formData.isaccept){
+            $rootScope.checkError = true;
+        }
+    }
+
+    $rootScope.hidecheckTooltip = function(){
+        $rootScope.checkError = false;
     }
 
 }]);

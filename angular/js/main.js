@@ -209,6 +209,32 @@ angular.module('app')
                 });
             }
 
+            $rootScope.gotoChat = function(productid) {
+                $rootScope.formLoading = true;
+                webServices.get('product/' + productid).then(function(getData) {
+                    $rootScope.formLoading = false;
+                    if (getData.status == 200) {
+                        $rootScope.ItemData = getData.data;
+                        if (!$rootScope.ItemData.chatData) {
+                            webServices.put('productchat/' + productid).then(function(getData) {
+                                console.log(getData)
+                                if (getData.status == 200) {
+                                    $rootScope.closeModal();
+                                    $state.go('app.productchat', {
+                                        'id': getData.data.id
+                                    });
+                                }
+                            });
+                        } else {
+                            $rootScope.closepopoverItem();
+                            $state.go('app.productchat', {
+                                'id': $rootScope.ItemData.chatData.id
+                            });
+                        }
+                    }
+                });
+            }
+
             if (!localStorage.showheader) {
                 $rootScope.showheader = true;
             }
