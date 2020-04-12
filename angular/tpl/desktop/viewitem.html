@@ -1,27 +1,32 @@
 <div ng-controller="ViewItemCtrl" class="content-wrapper">
     <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
     <div class="center-content">
-        <div class="topbar">
-            <div class="topbar-left">
-                <div class="avatar avatar-xs">
-                    <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" />
+        <div class="row ">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar">
+                    <div class="topbar-left">
+                        <div class="avatar avatar-xs">
+                            <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" />
+                        </div>
+                        <ul class="topbar-list">
+                            <li>{{viewData.owner.username | cut:true:15:''}} </li>
+                            <li><img ng-src="{{IMGURL}}{{viewData.owner.xprank.icon}}" class="rank-icon" /> {{viewData.owner.xprank.rankname}} </li>
+                        </ul>
+                    </div>
+                    <div class="topbar-right">
+                        <ul class="topbar-list">
+                            <li><i class="fa fa-binoculars"></i> Followers {{viewData.owner.followers}} </li>
+                            <li><i class="fa fa-user"></i> Following {{viewData.owner.following}} </li>
+                            <li><i class="fa fa-eye"></i> Deals {{viewData.owner.noofdeals}} </li>
+                        </ul>
+                    </div>
+                    <div class="topbar-right">
+                        <ul class="topbar-list  ml-15 mr-15">
+                            <li><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus? 'Online':'Offline'}}</span></li>
+                        </ul>
+                        <span class="close-icon secondary" ng-click="goback()"></span>
+                    </div>
                 </div>
-                <ul class="topbar-list">
-                    <li>{{viewData.owner.username | cut:true:15:''}} </li>
-                    <li><img ng-src="{{IMGURL}}{{viewData.owner.xprank.icon}}" class="rank-icon" /> {{viewData.owner.xprank.rankname}} </li>
-                </ul>
-            </div>
-            <div class="topbar-right">
-                <ul class="topbar-list">
-                    <li><i class="fa fa-binoculars"></i> Followers {{viewData.owner.followers}} </li>
-                    <li><i class="fa fa-user"></i> Following {{viewData.owner.following}} </li>
-                    <li><i class="fa fa-eye"></i> Deals {{viewData.owner.noofdeals}} </li>
-                </ul>
-            </div>
-            <div class="topbar-right">
-                <ul class="topbar-list">
-                    <li><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus? 'Online':'Offline'}}</span></li>
-                </ul>
             </div>
         </div>
 
@@ -58,7 +63,7 @@
                     <p>{{viewData.description}}</p>
 
                     <div class="row" ng-if="viewData.type == 'Service'">
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4" ng-if="viewData.location">
                             <div class="form-group">
                                 <label class="control-label">Location</label>
                                 <div class="btn block-btn gray-btn">
@@ -66,11 +71,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4" ng-if="viewData.profession && !viewData.is_request">
                             <div class="form-group">
                                 <label class="control-label">Skill</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-th"></i> {{viewData.profession}}
+                                    <i class="fa fa-th mr-10"></i> {{viewData.profession}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4" ng-if="viewData.is_request">
+                            <div class="form-group">
+                                <label class="control-label">Deadline</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-map-marker mr-10"></i> {{viewData.deadline | date:"dd-MM-yyyy"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4" ng-if="viewData.is_request">
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                <div class="btn block-btn gray-btn">
+                                    <i class="fa fa-th mr-10"></i> {{viewData.request_category}}
                                 </div>
                             </div>
                         </div>
@@ -92,7 +114,7 @@
                             <div class="form-group">
                                 <label class="control-label">Start Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.startdate | date:"dd-MM-yyyy")}}
+                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.startdate | date:"dd-MM-yyyy")}}
                                 </div>
                             </div>
                         </div>
@@ -100,7 +122,7 @@
                             <div class="form-group">
                                 <label class="control-label">End Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.enddate | date:"dd-MM-yyyy")}}
+                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.alldayevent ? 'Every Day': (viewData.enddate | date:"dd-MM-yyyy")}}
                                 </div>
                             </div>
                         </div>
@@ -127,7 +149,7 @@
                             <div class="form-group">
                                 <label class="control-label">Start Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.startdate | date:"dd-MM-yyyy"}}
+                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.startdate | date:"dd-MM-yyyy"}}
                                 </div>
                             </div>
                         </div>
@@ -135,7 +157,7 @@
                             <div class="form-group">
                                 <label class="control-label">End Date</label>
                                 <div class="btn block-btn gray-btn">
-                                    <i class="fa fa-calendar" ng-if="!viewData.alldayevent"></i> {{viewData.enddate | date:"dd-MM-yyyy"}}
+                                    <i class="fa fa-calendar mr-10" ng-if="!viewData.alldayevent"></i> {{viewData.enddate | date:"dd-MM-yyyy"}}
                                 </div>
                             </div>
                         </div>

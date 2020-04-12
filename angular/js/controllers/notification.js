@@ -6,12 +6,6 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
     $scope.pageno = 1;
     $scope.totalData = 0;
     $scope.totalPerPage = 8;
-    
-    if ($rootScope.user) {
-        if (!$rootScope.user.username) {
-            $rootScope.logout();
-        }
-    }
 
     $scope.getmyNotifications = function() {
         webServices.get('mynotifications/' + $scope.totalPerPage + '?page=' + $scope.pageno).then(function(getData) {
@@ -37,6 +31,7 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
     }
 
     $scope.readmessage = function(notification, notificationtype, type, key, innerkey) {
+        console.log(notification, notificationtype, type, key, innerkey)
         if (!notification.status) {
             webServices.put('readnotification/' + notification.id).then(function(getData) {
                 $rootScope.formLoading = false;
@@ -63,7 +58,6 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                     var url = 'commisionitem/' + notification.itemid;
                 }
             }
-            console.log(url)
             webServices.get(url).then(function(getData) {
                 if (getData.status == 200) {
                     $rootScope.ResponseData = getData.data;
@@ -80,7 +74,8 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                         $rootScope.ResponseData.productenddate = new Date($rootScope.ResponseData.enddate);
                     }
                     $rootScope.ResponseData.showdetails = true;
-                    $rootScope.popupcarouselItems = $rootScope.ResponseData.images;
+                    $rootScope.popupcarouselItems = $rootScope.ResponseData.commisionitem.productdetails.images;
+                    console.log($rootScope.popupcarouselItems)
                     $rootScope.openModalPopup('responseModal');
                 } else {
                     $rootScope.logout();
@@ -93,6 +88,7 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                     $rootScope.notificationprojectData = getData.data;
                     $rootScope.collabthumb = 0;
                     $rootScope.popupcarouselItems = $rootScope.notificationprojectData.files;
+                    console.log($rootScope.popupcarouselItems)
                     $rootScope.openModalPopup('collaborateresponseModal');
                 } else {
                     $rootScope.logout();
