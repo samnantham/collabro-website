@@ -76,7 +76,7 @@
                      <button type="button" class="btn silver-btn ml-20" ng-click="uploadvideo();" ng-disabled="(formData.images.length == 6 && editkey == null)">Add</button>
                   </div>
                   <div class="thumb-wrapper mt-30">
-                     <div class="thumbs" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/popover/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
+                     <div class="thumbs" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/popover/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="tooltip">
                         <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" ngf-background="data.file" ng-if="data.filetype == 1 && data.isfile"></div>
                         <div class="thumb" ng-if="data.filetype == 1 && !data.isfile" ng-class="{'active' : key == formData.thumbimage}" background-image="{{IMGURL}}{{data.file}}"></div>
                         <div class="thumb" ng-class="{'active' : key == formData.thumbimage}" background-image="{{data.thumbnail}}" ng-if="data.filetype == 2"></div>

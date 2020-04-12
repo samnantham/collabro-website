@@ -23,7 +23,14 @@
         .tooltip-arrow{
             border-top-color: $tooltip;
         }
-    }    
+    }  
+    .icoholder{
+        width: 100%;
+        min-width: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+    }  
 }
 
 .preview-tooltip{
@@ -104,6 +111,9 @@
                 border-bottom: 5px solid transparent;
             }
         }
+    }
+    &.tooltip-bottom{
+        bottom: -5px;
     }
     &.tooltip-top{
         top: -17px;

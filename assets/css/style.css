@@ -13322,6 +13322,13 @@ ul.simple-list li:last-of-type {
 .tooltip.top .tooltip-arrow {
   border-top-color: #D60046;
 }
+.tooltip .icoholder {
+  width: 100%;
+  min-width: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .preview-tooltip .tooltip-inner {
   min-width: 75px;
@@ -13397,6 +13404,9 @@ ul.simple-list li:last-of-type {
   border-top: 5px solid transparent;
   border-right: 5px solid #D60046;
   border-bottom: 5px solid transparent;
+}
+.custom-tooltip.tooltip-bottom {
+  bottom: -5px;
 }
 .custom-tooltip.tooltip-top {
   top: -17px;
