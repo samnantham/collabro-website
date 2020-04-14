@@ -15,8 +15,8 @@
                 <div ng-repeat="(key,data) in notifications" ng-class="{ 'accordion' : data.messages.length > 1 }">
                     <div ng-if="data.messages.length == 1" class="alert alert-dismissible show" ng-class="{'alert-primary': (!data.status && data.notificationclass == 1) , 'alert-success': (!data.status && data.notificationclass == 2), 'alert-orange' : (!data.status && data.notificationclass == 3), 'alert-danger' : (!data.status && data.notificationclass == 4) , 'alert-warning' : (!data.status && data.notificationclass == 5)}">
                         <i class="fa fa-info-circle" ng-class="{'primary': (data.status && data.notificationclass == 1) , 'success': (data.status && data.notificationclass == 2), 'orange' : (data.status && data.notificationclass == 3), 'danger' : (data.status && data.notificationclass == 4) , 'warning' : (data.status && data.notificationclass == 5)}"></i> <span ng-click="readmessage(data.messages[0],data.notificationtype,'single',key,'0')">{{data.messages[0].message}}</span>
-                        <button type="button" class="close" ng-class="{'text-black': data.status}"  aria-label="Close" ng-click="deletenotification(key,data.messages[0],'single', '0')">
-                            <!-- <span aria-hidden="true">&times;</span> --><i class="fa fa-trash-o"></i>
+                        <button type="button" class="alert-delete close" ng-class="{'text-black': data.status}"  aria-label="Close" ng-click="deletenotification(key,data.messages[0],'single', '0')">
+                            <!-- <span aria-hidden="true">&times;</span> --><i class="fa fa-minus-circle"></i>
                         </button>
                     </div>
 
@@ -32,8 +32,8 @@
                             <div class="alert alert-dismissible show" ng-repeat="(no,notification) in data.messages" ng-class="{'alert-primary': (!notification.status && data.notificationclass == 1) , 'alert-success': (!notification.status && data.notificationclass == 2), 'alert-orange' : (!notification.status && data.notificationclass == 3), 'alert-danger' : (!notification.status && data.notificationclass == 4) , 'alert-warning' : (!notification.status && data.notificationclass == 5)}">
 
                                 <i class="fa fa-info-circle" ng-class="{'primary': (data.status && data.notificationclass == 1) , 'success': (data.status && data.notificationclass == 2), 'orange' : (data.status && data.notificationclass == 3), 'danger' : (data.status && data.notificationclass == 4) , 'warning' : (data.status && data.notificationclass == 5)}"></i> <span ng-click="readmessage(notification,data.notificationtype,'accordion',key,no)">{{notification.message}}</span>
-                                <button type="button" class="close" ng-class="{'text-black': data.status}" aria-label="Close" ng-click="deletenotification(key,notification,'accordion',no)">
-                                    <!-- <span aria-hidden="true">&times;</span> --><i class="fa fa-trash-o"></i>
+                                <button type="button" class="alert-delete close" ng-class="{'text-black': data.status}" aria-label="Close" ng-click="deletenotification(key,notification,'accordion',no)">
+                                    <!-- <span aria-hidden="true">&times;</span> --><i class="fa fa-minus-circle"></i>
                                 </button>
                             </div>
                         </accordion-group>
