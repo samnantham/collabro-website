@@ -469,6 +469,6 @@
             <li ng-if="user.id == ResponseData.commisionitem.productdetails.ownerid"><button type="button" class="btn block-btn" ng-click="rejectOffer();" ng-disabled="!ResponseData.agreeterms" ng-class="!ResponseData.agreeterms ? 'default-btn' : 'danger-btn'">Reject Offer</button></li>
          </ul>
       </span>
-      <button type="button" class="btn btn-svg secondary-btn-border ml-30" ng-click="gotoChat(ResponseData.id)" ng-if="!ResponseData.status && !ResponseData.isreplied && !ResponseData.isreject && !ResponseData.isacceptoffer  && !ResponseData.iscounter">View Details</button>
+      <button type="button" class="btn btn-svg secondary-btn-border ml-30" ng-click="gotoChat(ResponseData.id)" ng-if="!ResponseData.status && !ResponseData.isreject && !ResponseData.isacceptoffer  && !ResponseData.iscounter">View Details</button>
    </div>
 </div>
