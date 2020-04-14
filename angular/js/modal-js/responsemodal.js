@@ -8,6 +8,7 @@ app.controller('ResponseModalCtrl', ['$scope', '$timeout', '$state', '$statePara
         $rootScope.formLoading = true;
         if (!$rootScope.ResponseData.isreject) {
             $rootScope.ResponseData.isreject = 1;
+            $rootScope.ResponseData.reason = '';
             if ($rootScope.ResponseData.ownerid == $rootScope.user.id) {
                 $scope.productData.ownercommisionstatus = 2;
             }
@@ -28,8 +29,26 @@ app.controller('ResponseModalCtrl', ['$scope', '$timeout', '$state', '$statePara
     }
 
     $rootScope.acceptOffer = function() {
-        $rootScope.ResponseData.isacceptoffer = !$rootScope.ResponseData.isacceptoffer;
         $rootScope.formLoading = true;
+        if($rootScope.ResponseData.isacceptoffer){
+            $rootScope.ResponseData.isacceptoffer = 0;
+        }else{
+            $rootScope.ResponseData.isacceptoffer = 1;
+        }
+        $timeout(function() {
+            $rootScope.formLoading = false;
+        }, 1000);
+    }
+
+    $rootScope.counterOffer = function() {
+        $rootScope.formLoading = true;
+        if($rootScope.ResponseData.iscounter){
+            $rootScope.ResponseData.iscounter = 0;
+        }else{
+            $rootScope.ResponseData.iscounter = 1;
+        }
+
+        console.log($rootScope.ResponseData)
         $timeout(function() {
             $rootScope.formLoading = false;
         }, 1000);
