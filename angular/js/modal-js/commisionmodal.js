@@ -1,11 +1,43 @@
 'use strict';
-app.controller('CommisionModalCtrl', ['$scope', '$http', '$state', 'authServices', '$sessionStorage', 'webServices', 'utility', '$rootScope', 'Facebook', 'GoogleSignin', function($scope, $http, $state, authServices, $sessionStorage, webServices, utility, $rootScope, Facebook, GoogleSignin) {
+app.controller('CommisionModalCtrl',  ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', '$modal', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter, $modal) {
     
     $rootScope.openCommisionModal = function() {
         $rootScope.commisionactive = 0;
         $rootScope.formLoading = false;
         $rootScope.setcommisionData();
         $rootScope.openModalPopup('commisionmodal','CommisionModalCtrl');
+    }
+
+    $rootScope.showcheckTooltip = function(){
+        if(!$rootScope.commisionData.isaccept){
+            $rootScope.checkError = true;
+        }
+    }
+
+    $rootScope.hidecheckTooltip = function(){
+        $rootScope.checkError = false;
+    }
+
+    $rootScope.changecounterOffer = function() {
+        $rootScope.formLoading = true;
+        if($rootScope.commisionData.counteroffer){
+            $rootScope.commisionData.counteroffer = 0;
+        }else{
+            $rootScope.commisionData.counteroffer = 1;
+        }
+
+        $timeout(function() {
+            $rootScope.formLoading = false;
+        }, 1000);
+    }
+
+    $rootScope.cancelCounteroffer = function(){
+        $rootScope.formLoading = true;
+        $rootScope.commisionData.counteroffer = 0;
+        $timeout(function() {
+            $rootScope.formLoading = false;
+        }, 1000);
+        
     }
 
     $rootScope.addcommisionFeature = function() {
@@ -46,7 +78,7 @@ app.controller('CommisionModalCtrl', ['$scope', '$http', '$state', 'authServices
             $rootScope.formLoading = false;
             if (getData.status == 200) {
                 $scope.productData = {};
-                $rootScope.closepopoverItem();
+                $rootScope.closeModal();
                 $state.reload();
             } else if (getData.status == 401) {
                 $scope.errors = utility.getError(getData.data.message);

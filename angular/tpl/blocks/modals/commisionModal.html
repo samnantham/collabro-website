@@ -1,0 +1,400 @@
+<script src="js/modal-js/commisionmodal.js"></script>
+<div class="custom-modal" ng-controller="CommisionModalCtrl">
+   <div class="custom-modal-title modal-green">
+      <div class="row flex-center">
+         <div class="col-lg-4 col-md-4">
+            <h3>{{ (commisionData.type == 'Service' ? 'Commision Service Form' : commisionData.type == 'Shop' ? 'Purchase Request Form' : (commisionData.type == 'Rental' ? 'Rental Service Form' : commisionData.type == 'Event' ? 'Event Registration Form' :  commisionData.type)) }}</h3>
+         </div>
+         <div class="col-lg-4 col-md-4 ml-15">
+            <h6 class="text-white mb-5" ng-if="commisionData.type == 'Service'"> Type of Service</h6>
+            <div class="category-label green-category" ng-if="commisionData.type == 'Service'">
+               <i class="fa fa-circle-o"></i>
+               <span>{{commisionData.profession}}</span>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-4">
+            <h3><i class="fa fa-minus-square-o pull-right" ng-click="closeModal()"></i></h3>
+         </div>
+      </div>
+   </div>
+   <!-- Modal body -->
+   <div class="custom-modal-body">
+      <div class="row">
+         <div class="col-lg-4 col-md-4 br-1">
+            <div class="modal-left">
+               <div class="notes" ng-if="!notificationprojectData.member.status">
+                  <div class="custom-tooltip tooltip-right tooltip-bottom" ng-if="checkError">
+                     <div class="custom-tooltip-inner">
+                        You Need to agree TSA Protection rules!
+                     </div>
+                  </div>
+                  <p>NOTE: The is a <span class="success bold">Tripartite Standard Agreement</span> form to protect both parties against any issues in the future. Read for more info <span class="success bold">here</span>.</p>
+                  <div class="form-group mt-30 mb-0">
+                     <input class="magic-checkbox" type="checkbox" id="note" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="commisionData.isaccept" required/>
+                     <label class="text font-s" for="note">Read and agreed to the TSA Protection Scheme</label>
+                  </div>
+               </div>
+               <div class="slider-wrapper mt-30">
+                  <div class="custom-slider mob-slider">
+                     <slick data="popupcarouselItems" infinite="false" init-onload="false" settings="popupslick" class="slider-for">
+                        <div class="width100 sliderframer" ng-repeat="(key,image) in popupcarouselItems">
+                           <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                              <span ng-if="image.filetype == 2">
+                                 <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                                 <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                              </span>
+                           </div>
+                        </div>
+                     </slick>
+                     <div class="thumbslider">
+                        <slick data="popupcarouselItems" init-onload="true" settings="popupthumbslick" class="slider-nav">
+                           <div class="thumbholder" ng-repeat="(key,image) in popupcarouselItems">
+                              <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                           </div>
+                        </slick>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-8 col-md-8">
+            <div class="modal-right">
+               <div class="row mb-30">
+                  <div class="col-lg-12 col-md-12">
+                     <h4>{{commisionData.title}}</h4>
+                     <p class="secondary mt-30">{{commisionData.description}}</p>
+                  </div>
+               </div>
+               <div class="row" ng-if="commisionData.type == 'Service'">
+                  <div class="col-lg-4 col-md-4" ng-if="commisionData.location">
+                     <div class="form-group">
+                        <label class="control-label">Location</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-map-marker mr-10"></i> {{commisionData.location}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4" ng-if="commisionData.profession && !commisionData.is_request">
+                     <div class="form-group">
+                        <label class="control-label">Skill</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-th mr-10"></i> {{commisionData.profession}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4" ng-if="commisionData.is_request">
+                     <div class="form-group">
+                        <label class="control-label">Deadline</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-map-marker mr-10"></i> {{commisionData.deadline | date:"dd-MM-yyyy"}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4" ng-if="commisionData.is_request">
+                     <div class="form-group">
+                        <label class="control-label">Category</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-th mr-10"></i> {{commisionData.request_category}}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row" ng-if="commisionData.type == 'Shop'">
+                  <div class="col-lg-5 col-md-5">
+                     <div class="form-group">
+                        <label class="control-label">Category</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-th-large mr-10"></i> {{commisionData.productcategory.categoryname}}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row" ng-if="commisionData.type == 'Event'">
+                  <div class="col-lg-3 col-md-3" ng-if="commisionData.startdate">
+                     <div class="form-group">
+                        <label class="control-label">Start Date</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-calendar mr-10" ng-if="!commisionData.alldayevent"></i> {{commisionData.alldayevent ? 'Every Day': (commisionData.startdate | date:"dd-MM-yyyy")}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3" ng-if="commisionData.enddate">
+                     <div class="form-group">
+                        <label class="control-label">End Date</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-calendar mr-10" ng-if="!commisionData.alldayevent"></i> {{commisionData.alldayevent ? 'Every Day': (commisionData.enddate | date:"dd-MM-yyyy")}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3">
+                     <div class="form-group">
+                        <label class="control-label">Start Time</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-clock-o mr-10"></i> {{commisionData.starttime}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3">
+                     <div class="form-group">
+                        <label class="control-label">End Time</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-clock-o mr-10"></i> {{commisionData.endtime}}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row" ng-if="commisionData.type == 'Rental'">
+                  <div class="col-lg-3 col-md-3" ng-if="commisionData.startdate">
+                     <div class="form-group">
+                        <label class="control-label">Start Date</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-calendar mr-10" ng-if="!commisionData.alldayevent"></i> {{commisionData.startdate | date:"dd-MM-yyyy"}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3" ng-if="commisionData.enddate">
+                     <div class="form-group">
+                        <label class="control-label">End Date</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-calendar mr-10" ng-if="!commisionData.alldayevent"></i> {{commisionData.enddate | date:"dd-MM-yyyy"}}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3">
+                     <div class="form-group">
+                        <label class="control-label">Location</label>
+                        <div class="btn block-btn gray-btn">
+                           <i class="fa fa-map-marker mr-10"></i> {{commisionData.location}}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-30" ng-if="!commisionData.counteroffer">
+                  <div class="col-lg-12 col-md-12">
+                     <div class="price-group">
+                        <span class="price">
+                        {{commisionData.price ? (commisionData.price | currency): 'Free'}}
+                        </span>
+                        <span class="price-sub" ng-if="commisionData.price > 0 && commisionData.type!='Shop'">  Per {{commisionData.periodtype}} </span>
+                     </div>
+                  </div>
+               </div>
+               <div class="counterData" ng-if="commisionData.counteroffer">
+                  <div class="form-row mt-30 mb-0" ng-if="commisionData.type == 'Service'">
+                     <!-- <div class="form-column flex-top-space">
+                        <div class="form-group wd-100">
+                           <label class="control-label">Location</label>
+                           <ui-select name="location" ng-model="commisionData.location" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                              <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                 <p>
+                                    {{commisionData.location ? commisionData.location : 'Select Location'}}
+                                 </p>
+                              </ui-select-match>
+                              <ui-select-choices class="default-select-items" repeat="location in locations">
+                                 <span ng-bind-html="location | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                        </div>
+                        </div>
+                        <div class="form-column flex-top-space ml-30">
+                        <div class="form-group wd-100">
+                           <label class="control-label">Skills</label>
+                           <ui-select name="profession" ng-model="commisionData.profession" theme="bootstrap" search-enabled="false" ng-required="commisionData.type=='Service'" onkeypress="return false;" onfocus="blur();">
+                              <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                 <p>
+                                    {{commisionData.profession ? commisionData.profession : 'Select Skill'}}
+                                 </p>
+                              </ui-select-match>
+                              <ui-select-choices class="default-select-items" repeat="profession in professions">
+                                 <span ng-bind-html="profession | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                           <span class="error error-text" ng-if="skillerror">Select Skill</span>
+                        </div>
+                        </div> -->
+                     <div class="form-column flex-top-space">
+                        <div class="form-group wd-100">
+                           <label class="control-label">Price</label>
+                           <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="commisionData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" />
+                           <span class="input-icon">
+                           <i class="fa fa-lg fa-dollar"></i>
+                           </span>
+                           <span class="error error-text" ng-if="priceerror">Enter Price</span>
+                        </div>
+                     </div>
+                     <div class="form-column flex-top-space ml-30">
+                        <div class="form-group wd-100">
+                           <label class="control-label">&nbsp;</label>
+                           <ui-select name="periodtype" ng-model="commisionData.periodtype" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                              <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                 <p>{{commisionData.periodtype ? commisionData.periodtype : 'Select Period Type'}}
+                                 </p>
+                              </ui-select-match>
+                              <ui-select-choices class="default-select-items" repeat="periodtype in periodtypes">
+                                 <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-row mt-30 mb-0" ng-if="commisionData.type == 'Shop'">
+                     <div class="form-column flex-top-space">
+                        <div class="form-group wd-100">
+                           <label class="control-label">Price</label>
+                           <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="commisionData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" />
+                           <span class="input-icon">
+                           <i class="fa fa-lg fa-dollar"></i>
+                           </span>
+                           <span class="error error-text" ng-if="priceerror">Enter Price</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-row mt-30 mb-0" ng-if="commisionData.type == 'Rental'">
+                     <div class="form-column flex-top-space">
+                        <div class="form-group wd-100">
+                           <label class="control-label">Location</label>
+                           <ui-select name="location" ng-model="commisionData.location" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                              <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                 <p>{{commisionData.location ? commisionData.location : 'Select Location'}}</p>
+                              </ui-select-match>
+                              <ui-select-choices repeat="location in locations">
+                                 <span ng-bind-html="location | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                        </div>
+                     </div>
+                     <div class="form-column flex-top-space">
+                        <div class="form-group wd-100">
+                        </div>
+                     </div>
+                     <div class="form-column flex-top-space ml-30">
+                        <div class="form-group wd-100">
+                           <label class="control-label">Price</label>
+                           <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="commisionData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" />
+                           <span class="input-icon">
+                           <i class="fa fa-lg fa-dollar"></i>
+                           </span>
+                           <span class="error error-text" ng-if="priceerror">Enter Price</span>
+                        </div>
+                     </div>
+                     <div class="form-column flex-top-space ml-30">
+                        <div class="form-group wd-100">
+                           <label class="control-label">&nbsp;</label>
+                           <ui-select name="periodtype" ng-model="commisionData.periodtype" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                              <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                 <p>{{commisionData.periodtype ? commisionData.periodtype : 'Select Period Type'}}</p>
+                              </ui-select-match>
+                              <ui-select-choices repeat="periodtype in periodtypes">
+                                 <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-row mt-30 mb-0" ng-if="commisionData.type == 'Event'">
+                     <div class="form-column flex-top-space">
+                        <div class="form-group">
+                           <label class="control-label">Start date</label>
+                           <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                              <input type="text" class="form-control input-with-icon" ng-model="commisionData.productstartdate" placeholder="Start Date" name="startdate" ng-required="!commisionData.hasstartdate" />
+                              <span class="input-icon">
+                              <i class="fa fa-lg fa-calendar"></i>
+                              </span>
+                           </datepicker>
+                           <span class="error error-text" ng-if="startdateerror">Required</span>
+                        </div>
+                        <div class="form-group ml-15 pl-5">
+                           <label class="control-label">NA</label>
+                           <input class="magic-checkbox" type="checkbox" id="na" name="hasstartdate" ng-true-value="1" ng-false-value="0" ng-model="commisionData.hasstartdate" ng-change="clearDate('start',commisionData.hasstartdate);">
+                           <label class="text" for="na"></label>
+                        </div>
+                     </div>
+                     <div class="form-column flex-top-space ml-30">
+                        <div class="form-group">
+                           <label class="control-label">End date</label>
+                           <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                              <input type="text" class="form-control input-with-icon" ng-model="commisionData.productenddate" placeholder="End Date" name="enddate" ng-required="!commisionData.hasenddate" required />
+                              <span class="input-icon">
+                              <i class="fa fa-lg fa-calendar"></i>
+                              </span>
+                           </datepicker>
+                           <span class="error error-text" ng-if="enddateerror">Required</span>
+                        </div>
+                        <div class="form-group ml-15 pl-5">
+                           <label class="control-label">NA</label>
+                           <input class="magic-checkbox" type="checkbox" id="na1" name="hasenddate" ng-true-value="1" ng-false-value="0" ng-model="commisionData.hasenddate" ng-change="clearDate('end',commisionData.hasenddate);">
+                           <label class="text" for="na1"></label>
+                        </div>
+                     </div>
+                     <div class="form-column flex-center-space ml-30">
+                        <div class="form-group">
+                           <label class="control-label">Price</label>
+                           <input type="text" class="form-control input-with-icon" placeholder="0.00" name="price" ng-model="commisionData.price" required min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" />
+                           <span class="input-icon">
+                           <i class="fa fa-lg fa-dollar"></i>
+                           </span>
+                           <span class="error error-text" ng-if="priceerror">Enter Price</span>
+                        </div>
+                     </div>
+                     <div class="form-column flex-center-space ml-30">
+                        <div class="form-group wd-100">
+                           <label class="control-label">&nbsp;</label>
+                           <ui-select name="periodtype" ng-model="commisionData.periodtype" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                              <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                 <p>{{commisionData.periodtype ? commisionData.periodtype : 'Select Period Type'}}</p>
+                              </ui-select-match>
+                              <ui-select-choices class="default-select-items" repeat="periodtype in periodtypes">
+                                 <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-row mt-30 mb-0" ng-if="commisionData.type">
+                     <div class="form-column flex-center-space">
+                        <div class="form-group wd-100" ng-if="commisionData.type == 'Event'">
+                           <label class="control-label">From</label>
+                           <ui-select name="starttime" ng-model="commisionData.starttime" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                              <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                 <p>{{commisionData.starttime ? commisionData.starttime : 'Select StartTime'}}</p>
+                              </ui-select-match>
+                              <ui-select-choices class="default-select-items" repeat="starttime in times">
+                                 <span ng-bind-html="starttime | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                        </div>
+                     </div>
+                     <div class="form-column flex-center-space ml-30">
+                        <div class="form-group wd-100" ng-if="commisionData.type == 'Event'">
+                           <label class="control-label">To</label>
+                           <ui-select name="endtime" ng-model="commisionData.endtime" theme="bootstrap" search-enabled="false">
+                              <ui-select-match allow-clear="true" class="selected-item wd-auto float-lt">
+                                 <p>{{commisionData.endtime ? commisionData.endtime : 'Select EndTime'}}
+                                 </p>
+                              </ui-select-match>
+                              <ui-select-choices class="default-select-items" repeat="endtime in times">
+                                 <span ng-bind-html="endtime | highlight: $select.search"></span>
+                              </ui-select-choices>
+                           </ui-select>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Modal footer -->
+   <div class="custom-modal-footer text-right bt-1 pt-30" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">
+      <button type="button" class="btn danger-btn" ng-click="closeModal()" ng-if="!commisionData.counteroffer">Close</button>
+      <button type="button" class="btn danger-btn ml-30" ng-click="cancelCounteroffer()" ng-if="commisionData.counteroffer">Cancel</button>
+      <button type="button" class="btn success-btn ml-30" ng-click="sendcommisionData()" ng-disabled="!commisionData.isaccept" ng-if="!commisionData.hasbargain || commisionData.counteroffer">Proceed</button>
+      <span class="action-btn ml-30" ng-if="commisionData.hasbargain && !commisionData.counteroffer">
+         <button type="button" class="btn silver-btn block-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!commisionData.isaccept">Action <i class="fa fa-angle-down"></i></button>
+         <ul class="dropdown-menu">
+            <li><button type="button" class="btn default-btn block-btn" ng-click="changecounterOffer()" ng-disabled="!commisionData.isaccept">Counter Offer</button></li>
+            <li><button type="button" class="btn success-btn block-btn" ng-click="sendcommisionData()" ng-disabled="!commisionData.isaccept">Proceed Offer</button></li>
+         </ul>
+      </span>
+   </div>
+</div>

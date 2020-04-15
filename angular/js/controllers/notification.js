@@ -69,14 +69,13 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                     $rootScope.ResponseData.isaccept = 0;
                     $rootScope.ResponseData.isacceptoffer = 0;
                     if ($rootScope.ResponseData.startdate) {
-                        $rootScope.ResponseData.productstartdate = new Date($rootScope.ResponseData.startdate);
+                        $rootScope.ResponseData.productstartdate = new Date($rootScope.ResponseData.commisionitem.productdetails.startdate);
                     }
                     if ($rootScope.ResponseData.enddate) {
-                        $rootScope.ResponseData.productenddate = new Date($rootScope.ResponseData.enddate);
+                        $rootScope.ResponseData.productenddate = new Date($rootScope.ResponseData.commisionitem.productdetails.enddate);
                     }
                     $rootScope.ResponseData.showdetails = true;
                     $rootScope.popupcarouselItems = $rootScope.ResponseData.commisionitem.productdetails.images;
-                    console.log($rootScope.ResponseData)
                     $rootScope.openModalPopup('responseModal');
                 } else {
                     $rootScope.logout();

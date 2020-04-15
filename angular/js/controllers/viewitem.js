@@ -56,6 +56,7 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         if ($rootScope.commisionData.enddate) {
             $rootScope.commisionData.productenddate = new Date($rootScope.commisionData.enddate);
         }
+        $rootScope.popupcarouselItems = $rootScope.commisionData.images;
         $rootScope.commisionData.counteroffer = 0;
         $rootScope.commisionData.isaccept = 0;
         $rootScope.formLoading = false;
@@ -72,15 +73,14 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                 $scope.productData.status = 1;
                 $rootScope.formLoading = false;
                 $rootScope.setcommisionData();
-                $rootScope.openModalPopup('commisionmodal','CommisionModalCtrl');
-                //$rootScope.openCommisionModal();
+                $rootScope.openModalPopup('commisionModal');
             }, 2000);
         } else {
             $rootScope.isfirst = 0;
             webServices.get('commisionitem/' + $rootScope.viewData.commisionData.commisionitem[0].id).then(function(getData) {
                 if (getData.status == 200) {
                     $rootScope.ResponseData = getData.data;
-                    console.log($rootScope.ResponseData)
+                    $rootScope.popupcarouselItems = $rootScope.ResponseData.commisionitem.productdetails.images;
                     $rootScope.ResponseData.showdetails = 1;
                     $rootScope.ResponseData.commisionactive = 0;
                     $rootScope.ResponseData.iscounter = 0;
@@ -90,8 +90,9 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                     if ($rootScope.ResponseData.enddate) {
                         $rootScope.ResponseData.productenddate = new Date($rootScope.ResponseData.enddate);
                     }
+                    
                     $timeout(function() {
-                        $rootScope.openModalPopup('responsemodal','ResponseModalCtrl');
+                        $rootScope.openModalPopup('responseModal');
                         $rootScope.formLoading = false;
                     }, 2000);
                 }else

@@ -296,7 +296,7 @@
       <div class="right-title" ng-if="stateurl == 'app.viewitem'">
          <button class="btn success-btn block-btn" ng-click="editRequest();" ng-if="(viewData.owner.id == user.id)&&(viewData.is_request)"> Edit Request</button>
          <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id == user.id)&&(!viewData.is_request)"> Edit {{(viewData.type == 'Service' ? 'Service' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : viewData.type == 'Event' ? 'Event': viewData.type))}}</button>
-         <button type="button" class="btn success-btn block-btn" ng-click="editProduct();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)"> {{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type)) }}</button>
+         <button type="button" class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)"> {{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type)) }}</button>
          <button class="btn success-btn block-btn" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(viewData.commisionData)"> View {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Order' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type)) }}</button>
       </div>
       <div class="right-title" ng-if=" stateurl == 'app.projectdetails' ">
