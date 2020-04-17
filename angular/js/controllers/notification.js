@@ -60,6 +60,7 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
                 }
             }
             webServices.get(url).then(function(getData) {
+                console.log(getData)
                 if (getData.status == 200) {
                     $rootScope.ResponseData = getData.data;
                     $rootScope.ResponseData.showdetails = 0;
@@ -98,7 +99,7 @@ app.controller('NotificationCtrl', ['$scope', '$modal', '$state', 'webServices',
     }
     
     $rootScope.gotocollabchat = function() {
-        $rootScope.closepopoverItem();
+        $rootScope.closeModal();
         $state.go('app.projectdetails', {
             'id': $rootScope.notificationprojectData.member.project
         });

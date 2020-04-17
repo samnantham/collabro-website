@@ -1,4 +1,4 @@
-<div class="custom-modal-title modal-primary" ng-class="{'modal-warning': ResponseData.commisionitem.has_bargained }">
+<div class="custom-modal-title" ng-class="{'modal-warning': ResponseData.commisionitem.has_bargained, 'modal-primary': user.id == ResponseData.buyer.id, 'modal-green': user.id == ResponseData.owner.id && !ResponseData.commisionitem.has_bargained}">
    <div class="row flex-center" ng-if="(user.id == ResponseData.owner.id)">
       <div class="col-lg-6 col-md-6" ng-if="(user.id != ResponseData.commisionitem.userid)">
          <h3 ng-if="!ResponseData.commisionitem.has_bargained">{{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'You have been commissioned!' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'Order received' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'Someone
@@ -243,7 +243,7 @@
                   <div class="col-lg-12 col-md-12">
                      <div class="price-group">
                         <span class="price">
-                        {{ResponseData.commisionitem.productdetails.price ? (ResponseData.commisionitem.productdetails.price | currency): 'Free'}}
+                        {{ResponseData.commisionitem.productdetails.price ? ('$' + ResponseData.commisionitem.productdetails.price): 'Free'}}
                         </span>
                         <span class="price-sub" ng-if="ResponseData.commisionitem.productdetails.price > 0 && ResponseData.commisionitem.productdetails.type!='Shop'">  Per {{ResponseData.commisionitem.productdetails.periodtype}} </span>
                      </div>

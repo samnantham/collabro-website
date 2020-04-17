@@ -15,9 +15,12 @@
          <div class="modal-second-title">
             <div ng-if="user.id == ResponseData.owner.id">
                <div ng-if="user.id == ResponseData.commisionitem.userid">You accepted <span>{{ResponseData.buyer.username}}'s </span> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'offer ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'order ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'registration ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'booking ' : ResponseData.commisionitem.productdetails.type) }}</div>
+               <div ng-if="user.id != ResponseData.commisionitem.userid">You accepted <span>{{ResponseData.buyer.username}}</span> {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'offer ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'order ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'registration ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'booking ' : ResponseData.commisionitem.productdetails.type) }} </div>
             </div>
             <div ng-if="user.id == ResponseData.buyer.id">
                <div ng-if="user.id != ResponseData.commisionitem.userid"><span>{{ResponseData.owner.username}}</span> accepted your {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'offer ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'order ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'registration ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'booking ' : ResponseData.commisionitem.productdetails.type) }} </div>
+
+                <div ng-if="user.id == ResponseData.commisionitem.userid"><span>{{ResponseData.owner.username}}</span> accepted your {{ (ResponseData.commisionitem.productdetails.type == 'Service' ? 'offer ' : ResponseData.commisionitem.productdetails.type == 'Shop' ? 'order ' : ResponseData.commisionitem.productdetails.type == 'Event' ? 'registration ' :ResponseData.commisionitem.productdetails.type == 'Rental' ? 'booking ' : ResponseData.commisionitem.productdetails.type) }} </div>
            </div>
          </div>
       </div>
@@ -165,7 +168,7 @@
 
                   <div class="price-group">
                      <span class="price">
-                     {{ResponseData.commisionitem.productdetails.price ? (ResponseData.commisionitem.productdetails.price | currency): 'Free'}}
+                     {{ResponseData.commisionitem.productdetails.price ? ('$' + ResponseData.commisionitem.productdetails.price): 'Free'}}
                      </span>
                      <span class="price-sub" ng-if="ResponseData.commisionitem.productdetails.price > 0 && ResponseData.commisionitem.productdetails.type!='Shop'">  Per {{ResponseData.commisionitem.productdetails.periodtype}} </span>
                   </div>

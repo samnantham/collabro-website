@@ -669,7 +669,7 @@
                                                         <span>Last Updated: {{convertDate(data.updated_at) | dateToISO | date:'dd MMMM yyyy'}}</span>
                                                     </div>
                                                     <div class="table-col">
-                                                        <h5>{{data.price ? (data.price | currency) + ' SGD': 'Free'}}</h5>
+                                                        <h5>{{data.price ? (data.price | currency) + '': 'Free'}}</h5>
                                                         <span ng-if="data.price > 0 && data.type != 'Shop'">Per Hour</span>
                                                     </div>
                                                     <div class="table-col">

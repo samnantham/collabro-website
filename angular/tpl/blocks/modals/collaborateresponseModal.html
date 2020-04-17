@@ -129,7 +129,7 @@
       <div class="custom-modal-footer text-right bt-1 pt-30" ng-mouseover="showcheckTooltip();" ng-mouseleave="hidecheckTooltip();">
          <button type="button" class="btn danger-btn" ng-click="closeModal()">Close</button>
          <button type="submit" class="btn success-btn ml-30" ng-if="!notificationprojectData.member.status" ng-click="acceptcollaboration()" ng-disabled="!notificationprojectData.isaccept">Accept Deal</button>
-         <button type="button" class="btn success-btn ml-30" ng-if="notificationprojectData.member.status" ng-click="gotocollabchat();"><i class="fa fa-envelope-o mr-5"></i> Chat</button>
+         <button type="button" class="btn btn-svg secondary-btn-border ml-30" ng-if="notificationprojectData.member.status" ng-click="gotocollabchat();">View Details</button>
       </div>
    </form>
 </div>

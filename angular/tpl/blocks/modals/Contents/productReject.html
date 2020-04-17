@@ -165,7 +165,7 @@
 
                   <div class="price-group">
                      <span class="price">
-                     {{ResponseData.commisionitem.productdetails.price ? (ResponseData.commisionitem.productdetails.price | currency): 'Free'}}
+                     {{ResponseData.commisionitem.productdetails.price ? ('$' + ResponseData.commisionitem.productdetails.price): 'Free'}}
                      </span>
                      <span class="price-sub" ng-if="ResponseData.commisionitem.productdetails.price > 0 && ResponseData.commisionitem.productdetails.type!='Shop'">  Per {{ResponseData.commisionitem.productdetails.periodtype}} </span>
                   </div>

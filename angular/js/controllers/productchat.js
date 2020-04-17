@@ -71,6 +71,18 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
         });
     }
 
+    $rootScope.editProduct = function() {
+        $rootScope.iseditproduct = true;
+        $rootScope.editproductid = $rootScope.ProductViewData.id;
+        $rootScope.openproductModal();
+    }
+
+    $rootScope.editRequest = function() {
+        $rootScope.iseditproduct = true;
+        $rootScope.editproductid = $rootScope.ProductViewData.id;
+        $rootScope.openRequestModal();
+    }
+
     $scope.addTocart = function() {
                 var status = 1;
                 if($rootScope.ProductViewData.cart){
