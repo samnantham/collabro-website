@@ -11193,6 +11193,9 @@ i.color-btn {
   float: left;
   padding-left: 15px;
 }
+.modal-right p {
+  white-space: pre-wrap;
+}
 
 .notes {
   width: 100%;
@@ -14989,6 +14992,7 @@ input:checked + .slider:before {
 .product-detail-info p {
   margin-top: 20px;
   margin-bottom: 20px;
+  white-space: pre-wrap;
 }
 .product-detail-info .check-list {
   width: 100%;
