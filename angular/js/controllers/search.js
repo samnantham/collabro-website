@@ -79,6 +79,18 @@ app.controller('SearchCtrl', ['$scope', '$http', '$state', '$timeout', 'webServi
         });
     };
 
+    $rootScope.editProduct = function() {
+        $rootScope.iseditproduct = true;
+        $rootScope.editproductid = $rootScope.viewData.id;
+        $rootScope.openproductModal();
+    }
+
+    $rootScope.editRequest = function() {
+        $rootScope.iseditproduct = true;
+        $rootScope.editproductid = $rootScope.viewData.id;
+        $rootScope.openRequestModal();
+    }
+
 
     $scope.showitem = function(key,data) {
         $rootScope.formLoading = true;
@@ -86,6 +98,7 @@ app.controller('SearchCtrl', ['$scope', '$http', '$state', '$timeout', 'webServi
         $rootScope.selectedkey = key;
         $timeout(function() {         
             $rootScope.viewData = data;
+            $rootScope.carouselItems = $rootScope.viewData.images;
             $timeout(function() {
                 $rootScope.$emit("reloadSlider", {});
             }, 1000);
