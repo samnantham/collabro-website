@@ -88,7 +88,7 @@
                             <a ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"><img src="../assets/img/message-icon.png" /></a>
                         </div>
                     </div>
-                    <div class="full-col mt-10">{{data.description | cut:true:120:'..'}}</div>
+                    <div class="full-col mt-10">{{data.description}}</div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12" ng-if="wishedfeeds.total  ==  0">
