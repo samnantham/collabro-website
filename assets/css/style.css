@@ -15084,6 +15084,7 @@ input:checked + .slider:before {
   width: 40px;
   margin-bottom: 1px;
   line-height: 12px;
+  text-transform: capitalize;
 }
 
 .contact-info-cards {
