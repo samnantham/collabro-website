@@ -86,7 +86,7 @@
                <div class="feed-footer">
                   <div class="feed-footer-left">
                      <span class="price">{{ProductViewData.price ? '$' + ProductViewData.price: 'Free'}}</span>
-                     <span class="price-sub" ng-if="ProductViewData.price > 0 && ProductViewData.type!='Shop' && !ProductViewData.is_request ">per {{ProductViewData.periodtype}}</span>
+                     <span class="price-sub" ng-if="ProductViewData.price > 0 && ProductViewData.type!='Shop' && !ProductViewData.is_request">Per {{ProductViewData.periodtype}}</span>
                   </div>
                   <div class="feed-footer-right">
                      <a title="Add to Wishlist" ng-click="updatewishstatus()" ng-if="ProductViewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': ProductViewData.wishstatus == 1}"></i></a>

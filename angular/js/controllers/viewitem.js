@@ -13,7 +13,6 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                     $scope.viewproduct();
                 }
                 $rootScope.redirectproduct = {};
-                $rootScope.viewData.address = $rootScope.viewData.address.split(",").join(',<br/>');
                 $rootScope.viewData.showExtra = 0;
                 localStorage.redirectData = '';
                 if ($rootScope.viewData.showmap) {
@@ -23,6 +22,8 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
                         $scope.getLatandLong($rootScope.viewData.address);
                     }
                 }
+                $rootScope.viewData.address = $rootScope.viewData.address.split(",").join(',<br/>');
+
                 console.log($rootScope.viewData)
 
                 $timeout(function() {
@@ -189,6 +190,8 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         geocoder.geocode({
             'address': address
         }, function(results, status) {
+            console.log(results)
+            console.log(status)
             if (status == google.maps.GeocoderStatus.OK) {
                 $rootScope.viewData.latitude = results[0].geometry.location.lat();
                 $rootScope.viewData.longitude = results[0].geometry.location.lng();

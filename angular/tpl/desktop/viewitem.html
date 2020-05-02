@@ -201,22 +201,22 @@
                             </div>
                             <div class="product-info-column contact-info-cards" ng-if="!viewData.isprivate">
                                 <div class="contact-info">
-                                    <a href="mailto:{{viewData.email}}"> Email </a>
-                                    <i class="fa fa-envelope"></i>
+                                    <a> Email </a>
+                                    <a href="mailto:{{viewData.email}}"><i class="fa fa-envelope"></i></a>
                                 </div>
                                 <div class="contact-info">
-                                    <a href="tel:{{viewData.phoneno}}"> Contact No </a>
-                                    <i class="fa fa-phone-square"></i>
+                                    <a> Contact No </a>
+                                    <a href="tel:{{viewData.phoneno}}"><i class="fa fa-phone-square"></i></a>
                                 </div>
                                 <div class="contact-info" ng-if="viewData.orderlink">
                                     <a href="{{viewData.orderlink}}" target="_blank"> Order Link </a>
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <a href="{{viewData.orderlink}}" target="_blank"> <i class="fa fa-shopping-cart"></i></a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="product-info-row product-map" ng-if="viewData.showmap && viewData.type != 'Service'">
-                            <ng-map center="{{viewData.latitude}},{{viewData.longitude}}" zoom="17">
+                            <ng-map center="{{viewData.latitude}},{{viewData.longitude}}" zoom="17" class="detail-page-map">
                                 <marker icon="{{customIcon}}" position="{{viewData.latitude}}, {{viewData.longitude}}"></marker>
                             </ng-map>
                         </div>
@@ -258,4 +258,10 @@
     </div>
     <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
 </div>
+
+<style type="text/css">
+    .detail-page-map ,.product-map {
+        display: block!important;
+    }
+</style>
 

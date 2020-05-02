@@ -173,7 +173,10 @@
             </div>
             <div class="row mt-30" ng-if="ResponseData.status == 2 && ResponseData.comments">
                <div class="col-lg-12 col-md-12">
-                  <p class="secondary mt-30">{{ResponseData.comments}}</p>
+                  <div class="form-group">
+                     <label class="control-label">Other Comments</label>
+                     <p class="secondary">{{ResponseData.comments}}</p>
+                  </div>
                </div>
             </div>
          </div>
