@@ -81,7 +81,7 @@
                                 <div class="avatar avatar-xs">
                                     <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" ui-sref="app.viewuser({'id':viewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
                                 </div>
-                                <h5>{{viewData.owner.username | cut:true:20:''}}</h5>
+                                <h5>{{viewData.owner.username}}</h5>
                             </div>
                             <div class="feed-head-right">
                                 <i class="fa fa-circle" ng-class="viewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="feed-body">
                             <h4>{{viewData.title}}</h4>
-                            <p>{{viewData.description | cut:true:385:''}}</p>
+                            <p>{{viewData.description}}</p>
                         </div>
                         <div class="feed-footer top-feed-footer">
                             <div class="feed-footer-left">
@@ -118,6 +118,16 @@
                 </div>
         </div>
 
+        <div class="row mt-15" ng-if="viewData.title">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar bg-gray">
+                    <div class="topbar-left">
+                        <h2 class="text-white">HANDPICKED: {{viewData.title}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row mt-15">
 
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4 custom-col" dir-paginate="(key,data) in products.data | itemsPerPage: totalPerPage" total-items="products.total" current-page="pagination.current" pagination-id="search-pagination">
@@ -125,7 +135,7 @@
                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ng-click="showitem(key,data)" >
                     </div>
                     <div class="card-content">
-                        <h4 class="word-line" ng-click="showitem(key,data)">{{data.title | cut:true:18:''}}</h4>
+                        <h4 class="word-line" ng-click="showitem(key,data)">{{data.title}}</h4>
                         <div class="card-info">
                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                             <span class="price-sub" ng-if=" data.price > 0 && data.type != 'Shop' ">Per {{data.periodtype}}</span>
@@ -148,9 +158,9 @@
 
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="topbar bg-gray">
+                <div class="topbar" ng-class="{'bg-gray' : !viewData.title}">
                     <div class="topbar-left">
-                        <h2 class="text-white">You may also Like</h2>
+                        <h2 ng-class="{'text-white' : !viewData.title}">You may also Like</h2>
                     </div>
                 </div>
             </div>
@@ -163,7 +173,7 @@
                     <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
                     </div>
                     <div class="card-content">
-                        <h4 class="word-line" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title | cut:true:18:''}}</h4>
+                        <h4 class="word-line" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title}}</h4>
                         <div class="card-info">
                             <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
                             <span class="price-sub" ng-if=" data.price > 0 && data.type != 'Shop' ">Per {{data.periodtype}}</span>
