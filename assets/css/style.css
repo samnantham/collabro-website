@@ -7549,6 +7549,10 @@ a {
   color: #FF1561;
 }
 
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
 .black {
   color: #333;
 }
@@ -11192,9 +11196,6 @@ i.color-btn {
   width: 100%;
   float: left;
   padding-left: 15px;
-}
-.modal-right p {
-  white-space: pre-wrap;
 }
 
 .notes {
