@@ -42,7 +42,7 @@
                                 <span>{{data.type}} todo | {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
                             </div>
                             <div class="table-col">
-                                <p>{{data.description}}</p>
+                                <p class="pre-wrap">{{data.description}}</p>
                             </div>
                             <div class="table-col">
                                 <h5>Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</h5>
