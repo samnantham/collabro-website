@@ -6,7 +6,11 @@ angular.module('app')
     .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm', '$http',
         function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalInstance) {
             $rootScope.isMobile = isMobile.phone;
-            $rootScope.screenWidth = window.screen.width * window.devicePixelRatio;
+            console.log(screen.width)
+            console.log(window.screen.availWidth)
+            console.log(window.screen.width)
+            /*$rootScope.screenWidth = window.screen.width * window.devicePixelRatio;*/
+            $rootScope.screenWidth = window.screen.width;
             if ($rootScope.isMobile) {
                 $rootScope.currentdevice = 'mobile';
             } else {
@@ -693,7 +697,8 @@ angular.module('app')
             }
 
             $(window).resize(function() {
-                $rootScope.screenWidth = window.screen.width * window.devicePixelRatio;
+                /*$rootScope.screenWidth = window.screen.width * window.devicePixelRatio;*/
+            $rootScope.screenWidth = window.screen.width;
                 $rootScope.setSliderConfig();
                 if ($rootScope.screenWidth < 800) {
                     $rootScope.currentdevice = 'mobile';

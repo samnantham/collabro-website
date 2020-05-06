@@ -35,7 +35,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
 
     $scope.openfeed = function(key, status) {
         if (status) {
-            var accordion = $('.accordion'),
+            var accordion = $('.accordion-container'),
                 timeOut;
             var element = document.getElementById("accorditem" + key);
             clearTimeout(timeOut);
