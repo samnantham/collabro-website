@@ -36,6 +36,7 @@ app.controller('SearchCtrl', ['$scope', '$http', '$state', '$timeout', 'webServi
                 };
                 $scope.pagedata[$scope.pageno] = getData.data;
                 $scope.products = getData.data;
+                console.log($scope.products)
                 if($rootScope.selectedkey != ''){
                     $rootScope.viewData = $scope.products.data[$rootScope.selectedkey];
                     $rootScope.carouselItems = $rootScope.viewData.images;

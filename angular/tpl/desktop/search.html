@@ -5,7 +5,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="topbar">
                     <div class="topbar-left">
-                        <h2>Results for “{{keyword}}"</h2>
+                        <h2>Results for <b>"{{keyword}}"</b></h2>
                     </div>
                     <div class="topbar-right">
                         <ul class="topbar-list">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="row mt-15">
-            <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12 col-md-12" ng-if="products.total > 0">
                 <div class="topbar result">
                     <div class="topbar-left">
                         <span class="lefttext">Showing <b>{{products.from}}</b> to <b>{{products.to}}</b> of <b>{{products.total}}</b> Results.</span>
@@ -30,6 +30,12 @@
                             <li><a ng-click="searchsortproduct('price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
                         </ul>
                     </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="products.total  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>No records Found</h4>
                 </div>
             </div>
         </div>
@@ -150,7 +156,7 @@
             </div>
         </div>
 
-        <div class="row mb-30">
+        <div class="row mb-30" ng-if="products.last_page > 1">
             <div class="col-lg-12 col-md-12 col-sm-12" ng-if="products.last_page > 1 && !formLoading">
                 <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pagination-ctrl" pagination-id="search-pagination"></dir-pagination-controls>
             </div>
