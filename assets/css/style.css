@@ -15221,6 +15221,12 @@ input:checked + .slider:before {
   background: #fff;
   height: 470px;
 }
+.feeds-wrapper.search-right-wrapper {
+  height: 592px !important;
+}
+.feeds-wrapper.search-right-wrapper .feed-body {
+  height: calc(100% - 133px);
+}
 .feeds-wrapper .feed-head {
   width: 100%;
   float: left;
@@ -15250,7 +15256,7 @@ input:checked + .slider:before {
   width: 100%;
   float: left;
   padding: 12px 0;
-  height: calc(100% - 153px);
+  height: calc(100% - 93px);
   overflow: hidden auto;
 }
 .feeds-wrapper .feed-body h4 {
