@@ -68,7 +68,6 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     }
 
     $scope.currentIndex = 0;
-    $scope.autoplay = true;
 
     $scope.gotofeedchat = function(feedid) {
         webServices.put('feedchat/' + feedid + '/' + $rootScope.user.id).then(function(getData) {
@@ -181,7 +180,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                     if(slider.filetype == 2){
                         if(slider.file.includes('youtu')){
                             var videodata = slider.file.split('/');
-                            slider.file = 'https://www.youtube.com/embed/'+videodata[videodata.length - 1]+'?autoplay=1&enablejsapi=1';
+                            slider.file = 'https://www.youtube.com/embed/'+videodata[videodata.length - 1]+'?autoplay=0&enablejsapi=1';
                         }else if(slider.file.includes('vimeo')){
                             var videodata = slider.file.split('/');
                              slider.file = 'https://player.vimeo.com/video/'+videodata[videodata.length - 1]+'?api=1&player_id=player'+no;
