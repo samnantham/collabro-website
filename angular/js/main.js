@@ -1153,7 +1153,7 @@ angular.module('app')
                     } else if (($rootScope.screenWidth >= 1370) && ($rootScope.screenWidth < 1602)) {
                         $rootScope.scrollslides = 4;
                         $rootScope.slidecount = 4;
-                    } else if (($rootScope.screenWidth >= 1603) && ($rootScope.screenWidth < 1924)) {
+                    } else if (($rootScope.screenWidth >= 1640) && ($rootScope.screenWidth < 1924)) {
                         $rootScope.scrollslides = 5;
                         $rootScope.slidecount = 5;
                     } else if (($rootScope.screenWidth >= 1925) && ($rootScope.screenWidth < 3000)) {

@@ -8598,7 +8598,7 @@ p {
 .accordion-container {
   width: 100%;
   float: left;
-  padding: 8px;
+  padding: 8px 0;
 }
 .accordion-container .accordion-wrapper {
   width: 100%;
@@ -14897,7 +14897,7 @@ input:checked + .slider:before {
   float: left;
 }
 .container-top .container-left {
-  width: 70%;
+  width: calc(70% - 16px);
   float: left;
   height: 365px;
   overflow: hidden;
