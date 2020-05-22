@@ -239,16 +239,108 @@ angular.module('app')
                     resolve: load(['js/controllers/viewuser.js'])
                 })
 
+                //CMS Pages
+
                 .state('app.howitworks', {
                     url: '/howitworks',
                     templateUrl: 'tpl/' + folderpath + '/cms/howitworks.html',
-                    resolve: load(['js/controllers/howitworks.js'])
+                    resolve: load(['js/controllers/cms/howitworks.js'])
                 })
 
                 .state('app.rewardsandbenefits', {
                     url: '/rewardsandbenefits',
                     templateUrl: 'tpl/' + folderpath + '/cms/rewardsandbenefits.html',
-                    resolve: load(['js/controllers/rewardsandbenefits.js'])
+                    resolve: load(['js/controllers/cms/rewardsandbenefits.js'])
+                })
+
+                .state('app.openshop', {
+                    url: '/openshop',
+                    templateUrl: 'tpl/' + folderpath + '/cms/openshop.html',
+                    resolve: load(['js/controllers/cms/openshop.js'])
+                })
+
+                .state('app.becomepartner', {
+                    url: '/becomepartner',
+                    templateUrl: 'tpl/' + folderpath + '/cms/becomepartner.html',
+                    resolve: load(['js/controllers/cms/becomepartner.js'])
+                })
+
+                .state('app.affiliationprogram', {
+                    url: '/affiliationprogram',
+                    templateUrl: 'tpl/' + folderpath + '/cms/affiliationprogram.html',
+                    resolve: load(['js/controllers/cms/affiliationprogram.js'])
+                })
+
+                .state('app.bonuscredit', {
+                    url: '/bonuscredit',
+                    templateUrl: 'tpl/' + folderpath + '/cms/bonuscredit.html',
+                    resolve: load(['js/controllers/cms/bonuscredit.js'])
+                })
+
+                .state('app.licenceandlegal', {
+                    url: '/licenceandlegal',
+                    templateUrl: 'tpl/' + folderpath + '/cms/licenceandlegal.html',
+                    resolve: load(['js/controllers/cms/licenceandlegal.js'])
+                })
+
+                .state('app.discussionsandforums', {
+                    url: '/discussionsandforums',
+                    templateUrl: 'tpl/' + folderpath + '/cms/discussionsandforums.html',
+                    resolve: load(['js/controllers/cms/discussionsandforums.js'])
+                })
+
+                .state('app.collectioncenter', {
+                    url: '/collectioncenter',
+                    templateUrl: 'tpl/' + folderpath + '/cms/collectioncenter.html',
+                    resolve: load(['js/controllers/cms/collectioncenter.js'])
+                })
+
+                .state('app.helpcenter', {
+                    url: '/helpcenter',
+                    templateUrl: 'tpl/' + folderpath + '/cms/helpcenter.html',
+                    resolve: load(['js/controllers/cms/helpcenter.js'])
+                })
+
+                .state('app.collaboraonservice', {
+                    url: '/collaboraonservice',
+                    templateUrl: 'tpl/' + folderpath + '/cms/collaboraonservice.html',
+                    resolve: load(['js/controllers/cms/collaboraonservice.js'])
+                })
+
+                .state('app.sitemap', {
+                    url: '/sitemap',
+                    templateUrl: 'tpl/' + folderpath + '/cms/sitemap.html',
+                    resolve: load(['js/controllers/cms/sitemap.js'])
+                })
+
+                 .state('app.brand', {
+                    url: '/brand',
+                    templateUrl: 'tpl/' + folderpath + '/cms/brand.html',
+                    resolve: load(['js/controllers/cms/brand.js'])
+                })
+
+                 .state('app.termsandconditions', {
+                    url: '/termsandconditions',
+                    templateUrl: 'tpl/' + folderpath + '/cms/termsandconditions.html',
+                    resolve: load(['js/controllers/cms/termsandconditions.js'])
+                })
+
+                .state('app.cookypolicy', {
+                    url: '/cookypolicy',
+                    templateUrl: 'tpl/' + folderpath + '/cms/cookypolicy.html',
+                    resolve: load(['js/controllers/cms/cookypolicy.js'])
+                })
+
+                .state('app.privacypolicy', {
+                    url: '/privacypolicy',
+                    templateUrl: 'tpl/' + folderpath + '/cms/privacypolicy.html',
+                    resolve: load(['js/controllers/cms/privacypolicy.js'])
+                })
+
+                .state('app.careers', {
+                    url: '/careers',
+                    templateUrl: 'tpl/' + folderpath + '/cms/careers.html',
+                    resolve: load(['js/controllers/cms/careers.js'])
                 })
                 
                 /*Common Routes*/
