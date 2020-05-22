@@ -3,12 +3,9 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm', '$http',
-        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalInstance) {
+    .controller('AppCtrl', ['$scope', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document', '$ngConfirm', '$http',
+        function($scope, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $document, $ngConfirm, $modalInstance) {
             $rootScope.isMobile = isMobile.phone;
-            console.log(screen.width)
-            console.log(window.screen.availWidth)
-            console.log(window.screen.width)
             /*$rootScope.screenWidth = window.screen.width * window.devicePixelRatio;*/
             $rootScope.screenWidth = window.screen.width;
             if ($rootScope.isMobile) {
@@ -1149,7 +1146,7 @@ angular.module('app')
             }
 
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-                
+                $rootScope.title = toState.title;
                 $rootScope.formLoading = true;
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
                 if (!isMobile.phone) {
