@@ -1,13 +1,13 @@
 'use strict';
-app.controller('RWBCtrl', ['$scope', '$sce', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $sce, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
-    $scope.rwb = {};
+app.controller('CMS15Ctrl', ['$scope', '$sce', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $sce, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
+    $scope.pageData = {};
 
     $scope.getContent = function() {
-        webServices.get('rewardsandbenefits').then(function(getData) {
+        webServices.get('getpageData/15').then(function(getData) {
             $rootScope.formLoading = false;
             if (getData.status == 200) {
-                $scope.rwb = getData.data;
-                $scope.rwb.content = $sce.trustAsHtml($scope.rwb.content);
+                $scope.pageData = getData.data;
+                $scope.pageData.content = $sce.trustAsHtml($scope.pageData.content);
             }
         });
     };

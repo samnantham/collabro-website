@@ -71,6 +71,7 @@ var app = angular.module('app')
                 }];
                 app.redirectroutes = ['app.viewfeed', 'app.viewuser', 'app.viewproduct', 'app.viewtodo', 'app.viewitem'];
                 app.notauthroutes = ['app.home', 'app.searchitems', 'app.main', 'app.viewproduct'];
+                app.cmsroutes = ['app.howitworks','app.rewardsandbenefits','app.openshop','app.becomepartner','app.affiliationprogram','app.bonuscredit','app.licenceandlegal','app.discussionsandforums','app.collectioncenter','app.helpcenter','app.collaboraonservice','app.sitemap','app.brand','app.termsandconditions','app.cookypolicy','app.privacypolicy','app.careers']
             }
         ])
     .run(['bowser', '$rootScope', function(bowser, $rootScope) {

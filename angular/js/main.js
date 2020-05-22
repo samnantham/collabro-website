@@ -33,6 +33,7 @@ angular.module('app')
             $rootScope.categories = [];
             $rootScope.validextensions = angular.copy(app.imgextensions);
             $rootScope.notauthroutes = angular.copy(app.notauthroutes);
+            $rootScope.cmsroutes = angular.copy(app.cmsroutes);
             $rootScope.servicetypes = angular.copy(app.servicetypes);
             $rootScope.requestservicetypes = angular.copy(app.requestservicetypes);
             $rootScope.requestcategories = angular.copy(app.requestcategories);
@@ -722,7 +723,7 @@ angular.module('app')
                 $rootScope.errors = [];
                 webServices.get('getauthenticateduser').then(function(getData) {
                     if (getData.status == 200) {
-                        console.log(getData.data)
+                        $rootScope.isLogged = true;
                         $sessionStorage.user = getData.data;
                         localStorage.user = JSON.stringify($sessionStorage.user);
                         $rootScope.user = $sessionStorage.user;
@@ -730,10 +731,12 @@ angular.module('app')
                         $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
                         $rootScope.assignDoughnutdata();
                     } else if (getData.status == 401) {
+                        $rootScope.isLogged = false;
                         $rootScope.errors.push(getData.data.message);
                         $rootScope.$emit("showerrors", $rootScope.errors);
                         $rootScope.logout();
                     } else {
+                        $rootScope.isLogged = false;
                         $rootScope.logout();
                     }
                 });
@@ -742,14 +745,17 @@ angular.module('app')
 
             $rootScope.setUserInfo = function() {
                 if ($sessionStorage.user != null) {
+                    $rootScope.isLogged = true;
                     $rootScope.user = authServices.currentUser();
                     $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
                     $rootScope.assignDoughnutdata();
                 } else if ((localStorage.user != '') && (localStorage.user != undefined) && (localStorage.user != 'undefined')) {
                     $rootScope.user = authServices.currentUser();
+                    $rootScope.isLogged = true;
                     $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
                     $rootScope.assignDoughnutdata();
                 } else {
+                    $rootScope.isLogged = false;
                     authServices.logout();
                 }
             }
@@ -1188,14 +1194,17 @@ angular.module('app')
                     //$timeout($rootScope.getnotiCount, $rootScope.notificationInterval);
                 }*/
                 if ($rootScope.notauthroutes.includes($rootScope.stateurl)) {
+                    $rootScope.isLogged = false;
                     if (authServices.isLoggedIn()) {
+                        $rootScope.isLogged = true;
                         $timeout(function() {
                             if($rootScope.previousstate != 'app.viewproduct'){
                                 $state.go('app.usermain');
                             }
                         }, 1000);
                     }
-                } else {
+                } else if($rootScope.cmsroutes.includes($rootScope.stateurl)){
+                }else {
                     $rootScope.getUserInfo();
                     $timeout(function() {
                         console.log('sticky called')

@@ -34,6 +34,7 @@
         }
 
         auth.logout = function() {
+            $rootScope.isLogged = false;
             $sessionStorage.$reset();
             delete $rootScope.user;
             localStorage.user = "";
