@@ -9445,7 +9445,7 @@ i.color-btn {
   -moz-border-radius: 5px;
 }
 .back-link i {
-  font-size: 22px !important;
+  font-size: 20px !important;
 }
 
 .transparent-btn {
@@ -9612,7 +9612,7 @@ i.color-btn {
   color: #7E8EA4;
 }
 .card .card-footer a i {
-  font-size: 24px;
+  font-size: 20px;
 }
 .card .card-footer a:hover {
   color: #00C4E8;
@@ -9656,7 +9656,7 @@ i.color-btn {
   margin-left: 8px;
 }
 .card.share-card .card-left i {
-  font-size: 26px;
+  font-size: 20px;
 }
 .card.share-card .card-right {
   width: 50%;
@@ -15057,7 +15057,7 @@ input:checked + .slider:before {
   font-size: 20px;
 }
 .product-info-row .product-info-column .product-option i {
-  font-size: 24px;
+  font-size: 20px;
   margin-left: 30px;
 }
 
