@@ -8164,6 +8164,9 @@ a {
   width: calc(100% - 432px);
   float: left;
 }
+.center-content.no-side-bar {
+  width: calc(100% - 216px) !important;
+}
 
 .head2 {
   top: 150px !important;
