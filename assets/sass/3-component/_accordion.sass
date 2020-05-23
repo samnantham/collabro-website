@@ -282,6 +282,8 @@
     width: 100%
     float: left    
     margin-bottom: 8px
+  .panel
+    @include box-shadow(none)
 .panel-heading
   padding: 0px !important
 .panel-body
@@ -292,7 +294,7 @@
   align-items: center
   padding: 8px
   @extend .silver-gradient
-  border: 1px solid $white
+  // border: 1px solid #e1e5e9
   img
     width: 45px
     height: 45px
@@ -326,7 +328,7 @@
   width: 100%
   float: left  
   background: $white
-  padding: 8px
+  padding: 16px
   .accordion-body-top
     width: 100%
     float: left

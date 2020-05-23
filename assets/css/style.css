@@ -8605,6 +8605,11 @@ p {
   float: left;
   margin-bottom: 8px;
 }
+.accordion-container .panel {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
 
 .panel-heading {
   padding: 0px !important;
@@ -8619,7 +8624,6 @@ p {
   display: flex;
   align-items: center;
   padding: 8px;
-  border: 1px solid #fff;
 }
 .accordion-label img {
   width: 45px;
@@ -8667,7 +8671,7 @@ p {
   width: 100%;
   float: left;
   background: #fff;
-  padding: 8px;
+  padding: 16px;
 }
 .accordion-body .accordion-body-top {
   width: 100%;
