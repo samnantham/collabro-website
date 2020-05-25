@@ -15068,6 +15068,11 @@ input:checked + .slider:before {
   margin-left: 30px;
 }
 
+.product-map {
+  display: block !important;
+  margin-top: 32px;
+}
+
 .price-group {
   width: auto;
   float: left;
