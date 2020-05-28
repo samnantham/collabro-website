@@ -1,8 +1,6 @@
 <div ng-controller="CMS7Ctrl">
     <div class="info-section">
-        <div ng-include="'tpl/blocks/'+ currentdevice +'/infoleft.html'" ng-if="!isLogged">
-        </div>
-        <div ng-include="'tpl/blocks/desktop/leftmenu.html'" ng-if="isLogged">
+        <div ng-include="'tpl/blocks/'+ currentdevice +'/infoleft.html'">
         </div>
         <!-- Center content Start -->
         <div ng-bind-html="pageData.content">

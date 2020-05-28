@@ -1150,10 +1150,10 @@ angular.module('app')
                 $rootScope.formLoading = true;
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
                 if (!isMobile.phone) {
-                    if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1400)) {
+                    if (($rootScope.screenWidth >= 960) && ($rootScope.screenWidth < 1368)) {
                         $rootScope.scrollslides = 3;
                         $rootScope.slidecount = 3;
-                    } else if (($rootScope.screenWidth >= 1440) && ($rootScope.screenWidth < 1602)) {
+                    } else if (($rootScope.screenWidth >= 1370) && ($rootScope.screenWidth < 1602)) {
                         $rootScope.scrollslides = 4;
                         $rootScope.slidecount = 4;
                     } else if (($rootScope.screenWidth >= 1640) && ($rootScope.screenWidth < 1924)) {
@@ -1201,6 +1201,9 @@ angular.module('app')
                         }, 1000);
                     }
                 } else if($rootScope.cmsroutes.includes($rootScope.stateurl)){
+                    if (authServices.isLoggedIn()) {
+                        $rootScope.isLogged = true;
+                    }
                 }else {
                     $rootScope.getUserInfo();
                     $timeout(function() {
