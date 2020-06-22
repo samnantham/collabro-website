@@ -29,7 +29,7 @@ angular.module('app')
                             window.open(current_url.replace('responsive', 'responsive/mobile'), "_self");
                         }
                     }
-                    $urlRouterProvider.otherwise('/mobile/mobilemain');
+                    $urlRouterProvider.otherwise('/mobile/home');
                 } else {
                     var folderpath = 'desktop';
                     $urlRouterProvider.otherwise(base + '/home');

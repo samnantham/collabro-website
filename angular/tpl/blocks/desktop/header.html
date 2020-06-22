@@ -3,7 +3,7 @@
     <p>We - and our partners - use cookies to deliver our services and to show you ads based on your interests. By using our website, you agree to the use of cookies as described in our Cookie Policy.</p>
     <i class="fa fa-close" ng-click="closeheaderinfo()"></i>
 </div>
-<header class="home-header" ng-class="{'search-active' : stateurl == 'app.searchitems', 'iscookie':showheader}" ng-if="notauthroutes.includes(stateurl) || !isLogged">
+<header class="home-header" ng-class="{'search-active' : stateurl == 'app.searchitems', 'iscookie':showheader,'search-active' : cmsroutes.includes(stateurl) && (!isLogged)}" ng-if="notauthroutes.includes(stateurl) || !isLogged">
     <!-- search-active class for search page -->
     <nav class="navbar">
         <div class="navbar-header">
@@ -15,8 +15,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <a class="logo" ui-sref="app.home">
-                <img ng-src="{{IMGURL}}{{settings.headerlogo}}" ng-if="stateurl != 'app.searchitems'" />
-                <img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo" ng-if="stateurl == 'app.searchitems'" />
+                <img ng-src="{{IMGURL}}{{settings.headerlogo}}" ng-if="stateurl != 'app.searchitems' && !cmsroutes.includes(stateurl)" />
+                <img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo" ng-if="stateurl == 'app.searchitems' || cmsroutes.includes(stateurl) && (!isLogged)" />
             </a>
             <div class="row flex-center">
                 <div class="col-lg-6 col-md-6 col-sm-6">
