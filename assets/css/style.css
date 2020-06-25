@@ -7400,7 +7400,7 @@ a {
   color: #C4AC83 !important;
 }
 
-.text-white {
+.text-white, .white {
   color: #fff !important;
 }
 
@@ -14734,6 +14734,51 @@ input:checked + .slider:before {
 }
 ._720kb-datepicker-calendar-header:nth-child(odd) {
   background: #00C4E8 !important;
+}
+
+/* Mobile Home */
+.main-home {
+  width: 100%;
+  height: 100vh;
+  float: left;
+  background: url(../img/mobile-home.jpg) no-repeat center left;
+}
+.main-home .home-footer {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.main-home .home-footer .terms {
+  color: #34AA44;
+}
+.main-home .home-footer-btn {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  width: calc(100% - 40px);
+  transform: translateX(-50%);
+}
+
+.mobile-main {
+  width: 100%;
+  height: 100vh;
+  float: left;
+  background: #fff;
+}
+.mobile-main .headertitlenew {
+  color: #00C4E8;
+}
+.mobile-main .login-modal {
+  max-width: 100%;
+  padding: 15px;
+  border: 0px;
 }
 
 .info-section {
