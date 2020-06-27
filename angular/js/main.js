@@ -1171,6 +1171,7 @@ angular.module('app')
                     $rootScope.scrollslides = 2;
                 }
                 $rootScope.stateurl = toState.name;
+                console.log($rootScope.stateurl)
                 $rootScope.previousstate = fromState.name;
                 if($rootScope.redirectroutes.includes($rootScope.previousstate)){
                     if(localStorage.redirectData){
