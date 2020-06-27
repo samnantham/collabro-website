@@ -1,0 +1,133 @@
+<div class="content-wrapper" ng-controller="WishlistCtrl">
+    <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar">
+                    <div class="topbar-left">
+                        <i class="fa fa-heart"></i>
+                        <h2>My Wishlist</h2>
+                    </div>
+                    <div class="topbar-right">
+                        <ul class="topbar-list">
+                            <li ng-if="wishedproducts.total > 0">Items Available to Compare &nbsp; <b>{{ wishedproducts.total > 0 ? wishedproducts.total : 'No ' }} </b> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-15" ng-if="wishedproducts.total > 0">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar result">
+                    <div class="topbar-left">
+                        <span class="lefttext">Showing <b>{{wishedproducts.from}}</b> to <b>{{wishedproducts.to}}</b> of <b>{{wishedproducts.total}}</b> Results.</span>
+                    </div>
+                    <div class="topbar-right">
+                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="sortwishlist('created_at','desc')"><i class="fa fa-clock-o"></i> Recently Wished</a></li>
+                            <li><a ng-click="sortwishlist('price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                            <li><a ng-click="sortwishlist('price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                            <li><a ng-click="sortwishlist('title','asc')"><i class="fa fa-sort-amount-asc"></i> Product Name ASC</a></li>
+                            <li><a ng-click="sortwishlist('title','desc')"><i class="fa fa-sort-amount-desc"></i> Product Name DESC</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-15">
+            <div ng-class="slidecount < 4 ? 'col-lg-4 col-md-4 col-sm-4' : 'col-lg-3 col-md-3 col-sm-3'" class="col-xs-12 custom-col" dir-paginate="(key,data) in wishedproducts.data | itemsPerPage: totalPerPage" total-items="wishedproducts.total" current-page="pagination.current">
+                <div class="card">
+                    <div class="card-img" background-image="{{data.product.images[0].filetype == 1 ? IMGURL:''}}{{data.product.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.product.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
+                    </div>
+                    <div class="card-content">
+                        <h4 class="word-line" ui-sref="app.viewitem({id:data.product.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.product.title}}</h4>
+                        <div class="card-info">
+                            <span class="price">{{data.product.price ? '$' + data.product.price: 'Free'}}</span>
+                            <span class="price-sub" ng-if="data.product.price > 0 && data.product.type!='Shop' && data.product.periodtype">Per {{data.product.periodtype}}</span>
+
+                            <button type="button" class="btn silver-btn right ml-auto dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
+                            <ul class="dropdown-menu">
+                                <li ng-if="(!data.iscompared) && (comparedproducts.length < 3)"><a ng-click="changeiscompared(key,data)">Add to Compare</a></li>
+                                <li ng-if="data.iscompared"><a ng-click="changeiscompared(key,data)">Remove Compare</a></li>
+                                <li><a ng-click="removefromwish(data)">Remove Item</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hover-icon active" ng-if="data.iscompared">
+                        <i class="fa fa-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="wishedproducts.total  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>You have not add any item to wishlist. Currently, there are no record found.</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-30">
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="wishedproducts.total > 0 && !formLoading">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl"></dir-pagination-controls>
+            </div>
+        </div>
+        <div class="row mt-15" ng-if="wishedproducts.total > 0">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar bg-gray">
+                    <div class="topbar-left">
+                        <h2 class="text-white">
+                            <i class="fa fa-check-circle text-white"></i> &nbsp;Items Added to Compare</h2>
+                    </div>
+                    <div class="topbar-right">
+                        <span class="text-white">{{  comparedproducts.length < 3 ? '[' + (3 - comparedproducts.length)  + '] MORE TO ADD' : 'SHORTLIST FILLED'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-15" ng-if="wishedproducts.total > 0">
+
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="comparedproducts.length  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>You have not add any item to compared list. Currently, there are no record found.</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-repeat="(key,data) in comparedproducts">
+                <div class="card compare-card">
+                    <div class="card-close">
+                        <a ng-click="removecompared(data);" class="fa fa-minus-circle danger"></a>
+                    </div>
+                    <div class="card-img flat-img" background-image="{{data.product.images[0].filetype == 1 ? IMGURL:''}}{{data.product.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.product.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
+                    </div>
+                    <div class="card-content">
+                        <h4 class="title-default default" ui-sref="app.viewitem({id:data.product.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.product.title}}</h4>
+                        <span class="sub-head">{{data.product.owner.username}} | Last Update : {{convertDate(data.product.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                    </div>
+                    <div class="card-info price-border">
+                        <span class="price">{{data.product.price ? '$' + data.product.price: 'Free'}}</span>
+                        <span class="price-sub" ng-if="data.product.price > 0 && data.product.type != 'Shop'">Per {{data.product.periodtype}}</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="footer-top">
+                            <div class="ratings">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="views">
+                                <i class="fa fa-eye mr-5"></i> {{data.product.noofviews | shortNumber}}
+                            </div>
+                        </div>
+                        <div class="footer-bottom pre-wrap">
+                            {{data.product.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+</div>

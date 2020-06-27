@@ -1,0 +1,198 @@
+<div ng-controller="SearchCtrl" class="content-wrapper">
+    <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar">
+                    <div class="topbar-left">
+                        <h2>Results for <b>"{{keyword}}"</b></h2>
+                    </div>
+                    <div class="topbar-right">
+                        <ul class="topbar-list">
+                            <li>{{products.total}} results available</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-15">
+            <div class="col-lg-12 col-md-12" ng-if="products.total > 0">
+                <div class="topbar result">
+                    <div class="topbar-left">
+                        <span class="lefttext">Showing <b>{{products.from}}</b> to <b>{{products.to}}</b> of <b>{{products.total}}</b> Results.</span>
+                    </div>
+                    <div class="topbar-right">
+                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Sort by <i class="fa fa-angle-down ml-10"></i></span>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="searchsortproduct('noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                            <li><a ng-click="searchsortproduct('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                            <li><a ng-click="searchsortproduct('price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                            <li><a ng-click="searchsortproduct('price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="products.total  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>No records Found</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-top mt-15 mb-15" ng-if="viewData.title">
+            <div class="content-detail-left">
+                <div class="slider-wrapper">
+                    <div class="custom-slider">
+                        <slick data="carouselItems" infinite="false" init-onload="true" settings="productslick" class="slider-for">
+                            <div class="width100 sliderframer" ng-repeat="(key,image) in carouselItems">
+                                <div class="imgcontainer" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.file}}">
+                                    <span ng-if="image.filetype == 2">
+                                        <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                                        <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
+                                    </span>
+                                </div>
+                            </div>
+                        </slick>
+                        <div class="thumbslider">
+                            <slick data="carouselItems" infinite="false" init-onload="true" settings="productthumbslick" class="slider-nav">
+                                <div class="thumbholder" ng-repeat="(key,image) in carouselItems">
+                                    <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                </div>
+                <div class="more-info">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 text-center">
+                                <h5>Collection Items</h5>
+                                <div class="count">20</div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 text-center br-v">
+                                <h5>Completed Projects</h5>
+                                <div class="count">50</div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 text-center">
+                                <h5>{{viewData.owner.xprank.rankname}}</h5>
+                                <img class="rank-icon" ng-src="{{IMGURL}}{{viewData.owner.xprank.icon}}" />
+                            </div>
+                        </div>
+                </div>
+            </div>
+             <div class="content-detail-right">
+                    <div class="feeds-wrapper search-right-wrapper">
+                        <div class="feed-head">
+                            <div class="feed-head-left">
+                                <div class="avatar avatar-xs">
+                                    <img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" ui-sref="app.viewuser({'id':viewData.owner.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"/>
+                                </div>
+                                <h5>{{viewData.owner.username}}</h5>
+                            </div>
+                            <div class="feed-head-right">
+                                <i class="fa fa-circle" ng-class="viewData.owner.onlinestatus == 1 ? 'success':'error'"></i> <span>{{viewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                            </div>
+                        </div>
+                        <div class="feed-body">
+                            <h4>{{viewData.title}}</h4>
+                            <p class="pre-wrap">{{viewData.description}}</p>
+                        </div>
+                        <div class="feed-footer top-feed-footer">
+                            <div class="feed-footer-left">
+                                <button type="button" class="btn silver-btn" ui-sref="app.viewitem({id:viewData.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">View More</button>
+                            </div>
+                            <div class="feed-footer-right">
+                                <a title="Add to Wishlist" ng-click="updatewishstatus(viewData,'preview')" ng-if="viewData.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': viewData.wishstatus == 1}"></i></a>
+                                <a title="Add to Cart" ng-if="viewData.owner.id!=user.id" ng-click="addTocart(viewData,'preview')"><i class="fa fa-plus" ng-class="{'primary': viewData.cart && viewData.cart.status}"></i></a>
+                                <a title="Share to Earn" ng-click="sharetosocial(viewData)"><i class="fa fa-share"></i></a>
+                            </div>
+                        </div>
+                        <div class="feed-footer">
+                            <div class="feed-footer-left">
+                                <span class="price">{{viewData.price ? '$' + viewData.price: 'Free'}}</span>
+                                <span class="price-sub" ng-if="viewData.price > 0 && viewData.type!='Shop'">per {{viewData.periodtype}}</span>
+                            </div>
+                            <div class="feed-footer-right">
+                                <a class="btn success-btn right" ng-click="editProduct();" ng-if="viewData.owner.id == user.id">Edit Product</a>
+
+                                <a class="btn success-btn right" ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)">{{ (viewData.type == 'Service' ? 'Commission' : (viewData.type == 'Shop' ? 'Order Now' : viewData.type == 'Rental' ? 'Book Now' : viewData.type == 'Event' ? 'Register Now': viewData.type))  }}</a>
+
+                                <a class="btn success-btn right" ng-click="gotoChat(viewData.id)" ng-if="(viewData.owner.id != user.id) && (viewData.commisionData)">View  {{ (viewData.type == 'Service' ? 'Commisioned' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Booked' : viewData.type == 'Event' ? 'Registered': viewData.type))  }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="row mt-15" ng-if="viewData.title">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar bg-gray">
+                    <div class="topbar-left">
+                        <h2 class="text-white">HANDPICKED: {{viewData.title}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-15">
+
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4 custom-col" dir-paginate="(key,data) in products.data | itemsPerPage: totalPerPage" total-items="products.total" current-page="pagination.current" pagination-id="search-pagination">
+                <div class="card">
+                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ng-click="showitem(key,data)" >
+                    </div>
+                    <div class="card-content">
+                        <h4 class="word-line" ng-click="showitem(key,data)">{{data.title}}</h4>
+                        <div class="card-info">
+                            <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                            <span class="price-sub" ng-if=" data.price > 0 && data.type != 'Shop' ">Per {{data.periodtype}}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'search',key)" ng-if="data.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'search',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
+                        <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-30" ng-if="products.last_page > 1">
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="products.last_page > 1 && !formLoading">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pagination-ctrl" pagination-id="search-pagination"></dir-pagination-controls>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar" ng-class="{'bg-gray' : !viewData.title}">
+                    <div class="topbar-left">
+                        <h2 ng-class="{'text-white' : !viewData.title}">You may also Like</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-15">
+
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4 custom-col" ng-repeat="(key,data) in alsolikeproducts">
+                <div class="card">
+                    <div class="card-img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">
+                    </div>
+                    <div class="card-content">
+                        <h4 class="word-line" ui-sref="app.viewitem({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title}}</h4>
+                        <div class="card-info">
+                            <span class="price">{{data.price ? '$' + data.price: 'Free'}}</span>
+                            <span class="price-sub" ng-if=" data.price > 0 && data.type != 'Shop' ">Per {{data.periodtype}}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a title="Add to Wishlist" ng-click="updatewishstatus(data,'likedproducts',key)" ng-if="data.owner.id != user.id"><i class="fa fa-heart" ng-class="{'primary': data.wishstatus == 1}"></i></a>
+                        <a title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data,'likedproducts',key)"><i class="fa fa-plus" ng-class="{'primary': data.cart && data.cart.status}"></i></a>
+                        <a title="Share to Earn" ng-click="sharetosocial(data)"><i class="fa fa-share"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+</div>

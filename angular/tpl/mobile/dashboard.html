@@ -1,0 +1,711 @@
+<div ng-controller="DashboardCtrl" class="content-wrapper">
+    <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <!-- app top -->
+        <div class="dashboard-wrapper">
+            <!-- dashboard-left -->
+            <div class="dashboard-left">
+                <div class="dashboard-top">
+                    <ul class="dashboard-list">
+                        <li>
+                            <span>Collection Items</span>
+                            <div class="font-price">
+                                {{userData.totalproducts}}
+                            </div>
+                        </li>
+                        <li>
+                            <span>Completed
+                                    Projects</span>
+                            <div class="font-price">
+                                {{userData.totalprojects ? userData.totalprojects: 0 }}
+                            </div>
+                        </li>
+                        <li>
+                            <span>Viewers</span>
+                            <div class="font-price">
+                                {{userData.totalviewers}}
+                            </div>
+                        </li>
+                        <li>
+                            <span>Your Followers</span>
+                            <div class="font-price">
+                                {{userData.followers}}
+                            </div>
+                        </li>
+                        <li>
+                            <span>You Follow</span>
+                            <div class="font-price">
+                                {{userData.following}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dashboard-bottom">
+                    <div class="tabset-wrapper">
+                        <div class="tabset grid4">
+                            <input type="radio" name="tabset" id="tab1" aria-controls="tabset-one" checked/>
+                            <label for="tab1" class="tabs-label">Profile</label>
+                            <input type="radio" name="tabset" id="tab2" aria-controls="tabset-two" />
+                            <label for="tab2" class="tabs-label">Address</label>
+                            <input type="radio" name="tabset" id="tab3" aria-controls="tabset-three" />
+                            <label for="tab3" class="tabs-label">My Account</label>
+                            <input type="radio" name="tabset" id="tab4" aria-controls="tabset-four" />
+                            <label for="tab4" class="tabs-label">Password</label>
+                            <div class="tab-panels">
+                                <section id="tabset-one" class="tab-panel profile-tab">
+                                    <div class="not-edit" ng-if="!profileedit">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <input type="button" class="btn silver-btn right" value="Edit Profile" ng-click="showhideedit('profile')" />
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20 flex-center">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                                <div class="avatar avatar-l">
+                                                    <img ng-src="{{IMGURL}}{{userData.avatar}}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                                <h2 class="ucase">{{userData.username}}</h2>
+                                                <p class="ucase mb-0" ng-if="userData.iscompany">{{user.organisation ? user.organisation : 'COMPANY NAME (Optional)'}}</p>
+                                                <hr/>
+                                                <p class="ucase mb-0" ng-if="userData.iscompany">{{user.company_uen ? user.company_uen : 'COMPANY UEN NO. (Optional)'}}</p>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <h3>{{user.countrycode ? user.countrycode : '' }} {{userData.phonenumber}}</h3>
+                                                <div class="wd-100">
+                                                    <input type="button" class="btn silver-btn block-btn right mt-10 mb-15" value="Verify Mobile" ng-if="!user.otpverified" ng-click="openOTPModal()" />
+                                                </div>
+                                                <h5 class="ucase"><i class="fa fa-map-marker"></i> {{userData.country}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20 flex-center">
+                                            <div class="col-lg-3 col-md-3 text-right">
+                                                <label class="info-label">Website</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9">
+                                                <p class="website-name">collabro.com/{{userData.website}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20">
+                                            <div class="col-lg-3 col-md-3 text-right">
+                                                <label class="info-label">Skills</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9">
+                                                <p>{{userData.profession}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20">
+                                            <div class="col-lg-3 col-md-3 text-right">
+                                                <label class="info-label">Who am i?</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9">
+                                                <p>{{userData.aboutme ? userData.aboutme : 'This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!'}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="is-edit" ng-if="profileedit">
+                                        <form name="profileform" ng-submit="saveProfile(profileform)">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <input type="submit" class="btn silver-btn right" value="Save Profile" />
+                                                    <input type="button" class="btn silver-btn right mr-20" value="Cancel" ng-click="showhideedit('profile')"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-20">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                                    <div class="avatar avatar-l" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="1" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="uploadProfileimg($files);">
+                                                        <img ng-src="{{IMGURL}}{{userData.avatar}}" ng-if="!editData.profileimg"/>
+                                                        <img ngf-src="editData.profileimg" ng-if="editData.profileimg">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9">
+                                                    <h2 class="ucase"><input type="text" name="username" class="form-control" placeholder="Username" ng-model="editData.username" required/></h2>
+                                                    <p class="ucase" ng-if="user.iscompany"><input type="text" class="form-control" placeholder="Company name" ng-model="editData.organisation"  name="organisation"/></p>
+                                                    <p class="ucase mt-10 mb-0" ng-if="user.iscompany"><input type="text" class="form-control" placeholder="UEN No" ng-model="editData.company_uen" name="company_uen"/></p>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Phone No</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2">
+                                                    <input type="text" class="form-control" placeholder="+65" ng-model="editData.countrycode" name="countrycode"/>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7">
+                                                    <input type="text" class="form-control" placeholder="676 677 777" required ng-model="editData.phonenumber" name="phonenumber"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Location</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <select class="form-control" name="country" ng-model="editData.country" required>
+                                                        <option value="{{location}}" ng-repeat="(key,location) in locations">{{location}}</option>
+                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Website</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <div class="website-label">
+                                                        <label>collabro.com/</label><input type="text" class="form-control" placeholder="website name" ng-model="editData.website"  name="website"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10 flex-center">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Skills</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <input type="text" class="form-control" placeholder="skills" ng-model="editData.profession"  name="profession" required/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10">
+                                                <div class="col-lg-3 col-md-3 text-right">
+                                                    <label class="info-label">Who am i?</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9">
+                                                    <textarea class="form-control" rows="4" ng-model="editData.aboutme" name="aboutme" placeholder="This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!"></textarea>
+                                                </div>
+                                            </div>
+                                        </form>
+                               
+                                    </div>
+                                </section>
+                                <section id="tabset-two" class="tab-panel">
+                                    <form name="addressform" ng-submit="saveAddress(addressform)">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12" ng-if="!addressedit">
+                                                <input type="button" class="btn silver-btn right" value="Edit Address" ng-click="showhideedit('address')" />
+                                            </div>
+                                            <div class="col-lg-12 col-md-12" ng-if="addressedit">
+                                                <input type="submit" class="btn silver-btn right" value="Save Address" />
+                                                <input type="button" class="btn silver-btn right mr-10" value="Cancel" ng-click="showhideedit('address')" />
+                                            </div>
+                                        </div>
+                                        <div class="row mt-20">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Address</label>
+                                                            <textarea name="address" class="form-control" rows="4" placeholder="Street name Unit no City State" ng-model="userData.address" required ng-class="{'disabled':!addressedit}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-20">
+                                                    <div class="col-lg-5 col-md-5">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Postal Code</label>
+                                                            <input type="text" class="form-control" placeholder="postal code" name="postalcode" ng-model="userData.postalcode" required numbers-only ng-class="{'disabled':!addressedit}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-lg-offet-2 col-md-offset-2">
+                                                        <div class="form-group">
+                                                            <label class="control-label">&nbsp;</label>
+                                                            <input class="magic-checkbox" type="checkbox" name="layout" id="show-map" value="option" ng-true-value="1" ng-false-value="0" ng-model="userData.showmap" ng-class="{'disabled':!addressedit}">
+                                                            <label class="text" for="show-map">Show Map</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-20" ng-if="user.iscompany">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Organisation</label>
+                                                            <input type="text" class="form-control" placeholder="Name of company or organiser" name="organisation" ng-model="userData.organisation" ng-class="{'disabled':!addressedit}" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Business Email</label>
+                                                            <input type="email" name="email" ng-model="userData.email" required ng-class="{'disabled':!addressedit}" class="form-control" placeholder="Email" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-2">&nbsp;</label>
+                                                            <input class="magic-checkbox" type="radio" name="private" id="private" value="1" ng-checked="userData.isprivate" ng-class="{'disabled':!addressedit}" />
+                                                            <label class="text" for="private">Private</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-2">&nbsp;</label>
+                                                            <input class="magic-checkbox" type="radio" name="private" id="public" value="0" ng-checked="!userData.isprivate" ng-class="{'disabled':!addressedit}" />
+                                                            <label class="text" for="public">Public</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-20">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group mb-0">
+                                                            <label class="control-label">Contact No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" ng-model="userData.countrycode" name="countrycode" required ng-class="{'disabled':!addressedit}" placeholder="+65" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-9">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" placeholder="998 999 999" required ng-model="userData.phonenumber" name="phonenumber" ng-class="{'disabled':!addressedit}" numbers-only/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-20" ng-if="user.iscompany">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Company UEN No.</label>
+                                                            <input type="text" class="form-control" placeholder="Company UEN No." ng-model="userData.company_uen" name="company_uen" ng-class="{'disabled':!addressedit}" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </section>
+                                <section id="tabset-three" class="tab-panel">
+                                    <!-- <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <input type="button" class="btn silver-btn right" value="Edit Info" />
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="row mt-20">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">
+                                                            <span class="label-img"><img src="../assets/img/visa.png" /></span>
+                                                            <span class="label-img"><img src="../assets/img/master.png" /></span>
+                                                            <span class="label-img"><img src="../assets/img/amex.png" /></span>
+                                                        </label>
+                                                        <input type="text" class="form-control" placeholder="Card Number" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-md-5">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="MM / YY" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="CYC" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn silver-btn " value="Add Credit Card" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-20">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group mb-0">
+                                                        <label class="control-label">
+                                                            Saved Card
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="saved-card">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <img src="../assets/img/visa.png" />
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <input type="text" class="form-control" placeholder="123" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20">
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <p>Exp. 06/19</p>
+                                                            </div>
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <p>CVC XXX</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 mt-20">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn silver-btn" value="Edit Card" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">
+                                                            <span class="label-img"><img src="../assets/img/paypal.png" /></span>
+                                                        </label>
+                                                        <input type="text" class="form-control" placeholder="Card Number" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn silver-btn " value="Add Paypal Account" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="opacity-0 form-control" placeholder="Card Number" />
+                                                         for place holder
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-20">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Saved Paypal Account</label>
+                                                        <input type="text" class="form-control" placeholder="Card Number" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="payment-method">
+                                                        <p>Payment Method</p>
+                                                        <div class="form-group">
+                                                            <input class="magic-radio" type="radio" name="layout" id="visa" value="option" />
+                                                            <label class="text" for="visa"><img src="../assets/img/visa.png" /></label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input class="magic-radio" type="radio" name="layout" id="paypal" value="option" />
+                                                            <label class="text" for="paypal"><img src="../assets/img/paypal.png" /></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div> -->
+
+                                    <!-- <div class="row mt-20">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Order Link</label>
+                                                <input type="text" class="form-control" placeholder="Product order or Booking link" />
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </section>
+                                <section id="tabset-four" class="tab-panel">
+                                    <form name="passwordform" ng-submit="changePassword(passwordform)" novalidate>
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                                            
+                                                <div class="row mt-20">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Current Password</label>
+                                                            <input class="form-control" type="password" ng-model="passwordData.oldpassword" name="currentpassword" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">New Password</label>
+                                                            <input class="form-control" type="password" ng-model="passwordData.newpassword" name="newpassword" ng-minlength="8"required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Confirm Password</label>
+                                                            <input class="form-control" type="password" ng-model="passwordData.confirmpassword" name="confirmpassword" ng-minlength="8"required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-20">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <input type="submit" class="btn silver-btn right" value="Submit" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- dashboard-right -->
+            <div class="dashboard-right">
+                <div class="dashboard-top">
+                    <ul class="dashboard-list">
+                        <li>
+                            <span>Revenue</span>
+                            <div class="font-price">
+                                ${{user.experiencepoints}}
+                            </div>
+                        </li>
+                        <li>
+                            <span>Rank</span>
+                            <div class="font-price">
+                                <img ng-src="{{IMGURL}}{{userData.xprank.icon}}" class="rank-icon" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dashboard-bottom br-t mb-30">
+                    <div class="accounts-wrapper">
+                        <div class="account-card">
+                            <span class="secondary-price">$0 <!-- <i class="fa fa-caret-down danger"></i> --></span>
+                            <span class="card-info">Withdrawl</span>
+                        </div>
+                        <div class="account-card">
+                            <span class="secondary-price">$0  <!-- <i class="fa fa-caret-up success"></i> --></span>
+                            <span class="card-info">Account Balance</span>
+                        </div>
+                    </div>
+                    <div class="accounts-wrapper">
+                        <div class="account-card new">
+                            <span class="secondary-price">$0</span>
+                            <span class="card-info">Ledger Balance</span>
+                        </div>
+                        <div class="account-card new">
+                            <span class="secondary-price success">$0</span>
+                            <span class="card-info">Available Balance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-bottom br-t pt-30 mb-30">
+                    <span class="secondary">Financial Distribution</span>
+                    <div class="chart-wrapper mt-20">
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle success"></i> Service Earned</h6>
+                                <span class="secondary-price">${{user.service_earned}}</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.service_earned*100)/user.total_earned) + '%'}" tooltip="{{user.service_earned}}" tooltip-trigger="mouseenter">
+                                </div>                            
+                            </div>
+                        </div>    
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle warning"></i> Product Earned</h6>
+                                <span class="secondary-price">${{user.product_earned}}</span>
+                            </div>                    
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar"  aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.product_earned*100)/user.total_earned) + '%'}"  tooltip="{{user.product_earned}}" tooltip-trigger="mouseenter">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle info"></i> Advertisement Spent</h6>
+                                <span class="secondary-price">$0</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-wrapper">
+                            <div class="progress-label">
+                                <h6><i class="fa fa-circle danger"></i> Rental Earned</h6>
+                                <span class="secondary-price">${{user.rental_earned}}</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ((user.rental_earned*100)/user.total_earned) + '%'}"  tooltip="{{user.rental_earned}}" tooltip-trigger="mouseenter">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- app container -->
+        <div class="content-container">
+            <div class="gray-header">
+                <i class="fa fa-bar-chart"></i>
+                <h3 class="ucase">Performance Statistic</h3>
+            </div>
+            <div class="dashboard-wrapper">
+                <div class="dashboard-top">
+                    <div class="dashboard-left">
+                        <div class="charts-wrapper">
+                            <p class="ucase secondary mt-10 mb-10">XP Earning</p>
+                            <div class="chart-wrapper">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.xpData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                        </div>
+                                    </div>
+                                    <span>{{data.monthname | cut:true:3:'' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="charts-wrapper">
+                            <p class="ucase secondary mt-10 mb-10">Reach Viewers</p>
+                            <div class="chart-wrapper">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.reachViewersData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                        </div>
+                                    </div>
+                                    <span>{{data.monthname | cut:true:3:'' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="charts-wrapper">
+                            <p class="ucase secondary mt-10 mb-10">Impressions</p>
+                            <div class="chart-wrapper">
+                                <div class="progress-vertical-wrapper" ng-repeat="(key,data) in chartData.impressionData">
+                                    <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                        </div>
+                                    </div>
+                                    <span>{{data.lable}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-right statistic-info">
+                        <div class="flex-center-space">
+                            <h5 class="ucase">mutual friends</h5>
+                            <div class="font-price">
+                                {{chartData.mutualFriends}}
+                            </div>
+                        </div>
+                        <div class="flex-center-space">
+                            <h5 class="ucase">APPRECIATIONS</h5>
+                            <div class="font-rating">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="flex-center-space">
+                            <h5 class="ucase">LIKES</h5>
+                            <div class="font-price">
+                                {{chartData.totallikes}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-bottom mt-30">
+                    <div class="tabset-wrapper">
+                        <div class="tabset grid3">
+                            <input type="radio" name="tabset1" id="tab5" aria-controls="tabset-five" checked/>
+                            <label for="tab5" class="tabs-label">Followers</label>
+                            <input type="radio" name="tabset1" id="tab6" aria-controls="tabset-six" />
+                            <label for="tab6" class="tabs-label">Interest Area</label>
+                            <input type="radio" name="tabset1" id="tab7" aria-controls="tabset-seven" />
+                            <label for="tab7" class="tabs-label">My Listings</label>
+                            <div class="tab-panels">
+                                <section id="tabset-five" class="tab-panel">
+                                    <div class="followers-area">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <h3 class="default ucase">Followers Skills area</h3>
+                                                <ul class="followers-list">
+                                                    <li ng-repeat="(key,data) in otherData.professiondata">
+                                                        <h5>{{data.profession}}</h5> <span>{{data.totalmembers}}</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-lg-offset-1 col-md-offset-1">
+                                                <h3 class="default ucase">Category</h3>
+                                                <ul class="followers-list">
+                                                    <li ng-repeat="(key,data) in otherData.typesData">
+                                                        <h5>{{data.name}}</h5>
+                                                        <span>{{data.count}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section id="tabset-six" class="tab-panel">
+                                    <div class="interest-area">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 interest-space" ng-repeat="(key,data) in userData.interestarea">
+                                                <input class="magic-checkbox" type="checkbox" name="layout" id="magic-checkbox{{key}}" ng-change="updateInterestarea(data)" ng-true-value="1" ng-false-value="0" ng-model="data.status" />
+                                                <label class="text" for="magic-checkbox{{key}}">{{data.name}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section id="tabset-seven" class="tab-panel">
+                                    <div class="table-listing" id="MyProducts">
+                                        <div class="table-card dashboard-list-table" dir-paginate="(key,data) in myProducts.data | itemsPerPage: totalPerPage" total-items="myProducts.total" current-page="pagination.current">
+                                            <div class="flex-top-space">
+                                                <div class="table-img option-img" ui-sref="app.viewitem({'id':data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" background-image="{{data.images[0].filetype == 1 ? IMGURL:''}}{{data.images[0].thumbnail}}">
+                                                </div>
+                                                <div class="table-content">
+                                                    <div class="table-col">
+                                                        <h5>{{data.title}}</h5>
+                                                        <span>Last Updated: {{convertDate(data.updated_at) | dateToISO | date:'dd MMMM yyyy'}}</span>
+                                                    </div>
+                                                    <div class="table-col">
+                                                        <h5>{{data.price ? (data.price | currency) + '': 'Free'}}</h5>
+                                                        <span ng-if="data.price > 0 && data.type != 'Shop'">Per Hour</span>
+                                                    </div>
+                                                    <div class="table-col">
+                                                        <div class="table-col">
+                                                            <h5>{{data.wishcount}}</h5>
+                                                            <span><i class="fa fa-heart"></i></span>
+                                                        </div>
+                                                        <div class="table-col">
+                                                            <h5>{{data.noofviews}}</h5>
+                                                            <span><i class="fa fa-eye"></i></span>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div> 
+                                                <div class="table-option">
+                                                    <a class="dash-img"><img src="../assets/img/message-icon.png" />
+                                                        <span class="count" ng-if="data.chats.length > 0">{{data.chats.length}}</span>
+                                                    </a>
+                                                    <a ng-click="removeproduct(data)"><i class="fa fa-minus-circle"></i></a>
+                                                </div>                                               
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-30">
+                                        <div class="col-lg-12 col-md-12 col-sm-12" ng-if="myProducts.total > 0 && !formLoading">
+                                            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl"></dir-pagination-controls>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+</div>

@@ -1,0 +1,107 @@
+<div ng-controller="FeedCtrl" class="content-wrapper">
+    <div class="leftSidebar" ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+    <div class="center-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar">
+                    <div class="topbar-left">
+                        <i class="fa fa-rss" aria-hidden="true"></i>
+                        <h2>My Feeds</h2>
+                    </div>
+                    <div class="topbar-right">
+                        <ul class="topbar-list">
+                            <li> {{activetab == 'myfeed' ? 'My Feeds ' :'Wished Feeds '}} <b>&nbsp; {{activetab == 'myfeed' ?  myfeeds.total : wishedfeeds.total}}</b> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-15">
+            <div class="col-lg-12 col-md-12">
+                <div class="topbar result">
+                    <div class="topbar-left">
+                        <span class="lefttext" ng-if="(activetab == 'wishedfeed' && wishedfeeds.total > 0) || (activetab == 'myfeed' && myfeeds.total > 0)">Showing <b>{{ activetab == 'myfeed' ? myfeeds.from : wishedfeeds.from }} </b> to <b>{{ activetab == 'myfeed' ? myfeeds.to : wishedfeeds.to }}</b> of <b>{{ activetab == 'myfeed' ? myfeeds.total : wishedfeeds.total }}</b> Results.</span>
+                    </div>
+                    <div class="topbar-right">
+                        <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by <i class="fa fa-angle-down ml-10"></i></span>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="setactivetab('myfeed')">My Feeds</a></li>
+                            <li><a ng-click="setactivetab('wishedfeed')">Wished Feeds</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row mt-15" ng-if="activetab == 'myfeed'">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in myfeeds.data | itemsPerPage: totalPerPage" total-items="myfeeds.total" pagination-id="myfeed-pagination" current-page="myfeedpagination.current">
+                <div class="table-card feed-list-table">
+                    <div class="flex-top-space">
+                        <div class="table-img" ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}">
+                        </div>
+                        <div class="table-content">
+                            <div class="table-col">
+                                <h5 ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}">{{data.title}}</h5>
+                                <span>{{ activetab == 'wishedfeed' ?  data.owner.username : ''}}  {{activetab == 'wishedfeed' ?  '|' : ''}}  Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                            </div>
+                            <div class="table-col">
+                                <h5></h5>
+                                <span></span>
+                            </div>
+                            <div class="table-col">
+                                <h5>Category</h5>
+                                <span class="primary">{{data.category}}</span>
+                            </div>
+                        </div>
+                        <div class="table-option">
+                            <a ng-click="sharefeedtosocial(data)"><i class="fa fa-share"></i></a>
+                            <a ng-click="removefeed(key,data.id)"><i class="fa fa-minus-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="activetab == 'myfeed' && myfeeds.last_page > 1 && !formLoading">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl" pagination-id="myfeed-pagination"></dir-pagination-controls>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="myfeeds.total  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>No records Found</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-15" ng-if="activetab == 'wishedfeed'">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" dir-paginate="(key,data) in wishedfeeds.data | itemsPerPage: totalPerPage" total-items="wishedfeeds.total" current-page="wishedfeedpagination.current" pagination-id="wishedfeed-pagination">
+                <div class="table-card">
+                    <div class="flex-top-space">
+                        <div class="table-img" ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" >
+                        </div>
+                        <div class="table-content">
+                            <div class="table-col full-width">
+                                <h5>{{data.title}}</h5>
+                                <span>{{data.owner.username}}  |  Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                            </div>
+                        </div>
+                        <div class="table-option">
+                            <a title="Add to Wishlist" ng-click="updatefeedwish(data)"><i class="fa fa-heart primary"></i></a>
+                            <a ng-click="sharefeedtosocial(data)"><i class="fa fa-share"></i></a>
+                            <a ui-sref="app.viewfeed({id:data.id})" ui-sref-opts="{reload: true,inherit: false,notify: true}"><img src="../assets/img/message-icon.png" /></a>
+                        </div>
+                    </div>
+                    <div class="full-col pre-wrap mt-10">{{data.description}}</div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="wishedfeeds.total  ==  0">
+                <div class="wd-100 text-center white-bg p-15">
+                    <h4>No records Found</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-30">
+            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="activetab == 'wishedfeed' && wishedfeeds.last_page > 1 && !formLoading">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pagination-ctrl" pagination-id="wishedfeed-pagination"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+    <div class="rightSidebar" ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+</div>
