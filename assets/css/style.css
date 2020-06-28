@@ -7520,6 +7520,10 @@ a {
   font-size: 36px;
 }
 
+.font-s {
+  font-size: 12px;
+}
+
 .left {
   float: left;
 }
@@ -14781,6 +14785,23 @@ input:checked + .slider:before {
   max-width: 100%;
   padding: 15px;
   border: 0px;
+}
+
+/* Signup */
+.signup {
+  width: 100%;
+  float: left;
+  background: #fff;
+  height: 100vh;
+  padding: 50px 15px 15px 15px;
+}
+
+.footercont {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 }
 
 .info-section {
