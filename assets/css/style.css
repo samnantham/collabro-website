@@ -13925,7 +13925,7 @@ ul.simple-list li:last-of-type {
   .app-content {
     width: 100%;
     float: left;
-    padding-top: 56px;
+    padding-top: 0;
   }
 
   .corpcontmenu {
@@ -14741,6 +14741,7 @@ input:checked + .slider:before {
   width: 100%;
   height: 100vh;
   float: left;
+  padding-top: 50px;
   background: url(../img/mobile-home.jpg) no-repeat center left;
 }
 .main-home .home-footer {
@@ -14771,6 +14772,7 @@ input:checked + .slider:before {
   height: 100vh;
   float: left;
   background: #fff;
+  padding-top: 50px;
 }
 .mobile-main .headertitlenew {
   color: #00C4E8;
