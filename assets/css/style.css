@@ -13870,6 +13870,7 @@ ul.simple-list li:last-of-type {
   justify-content: space-between;
   height: 56px;
   background: #00C4E8;
+  z-index: 9999;
 }
 
 .menu-bar {
@@ -14815,6 +14816,39 @@ input:checked + .slider:before {
 
 .headertitlenew {
   color: #00C4E8;
+}
+
+/* Main page */
+.mobile-center-content {
+  width: 100% !important;
+  padding-bottom: 50px;
+}
+
+.wid-50 {
+  width: 50px !important;
+}
+
+.mobile-search-tab {
+  display: flex;
+  align-items: center;
+}
+.mobile-search-tab li {
+  width: 100%;
+  padding: 0;
+}
+
+.full-banner {
+  width: 100% !important;
+}
+
+.mob-topbar {
+  padding: 0px 15px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mob-topbar .topbar-left .lefttext {
+  float: left;
 }
 
 .info-section {
