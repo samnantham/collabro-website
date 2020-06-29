@@ -14804,6 +14804,19 @@ input:checked + .slider:before {
   left: 0px;
 }
 
+/* Forgot password */
+.forgotpassword {
+  width: 100%;
+  float: left;
+  background: #fff;
+  height: 100vh;
+  padding: 50px 15px 15px 15px;
+}
+
+.headertitlenew {
+  color: #00C4E8;
+}
+
 .info-section {
   width: 100%;
   float: left;
