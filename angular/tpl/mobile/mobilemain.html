@@ -29,7 +29,7 @@
             <div class="form-group flex-center-space mt-15">
                 <input class="magic-checkbox" type="checkbox" id="remember" ng-model="userData.rememberme" name="remember_me" ng-true-value="1" ng-false-value="0">
                 <label class="text" for="remember">Remember Me</label>
-                <a class="forgot-password right" ng-click="changeauthTab('forgotpw')">Forgot Password?</a>
+                <a class="forgot-password right" ui-sref="app.forgotpassword">Forgot Password?</a>
             </div>
             <div class="form-group mt-15">
                 <button type="submit" ng-disabled="loginLoading||authloading||!loginForm.$valid" class="btn success-btn block-btn"> Sign in <i class="fa fa-spinner fa-pulse fa-fw" ng-if="loginLoading"></i></button>
@@ -41,7 +41,7 @@
                 <button type="button" class="btn danger-btn block-btn" ng-disabled="googleloading||authloading" ng-click="googleLogin();">Sign in with Google <i class="fa fa-spinner fa-pulse fa-fw" ng-if="googleloading"></i></button>
             </div>
             <div class="form-group mt-15">
-                <button type="button" class="btn silver-btn block-btn" ng-disabled="authloading" ng-click="changeauthTab('signup')">Create an Account</button>
+                <button type="button" class="btn silver-btn block-btn" ng-disabled="authloading" ui-sref="app.signup">Create an Account</button>
             </div>
             <p class="text-center">Create an account if you do not have an account yet</p>
         </form>

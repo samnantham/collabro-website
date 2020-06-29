@@ -70,7 +70,7 @@ var app = angular.module('app')
                     "feature": "Beetroot Lavender Lip Balm"
                 }];
                 app.redirectroutes = ['app.viewfeed', 'app.viewuser', 'app.viewproduct', 'app.viewtodo', 'app.viewitem'];
-                app.notauthroutes = ['app.home', 'app.searchitems', 'app.main', 'app.viewproduct'];
+                app.notauthroutes = ['app.home', 'app.searchitems', 'app.main', 'app.viewproduct','app.signup','app.signin','app.mobilemain','app.forgotpassword'];
                 app.cmsroutes = ['app.howitworks','app.rewardsandbenefits','app.openshop','app.becomepartner','app.affiliationprogram','app.bonuscredit','app.licenceandlegal','app.discussionsandforums','app.collectioncenter','app.helpcenter','app.collaboraonservice','app.sitemap','app.brand','app.termsandconditions','app.cookypolicy','app.privacypolicy','app.careers']
             }
         ])

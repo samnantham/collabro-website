@@ -76,18 +76,21 @@ angular.module('app')
                 if (isMobile.phone) {
                     $stateProvider
                         .state('app.mobilemain', {
+                            title:'Main',
                             url: '/mobilemain',
                             templateUrl: 'tpl/mobile/mobilemain.html',
                             resolve: load(['js/controllers/home.js'])
                         })
 
                     .state('app.forgotpassword', {
+                        title:'Forgot PW',
                         url: '/forgotpassword',
                         templateUrl: 'tpl/mobile/forgotpassword.html',
                         resolve: load(['js/controllers/home.js'])
                     })
 
                     .state('app.signup', {
+                        title:'SignUp',
                         url: '/signup',
                         templateUrl: 'tpl/mobile/signup.html',
                         resolve: load(['js/controllers/home.js'])
@@ -112,6 +115,7 @@ angular.module('app')
                     })*/
 
                     .state('app.userproducts', {
+                        title:'User Products',
                         url: '/userproducts/:id',
                         templateUrl: 'tpl/mobile/userproducts.html',
                         resolve: load(['js/controllers/viewuser.js'])
