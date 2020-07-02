@@ -60,3 +60,10 @@
         }
     }
 }
+
+@media (max-width: 767px){
+    .pagination li a{
+        display: inline-flex;
+        align-items: center;
+    }
+}

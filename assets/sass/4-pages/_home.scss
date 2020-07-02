@@ -294,6 +294,10 @@
     li{
         width: 100%;
         padding: 0;
+        a{
+            font-size: $font-r !important;
+            padding: 0 5px;
+        }
     }
 }
 
@@ -310,5 +314,28 @@
         .lefttext{
             float: left;
         }
+    }
+}
+
+.mob-left-menu{
+    max-width: 250px;
+    padding-top: 60px;
+    background: $white;
+    .avatar{
+        float: left;
+    }
+    .pfname{
+        float: left;
+        margin-left: 10px;
+    }
+    .font-price{
+        width: 100%;
+        float: left;
+    }
+    .custom-toggle i{
+        left: -165px !important;
+    }
+    .custom-toggle .status{
+        left: -150px !important;
     }
 }

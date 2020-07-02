@@ -8267,6 +8267,11 @@ p {
   font-size: 14px;
 }
 
+@media (max-width: 767px) {
+  h1 {
+    font-size: 22px;
+  }
+}
 .form-control {
   font-family: "Lato";
   font-weight: normal;
@@ -13860,6 +13865,12 @@ ul.simple-list li:last-of-type {
   -moz-border-radius: 5px !important;
 }
 
+@media (max-width: 767px) {
+  .pagination li a {
+    display: inline-flex;
+    align-items: center;
+  }
+}
 .mobile-head {
   width: 100%;
   position: fixed;
@@ -14836,6 +14847,10 @@ input:checked + .slider:before {
   width: 100%;
   padding: 0;
 }
+.mobile-search-tab li a {
+  font-size: 14px !important;
+  padding: 0 5px;
+}
 
 .full-banner {
   width: 100% !important;
@@ -14849,6 +14864,29 @@ input:checked + .slider:before {
 }
 .mob-topbar .topbar-left .lefttext {
   float: left;
+}
+
+.mob-left-menu {
+  max-width: 250px;
+  padding-top: 60px;
+  background: #fff;
+}
+.mob-left-menu .avatar {
+  float: left;
+}
+.mob-left-menu .pfname {
+  float: left;
+  margin-left: 10px;
+}
+.mob-left-menu .font-price {
+  width: 100%;
+  float: left;
+}
+.mob-left-menu .custom-toggle i {
+  left: -165px !important;
+}
+.mob-left-menu .custom-toggle .status {
+  left: -150px !important;
 }
 
 .info-section {
