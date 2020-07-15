@@ -676,3 +676,38 @@
         color: $secondary-text;
     }
 }
+
+
+@media (max-width: 480px){
+    .card-img{
+        min-height: 150px !important;
+        max-height: 170px !important;
+    }
+
+    .card-content{
+        padding: 10px !important;
+        h4{
+            margin-bottom: 10px !important;
+        }
+    }
+    
+    .card-footer{
+        padding: 10px !important;
+    }
+
+    .slick-slider .slick-arrow.slick-next{
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .slick-slider .slick-arrow.slick-prev{
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .card{
+        .price{
+            font-size: $font-mob-price !important;
+        }
+    }
+
+}

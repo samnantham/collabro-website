@@ -1167,8 +1167,8 @@ angular.module('app')
                         $rootScope.slidecount = 3;
                     }
                 } else {
-                    $rootScope.slidecount = 1;
-                    $rootScope.scrollslides = 1;
+                    $rootScope.slidecount = 2;
+                    $rootScope.scrollslides = 2;
                 }
                 $rootScope.stateurl = toState.name;
                 console.log($rootScope.stateurl)

@@ -8275,6 +8275,32 @@ p {
   h1 {
     font-size: 22px;
   }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 14px;
+  }
+
+  h5 {
+    font-size: 12px;
+  }
+
+  h6 {
+    font-size: 12px;
+  }
+
+  p {
+    font-family: "Lato";
+    font-weight: normal;
+    font-size: 12px;
+  }
 }
 .form-control {
   font-family: "Lato";
@@ -10208,6 +10234,37 @@ i.color-btn {
   color: #7E8EA4;
 }
 
+@media (max-width: 480px) {
+  .card-img {
+    min-height: 150px !important;
+    max-height: 170px !important;
+  }
+
+  .card-content {
+    padding: 10px !important;
+  }
+  .card-content h4 {
+    margin-bottom: 10px !important;
+  }
+
+  .card-footer {
+    padding: 10px !important;
+  }
+
+  .slick-slider .slick-arrow.slick-next {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .slick-slider .slick-arrow.slick-prev {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .card .price {
+    font-size: 24px !important;
+  }
+}
 .chat-wrap {
   z-index: 9999;
   background: #fff;
