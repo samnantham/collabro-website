@@ -128,4 +128,19 @@
     width: 100%;
     height: 100%;
     background: transparent;
+    position: relative;
+    .sidebar-overlay{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+    .mob-left-menu{
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 9999;
+    }
 }

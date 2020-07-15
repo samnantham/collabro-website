@@ -14063,6 +14063,21 @@ ul.simple-list li:last-of-type {
   width: 100%;
   height: 100%;
   background: transparent;
+  position: relative;
+}
+.sidebar-modal .sidebar-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.sidebar-modal .mob-left-menu {
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 9999;
 }
 
 .form-group {
