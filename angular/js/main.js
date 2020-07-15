@@ -1258,6 +1258,15 @@ angular.module('app')
                 $rootScope.viewingThumb = {};
             }
 
+            $scope.asideState = {
+                open: false
+            };
+
+            $rootScope.closeAside = function() {
+                if ($scope.asideInstance) {
+                    $scope.asideInstance.close();
+                }
+            }
 
             $scope.openAside = function(position, backdrop) {
 
@@ -1271,9 +1280,10 @@ angular.module('app')
                     $scope.asideInstance = $aside.open({
                         templateUrl: 'tpl/blocks/mobile/sidemenu.html',
                         placement: position,
-                        size: 'sm',
-                        backdrop: backdrop,
+                        size: 'sm'
                     });
+                }else{
+                    $rootScope.closeAside();
                 }
 
                 $scope.asideInstance.result.then(postClose, postClose);
