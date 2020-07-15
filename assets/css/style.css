@@ -6426,6 +6426,10 @@ button.close {
   outline: 0;
 }
 
+.modal-sm .modal-content {
+  background: transparent;
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
