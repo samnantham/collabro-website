@@ -14059,6 +14059,12 @@ ul.simple-list li:last-of-type {
   font-size: 11px;
 }
 
+.sidebar-modal {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
 .form-group {
   margin-bottom: 0;
   margin-left: 0px !important;

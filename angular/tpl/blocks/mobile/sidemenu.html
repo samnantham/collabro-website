@@ -52,37 +52,40 @@
     <button class="btn btn-primary" ng-click="ok($event)">OK</button>
     <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
 </div> -->
+<div class="sidebar-modal">
 
-<div class="left-sidebar mob-left-menu">
-   <div class="sidebar-card">
-       <h6 class="label-xs">My Account</h6>
-       <div class="flex-center-left mt-10 mb-10">
-          <div class="avatar avatar-s"><img ng-src="{{IMGURL}}{{user.avatar}}"></div>
-          <div class="pfname ellipsis mobside" >{{user.username}}</div>
+   <div class="left-sidebar mob-left-menu">
+      <div class="sidebar-card">
+         <h6 class="label-xs">My Account</h6>
+         <div class="flex-center-left mt-10 mb-10">
+            <div class="avatar avatar-s"><img ng-src="{{IMGURL}}{{user.avatar}}"></div>
+            <div class="pfname ellipsis mobside" >{{user.username}}</div>
+            </div>
+            <div class="font-price">${{user.experiencepoints}}</div>
+      </div>
+
+      <label class="custom-toggle" for="switch-toggle">
+         <div class="toggle-con">
+            <input type="checkbox" id="switch-toggle" ng-model="user.onlinestatus" ng-true-value="1" ng-false-value="0" ng-change="updatestatus(user.onlinestatus);"/>
+            <span class="switch-tog"></span>
+            <span class="toggle-s"></span>
+            <i class="fa fa-power-off"></i>
+            <span class="status"></span>
          </div>
-          <div class="font-price">${{user.experiencepoints}}</div>
+      </label>
+
+      <!-- Simple list -->
+      <ul class="simple-list">
+         <li><a ui-sref="app.mydashboard" ng-class="{'primary bold':stateurl=='app.mydashboard'}"><i class="fa fa-dashboard"></i> <span>MY DASHBOARD</span></a></li>
+         <li><a ui-sref="app.wishlist" ng-class="{'primary bold':stateurl=='app.wishlist'}"><i class="fa fa-list-alt"></i> <span>MY WISHLIST</span></a></li>
+         <li><a ui-sref="app.projectlist" ng-class="{'primary bold':stateurl=='app.projectlist'}"><i class="fa fa-briefcase"></i> <span>MY PROJECTS</span></a></li>
+         <li><a ui-sref="app.myfriends" ng-class="{'primary bold':stateurl=='app.myfriends'}"><i class="fa fa-user-plus"></i> <span>MY FRIENDS</span></a></li>
+         <li><a ui-sref="app.feeds" ng-class="{'primary bold':stateurl=='app.feeds'}"><i class="fa fa-list-ul"></i> <span>MY FEEDS</span></a></li>
+         <li><a ui-sref="app.howitworks" ng-class="{'primary bold':stateurl=='app.howitworks'}"><i class="fa fa-lightbulb-o"></i> <span>HOW IT WORKS</span></a></li>
+         <li><a ui-sref="app.rewardsandbenefits" ng-class="{'primary bold':stateurl=='app.rewardsandbenefits'}"><i class="fa fa-trophy"></i> <span>REWARDS & BENEFITS</span></a></li>
+         <li><a ng-class="{'primary':stateurl=='app.settings'}"><i class="fa fa-cogs"></i> <span>SETINGS</span></a></li>
+         <li><a ng-click="logout();" ng-class="{'primary':stateurl=='app.settings'}"><i class="fa fa-sign-out"></i> <span>LOGOUT</span></a></li>
+      </ul>
    </div>
 
-   <label class="custom-toggle" for="switch-toggle">
-       <div class="toggle-con">
-           <input type="checkbox" id="switch-toggle" ng-model="user.onlinestatus" ng-true-value="1" ng-false-value="0" ng-change="updatestatus(user.onlinestatus);"/>
-           <span class="switch-tog"></span>
-           <span class="toggle-s"></span>
-           <i class="fa fa-power-off"></i>
-           <span class="status"></span>
-       </div>
-   </label>
-
-   <!-- Simple list -->
-   <ul class="simple-list">
-       <li><a ui-sref="app.mydashboard" ng-class="{'primary bold':stateurl=='app.mydashboard'}"><i class="fa fa-dashboard"></i> <span>MY DASHBOARD</span></a></li>
-       <li><a ui-sref="app.wishlist" ng-class="{'primary bold':stateurl=='app.wishlist'}"><i class="fa fa-list-alt"></i> <span>MY WISHLIST</span></a></li>
-       <li><a ui-sref="app.projectlist" ng-class="{'primary bold':stateurl=='app.projectlist'}"><i class="fa fa-briefcase"></i> <span>MY PROJECTS</span></a></li>
-       <li><a ui-sref="app.myfriends" ng-class="{'primary bold':stateurl=='app.myfriends'}"><i class="fa fa-user-plus"></i> <span>MY FRIENDS</span></a></li>
-       <li><a ui-sref="app.feeds" ng-class="{'primary bold':stateurl=='app.feeds'}"><i class="fa fa-list-ul"></i> <span>MY FEEDS</span></a></li>
-       <li><a ui-sref="app.howitworks" ng-class="{'primary bold':stateurl=='app.howitworks'}"><i class="fa fa-lightbulb-o"></i> <span>HOW IT WORKS</span></a></li>
-       <li><a ui-sref="app.rewardsandbenefits" ng-class="{'primary bold':stateurl=='app.rewardsandbenefits'}"><i class="fa fa-trophy"></i> <span>REWARDS & BENEFITS</span></a></li>
-       <li><a ng-class="{'primary':stateurl=='app.settings'}"><i class="fa fa-cogs"></i> <span>SETINGS</span></a></li>
-       <li><a ng-click="logout();" ng-class="{'primary':stateurl=='app.settings'}"><i class="fa fa-sign-out"></i> <span>LOGOUT</span></a></li>
-   </ul>
 </div>
