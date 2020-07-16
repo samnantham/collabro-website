@@ -1124,13 +1124,16 @@ angular.module('app')
                             localStorage.user = JSON.stringify($sessionStorage.user);
                             $rootScope.user = $sessionStorage.user;
                             $rootScope.createFirebaseauth();
-
                         } else {
                             $rootScope.authloading = false;
                             $rootScope.registerloading = false;
-                            $rootScope.registererrors.usernameerror = getData.data.message.username[0];
-                            $rootScope.registererrors.emailerror = getData.data.message.email[0];
-                            console.log($rootScope.registererrors)
+                            angular.forEach(getData.data, function(errormsg, no) {
+                                if(errormsg.hasOwnProperty('email')){
+                                    $rootScope.registererrors.emailerror = errormsg.email[0];
+                                }if(errormsg.hasOwnProperty('username')){
+                                    $rootScope.registererrors.usernameerror = errormsg.username[0];
+                                }
+                            });
                         }
                     });
 
