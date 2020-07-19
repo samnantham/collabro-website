@@ -119,3 +119,24 @@
     color: $white;
     border-color: darken($orange, 5%);
 }
+
+@media (max-width: 768px){
+    .alert{
+        float: left;
+        display: flex;
+        align-items: center;
+        .panel-heading{
+            float: left;
+        }
+        .panel-collapse{
+            float: left;
+        }
+        i{
+            float: left;
+        }
+        .alert-text{
+            width: calc(100% - 60px);
+            float: left;
+        }
+    }
+}

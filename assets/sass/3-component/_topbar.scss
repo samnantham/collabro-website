@@ -66,6 +66,13 @@
     }
 }
 
+// Mobile
+@media (max-width: 768px){
+    .topbar{
+        height: auto;
+    }
+}
+
 .calendar-span{
     display: inline-flex;
     align-items: center;
