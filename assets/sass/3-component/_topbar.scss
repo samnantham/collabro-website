@@ -71,6 +71,9 @@
     .topbar{
         height: auto;
     }
+    .topbar-left{
+        display: inline-flex !important;
+    }
 }
 
 .calendar-span{

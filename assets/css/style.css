@@ -7688,7 +7688,7 @@ a {
 
 @media (max-width: 768px) {
   .flex-center, .loader, .topbar-list li, .topbar .topbar-left, .card:hover .hover-icon, .card .hover-icon.active, .inline-flex-center, .avatar span, .flex-center-space, .topbar, .flex-center-right, .flex-center-space-around {
-    display: block;
+    display: inline-flex;
   }
 }
 .orange-gradient, .search-tab li a:hover, .search-tab li a.active, .custom-modal .custom-modal-title.modal-orange, .secondary-btn:hover, .secondary-btn, .alert-orange {
@@ -10260,6 +10260,29 @@ i.color-btn {
   color: #7E8EA4;
 }
 
+@media (max-width: 768px) {
+  .table-card {
+    padding: 10px;
+  }
+  .table-card .table-content {
+    width: 100% !important;
+  }
+  .table-card .table-content .table-col {
+    width: 100%;
+    max-width: 100%;
+  }
+  .table-card .table-option {
+    width: auto !important;
+  }
+  .table-card .table-option .option-img {
+    display: none;
+  }
+
+  .chat-list-table .full-col {
+    width: 100% !important;
+    padding-left: 65px !important;
+  }
+}
 @media (max-width: 480px) {
   .card-img {
     min-height: 150px !important;
@@ -13404,6 +13427,10 @@ ul.simple-list li:last-of-type {
 @media (max-width: 768px) {
   .topbar {
     height: auto;
+  }
+
+  .topbar-left {
+    display: inline-flex !important;
   }
 }
 .calendar-span {

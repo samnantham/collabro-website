@@ -661,6 +661,8 @@
     }
 }
 
+
+
 .saved-card{
     width: 100%;
     float: left;
@@ -677,6 +679,30 @@
     }
 }
 
+@media (max-width: 768px){
+    .table-card{
+        padding: 10px;
+        .table-content{
+            width: 100% !important;
+            .table-col{
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        .table-option{
+            width: auto !important;
+            .option-img{
+                display: none;
+            }
+        }
+    }
+    .chat-list-table{
+        .full-col{
+            width: 100% !important;
+            padding-left: 65px !important;
+        }
+    }
+}
 
 @media (max-width: 480px){
     .card-img{
