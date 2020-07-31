@@ -56,6 +56,15 @@
     }
 }
 
+@media (max-width: 767px){
+    .modal-sm, .otp-modal{
+        width: 100% !important;
+    }
+    .modal-content{
+        margin: 60px 0 20px 0 !important;
+    }
+}
+
 .custom-modal{
     width: 100%;
     float: left;

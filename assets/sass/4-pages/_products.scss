@@ -197,6 +197,15 @@
     }
 }
 
+// mobile 
+@media (max-width: 767px){
+    .content-detail-left{
+        width: 100%;
+    }
+    .content-detail-right{
+        width: 100%;
+    }
+}
 
 /* Add project member */
 .project-member{

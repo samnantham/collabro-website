@@ -12132,6 +12132,15 @@ i.color-btn {
   margin-top: 0px;
 }
 
+@media (max-width: 767px) {
+  .modal-sm, .otp-modal {
+    width: 100% !important;
+  }
+
+  .modal-content {
+    margin: 60px 0 20px 0 !important;
+  }
+}
 .custom-modal {
   width: 100%;
   float: left;
@@ -14075,6 +14084,7 @@ ul.simple-list li:last-of-type {
   left: 0px;
   display: flex;
   align-items: center;
+  z-index: 99999;
 }
 .mobile-footer ul {
   width: 100%;
@@ -15460,6 +15470,15 @@ input:checked + .slider:before {
   color: #7E8EA4;
 }
 
+@media (max-width: 767px) {
+  .content-detail-left {
+    width: 100%;
+  }
+
+  .content-detail-right {
+    width: 100%;
+  }
+}
 /* Add project member */
 .project-member {
   width: 100%;
